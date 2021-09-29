@@ -1,0 +1,715 @@
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+
+
+
+    <div class="py-4 py-lg-5">
+
+        <mat-horizontal-stepper labelPosition="bottom" #stepper>
+            <mat-step label="Basic Information">
+                <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="basicInfoForm">
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="country_id">Country</label>
+                                <select id="country_id" formControlName="country_id" class="form-control aiz-selectpicker" (change)="getStates()" name="country_id" required>
+                        <option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="state_id">State</label>
+                                <select id="state_id" formControlName="state_id" class="form-control aiz-selectpicker" (change)="getCities()" name="state_id" required>
+                        <option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</option>
+                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="city">City</label>
+                                <select id="city" formControlName="city" class="form-control aiz-selectpicker" name="city" required>
+                        <option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="marital_status">Matrital Status</label>
+                                <select id="marital_status" (change)="toggleChidrenInputs()" formControlName="marital_status" class="form-control aiz-selectpicker" name="marital_status" required>
+                                <option selected="" value="">Select Marital Status</option>
+                                <option value="Unmarried">Unmarried</option>
+                                <option value="Widow/Widower">Widow/Widower</option>
+                                <option value="Divorcee">Divorcee</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Awaiting Divorce">Awaiting Divorce</option>
+                             </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" *ngIf="basicInfoForm.controls.marital_status.value!='Unmarried'">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="total_children">Total Children</label>
+                                <select id="total_children" formControlName="total_children" class="form-control aiz-selectpicker" name="total_children" required>
+                                <option selected="" value="">Select Total Children</option>
+                                <option value="0">None</option>
+                                <option value="One">One</option>
+                                <option value="Two">Two</option>
+                                <option value="Three">Three</option>
+                                <option value="Four and above">Four and above</option>
+                             </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="status_children">Status Of Children</label>
+                                <select id="status_children" formControlName="status_children" class="form-control aiz-selectpicker" name="status_children" required>
+                                <option selected="" value="">Select Status Children</option>
+                                <option value="Living with me">Living with me</option>
+                                <option value="Not living with me">Not living with me</option>
+                             </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="mother_tongue">Mother Tongue</label>
+                                <select id="mother_tongue" formControlName="mother_tongue" class="form-control aiz-selectpicker" name="mother_tongue" required>
+                        <option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Partner preference-->
+
+                    <label class="form-label" for="looking_for[]">Looking For</label>
+                    <div class="form-group mb-1">
+                        <ng-select id=" looking_for[]" [multiple]="true" formControlName="looking_for">
+                            <ng-option value="Unmarried">Unmarried</ng-option>
+                            <ng-option value="Widow/Widower">Widow/Widower</ng-option>
+                            <ng-option value="Divorcee">Divorcee</ng-option>
+                            <ng-option value="Separated">Separated</ng-option>
+                            <ng-option value="Awaiting Divorce">Awaiting Divorce</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="part_frm_age">Partner From Age</label>
+                                <select id="part_frm_age" formControlName="part_frm_age" class="form-control aiz-selectpicker" name="part_frm_age" required>
+                                <option selected="" value="">Select Partner From Age</option>
+                                <option selected="" value="18">18 Year</option>
+                                <option value="19">19 Year</option>
+                                <option value="20">20 Year</option>
+                                <option value="21">21 Year</option>
+                                <option value="22">22 Year</option>
+                                <option value="23">23 Year</option>
+                                <option value="24">24 Year</option>
+                                <option value="25">25 Year</option>
+                                <option value="26">26 Year</option>
+                                <option value="27">27 Year</option>
+                                <option value="28">28 Year</option>
+                                <option value="29">29 Year</option>
+                                <option value="30">30 Year</option>
+                                <option value="31">31 Year</option>
+                                <option value="32">32 Year</option>
+                                <option value="33">33 Year</option>
+                                <option value="34">34 Year</option>
+                                <option value="35">35 Year</option>
+                                <option value="36">36 Year</option>
+                                <option value="37">37 Year</option>
+                                <option value="38">38 Year</option>
+                                <option value="39">39 Year</option>                                
+                                <option value="40">40 Year</option>
+                                <option value="41">41 Year</option>
+                                <option value="42">42 Year</option>
+                                <option value="43">43 Year</option>
+                                <option value="44">44 Year</option>
+                                <option value="45">45 Year</option>
+                                <option value="46">46 Year</option>
+                                <option value="47">47 Year</option>
+                                <option value="48">48 Year</option>
+                                <option value="49">49 Year</option>
+                                <option value="50">50 Year</option>
+                                <option value="51">51 Year</option>
+                                <option value="52">52 Year</option>
+                                <option value="53">53 Year</option>
+                                <option value="54">54 Year</option>
+                                <option value="55">55 Year</option>
+                                <option value="56">56 Year</option>
+                                <option value="57">57 Year</option>
+                                <option value="58">58 Year</option>
+                                <option value="59">59 Year</option>
+                                <option value="60">60 Year</option>
+                                <option value="61">61 Year</option>
+                                <option value="62">62 Year</option>
+                                <option value="63">63 Year</option>
+                                <option value="64">64 Year</option>
+                                <option value="65">65 Year</option>
+                             </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="part_to_age">Partner To Age</label>
+                                <select id="part_to_age" formControlName="part_to_age" class="form-control aiz-selectpicker" name="part_to_age" required>
+                            <option selected="" value="">Select Partner To Age</option>
+                            <option selected="" value="18">18 Year</option>
+                            <option value="19">19 Year</option>
+                            <option value="20">20 Year</option>
+                            <option value="21">21 Year</option>
+                            <option value="22">22 Year</option>
+                            <option value="23">23 Year</option>
+                            <option value="24">24 Year</option>
+                            <option value="25">25 Year</option>
+                            <option value="26">26 Year</option>
+                            <option value="27">27 Year</option>
+                            <option value="28">28 Year</option>
+                            <option value="29">29 Year</option>
+                            <option value="30">30 Year</option>
+                            <option value="31">31 Year</option>
+                            <option value="32">32 Year</option>
+                            <option value="33">33 Year</option>
+                            <option value="34">34 Year</option>
+                            <option value="35">35 Year</option>
+                            <option value="36">36 Year</option>
+                            <option value="37">37 Year</option>
+                            <option value="38">38 Year</option>
+                            <option value="39">39 Year</option>                                
+                            <option value="40">40 Year</option>
+                            <option value="41">41 Year</option>
+                            <option value="42">42 Year</option>
+                            <option value="43">43 Year</option>
+                            <option value="44">44 Year</option>
+                            <option value="45">45 Year</option>
+                            <option value="46">46 Year</option>
+                            <option value="47">47 Year</option>
+                            <option value="48">48 Year</option>
+                            <option value="49">49 Year</option>
+                            <option value="50">50 Year</option>
+                            <option value="51">51 Year</option>
+                            <option value="52">52 Year</option>
+                            <option value="53">53 Year</option>
+                            <option value="54">54 Year</option>
+                            <option value="55">55 Year</option>
+                            <option value="56">56 Year</option>
+                            <option value="57">57 Year</option>
+                            <option value="58">58 Year</option>
+                            <option value="59">59 Year</option>
+                            <option value="60">60 Year</option>
+                            <option value="61">61 Year</option>
+                            <option value="62">62 Year</option>
+                            <option value="63">63 Year</option>
+                            <option value="64">64 Year</option>
+                            <option value="65">65 Year</option>
+                             </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="part_height">Partner From Height</label>
+                                <select id="part_height" formControlName="part_height" class="form-control aiz-selectpicker" name="part_height" required>
+                               <option selected="" value="">Select Partner From Height</option>
+                               <option value="48">Below 4ft</option>
+                               <option value="49">4ft 1in</option>
+                               <option value="50">4ft 2in</option>
+                               <option value="51">4ft 3in</option>
+                               <option value="52">4ft 4in</option>
+                               <option value="53">4ft 5in</option>
+                               <option value="54">4ft 6in</option>
+                               <option value="55">4ft 7in</option>
+                               <option value="56">4ft 8in</option>
+                               <option value="57">4ft 9in</option>
+                               <option value="58">4ft 10in</option>
+                               <option value="59">4ft 11in</option>
+                               <option value="60">5ft</option>
+                               <option value="61">5ft 1in</option>
+                               <option value="62">5ft 2in</option>
+                               <option value="63">5ft 3in</option>
+                               <option value="64">5ft 4in</option>
+                               <option value="65">5ft 5in</option>
+                               <option value="66">5ft 6in</option>
+                               <option value="67">5ft 7in</option>
+                               <option value="68">5ft 8in</option>
+                               <option value="69">5ft 9in</option>
+                               <option value="70">5ft 10in</option>
+                               <option value="71">5ft 11in</option>
+                               <option value="72">6ft</option>
+                               <option value="73">6ft 1in</option>
+                               <option value="74">6ft 2in</option>
+                               <option value="75">6ft 3in</option>
+                               <option value="76">6ft 4in</option>
+                               <option value="77">6ft 5in</option>
+                               <option value="78">6ft 6in</option>
+                               <option value="79">6ft 7in</option>
+                               <option value="80">6ft 8in</option>
+                               <option value="81">6ft 9in</option>
+                               <option value="82">6ft 10in</option>
+                               <option value="83">6ft 11in</option>
+                               <option value="84">7ft</option>
+                               <option value="85">Above 7ft</option>
+                             </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="part_height_to">Partner To Height</label>
+                                <select id="part_height_to" formControlName="part_height_to" class="form-control aiz-selectpicker" name="part_height_to" required>
+                            <option selected="" value="">Select Partner To Height</option>
+                            <option value="48">Below 4ft</option>
+                            <option value="49">4ft 1in</option>
+                            <option value="50">4ft 2in</option>
+                            <option value="51">4ft 3in</option>
+                            <option value="52">4ft 4in</option>
+                            <option value="53">4ft 5in</option>
+                            <option value="54">4ft 6in</option>
+                            <option value="55">4ft 7in</option>
+                            <option value="56">4ft 8in</option>
+                            <option value="57">4ft 9in</option>
+                            <option value="58">4ft 10in</option>
+                            <option value="59">4ft 11in</option>
+                            <option value="60">5ft</option>
+                            <option value="61">5ft 1in</option>
+                            <option value="62">5ft 2in</option>
+                            <option value="63">5ft 3in</option>
+                            <option value="64">5ft 4in</option>
+                            <option value="65">5ft 5in</option>
+                            <option value="66">5ft 6in</option>
+                            <option value="67">5ft 7in</option>
+                            <option value="68">5ft 8in</option>
+                            <option value="69">5ft 9in</option>
+                            <option value="70">5ft 10in</option>
+                            <option value="71">5ft 11in</option>
+                            <option value="72">6ft</option>
+                            <option value="73">6ft 1in</option>
+                            <option value="74">6ft 2in</option>
+                            <option value="75">6ft 3in</option>
+                            <option value="76">6ft 4in</option>
+                            <option value="77">6ft 5in</option>
+                            <option value="78">6ft 6in</option>
+                            <option value="79">6ft 7in</option>
+                            <option value="80">6ft 8in</option>
+                            <option value="81">6ft 9in</option>
+                            <option value="82">6ft 10in</option>
+                            <option value="83">6ft 11in</option>
+                            <option value="84">7ft</option>
+                            <option value="85">Above 7ft</option>
+                             </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="basicInfoFormSubmit()">Save</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                    </div>
+                </form>
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+            </mat-step>
+
+
+            <mat-step label="Education Qaulification">
+                <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="educationQualificationForm">
+
+                    <label class="form-label" for="education_detail[]">Education</label>
+                    <div class="form-group mb-1">
+                        <ng-select id="education_detail[]" formControlName="education_detail" [multiple]="true">
+                            <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
+                        </ng-select>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="employee_in">Employee In</label>
+                                <select id="employee_in" formControlName="employee_in" class="form-control aiz-selectpicker" name="employee_in" required>
+                            <option selected="" value="">Select Employee In</option>
+                            <option value="Private">Private</option>
+                            <option value="Govt">Govt</option>
+                            <option value="Central Govt">Central Govt</option>
+                            <option value="MNC">MNC</option>
+                            <option value="Overseas">Overseas</option>
+                            <option value="Own Business">Own Business</option>
+                            <option value="Others">Others</option>
+                            <option value="Public Limited">Public Limited</option>
+                            <option value="Semi Govt">Semi Govt</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="income">Income</label>
+                                <select id="income" formControlName="income" class="form-control aiz-selectpicker" name="income" required>
+                       <option selected="" value="">Select Annual Income</option>
+                       <option value="0 - 1 Lakh">0 - 1 Lakh</option>
+                       <option value="1 - 2 Lakhs">1 - 2 Lakhs</option>
+                       <option value="2 - 3 Lakhs">2 - 3 Lakhs</option>
+                       <option value="3 - 4 Lakhs">3 - 4 Lakhs</option>
+                       <option value="4 - 5 Lakhs">4 - 5 Lakhs</option>
+                       <option value="5 - 6 Lakhs">5 - 6 Lakhs</option>
+                       <option value="6 - 7 Lakhs">6 - 7 Lakhs</option>
+                       <option value="7 - 8 Lakhs">7 - 8 Lakhs</option>
+                       <option value="8 - 9 Lakhs">8 - 9 Lakhs</option>
+                       <option value="9 - 10 Lakhs">9 - 10 Lakhs</option>
+                       <option value="10 - 12 Lakhs">10 - 12 Lakhs</option>
+                       <option value="12 - 14 Lakhs">12 - 14 Lakhs</option>
+                       <option value="14 - 16 Lakhs">14 - 16 Lakhs</option>
+                       <option value="16 - 18 Lakhs">16 - 18 Lakhs</option>
+                       <option value="18 - 20 Lakhs">18 - 20 Lakhs</option>
+                       <option value="20 - 25 Lakhs">20 - 25 Lakhs</option>
+                       <option value="25 - 30 Lakhs">25 - 30 Lakhs</option>
+                       <option value="30 - 35 Lakhs">30 - 35 Lakhs</option>
+                       <option value="35 - 40 Lakhs">35 - 40 Lakhs</option>
+                       <option value="40 - 45 Lakhs">40 - 45 Lakhs</option>
+                       <option value="45 - 50 Lakhs">45 - 50 Lakhs</option>
+                       <option value="50 - 55 Lakhs">50 - 55 Lakhs</option>
+                       <option value="55 - 60 Lakhs">55 - 60 Lakhs</option>
+                       <option value="60 - 65 Lakhs">60 - 65 Lakhs</option>
+                       <option value="65 - 70 Lakhs">65 - 70 Lakhs</option>
+                       <option value="70 - 75 Lakhs">70 - 75 Lakhs</option>
+                       <option value="75 - 80 Lakhs">75 - 80 Lakhs</option>
+                       <option value="80 - 58 Lakhs">80 - 85 Lakhs</option>
+                       <option value="85 - 90 Lakhs">85 - 90 Lakhs</option>
+                       <option value="90 Lakhs - 1 Crore">90 Lakhs - 1 Crore</option>
+                       <option value="1 Crore &amp; Above">1 Crore &amp; Above</option>
+                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="occupation">Occupation</label>
+                                <select id="occupation" formControlName="occupation" class="form-control aiz-selectpicker" name="occupation" required>
+                        <option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="designation">Designation</label>
+                                <select id="designation" formControlName="designation" class="form-control aiz-selectpicker" name="designation" required>
+                            <option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.val}}</option>
+                        </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Back</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="educationQualificationFormSubmit()">Save</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                    </div>
+                </form>
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+            </mat-step>
+
+            <mat-step label="Food/Lifestyle">
+                <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="foodLifeForm">
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="height">Height</label>
+                                <select id="height" formControlName="height" class="form-control aiz-selectpicker" name="height" required>
+                            <option selected="" value="">Select Height</option>
+                               <option value="48">Below 4ft</option>
+                               <option value="49">4ft 1in</option>
+                               <option value="50">4ft 2in</option>
+                               <option value="51">4ft 3in</option>
+                               <option value="52">4ft 4in</option>
+                               <option value="53">4ft 5in</option>
+                               <option value="54">4ft 6in</option>
+                               <option value="55">4ft 7in</option>
+                               <option value="56">4ft 8in</option>
+                               <option value="57">4ft 9in</option>
+                               <option value="58">4ft 10in</option>
+                               <option value="59">4ft 11in</option>
+                               <option value="60">5ft</option>
+                               <option value="61">5ft 1in</option>
+                               <option value="62">5ft 2in</option>
+                               <option value="63">5ft 3in</option>
+                               <option value="64">5ft 4in</option>
+                               <option value="65">5ft 5in</option>
+                               <option value="66">5ft 6in</option>
+                               <option value="67">5ft 7in</option>
+                               <option value="68">5ft 8in</option>
+                               <option value="69">5ft 9in</option>
+                               <option value="70">5ft 10in</option>
+                               <option value="71">5ft 11in</option>
+                               <option value="72">6ft</option>
+                               <option value="73">6ft 1in</option>
+                               <option value="74">6ft 2in</option>
+                               <option value="75">6ft 3in</option>
+                               <option value="76">6ft 4in</option>
+                               <option value="77">6ft 5in</option>
+                               <option value="78">6ft 6in</option>
+                               <option value="79">6ft 7in</option>
+                               <option value="80">6ft 8in</option>
+                               <option value="81">6ft 9in</option>
+                               <option value="82">6ft 10in</option>
+                               <option value="83">6ft 11in</option>
+                               <option value="84">7ft</option>
+                               <option value="85">Above 7ft</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="weight">Weight</label>
+                                <select id="weight" formControlName="weight" class="form-control aiz-selectpicker" name="weight" required>
+                            <option selected="" value="">Select Weight</option>
+                            <option value="40">40 Kg</option>
+                            <option value="41">41 Kg</option>
+                            <option value="42">42 Kg</option>
+                            <option value="43">43 Kg</option>
+                            <option value="44">44 Kg</option>
+                            <option value="45">45 Kg</option>
+                            <option value="46">46 Kg</option>
+                            <option value="47">47 Kg</option>
+                            <option value="48">48 Kg</option>
+                            <option value="49">49 Kg</option>
+                            <option value="50">50 Kg</option>
+                            <option value="51">51 Kg</option>
+                            <option value="52">52 Kg</option>
+                            <option value="53">53 Kg</option>
+                            <option value="54">54 Kg</option>
+                            <option value="55">55 Kg</option>
+                            <option value="56">56 Kg</option>
+                            <option value="57">57 Kg</option>
+                            <option value="58">58 Kg</option>
+                            <option value="59">59 Kg</option>
+                            <option value="60">60 Kg</option>
+                            <option value="61">61 Kg</option>
+                            <option value="62">62 Kg</option>
+                            <option value="63">63 Kg</option>
+                            <option value="64">64 Kg</option>
+                            <option value="65">65 Kg</option>
+                            <option value="66">66 Kg</option>
+                            <option value="67">67 Kg</option>
+                            <option value="68">68 Kg</option>
+                            <option value="69">69 Kg</option>
+                            <option value="70">70 Kg</option>
+                            <option value="71">71 Kg</option>
+                            <option value="72">72 Kg</option>
+                            <option value="73">73 Kg</option>
+                            <option value="74">74 Kg</option>
+                            <option value="75">75 Kg</option>
+                            <option value="76">76 Kg</option>
+                            <option value="77">77 Kg</option>
+                            <option value="78">78 Kg</option>
+                            <option value="79">79 Kg</option>
+                            <option value="80">80 Kg</option>
+                            <option value="81">81 Kg</option>
+                            <option value="82">82 Kg</option>
+                            <option value="83">83 Kg</option>
+                            <option value="84">84 Kg</option>
+                            <option value="85">85 Kg</option>
+                            <option value="86">86 Kg</option>
+                            <option value="87">87 Kg</option>
+                            <option value="88">88 Kg</option>
+                            <option value="89">89 Kg</option>
+                            <option value="90">90 Kg</option>
+                            <option value="91">91 Kg</option>
+                            <option value="92">92 Kg</option>
+                            <option value="93">93 Kg</option>
+                            <option value="94">94 Kg</option>
+                            <option value="95">95 Kg</option>
+                            <option value="96">96 Kg</option>
+                            <option value="97">97 Kg</option>
+                            <option value="98">98 Kg</option>
+                            <option value="99">99 Kg</option>
+                            <option value="100">100 Kg</option>                            
+                            <option value="101">101 Kg</option>
+                            <option value="102">102 Kg</option>
+                            <option value="103">103 Kg</option>
+                            <option value="104">104 Kg</option>
+                            <option value="105">105 Kg</option>
+                            <option value="106">106 Kg</option>
+                            <option value="107">107 Kg</option>
+                            <option value="108">108 Kg</option>
+                            <option value="109">109 Kg</option>
+                            <option value="110">110 Kg</option>
+                            <option value="111">111 Kg</option>
+                            <option value="112">112 Kg</option>
+                            <option value="113">113 Kg</option>
+                            <option value="114">114 Kg</option>
+                            <option value="115">115 Kg</option>
+                            <option value="116">116 Kg</option>
+                            <option value="117">117 Kg</option>
+                            <option value="118">118 Kg</option>
+                            <option value="119">119 Kg</option>
+                            <option value="120">120 Kg</option>
+                            <option value="121">121 Kg</option>
+                            <option value="122">122 Kg</option>
+                            <option value="123">123 Kg</option>
+                            <option value="124">124 Kg</option>
+                            <option value="125">125 Kg</option>
+                            <option value="126">126 Kg</option>
+                            <option value="127">127 Kg</option>
+                            <option value="128">128 Kg</option>
+                            <option value="129">129 Kg</option>
+                            <option value="130">130 Kg</option>
+                            <option value="131">131 Kg</option>
+                            <option value="132">132 Kg</option>
+                            <option value="133">133 Kg</option>
+                            <option value="134">134 Kg</option>
+                            <option value="135">135 Kg</option>
+                            <option value="136">136 Kg</option>
+                            <option value="137">137 Kg</option>
+                            <option value="138">138 Kg</option>
+                            <option value="139">139 Kg</option>                            
+                            <option value="140">140 Kg</option>
+                        </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="diet">Eating Habit</label>
+                                <select id="diet" formControlName="diet" class="form-control aiz-selectpicker" name="diet" required>
+                            <option selected="" value="">Select Eating Habit</option>
+                            <option value="Occasionally Non-Veg">Occasionally Non-Veg</option>
+                            <option value="Veg">Veg</option>
+                            <option value="Eggetarian">Eggetarian</option>
+                            <option value="Non-Veg">Non-Veg</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="smoke">Smoking Habit</label>
+                                <select id="smoke" formControlName="smoke" class="form-control aiz-selectpicker" name="smoke" required>
+                            <option selected="" value="">Select Smoking Habit</option>
+                            <option selected="" value="No">No</option>
+                            <option value="Yes">Yes</option>
+                            <option value="Occasionally">Occasionally</option>
+                        </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="drink">Drinking Habit</label>
+                                <select id="drink" formControlName="drink" class="form-control aiz-selectpicker" name="drink" required>
+                            <option selected="" value="">Select Drinking Habit</option>
+                            <option selected="" value="No">No</option>
+                            <option value="Yes">Yes</option>
+                            <option value="Occasionally">Occasionally</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="bodytype">Body Type</label>
+                                <select id="bodytype" formControlName="bodytype" class="form-control aiz-selectpicker" name="bodytype" required>
+                            <option selected="" value="">Select Body Type</option>
+                            <option value="Slim">Slim</option>
+                            <option value="Average">Average</option>
+                            <option value="Athletic">Athletic</option>
+                            <option value="Heavy">Heavy</option>
+                        </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="complexion">Skin Tone</label>
+                                <select id="complexion" formControlName="complexion" class="form-control aiz-selectpicker" name="complexion" required>
+                            <option selected="" value="">Select Skin Tone</option>
+                            <option value="Wheatish">Wheatish</option>
+                            <option value="Very Fair">Very Fair</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Wheatish Brown">Wheatish Brown</option>
+                            <option value="Dark">Dark</option>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Back</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="foodLifeFormSubmit()">Save</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                    </div>
+                </form>
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+            </mat-step>
+
+
+            <mat-step label="About Me">
+                <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="aboutMeForm">
+
+                    <label class="form-label" for="aboutemedemo">Write Something About Yourself</label>
+                    <div class="form-group mb-1">
+                        <textarea id="aboutemedemo" formControlName="aboutemedemo" rows="5" class="form-control aiz-selectpicker" name="aboutemedemo" required></textarea>
+                    </div>
+
+                    <label class="form-label" for="hobby">Hobbies</label>
+                    <div class="form-group mb-1">
+                        <textarea id="hobby" formControlName="hobby" rows="5" class="form-control aiz-selectpicker" name="hobby" required></textarea>
+                    </div>
+
+
+                    <div class="mb-5">
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperPrevious>Go Back</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Save</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                    </div>
+                </form>
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+            </mat-step>
+
+            <mat-step label="Profile Photo">
+                <form class="form-default container" role="form" action="javascript:void(0)">
+
+                    <label class="form-label" for="profilePic">Upload Profile Pic</label>
+                    <div class="form-group mb-1">
+                        <!-- <mat-hint>max 800 kb, preffered dimension 255 x 180 in pixels</mat-hint> -->
+                        <input id="profilePic" (change)="onProfileSelect($event)" type="file" hidden #profileFileInput accept="image/*" class="form-control aiz-selectpicker" name="profilePic" required>
+                        <button type="button" class="btn btn-block btn-primary" (click)="profileFileInput.click()">Choose profile&nbsp;{{profileProgress==0?'':profileProgress+'%'}}</button>
+                        <img *ngFor='let url of profilePreview' [src]="url" height="120" width="200px" style="object-fit:cover;margin: 3px;border-radius: 4px;"> <br *ngIf="profilePreview.length" />
+                        <mat-progress-bar mode="determinate" *ngIf="profileProgress!=0" [value]="profileProgress"></mat-progress-bar>
+                    </div>
+
+                    <div class="mb-5">
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperPrevious>Go Back</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="saveStatusAndRedirect()">Continue</button>
+                    </div>
+                </form>
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+            </mat-step>
+
+
+
+        </mat-horizontal-stepper>
+
+    </div>
+</div>

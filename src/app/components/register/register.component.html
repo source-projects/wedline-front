@@ -1,0 +1,147 @@
+<div class="text-left">
+
+    <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white" style="background: url('assets/public/assets/img/login-background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;">
+
+        <div class="container position-relative d-flex flex-column">
+            <div class="row pt-4 pb-3 my-auto align-items-center">
+                <div class="col-xl-5 col-lg-6 my-4">
+                    <div class="text-dark">
+                        <h1><span style="background-color: inherit;"><b style="">Every Love Story is&nbsp;</b></span></h1>
+                        <h1><span style="background-color: inherit;"><b style="">Beautiful</b></span></h1>
+                        <h1><b style=""><font color="#fd2c79">Make Yours</font></b></h1>
+                        <h1><b style=""><font color="#fd2c79">Special</font></b></h1>
+                    </div>
+                </div>
+                <div class="offset-xxl-2 offset-xl-1 col-lg-6 col-xxl-5">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="mb-5 text-center">
+                                <h1 class="h3 text-primary mb-0">Create Your Account</h1>
+                                <p>Fill out the form to get started.</p>
+                            </div>
+                            <form class="form-default" role="form" action="javascript:void(0)" [formGroup]="signupForm" (ngSubmit)="onSubmit(terms.checked)">
+                                <div class="row mt-3">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="firstname">First Name</label>
+                                            <input formControlName="firstname" type="text" class="form-control " name="firstname" id="firstname" placeholder="John" aria-label="********" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="lastname">Last Name</label>
+                                            <input formControlName="lastname" type="text" class="form-control" name="lastname" id="lastname" placeholder="Doe" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="form-label" for="email">Email </label>
+                                <div class="form-group email-form-group mb-1">
+                                    <input type="email" formControlName="email" class="form-control " value="" placeholder="Email" name="email" autocomplete="off">
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-lg-3">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="code">Code</label>
+                                            <select id="code" formControlName="country_code" class="form-control aiz-selectpicker " name="code" required>
+                                        <option *ngFor="let code of countryCodes" value="{{code.id}}">{{code.val}}</option>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="phone-code">Phone</label>
+                                            <div class="form-group phone-form-group mb-1">
+                                                <input type="number" formControlName="mobile_number" id="phone-code" class="form-control" value="" placeholder="" name="phone" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="form-label" for="caste">Caste </label>
+                                <div class="form-group email-form-group mb-1">
+                                    <select class="form-control aiz-selectpicker " formControlName="caste" id="caste" name="caste" required>
+                                        <option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</option>
+                                    </select>
+                                </div>
+                                <label class="form-label mt-2" for="gender">Gender</label>
+                                <select class="form-control aiz-selectpicker" formControlName="gender" name="gender" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                <label class="form-label  mt-3" for="email">Date of birth </label>
+                                <div class="form-group email-form-group mb-1" fxLayout="row">
+                                    <input (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" matInput [matDatepicker]="picker" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate" readonly type="text" class="form-control" value="" placeholder="Date Of Birth"
+                                        name="dob" autocomplete="off">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" formControlName="password" class="form-control " name="password" id="password" placeholder="********" aria-label="********" required>
+                                            <small>Minimum 8 characters</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="password-confirm">Confirm Password</label>
+                                            <input type="password" class="form-control" formControlName="rePassword" name="password_confirmation" id="password-confirm" placeholder="********" required>
+                                            <small>Minimum 8 characters</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="aiz-checkbox">
+                            <input type="checkbox" name="checkbox_example_1" required #terms>
+                                <span class=opacity-60>By signing up you agree to our
+                                    <a href="javascript:void(0)" target="_blank">terms and conditions.</a>
+                                </span>
+                                <span class="aiz-square-check"></span>
+                            </label>
+                                </div>
+
+                                <div class="mb-5">
+                                    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isProccessing"></mat-spinner>
+
+                                    <button type="submit" *ngIf="!isProccessing" class="btn btn-block btn-primary">Create Account</button>
+                                </div>
+                                <!-- <div class="mb-5">
+                                    <div class="separator mb-3">
+                                        <span class="bg-white px-3">Or Login With</span>
+                                    </div>
+
+                                    <ul class="list-inline social colored text-center">
+                                        <li class="list-inline-item">
+                                            <a href="https://www.facebook.com/v3.3/dialog/oauth?client_id=hjh&amp;redirect_uri=https%3A%2F%2Fdemo.activeitzone.com%2Fmatrimonial%2Fsocial-login%2Ffacebook%2Fcallback&amp;scope=email&amp;response_type=code&amp;state=4cYnvd6mWMEiIE5CJlRq2RKvA0tL4IOB6p6ghusH"
+                                                class="facebook" title="Facebook"><i class="lab la-facebook-f"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="social-login/redirect/google" class="google" title="Google"><i class="lab la-google"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="social-login/redirect/twitter" class="twitter" title="Twitter"><i class="lab la-twitter"></i></a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+
+                                <div class="text-center">
+                                    <p class="text-muted mb-0">Already have an account?</p>
+                                    <a href="javascript:void(0)" routerLink="/login">Login to your Account</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- search  -->
+
+        </div>
+
+    </div>
+
+</div>

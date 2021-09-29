@@ -1,0 +1,315 @@
+<!-- <div class="position-fixed  w-100  z-1020 full-header" ngxHideOnScroll [propertyUsedToHide]="'top'" [valueWhenHidden]="'-300px'" [valueWhenShown]="'0px'"> -->
+
+<div class="position-fixed  w-100  z-1020 full-header">
+    <div class="top-navbar bg-white border-bottom z-1035 py-2 d-none d-lg-block">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col">
+                    <ul class="list-inline d-flex justify-content-between justify-content-lg-start mb-0">
+                        <li class="list-inline-item">
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-7 col">
+                    <ul class="list-inline mb-0 d-flex align-items-center justify-content-end ">
+                        <li class="list-inline-item mr-3 pr-3 border-right">
+                            <a href="tel:+01 112 352 566" class="text-reset opacity-60">
+                                <span> Help Line : </span>
+                                <span>1234567890</span>
+                            </a>
+                        </li>
+                        <li *ngIf="!hasLoggedIn" class="list-inline-item ml-4">
+                            <a class="text-reset opacity-60" href="javascript:void(0)" routerLink="/login">Log In</a>
+                        </li>
+                        <li *ngIf="!hasLoggedIn" class="list-inline-item ml-3">
+                            <a class="btn btn-sm bg-primary-grad text-white fw-600 py-1 border" routerLink="/register">Registration</a>
+                        </li>
+                        <li *ngIf="hasLoggedIn" class="list-inline-item dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle text-reset no-arrow p-5px" data-toggle="dropdown" data-display="static">
+                                <i class="las la-bell fs-16 opacity-60"></i>
+                                <span class="badge badge-dot badge-sm badge-status no-border badge-primary"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg py-0">
+                                <div class="p-3 bg-light border-bottom">
+                                    <h6 class="mb-0">Notifications</h6>
+                                </div>
+                                <ul class="list-group list-group-raw c-scrollbar-light" style="overflow-y:auto;max-height:300px;">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/eD401Dp8V7uKYR9qKVZPZIZ4tk99P1n4yYJP7Hwt.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Donna J. Perryman</p>
+                                                <small class="text-muted">
+                    Donna J. Perryman  has accepted your interest.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/EQNFezAk0ZnHgT1f6P2ToxJ5DxZctllDfSy0iuM9.png">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Ramona D. Mears</p>
+                                                <small class="text-muted">
+                    Ramona D. Mears  has accepted your interest.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UNRXtPfNf1XyYMyxz1vOof4CMc83mDsnd36PtL4y.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Matthew Ryan</p>
+                                                <small class="text-muted">
+                    Matthew Ryan  has accepted your interest.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UNRXtPfNf1XyYMyxz1vOof4CMc83mDsnd36PtL4y.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Matthew Ryan</p>
+                                                <small class="text-muted">
+                    Matthew Ryan  has accepted your interest.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UNRXtPfNf1XyYMyxz1vOof4CMc83mDsnd36PtL4y.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Matthew Ryan</p>
+                                                <small class="text-muted">
+                    Matthew Ryan  has accepted your interest.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UNRXtPfNf1XyYMyxz1vOof4CMc83mDsnd36PtL4y.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Matthew Ryan</p>
+                                                <small class="text-muted">
+                    Matthew Ryan  has accepted your interest.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/0d0v5DC1Juc6RwmA6DtnWPx4QXz4mGc6ckr3Oh8L.png">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Kimberley Lang</p>
+                                                <small class="text-muted">
+                    Kimberley Lang  has Expressed Interest On You.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/eD401Dp8V7uKYR9qKVZPZIZ4tk99P1n4yYJP7Hwt.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Donna J. Perryman</p>
+                                                <small class="text-muted">
+                    Donna J. Perryman  has Expressed Interest On You.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/eD401Dp8V7uKYR9qKVZPZIZ4tk99P1n4yYJP7Hwt.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Donna J. Perryman</p>
+                                                <small class="text-muted">
+                    Donna J. Perryman  has Expressed Interest On You.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start hov-bg-soft-primary">
+                                        <a href="javascript:void(0)" class="media text-inherit">
+                                            <span class="avatar avatar-sm mr-3">
+                                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/eD401Dp8V7uKYR9qKVZPZIZ4tk99P1n4yYJP7Hwt.jpg">
+                                    </span>
+                                            <div class="media-body">
+                                                <p class="mb-1">Donna J. Perryman</p>
+                                                <small class="text-muted">
+                    Donna J. Perryman  has Expressed Interest On You.
+                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="border-top">
+                                    <a href="javascript:void(0)" class="btn text-reset btn-block">View All Notifications</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li *ngIf="hasLoggedIn" class="list-inline-item dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle text-reset no-arrow p-5px" data-toggle="dropdown" data-display="static">
+                                <i class="las la-envelope fs-16 opacity-60"></i>
+                                <span class="badge badge-dot badge-sm badge-status no-border badge-primary"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg py-0">
+                                <div class="p-3 bg-light border-bottom">
+                                    <!-- <h6 class="mb-0">25</h6> -->
+                                    <h6 class="mb-0">Messages</h6>
+                                </div>
+
+                                <div class="c-scrollbar-light" style="overflow-y:auto;max-height:300px;">
+
+                                    <a href="javascript:void(0)" routerLink="/chat" class="chat-user-item p-3 d-block text-inherit hov-bg-soft-primary">
+                                        <div class="media">
+                                            <span class="avatar avatar-sm mr-3 flex-shrink-0">
+                                                                                                                                                                                                                                        <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/eD401Dp8V7uKYR9qKVZPZIZ4tk99P1n4yYJP7Hwt.jpg">
+                                                                                                                                        <span
+                                            class="badge badge-dot badge-circle badge-secondary badge-status badge-md"></span>
+                                            </span>
+                                            <div class="media-body minw-0">
+                                                <h6 class="mt-0 mb-1 fs-14 text-truncate">
+                                                    Donna J. Perryman
+                                                </h6>
+                                                <div class="fs-12 text-truncate opacity-60">Attachments
+                                                </div>
+                                            </div>
+                                            <div class="ml-2 text-right">
+                                                <div class="opacity-60 fs-10 mb-1">
+                                                    6 hours ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="border-top">
+                                    <a href="javascript:void(0)" routerLink="/chat" class="btn text-reset btn-block">View All Messages</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li *ngIf="hasLoggedIn" class="list-inline-item mx-4">
+                            <a href="javascript:void(0)" routerLink="/dashboard" class="d-flex align-items-center text-reset">
+                                <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/xEuQaBqs6VFAmcaCa6bii6SQHwpGaE0QZLlF8Pln.jpg" class="size-30px rounded-circle img-fit mr-2" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';">
+                                <span class="opacity-60 mr-1">
+                            Hi,
+                        </span>
+                                <span class="text-primary-grad fw-700">
+                                    {{memberDetails.firstname}}
+                        </span>
+                            </a>
+                        </li>
+                        <li *ngIf="hasLoggedIn" class="list-inline-item">
+                            <a href="javascript:void(0)" (click)="logout()" class="btn btn-sm bg-primary-grad text-white fw-600 py-1 border">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="aiz-header shadow-md bg-white border-gray-300">
+        <div class="aiz-navbar position-relative">
+            <div class="container">
+                <div class="d-lg-flex justify-content-between text-center text-lg-left">
+                    <div class="logo">
+                        <a href="javascript:void(0)" routerLink="/home" class="d-inline-block py-15px">
+                            <img src="assets/public/assets/img/beforeweddinglogo.png" alt="1234" class="mw-100 h-30px h-md-60px" height="40">
+                        </a>
+                    </div>
+                    <ul class="mb-0 pl-0 ml-lg-auto d-lg-flex align-items-stretch justify-content-center justify-content-lg-start mobile-hor-swipe">
+
+                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/home">
+                                <span class="text-primary-grad mb-n1">Home</span>
+                            </a>
+                        </li>
+                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1" *ngIf="hasLoggedIn">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/filter">
+                                <span class="text-primary-grad mb-n1">Search</span>
+                            </a>
+                        </li>
+                        <li class="d-inline-block d-lg-flex pb-1 ">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" [routerLink]="['/home']" fragment="successstory">
+                                <span class="text-primary-grad mb-n1">Success Stories</span>
+                            </a>
+                        </li>
+                        <li class="d-inline-block d-lg-flex pb-1 ">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" [routerLink]="['/home']" fragment="packages">
+                                <span class="text-primary-grad mb-n1">Packages</span>
+                            </a>
+                        </li>
+                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1 ">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/about">
+                                <span class="text-primary-grad mb-n1">About us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="hasLoggedIn" class="border-top d-none d-lg-block">
+            <div class="container">
+                <ul class="list-inline d-flex align-items-center mb-0">
+                    <li class="list-inline-item">
+                        <a routerLinkActive="text-primary-grad" routerLink="/dashboard" class="text-reset d-inline-block px-4 py-3 fw-600 opacity-100">
+                            <i class="las la-tachometer-alt mr-1"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a routerLinkActive="text-primary-grad" routerLink="/profile-setting" class="text-reset d-inline-block px-4 py-3 fw-600 ">
+                            <i class="las la-user mr-1"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a routerLinkActive="text-primary-grad" routerLink="/my-interest" class="text-reset d-inline-block px-4 py-3 fw-600 ">
+                            <i class="la la-heart-o mr-1"></i>
+                            <span>My Interest</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a routerLinkActive="text-primary-grad" routerLink="/my-shortlist" class="text-reset d-inline-block px-4 py-3 fw-600 ">
+                            <i class="las la-list mr-1"></i>
+                            <span>Shortlist</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a routerLinkActive="text-primary-grad" routerLink="/chat" class="text-reset d-inline-block px-4 py-3 fw-600 ">
+                            <i class="las la-envelope mr-1"></i>
+                            <span>Messaging</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a routerLinkActive="text-primary-grad" routerLink="/ignored-list" class="text-reset d-inline-block px-4 py-3 fw-600 ">
+                            <i class="las la-ban mr-1"></i>
+                            <span>Ignored User List</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</div>

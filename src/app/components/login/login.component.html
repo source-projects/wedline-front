@@ -1,0 +1,80 @@
+<div class="text-left">
+
+    <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white" style="background: url('https://img.wallpapersafari.com/desktop/1440/900/74/16/r2RTYH.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;">
+        <div class="py-4 py-lg-5">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-xxl-6 col-xl-6 col-md-8 mx-auto"> -->
+                    <div class="col-xxl-5 col-xl-5 col-md-7">
+                        <div class="card login-card">
+                            <div class="card-body">
+
+                                <div class="mb-5 text-center">
+                                    <h1 class="h3 text-primary mb-0">Login</h1>
+                                </div>
+                                <form class="form-default" [formGroup]="loginForm" role="form" action="#" method="POST">
+                                    <label class="form-label" for="email">Email/User ID </label>
+                                    <div class="form-group email-form-group mb-1">
+                                        <input type="email" class="form-control" formControlName="email" value="" placeholder="Enter Email Or User ID" name="email" autocomplete="off">
+                                    </div>
+                                    <label class="form-label" for="password">Password</label>
+                                    <div class="form-group phone-form-group mb-1">
+                                        <input type="password" id="password" formControlName="password" class="form-control" value="" placeholder="Enter Password" name="phone" autocomplete="off">
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-4 d-flex justify-content-between">
+                                            <img src="https://demoweblinks.in/matrimony-demo/captcha.php?captch_code_front=yes&amp;captch_code={{captchaCode}}" style="border-radius: 6px;" alt="">
+                                            <i title="Change Captcha Code" class="fas fa-sync-alt align-self-center captcha-refresh" (click)="refreshCaptcha()"></i>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control" formControlName="captcha" name="captcha" id="captcha" placeholder="Enter Captcha" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right">
+                                        <button class="btn btn-link p-0 opacity-50 text-reset" type="button">Forgot Password?</button>
+                                    </div>
+
+                                    <div class="mb-5">
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isProccessing"></mat-spinner>
+
+                                        <button type="submit" class="btn btn-block btn-primary" *ngIf="!isProccessing" (click)="login()">Login</button>
+                                    </div>
+                                    <!-- <div class="mb-5">
+                                        <div class="separator mb-3">
+                                            <span class="bg-white px-3">Or Login With</span>
+                                        </div>
+
+                                        <ul class="list-inline social colored text-center">
+                                            <li class="list-inline-item">
+                                                <a href="https://www.facebook.com/v3.3/dialog/oauth?client_id=hjh&amp;redirect_uri=https%3A%2F%2Fdemo.activeitzone.com%2Fmatrimonial%2Fsocial-login%2Ffacebook%2Fcallback&amp;scope=email&amp;response_type=code&amp;state=4cYnvd6mWMEiIE5CJlRq2RKvA0tL4IOB6p6ghusH"
+                                                    class="facebook" title="Facebook"><i class="lab la-facebook-f"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="social-login/redirect/google" class="google" title="Google"><i class="lab la-google"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="social-login/redirect/twitter" class="twitter" title="Twitter"><i class="lab la-twitter"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+
+                                    <div class="text-center">
+                                        <span class="text-muted me-1">New Member?</span>
+                                        <a href="javascript:void(0)" routerLink="/register">Register Now</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

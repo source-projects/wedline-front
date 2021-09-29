@@ -1,0 +1,131 @@
+<div class="absolute-top-left d-xl-none">
+    <button class="btn btn-sm p-2" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb">
+        <i class="las la-times la-2x"></i>
+    </button>
+</div>
+<div class="aiz-user-sidenav rounded overflow-hidden">
+    <div class="px-4 text-center mb-4">
+        <div class="position-relative" align="center">
+            <span class="avatar avatar-md mb-3 position-absolute progress-and-image">
+                <img *ngIf="memberDetails" [src]="memberDetails.photo1">
+            </span>
+            <circle-progress [options]="progressOptions" [percent]="memberDetails.percentage" [renderOnClick]="false"></circle-progress>
+        </div>
+        <h3 class="text-dark">{{memberDetails.matri_id}}</h3>
+        <h4 class="h5 fw-600">{{memberDetails.firstname}}</h4>
+        <div class="text-center  mb-2">
+
+        </div>
+        <div>
+            <span class="rating rating-sm">
+
+            </span>
+        </div>
+        <div class="mb-1">
+
+            <span class="fw-600">
+
+            </span>
+            <span>
+
+            </span>
+        </div>
+    </div>
+    <div class="text-center mb-3 px-3">
+        <a routerLink="/full-profile" class="btn btn-block btn-soft-primary">Public View</a>
+    </div>
+
+    <div class="sidemnenu mb-3">
+        <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
+
+            <li class="aiz-side-nav-item">
+                <a routerLink="/dashboard" href="javascript:void(0)" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Gallery</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Happy Story</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0);" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Packages</span>
+                    <span class="aiz-side-nav-arrow"></span>
+                </a>
+
+            </li>
+
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" routerLink="/chat" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Message</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" class="aiz-side-nav-link ">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Support Ticket</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" routerLink="/my-interest" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">My Interest</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" routerLink="/my-shortlist" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Shortlist</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" routerLink="/ignored-list" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Ignored User List</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Picture Privacy</span>
+                </a>
+            </li>
+
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Change Password</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" routerLink="/profile-setting" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Manage Profile</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0);" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Deactive Account</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <a href="javascript:void(0);" class="btn btn-block btn-primary" (click)="logout()">
+            <i class="las la-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>

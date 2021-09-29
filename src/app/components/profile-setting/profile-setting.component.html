@@ -1,0 +1,1899 @@
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="d-flex align-items-start">
+                <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                    <app-aside></app-aside>
+                </div>
+                <div class="aiz-user-panel overflow-hidden">
+                    <!-- <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Introduction</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST">
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Introduction</label>
+                                    <div class="col-md-10">
+                                        <textarea type="text" name="introduction" class="form-control" rows="4" placeholder="Introduction" required>1234</textarea>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm"*ngIf="!isSavingDetails">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div> -->
+
+                    <!-- Email Change -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Change your email</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST">
+                                <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>Your Email</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="input-group mb-3">
+                                            <input type="email" class="form-control" placeholder="Your Email" name="email" value="user2@example.com" />
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary new-email-verification">
+                             <span class="d-none loading">
+                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                 Sending Email...
+                             </span>
+                             <span class="default">Verify</span>
+                         </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Basic Information -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Basic Information</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="basicInfoForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="first_name">First Name
+                    <span class="text-danger">*</span>
+                </label>
+                                        <input type="text" name="first_name" formControlName="firstname" value="" class="form-control" placeholder="First Name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="first_name">Last Name
+                    <span class="text-danger">*</span>
+                </label>
+                                        <input type="text" name="last_name" formControlName="lastname" value="" class="form-control" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="marital_status">Matrital Status</label>
+                                        <select id="marital_status" (change)="toggleChidrenInputs()" formControlName="marital_status" class="form-control aiz-selectpicker" name="marital_status" required>
+                                        <option selected="" value="">Select Marital Status</option>
+                                        <option value="Unmarried">Unmarried</option>
+                                        <option value="Widow/Widower">Widow/Widower</option>
+                                        <option value="Divorcee">Divorcee</option>
+                                        <option value="Separated">Separated</option>
+                                        <option value="Awaiting Divorce">Awaiting Divorce</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="email">Date of birth </label>
+                                        <div fxLayout="row">
+                                            <input (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" matInput [matDatepicker]="picker" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate" readonly type="text" class="form-control" value="" placeholder="Date Of Birth"
+                                                name="dob" autocomplete="off">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" *ngIf="basicInfoForm.controls.marital_status.value!='Unmarried'">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="total_children">Total Children</label>
+                                        <select id="total_children" formControlName="total_children" class="form-control aiz-selectpicker" name="total_children" required>
+                                            <option selected="" value="">Select Total Children</option>
+                                            <option value="0">None</option>
+                                            <option value="One">One</option>
+                                            <option value="Two">Two</option>
+                                            <option value="Three">Three</option>
+                                            <option value="Four and above">Four and above</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="status_children">Status Of Children</label>
+                                        <select id="status_children" formControlName="status_children" class="form-control aiz-selectpicker" name="status_children" required>
+                                        <option selected="" value="">Select Status Children</option>
+                                        <option value="Living with me">Living with me</option>
+                                        <option value="Not living with me">Not living with me</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <label class="form-label" for="languages_known[]">Languages Known</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id=" languages_known[]" [multiple]="true" formControlName="languages_known">
+                                        <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="mother_tongue">Mother Tongue</label>
+                                <div class="form-group mb-1">
+                                    <select id=" mother_tongue" class="form-control aiz-selectpicker" formControlName="mother_tongue">
+                                        <option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="height">Height</label>
+                                        <select id="height" formControlName="height" class="form-control aiz-selectpicker" name="height" required>
+                            <option selected="" value="">Select Height</option>
+                               <option value="48">Below 4ft</option>
+                               <option value="49">4ft 1in</option>
+                               <option value="50">4ft 2in</option>
+                               <option value="51">4ft 3in</option>
+                               <option value="52">4ft 4in</option>
+                               <option value="53">4ft 5in</option>
+                               <option value="54">4ft 6in</option>
+                               <option value="55">4ft 7in</option>
+                               <option value="56">4ft 8in</option>
+                               <option value="57">4ft 9in</option>
+                               <option value="58">4ft 10in</option>
+                               <option value="59">4ft 11in</option>
+                               <option value="60">5ft</option>
+                               <option value="61">5ft 1in</option>
+                               <option value="62">5ft 2in</option>
+                               <option value="63">5ft 3in</option>
+                               <option value="64">5ft 4in</option>
+                               <option value="65">5ft 5in</option>
+                               <option value="66">5ft 6in</option>
+                               <option value="67">5ft 7in</option>
+                               <option value="68">5ft 8in</option>
+                               <option value="69">5ft 9in</option>
+                               <option value="70">5ft 10in</option>
+                               <option value="71">5ft 11in</option>
+                               <option value="72">6ft</option>
+                               <option value="73">6ft 1in</option>
+                               <option value="74">6ft 2in</option>
+                               <option value="75">6ft 3in</option>
+                               <option value="76">6ft 4in</option>
+                               <option value="77">6ft 5in</option>
+                               <option value="78">6ft 6in</option>
+                               <option value="79">6ft 7in</option>
+                               <option value="80">6ft 8in</option>
+                               <option value="81">6ft 9in</option>
+                               <option value="82">6ft 10in</option>
+                               <option value="83">6ft 11in</option>
+                               <option value="84">7ft</option>
+                               <option value="85">Above 7ft</option>
+                                         </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="weight">Weight</label>
+                                        <select id="weight" formControlName="weight" class="form-control aiz-selectpicker" name="weight" required>
+                                    <option selected="" value="">Select Weight</option>
+                                    <option value="40">40 Kg</option>
+                                    <option value="41">41 Kg</option>
+                                    <option value="42">42 Kg</option>
+                                    <option value="43">43 Kg</option>
+                                    <option value="44">44 Kg</option>
+                                    <option value="45">45 Kg</option>
+                                    <option value="46">46 Kg</option>
+                                    <option value="47">47 Kg</option>
+                                    <option value="48">48 Kg</option>
+                                    <option value="49">49 Kg</option>
+                                    <option value="50">50 Kg</option>
+                                    <option value="51">51 Kg</option>
+                                    <option value="52">52 Kg</option>
+                                    <option value="53">53 Kg</option>
+                                    <option value="54">54 Kg</option>
+                                    <option value="55">55 Kg</option>
+                                    <option value="56">56 Kg</option>
+                                    <option value="57">57 Kg</option>
+                                    <option value="58">58 Kg</option>
+                                    <option value="59">59 Kg</option>
+                                    <option value="60">60 Kg</option>
+                                    <option value="61">61 Kg</option>
+                                    <option value="62">62 Kg</option>
+                                    <option value="63">63 Kg</option>
+                                    <option value="64">64 Kg</option>
+                                    <option value="65">65 Kg</option>
+                                    <option value="66">66 Kg</option>
+                                    <option value="67">67 Kg</option>
+                                    <option value="68">68 Kg</option>
+                                    <option value="69">69 Kg</option>
+                                    <option value="70">70 Kg</option>
+                                    <option value="71">71 Kg</option>
+                                    <option value="72">72 Kg</option>
+                                    <option value="73">73 Kg</option>
+                                    <option value="74">74 Kg</option>
+                                    <option value="75">75 Kg</option>
+                                    <option value="76">76 Kg</option>
+                                    <option value="77">77 Kg</option>
+                                    <option value="78">78 Kg</option>
+                                    <option value="79">79 Kg</option>
+                                    <option value="80">80 Kg</option>
+                                    <option value="81">81 Kg</option>
+                                    <option value="82">82 Kg</option>
+                                    <option value="83">83 Kg</option>
+                                    <option value="84">84 Kg</option>
+                                    <option value="85">85 Kg</option>
+                                    <option value="86">86 Kg</option>
+                                    <option value="87">87 Kg</option>
+                                    <option value="88">88 Kg</option>
+                                    <option value="89">89 Kg</option>
+                                    <option value="90">90 Kg</option>
+                                    <option value="91">91 Kg</option>
+                                    <option value="92">92 Kg</option>
+                                    <option value="93">93 Kg</option>
+                                    <option value="94">94 Kg</option>
+                                    <option value="95">95 Kg</option>
+                                    <option value="96">96 Kg</option>
+                                    <option value="97">97 Kg</option>
+                                    <option value="98">98 Kg</option>
+                                    <option value="99">99 Kg</option>
+                                    <option value="100">100 Kg</option>                            
+                                    <option value="101">101 Kg</option>
+                                    <option value="102">102 Kg</option>
+                                    <option value="103">103 Kg</option>
+                                    <option value="104">104 Kg</option>
+                                    <option value="105">105 Kg</option>
+                                    <option value="106">106 Kg</option>
+                                    <option value="107">107 Kg</option>
+                                    <option value="108">108 Kg</option>
+                                    <option value="109">109 Kg</option>
+                                    <option value="110">110 Kg</option>
+                                    <option value="111">111 Kg</option>
+                                    <option value="112">112 Kg</option>
+                                    <option value="113">113 Kg</option>
+                                    <option value="114">114 Kg</option>
+                                    <option value="115">115 Kg</option>
+                                    <option value="116">116 Kg</option>
+                                    <option value="117">117 Kg</option>
+                                    <option value="118">118 Kg</option>
+                                    <option value="119">119 Kg</option>
+                                    <option value="120">120 Kg</option>
+                                    <option value="121">121 Kg</option>
+                                    <option value="122">122 Kg</option>
+                                    <option value="123">123 Kg</option>
+                                    <option value="124">124 Kg</option>
+                                    <option value="125">125 Kg</option>
+                                    <option value="126">126 Kg</option>
+                                    <option value="127">127 Kg</option>
+                                    <option value="128">128 Kg</option>
+                                    <option value="129">129 Kg</option>
+                                    <option value="130">130 Kg</option>
+                                    <option value="131">131 Kg</option>
+                                    <option value="132">132 Kg</option>
+                                    <option value="133">133 Kg</option>
+                                    <option value="134">134 Kg</option>
+                                    <option value="135">135 Kg</option>
+                                    <option value="136">136 Kg</option>
+                                    <option value="137">137 Kg</option>
+                                    <option value="138">138 Kg</option>
+                                    <option value="139">139 Kg</option>                            
+                                    <option value="140">140 Kg</option>
+                                </select>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="photo">Photo <small>(800x800)</small></label>
+                                        <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text bg-soft-secondary font-weight-medium">Browse</div>
+                                            </div>
+                                            <div class="form-control file-amount">Choose File</div>
+                                            <input type="hidden" name="photo" class="selected-files" value="191">
+                                        </div>
+                                        <div class="file-preview box sm">
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" (click)="basicInfoFormSubmit()" *ngIf="!isSavingDetails">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- LifeStyle -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Life Style Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST" [formGroup]="lifeStyleForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="bodytype">Body Type</label>
+                                        <select id="bodytype" formControlName="bodytype" class="form-control aiz-selectpicker" name="bodytype" required>
+                            <option selected="" value="">Select Body Type</option>
+                            <option value="Slim">Slim</option>
+                            <option value="Average">Average</option>
+                            <option value="Athletic">Athletic</option>
+                            <option value="Heavy">Heavy</option>
+                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="diet">Eating Habit</label>
+                                        <select id="diet" formControlName="diet" class="form-control aiz-selectpicker" name="diet" required>
+                            <option selected="" value="">Select Eating Habit</option>
+                            <option value="Occasionally Non-Veg">Occasionally Non-Veg</option>
+                            <option value="Veg">Veg</option>
+                            <option value="Eggetarian">Eggetarian</option>
+                            <option value="Non-Veg">Non-Veg</option>
+                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="smoke">Smoking Habit</label>
+                                        <select id="smoke" formControlName="smoke" class="form-control aiz-selectpicker" name="smoke" required>
+                <option selected="" value="">Select Smoking Habit</option>
+                <option selected="" value="No">No</option>
+                <option value="Yes">Yes</option>
+                <option value="Occasionally">Occasionally</option>
+            </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="drink">Drinking Habit</label>
+                                        <select id="drink" formControlName="drink" class="form-control aiz-selectpicker" name="drink" required>
+                            <option selected="" value="">Select Drinking Habit</option>
+                            <option selected="" value="No">No</option>
+                            <option value="Yes">Yes</option>
+                            <option value="Occasionally">Occasionally</option>
+                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="complexion">Skin Tone</label>
+                                        <select id="complexion" formControlName="complexion" class="form-control aiz-selectpicker" name="complexion" required>
+                            <option selected="" value="">Select Skin Tone</option>
+                            <option value="Wheatish">Wheatish</option>
+                            <option value="Very Fair">Very Fair</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Wheatish Brown">Wheatish Brown</option>
+                            <option value="Dark">Dark</option>
+                    </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="blood_group">Blood Group</label>
+                                        <select id="blood_group" formControlName="blood_group" class="form-control aiz-selectpicker" name="blood_group" required>
+                        <option selected="" value="">Select Blood Group</option>
+                        <option value="A+">A+</option><option value="A-">A-</option>
+                        <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                        <option value="B+">B+</option><option value="B-">B-</option>
+                        <option value="O+">O+</option><option value="O-">O-</option>
+                    </select>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStyleFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <!-- About me -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">About Me</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="aboutMeForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="aboutemedemo">Something About Yourself</label>
+                                        <div class="form-group mb-1">
+                                            <textarea id="aboutemedemo" formControlName="profile_text" rows="5" class="form-control aiz-selectpicker" name="aboutemedemo" required></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="hobby">Hobbies</label>
+                                        <div class="form-group mb-1">
+                                            <textarea id="hobby" formControlName="hobby" rows="5" class="form-control aiz-selectpicker" name="hobby" required></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="birthplace">Birth Place</label>
+                                        <div class="form-group mb-1">
+                                            <input id="birthplace" formControlName="birthplace" rows="5" class="form-control" name="birthplace" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="birthtime">Birth Time </label>
+                                        <div fxLayout="row">
+                                            <input placeholder="24hr format" aria-label="24hr format" class="form-control" formControlName="birthtime" [ngxTimepicker]="fullTime" [format]="24" readonly>
+                                            <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="profileby">Created By</label>
+                                        <select id="profileby" formControlName="profileby" class="form-control aiz-selectpicker" name="profileby" required>
+                                            <option selected="" value="">Select Created By</option><option selected="" value="Self">Self</option>
+                                            <option value="Parents">Parents</option><option value="Guardian">Guardian</option>
+                                            <option value="Friends">Friends</option><option value="Sibling">Sibling</option>
+                                            <option value="Relatives">Relatives</option><option value="Admin">Admin</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="reference">Reference</label>
+                                        <select id="reference" formControlName="reference" class="form-control aiz-selectpicker" name="reference" required>
+                                            <option selected="" value="">Select Reference</option>
+                                            <option selected="" value="Tele-in">Tele-in</option>
+                                            <option value="Telemarketing">Telemarketing</option>
+                                            <option value="Event/Activity">Event/Activity</option>
+                                            <option value="TV Advertisment">TV Advertisment</option>
+                                            <option value="Newspaper Advertisment">Newspaper Advertisment</option>
+                                            <option value="Theater Advertisment">Theater Advertisment</option>
+                                            <option value="Magazine Advertisment">Magazine Advertisment</option>
+                                            <option value="Hoarding">Hoarding</option>
+                                            <option value="Notice/Pamphelt">Notice/Pamphelt</option>
+                                            <option value="Radio">Radio</option>
+                                            <option value="Google Search">Google Search</option>
+                                            <option value="Social Media">Social Media</option>
+                                            <option value="Referral">Referral</option>
+                                            <option value="Branding">Branding</option>
+                                            <option value="Others">Others</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Religion  -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Religious Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST" [formGroup]="religionForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="caste">Caste </label>
+                                        <select class="form-control aiz-selectpicker " formControlName="caste" id="caste" name="caste" required>
+                                        <option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="subcaste">Sub Caste</label>
+                                        <input type="text" name="subcaste" formcontrolName="subcaste" value="" class="form-control" placeholder="Sub Caste" required>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="religionFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Location  -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Location/Address</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="locationForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="country_id">Country</label>
+                                        <select id="country_id" formControlName="country_id" class="form-control aiz-selectpicker" (change)="getStates()" name="country_id" required>
+                            <option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</option>
+                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="state_id">State</label>
+                                        <select id="state_id" formControlName="state_id" class="form-control aiz-selectpicker" (change)="getCities()" name="state_id" required>
+                        <option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</option>
+                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="city">City</label>
+                                        <select id="city" formControlName="city" class="form-control aiz-selectpicker" name="city" required>
+                                            <option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row mt-3">
+                                            <div class="col-lg-3">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label" for="code">Code</label>
+                                                    <select id="code" formControlName="country_code" class="form-control aiz-selectpicker " name="code" required>
+                                                <option *ngFor="let code of countryCodes" value="{{code.id}}">{{code.val}}</option>
+                                            </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label" for="phone-code">Phone</label>
+                                                    <div class="form-group phone-form-group mb-1">
+                                                        <input type="number" formControlName="mobile_num" id="phone-code" class="form-control" value="" placeholder="" name="phone" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <label class="form-label" for="address">Address</label>
+                                <textarea id="address" formControlName="address" rows="5" class="form-control aiz-selectpicker" name="address" required></textarea>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="time_to_call">Time To Call</label>
+                                        <input id="time_to_call" type="text" formControlName="time_to_call" class="form-control" name="time_to_call" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="residence">Residence</label>
+                                        <select id="residence" formControlName="residence" class="form-control aiz-selectpicker" name="residence" required>
+                                            <option selected="" value="">Select Residence</option>
+                                            <option value="Citizen">Citizen</option>
+                                            <option value="Permanent Resident">Permanent Resident</option>
+                                            <option value="Student Visa">Student Visa</option>
+                                            <option value="Temporary Visa">Temporary Visa</option>
+                                            <option value="Work permit">Work permit</option>
+                                            <option value="Family Visa">Family Visa</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="locationFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Education</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST" [formGroup]="educationForm">
+                                <label class="form-label" for="education_detail[]">Education</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="education_detail[]" formControlName="education_detail" [multiple]="true">
+                                        <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="employee_in">Employee In</label>
+                                        <select id="employee_in" formControlName="employee_in" class="form-control aiz-selectpicker" name="employee_in" required>
+                                    <option selected="" value="">Select Employee In</option>
+                                    <option value="Private">Private</option>
+                                    <option value="Govt">Govt</option>
+                                    <option value="Central Govt">Central Govt</option>
+                                    <option value="MNC">MNC</option>
+                                    <option value="Overseas">Overseas</option>
+                                    <option value="Own Business">Own Business</option>
+                                    <option value="Others">Others</option>
+                                    <option value="Public Limited">Public Limited</option>
+                                    <option value="Semi Govt">Semi Govt</option>
+                            </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="income">Income</label>
+                                        <select id="income" formControlName="income" class="form-control aiz-selectpicker" name="income" required>
+                               <option selected="" value="">Select Annual Income</option>
+                               <option value="0 - 1 Lakh">0 - 1 Lakh</option>
+                               <option value="1 - 2 Lakhs">1 - 2 Lakhs</option>
+                               <option value="2 - 3 Lakhs">2 - 3 Lakhs</option>
+                               <option value="3 - 4 Lakhs">3 - 4 Lakhs</option>
+                               <option value="4 - 5 Lakhs">4 - 5 Lakhs</option>
+                               <option value="5 - 6 Lakhs">5 - 6 Lakhs</option>
+                               <option value="6 - 7 Lakhs">6 - 7 Lakhs</option>
+                               <option value="7 - 8 Lakhs">7 - 8 Lakhs</option>
+                               <option value="8 - 9 Lakhs">8 - 9 Lakhs</option>
+                               <option value="9 - 10 Lakhs">9 - 10 Lakhs</option>
+                               <option value="10 - 12 Lakhs">10 - 12 Lakhs</option>
+                               <option value="12 - 14 Lakhs">12 - 14 Lakhs</option>
+                               <option value="14 - 16 Lakhs">14 - 16 Lakhs</option>
+                               <option value="16 - 18 Lakhs">16 - 18 Lakhs</option>
+                               <option value="18 - 20 Lakhs">18 - 20 Lakhs</option>
+                               <option value="20 - 25 Lakhs">20 - 25 Lakhs</option>
+                               <option value="25 - 30 Lakhs">25 - 30 Lakhs</option>
+                               <option value="30 - 35 Lakhs">30 - 35 Lakhs</option>
+                               <option value="35 - 40 Lakhs">35 - 40 Lakhs</option>
+                               <option value="40 - 45 Lakhs">40 - 45 Lakhs</option>
+                               <option value="45 - 50 Lakhs">45 - 50 Lakhs</option>
+                               <option value="50 - 55 Lakhs">50 - 55 Lakhs</option>
+                               <option value="55 - 60 Lakhs">55 - 60 Lakhs</option>
+                               <option value="60 - 65 Lakhs">60 - 65 Lakhs</option>
+                               <option value="65 - 70 Lakhs">65 - 70 Lakhs</option>
+                               <option value="70 - 75 Lakhs">70 - 75 Lakhs</option>
+                               <option value="75 - 80 Lakhs">75 - 80 Lakhs</option>
+                               <option value="80 - 58 Lakhs">80 - 85 Lakhs</option>
+                               <option value="85 - 90 Lakhs">85 - 90 Lakhs</option>
+                               <option value="90 Lakhs - 1 Crore">90 Lakhs - 1 Crore</option>
+                               <option value="1 Crore &amp; Above">1 Crore &amp; Above</option>
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="occupation">Occupation</label>
+                                        <select id="occupation" formControlName="occupation" class="form-control aiz-selectpicker" name="occupation" required>
+                        <option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</option>
+                    </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="designation">Designation</label>
+                                        <select id="designation" formControlName="designation" class="form-control aiz-selectpicker" name="designation" required>
+                                    <option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.val}}</option>
+                                </select>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="educationFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Family -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Family Details</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="familyForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="family_type">Family Type</label>
+                                        <select id="family_type" formControlName="family_type" class="form-control aiz-selectpicker" name="family_type" required>
+                                            <option selected="" value="">Select Family Type</option>
+                                            <option value="Separate Family">Separate Family</option>
+                                            <option selected="" value="Joint Family">Joint Family</option>
+                                            <option value="Nuclear Family">Nuclear Family</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="father_name">Father Name</label>
+                                        <input type="text" name="father_name" formcontrolName="father_name" value="" class="form-control" placeholder="Father Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="father_occupation">Father Occupation</label>
+                                        <input type="text" name="father_occupation" formcontrolName="father_occupation" value="" class="form-control" placeholder="Father Occupation" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="mother_name">Mother Name</label>
+                                        <input type="text" name="mother_name" formcontrolName="mother_name" value="" class="form-control" placeholder="Mother Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="mother_occupation">Mother Occupation</label>
+                                        <input type="text" name="mother_occupation" formcontrolName="mother_occupation" value="" class="form-control" placeholder="Mother Occupation" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="family_status">Family Status</label>
+                                        <select id="family_status" formControlName="family_status" class="form-control aiz-selectpicker" name="family_status" required>
+                                            <option selected="" value="">Select Family Status</option>
+                                            <option value="Rich">Rich</option>
+                                            <option value="Upper Middle Class">Upper Middle Class</option>
+                                            <option value="Middle Class">Middle Class</option>
+                                            <option value="Lower Middle Class">Lower Middle Class</option>
+                                            <option value="Poor Family">Poor Family</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="no_of_brothers">No of Brothers</label>
+                                        <select id="no_of_brothers" formControlName="no_of_brothers" class="form-control aiz-selectpicker" name="no_of_brothers" required>
+                                    <option selected="" value="">Select No Of Brothers</option>
+                                    <option selected="" value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="4 +">4 +</option>
+                                </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="no_of_sisters">No of Sisters</label>
+                                        <select id="no_of_sisters" formControlName="no_of_sisters" class="form-control aiz-selectpicker" name="no_of_sisters" required>
+                                            <option selected="" value="">Select No Of Sisters</option>
+                                            <option selected="" value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="4 +">4 +</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+
+                                    <div class="col-md-6" *ngIf="familyForm.controls.no_of_brothers.value !== ''">
+                                        <label class="form-label" for="no_of_married_brother">No of Married Brothers</label>
+                                        <select id="no_of_married_brother" formControlName="no_of_married_brother" class="form-control aiz-selectpicker" name="no_of_married_brother" required>
+                                        <option value="No married brother" selected="">No married brother</option>        
+                                        <option value="One married brother" *ngIf="familyForm.controls.no_of_brothers.value == 1">One married brother</option>
+                                        <option value="Two married brothers" *ngIf="familyForm.controls.no_of_brothers.value > 1">Two married brothers</option>
+                                        <option value="Three married brothers" *ngIf="familyForm.controls.no_of_brothers.value > 2">Three married brothers</option>
+                                        <option value="Four married brothers" *ngIf="familyForm.controls.no_of_brothers.value > 3">Four married brothers</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="familyForm.controls.no_of_sisters.value != ''">
+                                        <label class="form-label" for="no_of_married_sister">No of Married Sisters</label>
+                                        <select id="no_of_married_sister" formControlName="no_of_married_sister" class="form-control aiz-selectpicker" name="no_of_married_sister" required>
+                                        <option value="No married sister" selected="">No married brother</option>        
+                                        <option value="One married sister" *ngIf="familyForm.controls.no_of_sisters.value == 1">One married sister</option>
+                                        <option value="Two married sisters" *ngIf="familyForm.controls.no_of_sisters.value > 1">Two married sisters</option>
+                                        <option value="Three married sisters" *ngIf="familyForm.controls.no_of_sisters.value > 2">Three married sisters</option>
+                                        <option value="Four married sisters" *ngIf="familyForm.controls.no_of_sisters.value > 3">Four married sisters</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <label class="form-label" for="family_details">Write Something About Your Family</label>
+                                <div class="form-group mb-1">
+                                    <textarea id="family_details" formControlName="family_details" rows="5" class="form-control" name="family_details" required></textarea>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="familyFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!--Partner Preference-->
+
+                    <!-- basic  -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Basic Partner Preferences</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="basicPartnerForm">
+                                <label class="form-label" for="looking_for[]">Looking For</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id=" looking_for[]" [multiple]="true" formControlName="looking_for">
+                                        <ng-option value="Unmarried">Unmarried</ng-option>
+                                        <ng-option value="Widow/Widower">Widow/Widower</ng-option>
+                                        <ng-option value="Divorcee">Divorcee</ng-option>
+                                        <ng-option value="Separated">Separated</ng-option>
+                                        <ng-option value="Awaiting Divorce">Awaiting Divorce</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_complexion">Skin Tone</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_complexion" [multiple]="true" formControlName="part_complexion">
+                                        <ng-option value="Wheatish">Wheatish</ng-option>
+                                        <ng-option value="Very Fair">Very Fair</ng-option>
+                                        <ng-option value="Fair">Fair</ng-option>
+                                        <ng-option value="Wheatish Brown">Wheatish Brown</ng-option>
+                                        <ng-option value="Dark">Dark</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_mother_tongue">Mother Tongue</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_mother_tongue" [multiple]="true" formControlName="part_mother_tongue">
+                                        <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="part_frm_age">From Age</label>
+                                        <select id="part_frm_age" formControlName="part_frm_age" class="form-control aiz-selectpicker" name="part_frm_age" required>
+                                        <option selected="" value="">Select Partner From Age</option>
+                                        <option selected="" value="18">18 Year</option>
+                                        <option value="19">19 Year</option>
+                                        <option value="20">20 Year</option>
+                                        <option value="21">21 Year</option>
+                                        <option value="22">22 Year</option>
+                                        <option value="23">23 Year</option>
+                                        <option value="24">24 Year</option>
+                                        <option value="25">25 Year</option>
+                                        <option value="26">26 Year</option>
+                                        <option value="27">27 Year</option>
+                                        <option value="28">28 Year</option>
+                                        <option value="29">29 Year</option>
+                                        <option value="30">30 Year</option>
+                                        <option value="31">31 Year</option>
+                                        <option value="32">32 Year</option>
+                                        <option value="33">33 Year</option>
+                                        <option value="34">34 Year</option>
+                                        <option value="35">35 Year</option>
+                                        <option value="36">36 Year</option>
+                                        <option value="37">37 Year</option>
+                                        <option value="38">38 Year</option>
+                                        <option value="39">39 Year</option>                                
+                                        <option value="40">40 Year</option>
+                                        <option value="41">41 Year</option>
+                                        <option value="42">42 Year</option>
+                                        <option value="43">43 Year</option>
+                                        <option value="44">44 Year</option>
+                                        <option value="45">45 Year</option>
+                                        <option value="46">46 Year</option>
+                                        <option value="47">47 Year</option>
+                                        <option value="48">48 Year</option>
+                                        <option value="49">49 Year</option>
+                                        <option value="50">50 Year</option>
+                                        <option value="51">51 Year</option>
+                                        <option value="52">52 Year</option>
+                                        <option value="53">53 Year</option>
+                                        <option value="54">54 Year</option>
+                                        <option value="55">55 Year</option>
+                                        <option value="56">56 Year</option>
+                                        <option value="57">57 Year</option>
+                                        <option value="58">58 Year</option>
+                                        <option value="59">59 Year</option>
+                                        <option value="60">60 Year</option>
+                                        <option value="61">61 Year</option>
+                                        <option value="62">62 Year</option>
+                                        <option value="63">63 Year</option>
+                                        <option value="64">64 Year</option>
+                                        <option value="65">65 Year</option>
+                                     </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="part_to_age">To Age</label>
+                                        <select id="part_to_age" formControlName="part_to_age" class="form-control aiz-selectpicker" name="part_to_age" required>
+                                    <option selected="" value="">Select Partner To Age</option>
+                                    <option selected="" value="18">18 Year</option>
+                                    <option value="19">19 Year</option>
+                                    <option value="20">20 Year</option>
+                                    <option value="21">21 Year</option>
+                                    <option value="22">22 Year</option>
+                                    <option value="23">23 Year</option>
+                                    <option value="24">24 Year</option>
+                                    <option value="25">25 Year</option>
+                                    <option value="26">26 Year</option>
+                                    <option value="27">27 Year</option>
+                                    <option value="28">28 Year</option>
+                                    <option value="29">29 Year</option>
+                                    <option value="30">30 Year</option>
+                                    <option value="31">31 Year</option>
+                                    <option value="32">32 Year</option>
+                                    <option value="33">33 Year</option>
+                                    <option value="34">34 Year</option>
+                                    <option value="35">35 Year</option>
+                                    <option value="36">36 Year</option>
+                                    <option value="37">37 Year</option>
+                                    <option value="38">38 Year</option>
+                                    <option value="39">39 Year</option>                                
+                                    <option value="40">40 Year</option>
+                                    <option value="41">41 Year</option>
+                                    <option value="42">42 Year</option>
+                                    <option value="43">43 Year</option>
+                                    <option value="44">44 Year</option>
+                                    <option value="45">45 Year</option>
+                                    <option value="46">46 Year</option>
+                                    <option value="47">47 Year</option>
+                                    <option value="48">48 Year</option>
+                                    <option value="49">49 Year</option>
+                                    <option value="50">50 Year</option>
+                                    <option value="51">51 Year</option>
+                                    <option value="52">52 Year</option>
+                                    <option value="53">53 Year</option>
+                                    <option value="54">54 Year</option>
+                                    <option value="55">55 Year</option>
+                                    <option value="56">56 Year</option>
+                                    <option value="57">57 Year</option>
+                                    <option value="58">58 Year</option>
+                                    <option value="59">59 Year</option>
+                                    <option value="60">60 Year</option>
+                                    <option value="61">61 Year</option>
+                                    <option value="62">62 Year</option>
+                                    <option value="63">63 Year</option>
+                                    <option value="64">64 Year</option>
+                                    <option value="65">65 Year</option>
+                                     </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="part_height">From Height</label>
+                                        <select id="part_height" formControlName="part_height" class="form-control aiz-selectpicker" name="part_height" required>
+                               <option selected="" value="">Select Partner From Height</option>
+                               <option value="48">Below 4ft</option>
+                               <option value="49">4ft 1in</option>
+                               <option value="50">4ft 2in</option>
+                               <option value="51">4ft 3in</option>
+                               <option value="52">4ft 4in</option>
+                               <option value="53">4ft 5in</option>
+                               <option value="54">4ft 6in</option>
+                               <option value="55">4ft 7in</option>
+                               <option value="56">4ft 8in</option>
+                               <option value="57">4ft 9in</option>
+                               <option value="58">4ft 10in</option>
+                               <option value="59">4ft 11in</option>
+                               <option value="60">5ft</option>
+                               <option value="61">5ft 1in</option>
+                               <option value="62">5ft 2in</option>
+                               <option value="63">5ft 3in</option>
+                               <option value="64">5ft 4in</option>
+                               <option value="65">5ft 5in</option>
+                               <option value="66">5ft 6in</option>
+                               <option value="67">5ft 7in</option>
+                               <option value="68">5ft 8in</option>
+                               <option value="69">5ft 9in</option>
+                               <option value="70">5ft 10in</option>
+                               <option value="71">5ft 11in</option>
+                               <option value="72">6ft</option>
+                               <option value="73">6ft 1in</option>
+                               <option value="74">6ft 2in</option>
+                               <option value="75">6ft 3in</option>
+                               <option value="76">6ft 4in</option>
+                               <option value="77">6ft 5in</option>
+                               <option value="78">6ft 6in</option>
+                               <option value="79">6ft 7in</option>
+                               <option value="80">6ft 8in</option>
+                               <option value="81">6ft 9in</option>
+                               <option value="82">6ft 10in</option>
+                               <option value="83">6ft 11in</option>
+                               <option value="84">7ft</option>
+                               <option value="85">Above 7ft</option>
+                             </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="part_height_to">To Height</label>
+                                        <select id="part_height_to" formControlName="part_height_to" class="form-control aiz-selectpicker" name="part_height_to" required>
+                            <option selected="" value="">Select Partner To Height</option>
+                            <option value="48">Below 4ft</option>
+                            <option value="49">4ft 1in</option>
+                            <option value="50">4ft 2in</option>
+                            <option value="51">4ft 3in</option>
+                            <option value="52">4ft 4in</option>
+                            <option value="53">4ft 5in</option>
+                            <option value="54">4ft 6in</option>
+                            <option value="55">4ft 7in</option>
+                            <option value="56">4ft 8in</option>
+                            <option value="57">4ft 9in</option>
+                            <option value="58">4ft 10in</option>
+                            <option value="59">4ft 11in</option>
+                            <option value="60">5ft</option>
+                            <option value="61">5ft 1in</option>
+                            <option value="62">5ft 2in</option>
+                            <option value="63">5ft 3in</option>
+                            <option value="64">5ft 4in</option>
+                            <option value="65">5ft 5in</option>
+                            <option value="66">5ft 6in</option>
+                            <option value="67">5ft 7in</option>
+                            <option value="68">5ft 8in</option>
+                            <option value="69">5ft 9in</option>
+                            <option value="70">5ft 10in</option>
+                            <option value="71">5ft 11in</option>
+                            <option value="72">6ft</option>
+                            <option value="73">6ft 1in</option>
+                            <option value="74">6ft 2in</option>
+                            <option value="75">6ft 3in</option>
+                            <option value="76">6ft 4in</option>
+                            <option value="77">6ft 5in</option>
+                            <option value="78">6ft 6in</option>
+                            <option value="79">6ft 7in</option>
+                            <option value="80">6ft 8in</option>
+                            <option value="81">6ft 9in</option>
+                            <option value="82">6ft 10in</option>
+                            <option value="83">6ft 11in</option>
+                            <option value="84">7ft</option>
+                            <option value="85">Above 7ft</option>
+                             </select>
+                                    </div>
+                                </div>
+
+                                <label class="form-label" for="part_expect">Your Expectations</label>
+                                <div class="form-group mb-1">
+                                    <textarea id="part_expect" formControlName="part_expect" rows="5" class="form-control aiz-selectpicker" name="part_expect" required></textarea>
+                                </div>
+
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="basicPartnerFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">LifeStyle Partner Preferences</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="lifeStylePartnerForm">
+                                <label class="form-label" for="part_bodytype">Body Type</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id=" part_bodytype" [multiple]="true" formControlName="part_bodytype">
+                                        <ng-option value="Slim">Slim</ng-option>
+                                        <ng-option value="Average">Average</ng-option>
+                                        <ng-option value="Athletic">Athletic</ng-option>
+                                        <ng-option value="Heavy">Heavy</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_diet">Eating Habits</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_diet" [multiple]="true" formControlName="part_diet">
+                                        <ng-option value="Occasionally Non-Veg">Occasionally Non-Veg</ng-option>
+                                        <ng-option value="Veg">Veg</ng-option>
+                                        <ng-option value="Eggetarian">Eggetarian</ng-option>
+                                        <ng-option value="Non-Veg">Non-Veg</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_smoke">Smoking Habits</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_smoke" [multiple]="true" formControlName="part_smoke">
+                                        <ng-option selected="" value="No">No</ng-option>
+                                        <ng-option value="Yes">Yes</ng-option>
+                                        <ng-option value="Occasionally">Occasionally</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_drink">Drinking Habits</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_drink" [multiple]="true" formControlName="part_drink">
+                                        <ng-option selected="" value="No">No</ng-option>
+                                        <ng-option value="Yes">Yes</ng-option>
+                                        <ng-option value="Occasionally">Occasionally</ng-option>
+                                    </ng-select>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStylePartnerFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Residency Information -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Religion Partner Preferences</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="religionPartnerForm">
+                                <label class="form-label" for="part_caste">Caste</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_caste" [multiple]="true" formControlName="part_caste">
+                                        <ng-option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="religionPartnerFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Location Preferences -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Location Partner Preferences</h5>
+                        </div>
+                        <div class="card-body">
+
+
+                            <form action="javascript:void(0)" method="POST" [formGroup]="locationPartnerForm">
+                                <label class="form-label" for="part_country_living">Country</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_country_living" [multiple]="true" formControlName="part_country_living">
+                                        <ng-option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_state">State</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_state" [multiple]="true" formControlName="part_state">
+                                        <option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_city">City</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_city" [multiple]="true" formControlName="part_city">
+                                        <ng-option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_resi_status">Residence</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_resi_status" [multiple]="true" formControlName="part_resi_status">
+                                        <ng-option value="Citizen">Citizen</ng-option>
+                                        <ng-option value="Permanent Resident">Permanent Resident</ng-option>
+                                        <ng-option value="Student Visa">Student Visa</ng-option>
+                                        <ng-option value="Temporary Visa">Temporary Visa</ng-option>
+                                        <ng-option value="Work permit">Work permit</ng-option>
+                                        <ng-option value="Family Visa">Family Visa</ng-option>
+                                    </ng-select>
+                                </div>
+
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="locationPartnerFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Education Information  -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Education Partner Preferences</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST" [formGroup]="educationPartnerForm">
+                                <label class="form-label" for="part_education">Education</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_education" [multiple]="true" formControlName="part_education">
+                                        <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_employee_in">Employed In</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_employee_in" [multiple]="true" formControlName="part_employee_in">
+                                        <ng-option value="Private">Private</ng-option>
+                                        <ng-option value="Govt">Govt</ng-option>
+                                        <ng-option value="Central Govt">Central Govt</ng-option>
+                                        <ng-option value="MNC">MNC</ng-option>
+                                        <ng-option value="Overseas">Overseas</ng-option>
+                                        <ng-option value="Own Business">Own Business</ng-option>
+                                        <ng-option value="Others">Others</ng-option>
+                                        <ng-option value="Public Limited">Public Limited</ng-option>
+                                        <ng-option value="Semi Govt">Semi Govt</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_occupation">Occupation</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_occupation" [multiple]="true" formControlName="part_occupation">
+                                        <ng-option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_designation">Designation</label>
+                                <div class="form-group mb-1">
+                                    <ng-select id="part_designation" [multiple]="true" formControlName="part_designation">
+                                        <ng-option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.val}}</ng-option>
+                                    </ng-select>
+                                </div>
+                                <label class="form-label" for="part_income">Income</label>
+                                <select id="part_income" formControlName="part_income" class="form-control aiz-selectpicker" name="part_income" required>
+                       <option selected="" value="">Select Annual Income</option>
+                       <option value="0 - 1 Lakh">0 - 1 Lakh</option>
+                       <option value="1 - 2 Lakhs">1 - 2 Lakhs</option>
+                       <option value="2 - 3 Lakhs">2 - 3 Lakhs</option>
+                       <option value="3 - 4 Lakhs">3 - 4 Lakhs</option>
+                       <option value="4 - 5 Lakhs">4 - 5 Lakhs</option>
+                       <option value="5 - 6 Lakhs">5 - 6 Lakhs</option>
+                       <option value="6 - 7 Lakhs">6 - 7 Lakhs</option>
+                       <option value="7 - 8 Lakhs">7 - 8 Lakhs</option>
+                       <option value="8 - 9 Lakhs">8 - 9 Lakhs</option>
+                       <option value="9 - 10 Lakhs">9 - 10 Lakhs</option>
+                       <option value="10 - 12 Lakhs">10 - 12 Lakhs</option>
+                       <option value="12 - 14 Lakhs">12 - 14 Lakhs</option>
+                       <option value="14 - 16 Lakhs">14 - 16 Lakhs</option>
+                       <option value="16 - 18 Lakhs">16 - 18 Lakhs</option>
+                       <option value="18 - 20 Lakhs">18 - 20 Lakhs</option>
+                       <option value="20 - 25 Lakhs">20 - 25 Lakhs</option>
+                       <option value="25 - 30 Lakhs">25 - 30 Lakhs</option>
+                       <option value="30 - 35 Lakhs">30 - 35 Lakhs</option>
+                       <option value="35 - 40 Lakhs">35 - 40 Lakhs</option>
+                       <option value="40 - 45 Lakhs">40 - 45 Lakhs</option>
+                       <option value="45 - 50 Lakhs">45 - 50 Lakhs</option>
+                       <option value="50 - 55 Lakhs">50 - 55 Lakhs</option>
+                       <option value="55 - 60 Lakhs">55 - 60 Lakhs</option>
+                       <option value="60 - 65 Lakhs">60 - 65 Lakhs</option>
+                       <option value="65 - 70 Lakhs">65 - 70 Lakhs</option>
+                       <option value="70 - 75 Lakhs">70 - 75 Lakhs</option>
+                       <option value="75 - 80 Lakhs">75 - 80 Lakhs</option>
+                       <option value="80 - 58 Lakhs">80 - 85 Lakhs</option>
+                       <option value="85 - 90 Lakhs">85 - 90 Lakhs</option>
+                       <option value="90 Lakhs - 1 Crore">90 Lakhs - 1 Crore</option>
+                       <option value="1 Crore &amp; Above">1 Crore &amp; Above</option>
+                                 </select>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="educationPartnerFormSubmit()">Update</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 
+    <div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
+        <div class="row align-items-center gutters-5 text-center">
+            <div class="col">
+                <a href="https://demo.activeitzone.com/matrimonial" class="text-reset d-block flex-grow-1 text-center py-2">
+                    <i class="las la-home fs-18 opacity-60 "></i>
+                    <span class="d-block fs-10 opacity-60 ">Home</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://demo.activeitzone.com/matrimonial/member/notifications" class="text-reset d-block flex-grow-1 text-center py-2">
+                    <span class="d-inline-block position-relative px-2">
+                <i class="las la-bell fs-18 opacity-60 "></i>
+                                                                                            <span class="badge badge-sm badge-circle badge-primary position-absolute absolute-top-right">1</span>
+                    </span>
+                    <span class="d-block fs-10 opacity-60 ">Notifications</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://demo.activeitzone.com/matrimonial/chat" class="text-reset d-block flex-grow-1 text-center py-2 ">
+                    <span class="d-inline-block position-relative px-2">
+              <i class="las la-comment-dots fs-18 opacity-60 "></i>
+                                                                                                  </span>
+                    <span class="d-block fs-10 opacity-60 ">25</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="javascript:void(0)" class="text-reset d-block flex-grow-1 text-center py-2 mobile-side-nav-thumb" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav">
+                    <span class="d-block mx-auto mb-1 opacity-60">
+                        <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UNRXtPfNf1XyYMyxz1vOof4CMc83mDsnd36PtL4y.jpg" class="rounded-circle size-20px" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';">
+                    </span>
+                    <span class="d-block fs-10 opacity-60">Account</span>
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="aiz-mobile-side-nav collapse-sidebar-wrap sidebar-xl d-xl-none z-1035">
+        <div class="overlay dark c-pointer overlay-fixed" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb"></div>
+        <div class="collapse-sidebar bg-white">
+            <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                <div class="absolute-top-left d-xl-none">
+                    <button class="btn btn-sm p-2" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb">
+        <i class="las la-times la-2x"></i>
+    </button>
+                </div>
+                <div class="aiz-user-sidenav rounded overflow-hidden">
+                    <div class="px-4 text-center mb-4">
+                        <span class="avatar avatar-md mb-3">
+                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UNRXtPfNf1XyYMyxz1vOof4CMc83mDsnd36PtL4y.jpg">
+                        </span>
+                        <h4 class="h5 fw-600"></h4>
+                        <div class="text-center  mb-2">
+
+                        </div>
+                        <div>
+                            <span class="rating rating-sm">
+
+            </span>
+                        </div>
+                        <div class="mb-1">
+
+                            <span class="fw-600">
+
+            </span>
+                            <span>
+
+            </span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-3 px-3">
+                        <a href="https://demo.activeitzone.com/matrimonial/member-profile/27" class="btn btn-block btn-soft-primary">Public Profile</a>
+                    </div>
+
+                    <div class="sidemnenu mb-3">
+                        <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
+
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/dashboard" class="aiz-side-nav-link ">
+                                    <i class="las la-home aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/gallery-image" class="aiz-side-nav-link">
+                                    <i class="las la-image aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Gallery</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/happy-story/create" class="aiz-side-nav-link">
+                                    <i class="las la-handshake aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Happy Story</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="javascript:void(0);" class="aiz-side-nav-link">
+                                    <i class="las la-shopping-basket aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Packages</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <ul class="aiz-side-nav-list level-2">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Packages</span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Package Purchase History</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/chat" class="aiz-side-nav-link">
+                                    <i class="las la-envelope aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Message</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/support-ticket/history" class="aiz-side-nav-link ">
+                                    <i class="las la-life-ring aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Support Ticket</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/my-interests" class="aiz-side-nav-link">
+                                    <i class="la la-heart-o aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">My Interest</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/my-shortlists" class="aiz-side-nav-link">
+                                    <i class="las la-list aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Shortlist</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/ignored-list" class="aiz-side-nav-link">
+                                    <i class="las la-ban aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Ignored User List</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/members/picture-privacy" class="aiz-side-nav-link">
+                                    <i class="las la-user-lock aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Picture Privacy</span>
+                                </a>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/members/change-password" class="aiz-side-nav-link">
+                                    <i class="las la-key aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Change Password</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/profile-settings" class="aiz-side-nav-link">
+                                    <i class="las la-user aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Manage Profile</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="javascript:void(0);" class="aiz-side-nav-link" onclick="account_deactivation()">
+                                    <i class="las la-lock aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Deactive Account</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0);" class="btn btn-block btn-primary" href="https://demo.activeitzone.com/matrimonial/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="las la-sign-out-alt"></i>
+                            <span>Logout</span>
+
+                            <form id="logout-form" action="https://demo.activeitzone.com/matrimonial/logout" method="POST" style="display: none;">
+                                <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo"> </form>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>
+
+
+<!-- <div class="aiz-cookie-alert shadow-xl">
+    <div class="p-3 bg-dark rounded">
+        <div class="text-white mb-3">
+            <p><span style="color: rgb(27, 27, 40);">We use cookie for better user experence.</span><br></p>
+        </div>
+        <button class="btn btn-primary aiz-cookie-accepet">
+                Ok. I Understood
+            </button>
+    </div>
+</div> -->
+
+<!-- <div class="modal fade create_edit_modal" id="modal-basic">
+    <div class="modal-dialog">
+        <div class="modal-content create_edit_modal_content">
+
+        </div>
+    </div>
+</div> -->
+
+<!-- large Modal -->
+<!-- <div class="modal fade create_update_large_modal" id="modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div> -->
+<!-- delete Modal -->
+<!-- <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title h6">Just Testing</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="mt-1">Are you sure to delete this?</p>
+                <button type="button" class="btn btn-link mt-2" data-dismiss="modal">Cancel</button>
+                <a id="delete-link" class="btn btn-primary mt-2">Delete</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- /.modal -->
+
+<!-- <div class="modal fade account_status_change_modal" id="modal-zoom">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <form class="form-horizontal member-block" action="https://demo.activeitzone.com/matrimonial/member/account-activation" method="POST">
+                    <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo"> <input type="hidden" name="deacticvation_status" id="deacticvation_status" value="">
+                    <h4 class="modal-title h6 mb-3" id="confirmation_note" value=""></h4>
+                    <hr>
+                    <button type="submit" class="btn btn-primary mt-2">Yes</button>
+                    <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">No</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        get_states_by_country_for_present_address();
+        get_cities_by_state_for_present_address();
+        get_states_by_country_for_permanent_address();
+        get_cities_by_state_for_permanent_address();
+        get_castes_by_religion_for_member();
+        get_sub_castes_by_caste_for_member();
+        get_castes_by_religion_for_partner();
+        get_sub_castes_by_caste_for_partner();
+        get_states_by_country_for_partner();
+    });
+
+    // For Present address
+    function get_states_by_country_for_present_address() {
+        // var present_country_id = $('#present_country_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/states/get_state_by_country', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     country_id: present_country_id
+        // }, function(data) {
+        //     $('#present_state_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#present_state_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#present_state_id > option").each(function() {
+        //         if (this.value == '2728') {
+        //             $("#present_state_id").val(this.value).change();
+        //         }
+        //     });
+
+        //     AIZ.plugins.bootstrapSelect('refresh');
+
+        //     get_cities_by_state_for_present_address();
+        // });
+    }
+
+    function get_cities_by_state_for_present_address() {
+        // var present_state_id = $('#present_state_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/cities/get_cities_by_state', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     state_id: present_state_id
+        // }, function(data) {
+        //     $('#present_city_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#present_city_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#present_city_id > option").each(function() {
+        //         if (this.value == '5742') {
+        //             $("#present_city_id").val(this.value).change();
+        //         }
+        //     });
+
+        //     AIZ.plugins.bootstrapSelect('refresh');
+        // });
+    }
+
+    $('#present_country_id').on('change', function() {
+        // get_states_by_country_for_present_address();
+    });
+
+    $('#present_state_id').on('change', function() {
+        // get_cities_by_state_for_present_address();
+    });
+
+    // For permanent address
+    function get_states_by_country_for_permanent_address() {
+        // var permanent_country_id = $('#permanent_country_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/states/get_state_by_country', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     country_id: permanent_country_id
+        // }, function(data) {
+        //     $('#permanent_state_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#permanent_state_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#permanent_state_id > option").each(function() {
+        //         if (this.value == '164') {
+        //             $("#permanent_state_id").val(this.value).change();
+        //         }
+        //     });
+
+        //     AIZ.plugins.bootstrapSelect('refresh');
+
+        //     get_cities_by_state_for_permanent_address();
+        // });
+    }
+
+    function get_cities_by_state_for_permanent_address() {
+        // var permanent_state_id = $('#permanent_state_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/cities/get_cities_by_state', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     state_id: permanent_state_id
+        // }, function(data) {
+        //     $('#permanent_city_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#permanent_city_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#permanent_city_id > option").each(function() {
+        //         if (this.value == '6414') {
+        //             $("#permanent_city_id").val(this.value).change();
+        //         }
+        //     });
+
+        //     AIZ.plugins.bootstrapSelect('refresh');
+        // });
+    }
+
+    $('#permanent_country_id').on('change', function() {
+        // get_states_by_country_for_permanent_address();
+    });
+
+    $('#permanent_state_id').on('change', function() {
+        // get_cities_by_state_for_permanent_address();
+    });
+
+    // get castes and subcastes For member
+    function get_castes_by_religion_for_member() {
+        // var member_religion_id = $('#member_religion_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/castes/get_caste_by_religion', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     religion_id: member_religion_id
+        // }, function(data) {
+        //     $('#member_caste_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#member_caste_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#member_caste_id > option").each(function() {
+        //         if (this.value == '2') {
+        //             $("#member_caste_id").val(this.value).change();
+        //         }
+        //     });
+        //     AIZ.plugins.bootstrapSelect('refresh');
+
+        //     get_sub_castes_by_caste_for_member();
+        // });
+    }
+
+    function get_sub_castes_by_caste_for_member() {
+        // var member_caste_id = $('#member_caste_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/sub-castes/get_sub_castes_by_religion', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     caste_id: member_caste_id
+        // }, function(data) {
+        //     $('#member_sub_caste_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#member_sub_caste_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#member_sub_caste_id > option").each(function() {
+        //         if (this.value == '') {
+        //             $("#member_sub_caste_id").val(this.value).change();
+        //         }
+        //     });
+        //     AIZ.plugins.bootstrapSelect('refresh');
+        // });
+    }
+
+    $('#member_religion_id').on('change', function() {
+        // get_castes_by_religion_for_member();
+    });
+
+    $('#member_caste_id').on('change', function() {
+        // get_sub_castes_by_caste_for_member();
+    });
+
+    // get castes and subcastes For partner
+    function get_castes_by_religion_for_partner() {
+        // var partner_religion_id = $('#partner_religion_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/castes/get_caste_by_religion', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     religion_id: partner_religion_id
+        // }, function(data) {
+        //     $('#partner_caste_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#partner_caste_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#partner_caste_id > option").each(function() {
+        //         if (this.value == '5') {
+        //             $("#partner_caste_id").val(this.value).change();
+        //         }
+        //     });
+        //     AIZ.plugins.bootstrapSelect('refresh');
+
+        //     get_sub_castes_by_caste_for_partner();
+        // });
+    }
+
+    function get_sub_castes_by_caste_for_partner() {
+        // var partner_caste_id = $('#partner_caste_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/sub-castes/get_sub_castes_by_religion', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     caste_id: partner_caste_id
+        // }, function(data) {
+        //     $('#partner_sub_caste_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#partner_sub_caste_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#partner_sub_caste_id > option").each(function() {
+        //         if (this.value == '') {
+        //             $("#partner_sub_caste_id").val(this.value).change();
+        //         }
+        //     });
+        //     AIZ.plugins.bootstrapSelect('refresh');
+        // });
+    }
+
+    $('#partner_religion_id').on('change', function() {
+        // get_castes_by_religion_for_partner();
+    });
+
+    $('#partner_caste_id').on('change', function() {
+        // get_sub_castes_by_caste_for_partner();
+    });
+
+    // For partner address
+    function get_states_by_country_for_partner() {
+        // var partner_country_id = $('#partner_country_id').val();
+        // $.post('https://demo.activeitzone.com/matrimonial/states/get_state_by_country', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     country_id: partner_country_id
+        // }, function(data) {
+        //     $('#partner_state_id').html(null);
+        //     for (var i = 0; i < data.length; i++) {
+        //         $('#partner_state_id').append($('<option>', {
+        //             value: data[i].id,
+        //             text: data[i].name
+        //         }));
+        //     }
+        //     $("#partner_state_id > option").each(function() {
+        //         if (this.value == '164') {
+        //             $("#partner_state_id").val(this.value).change();
+        //         }
+        //     });
+
+        //     AIZ.plugins.bootstrapSelect('refresh');
+        // });
+    }
+
+    $('#partner_country_id').on('change', function() {
+        // get_states_by_country_for_partner();
+    });
+
+    //  education Add edit , status change
+    function education_add_modal(id) {
+        // $.post('https://demo.activeitzone.com/matrimonial/education/create', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     id: id
+        // }, function(data) {
+        //     $('.create_edit_modal_content').html(data);
+        //     $('.create_edit_modal').modal('show');
+        // });
+    }
+
+    function education_edit_modal(id) {
+        // $.post('https://demo.activeitzone.com/matrimonial/education/edit', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     id: id
+        // }, function(data) {
+        //     $('.create_edit_modal_content').html(data);
+        //     $('.create_edit_modal').modal('show');
+        // });
+    }
+
+    function update_education_present_status(el) {
+        // if (el.checked) {
+        //     var status = 1;
+        // } else {
+        //     var status = 0;
+        // }
+        // $.post('https://demo.activeitzone.com/matrimonial/education/update_education_present_status', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     id: el.value,
+        //     status: status
+        // }, function(data) {
+        //     if (data == 1) {
+        //         location.reload();
+        //     } else {
+        //         AIZ.plugins.notify('danger', 'Something went wrong');
+        //     }
+        // });
+    }
+
+
+    //  Career Add edit , status change
+    function career_add_modal(id) {
+        // $.post('https://demo.activeitzone.com/matrimonial/career/create', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     id: id
+        // }, function(data) {
+        //     $('.create_edit_modal_content').html(data);
+        //     $('.create_edit_modal').modal('show');
+        // });
+    }
+
+    function career_edit_modal(id) {
+        // $.post('https://demo.activeitzone.com/matrimonial/career/edit', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     id: id
+        // }, function(data) {
+        //     $('.create_edit_modal_content').html(data);
+        //     $('.create_edit_modal').modal('show');
+        // });
+    }
+
+    function update_career_present_status(el) {
+        // if (el.checked) {
+        //     var status = 1;
+        // } else {
+        //     var status = 0;
+        // }
+        // $.post('https://demo.activeitzone.com/matrimonial/career/update_career_present_status', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     id: el.value,
+        //     status: status
+        // }, function(data) {
+        //     if (data == 1) {
+        //         location.reload();
+        //     } else {
+        //         AIZ.plugins.notify('danger', 'Something went wrong');
+        //     }
+        // });
+    }
+
+    $('.new-email-verification').on('click', function() {
+        // $(this).find('.loading').removeClass('d-none');
+        // $(this).find('.default').addClass('d-none');
+        // var email = $("input[name=email]").val();
+
+        // $.post('https://demo.activeitzone.com/matrimonial/new-user-verification', {
+        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
+        //     email: email
+        // }, function(data) {
+        //     data = JSON.parse(data);
+        //     $('.default').removeClass('d-none');
+        //     $('.loading').addClass('d-none');
+        //     if (data.status == 2)
+        //         AIZ.plugins.notify('warning', data.message);
+        //     else if (data.status == 1)
+        //         AIZ.plugins.notify('success', data.message);
+        //     else
+        //         AIZ.plugins.notify('danger', data.message);
+        // });
+    });
+</script>
+
+<script type="text/javascript">
+    function account_deactivation() {
+        // var status = 0
+        // $('.account_status_change_modal').modal('show');
+        // if (status == 0) {
+        //     $('#deacticvation_status').val(1);
+        //     $('#confirmation_note').html('Do You Realy Want To Deactive Your Account');
+        // } else {
+        //     $('#deacticvation_status').val(0);
+        //     $('#confirmation_note').html('Are You Sure To Reactive Your Account');
+        // }
+    }
+</script>
+
+
+<script type="text/javascript">
+    // Login credentials autoFill for demo
+    function autoFill1() {
+        // $('#email').val('user2@example.com');
+        // $('#password').val('12345678');
+    }
+
+    function autoFill2() {
+        // $('#email').val('user17@example.com');
+        // $('#password').val('12345678');
+    }
+</script>

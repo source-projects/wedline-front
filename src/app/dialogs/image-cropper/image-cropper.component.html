@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Image Editor</h1>
+<mat-dialog-content class="mat-typography">
+    <button (click)="rotateLeft()">Rotate left</button>
+    <button (click)="rotateRight()">Rotate right</button>
+    <button (click)="flipHorizontal()">Flip horizontal</button>
+    <button (click)="flipVertical()">Flip vertical</button>
+    <br />
+    <br />
+    <button (click)="resetImage()">Reset image</button>
+    <br />
+    <br />
+    <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" />
+    <button (click)="zoomOut()">Zoom -</button>
+    <button (click)="zoomIn()">Zoom +</button>
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="3 / 4" [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform"
+        [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+    <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+        <button type="button" class="btn sl-btn sl-btn-active" (click)="upload()">Upload</button>
+    </div>
+    <div>
+        <button class="btn sl-btn sl-btn-outline" (click)="dismiss()">Cancel</button>
+    </div>
+</mat-dialog-actions>

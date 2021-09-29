@@ -1,0 +1,468 @@
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+
+    <section class="pt-6 bg-primary-grad text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 offset-xl-12">
+                    <div class="px-3 row align-items-center">
+                        <div class="col-md-8 col-xxl-9">
+                            <h1 class="fs-24 fw-600">
+                                Profile Filter
+
+                            </h1>
+
+                            <hr class="border-gray-500">
+
+                        </div>
+
+                    </div>
+                    <div class="mt-4">
+                        <div class="nav nav-tabs aiz-nav-tabs bottom-bordered active-white border-0">
+
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 tabpr py-2 active" data-toggle="tab" href="#regular">Regular Searching</a>
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 tabpr py-2" data-toggle="tab" href="#id">ID Searching</a>
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 tabpr py-2 " data-toggle="tab" href="#advance">Advance Searching</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style type="text/css">
+        @media(min-width: 1199.98px) {
+            .aiz-profile-sidebar {
+                margin-top: -260px
+            }
+        }
+    </style>
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-xxl-3 order-1 order-xl-0">
+                    <div class="aiz-profile-sidebar">
+
+
+
+
+
+                    </div>
+                </div>
+                <!-- <div class="col-xl-12 offset-xxl-1"> -->
+                <div class="col-xl-12">
+                    <!-- <div class="overflow-hidden rounded shadow-lg mb-4 bg-white d-xl-none">
+                        <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/PHOPJbRhA2sirsP6lcQu3hgQdIQVCSzSIH03p83i.png" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" class="img-fluid w-100">
+                    </div> -->
+
+                    <!-- <div class="mb-4 p-4 border rounded border-gray-200 d-xl-none">
+
+
+
+
+
+                    </div> -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="advance">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Advance Searching</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="" method="POST">
+                                        <input name="_method" type="hidden" value="PATCH">
+                                        <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="height">Height (In Feet)</label>
+                                                <input type="number" name="height" value="5" step="0.1" class="form-control" placeholder="Height" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="weight">Weight (In Kg)</label>
+                                                <input type="number" name="weight" value="60" step="0.1" placeholder="Weight" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="eye_color">Eye color</label>
+                                                <input type="text" name="eye_color" value="Black" class="form-control" placeholder="Eye color" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="hair_color">Hair Color</label>
+                                                <input type="text" name="hair_color" value="Black" placeholder="Hair Color" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="complexion">Complexion</label>
+                                                <input type="text" name="complexion" value="Fair skin, always burns, sometimes tans" class="form-control" placeholder="Complexion" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="blood_group">Blood Group</label>
+                                                <input type="text" name="blood_group" value="A+" placeholder="Blood Group" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="body_type">Body Type</label>
+                                                <input type="text" name="body_type" value="Medium" class="form-control" placeholder="Body Type" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="body_art">Body Art</label>
+                                                <input type="text" name="body_art" value="Medium" placeholder="Body Art" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="disability">Disability</label>
+                                                <input type="text" name="disability" value="Recusandae Est nost" class="form-control" placeholder="Disability">
+                                            </div>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <button type="submit" routerLink="/profile" class="btn btn-primary btn-sm">Filter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="regular">
+
+                            <!-- Regular Searching -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Regular Searching</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="" method="POST">
+                                        <input name="_method" type="hidden" value="PATCH">
+                                        <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="height">Height (In Feet)</label>
+                                                <input type="number" name="height" value="5" step="0.1" class="form-control" placeholder="Height" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="weight">Weight (In Kg)</label>
+                                                <input type="number" name="weight" value="60" step="0.1" placeholder="Weight" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="eye_color">Eye color</label>
+                                                <input type="text" name="eye_color" value="Black" class="form-control" placeholder="Eye color" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="hair_color">Hair Color</label>
+                                                <input type="text" name="hair_color" value="Black" placeholder="Hair Color" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="complexion">Complexion</label>
+                                                <input type="text" name="complexion" value="Fair skin, always burns, sometimes tans" class="form-control" placeholder="Complexion" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="blood_group">Blood Group</label>
+                                                <input type="text" name="blood_group" value="A+" placeholder="Blood Group" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="body_type">Body Type</label>
+                                                <input type="text" name="body_type" value="Medium" class="form-control" placeholder="Body Type" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="body_art">Body Art</label>
+                                                <input type="text" name="body_art" value="Medium" placeholder="Body Art" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="disability">Disability</label>
+                                                <input type="text" name="disability" value="Recusandae Est nost" class="form-control" placeholder="Disability">
+                                            </div>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <button type="submit" routerLink="/profile" class="btn btn-primary btn-sm">Filter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="id">
+                            <!-- <h2 class="text-primary fs-24 mb-5 pb-4 border-bottom">Search with ID</h2> -->
+
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">ID Searching</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="" method="POST">
+                                        <input name="_method" type="hidden" value="PATCH">
+                                        <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="height">Height (In Feet)</label>
+                                                <input type="number" name="height" value="5" step="0.1" class="form-control" placeholder="Height" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="weight">Weight (In Kg)</label>
+                                                <input type="number" name="weight" value="60" step="0.1" placeholder="Weight" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="eye_color">Eye color</label>
+                                                <input type="text" name="eye_color" value="Black" class="form-control" placeholder="Eye color" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="hair_color">Hair Color</label>
+                                                <input type="text" name="hair_color" value="Black" placeholder="Hair Color" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="complexion">Complexion</label>
+                                                <input type="text" name="complexion" value="Fair skin, always burns, sometimes tans" class="form-control" placeholder="Complexion" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="blood_group">Blood Group</label>
+                                                <input type="text" name="blood_group" value="A+" placeholder="Blood Group" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="body_type">Body Type</label>
+                                                <input type="text" name="body_type" value="Medium" class="form-control" placeholder="Body Type" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="body_art">Body Art</label>
+                                                <input type="text" name="body_art" value="Medium" placeholder="Body Art" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="disability">Disability</label>
+                                                <input type="text" name="disability" value="Recusandae Est nost" class="form-control" placeholder="Disability">
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" routerLink="/profile" class="btn btn-primary btn-sm">Filter</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="card-columns">
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- <div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
+        <div class="row align-items-center gutters-5 text-center">
+            <div class="col">
+                <a href="https://demo.activeitzone.com/matrimonial" class="text-reset d-block flex-grow-1 text-center py-2">
+                    <i class="las la-home fs-18 opacity-60 "></i>
+                    <span class="d-block fs-10 opacity-60 ">Home</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://demo.activeitzone.com/matrimonial/member/notifications" class="text-reset d-block flex-grow-1 text-center py-2">
+                    <span class="d-inline-block position-relative px-2">
+                <i class="las la-bell fs-18 opacity-60 "></i>
+                                                                                                    </span>
+                    <span class="d-block fs-10 opacity-60 ">Notifications</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://demo.activeitzone.com/matrimonial/chat" class="text-reset d-block flex-grow-1 text-center py-2 ">
+                    <span class="d-inline-block position-relative px-2">
+              <i class="las la-comment-dots fs-18 opacity-60 "></i>
+                                                                                                  </span>
+                    <span class="d-block fs-10 opacity-60 ">Messages</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="javascript:void(0)" class="text-reset d-block flex-grow-1 text-center py-2 mobile-side-nav-thumb" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav">
+                    <span class="d-block mx-auto mb-1 opacity-60">
+                        <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/xEuQaBqs6VFAmcaCa6bii6SQHwpGaE0QZLlF8Pln.jpg" class="rounded-circle size-20px" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';">
+                    </span>
+                    <span class="d-block fs-10 opacity-60">Account</span>
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="aiz-mobile-side-nav collapse-sidebar-wrap sidebar-xl d-xl-none z-1035">
+        <div class="overlay dark c-pointer overlay-fixed" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb"></div>
+        <div class="collapse-sidebar bg-white">
+            <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                <div class="absolute-top-left d-xl-none">
+                    <button class="btn btn-sm p-2" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb">
+        <i class="las la-times la-2x"></i>
+    </button>
+                </div>
+                <div class="aiz-user-sidenav rounded overflow-hidden">
+                    <div class="px-4 text-center mb-4">
+                        <span class="avatar avatar-md mb-3">
+                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/xEuQaBqs6VFAmcaCa6bii6SQHwpGaE0QZLlF8Pln.jpg">
+                        </span>
+                        <h4 class="h5 fw-600">08692855786 Ryan</h4>
+                        <div class="text-center  mb-2">
+
+                        </div>
+                        <div>
+                            <span class="rating rating-sm">
+
+            </span>
+                        </div>
+                        <div class="mb-1">
+
+                            <span class="fw-600">
+
+            </span>
+                            <span>
+
+            </span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-3 px-3">
+                        <a href="https://demo.activeitzone.com/matrimonial/member-profile/27" class="btn btn-block btn-soft-primary">Public Profile</a>
+                    </div>
+
+                    <div class="sidemnenu mb-3">
+                        <ul class="aiz-side-nav-list metismenu" data-toggle="aiz-side-menu">
+
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/dashboard" class="aiz-side-nav-link ">
+                                    <i class="las la-home aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/gallery-image" class="aiz-side-nav-link">
+                                    <i class="las la-image aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Gallery</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/happy-story/create" class="aiz-side-nav-link">
+                                    <i class="las la-handshake aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Happy Story</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="javascript:void(0);" class="aiz-side-nav-link">
+                                    <i class="las la-shopping-basket aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Packages</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Packages</span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Package Purchase History</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/chat" class="aiz-side-nav-link">
+                                    <i class="las la-envelope aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Message</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/support-ticket/history" class="aiz-side-nav-link ">
+                                    <i class="las la-life-ring aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Support Ticket</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/my-interests" class="aiz-side-nav-link">
+                                    <i class="la la-heart-o aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">My Interest</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/my-shortlists" class="aiz-side-nav-link">
+                                    <i class="las la-list aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Shortlist</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/ignored-list" class="aiz-side-nav-link">
+                                    <i class="las la-ban aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Ignored User List</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/members/picture-privacy" class="aiz-side-nav-link">
+                                    <i class="las la-user-lock aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Picture Privacy</span>
+                                </a>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/members/change-password" class="aiz-side-nav-link">
+                                    <i class="las la-key aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Change Password</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="https://demo.activeitzone.com/matrimonial/profile-settings" class="aiz-side-nav-link">
+                                    <i class="las la-user aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Manage Profile</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="javascript:void(0);" class="aiz-side-nav-link" onclick="account_deactivation()">
+                                    <i class="las la-lock aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Deactive Account</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0);" class="btn btn-block btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="las la-sign-out-alt"></i>
+                            <span>Logout</span>
+
+                            <form id="logout-form" action="https://demo.activeitzone.com/matrimonial/logout" method="POST" style="display: none;">
+                                <input type="hidden" name="_token" value="2DfmwhfC1gDoUgzKYUf3yQbEWEikjo12BsNzHdRd"> </form>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>
