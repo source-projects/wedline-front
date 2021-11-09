@@ -1,0 +1,982 @@
+<div class="text-left">
+
+    <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+
+
+        <section class="py-4 py-lg-5 bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <div class="aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl z-1035">
+                                    <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
+                                    <div class="card collapse-sidebar c-scrollbar-light shadow-none">
+                                        <div class="card-header pr-1 pl-3">
+                                            <h5 class="mb-0 h6">SEARCH</h5>
+                                            <button class="btn btn-sm p-2 d-xl-none filter-sidebar-thumb" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" type="button">
+                                                <i class="las la-times la-2x"></i>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label" for="keyword">By Keyword</label>
+                                                        <div class="input-group">
+                                                            <input type="text" name="keyword" placeholder="Search Keyword" value="" class="form-control" [formControl]="keyword">
+                                                            <button class="btn btn-outline-secondary" type="button" (click)="searchByKeyword()"><i class="las la-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label" for="txt_id_search">By Member
+                                                                Id</label>
+                                                        <div class="input-group">
+                                                            <input type="text" name="txt_id_search" placeholder="Search ID" value="" class="form-control" [formControl]="txt_id_search">
+                                                            <button class="btn btn-outline-secondary" type="button" (click)="searchById()"><i class="las la-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form action="javascript:void(0)" method="POST" [formGroup]="searchForm">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="from_age">Age From</label>
+                                                            <select id="from_age" class="form-control aiz-selectpicker" name="from_age" formControlName="from_age" required>
+                                                                <option value="">Select Age</option>    
+                                                                <option value="18">18 Year</option>
+                                                                    <option value="19">19 Year</option>
+                                                                    <option value="20">20 Year</option>
+                                                                    <option value="21">21 Year</option>
+                                                                    <option value="22">22 Year</option>
+                                                                    <option value="23">23 Year</option>
+                                                                    <option value="24">24 Year</option>
+                                                                    <option value="25">25 Year</option>
+                                                                    <option value="26">26 Year</option>
+                                                                    <option value="27">27 Year</option>
+                                                                    <option value="28">28 Year</option>
+                                                                    <option value="29">29 Year</option>
+                                                                    <option value="30">30 Year</option>
+                                                                    <option value="31">31 Year</option>
+                                                                    <option value="32">32 Year</option>
+                                                                    <option value="33">33 Year</option>
+                                                                    <option value="34">34 Year</option>
+                                                                    <option value="35">35 Year</option>
+                                                                    <option value="36">36 Year</option>
+                                                                    <option value="37">37 Year</option>
+                                                                    <option value="38">38 Year</option>
+                                                                    <option value="39">39 Year</option>
+                                                                    <option value="40">40 Year</option>
+                                                                    <option value="41">41 Year</option>
+                                                                    <option value="42">42 Year</option>
+                                                                    <option value="43">43 Year</option>
+                                                                    <option value="44">44 Year</option>
+                                                                    <option value="45">45 Year</option>
+                                                                    <option value="46">46 Year</option>
+                                                                    <option value="47">47 Year</option>
+                                                                    <option value="48">48 Year</option>
+                                                                    <option value="49">49 Year</option>
+                                                                    <option value="50">50 Year</option>
+                                                                    <option value="51">51 Year</option>
+                                                                    <option value="52">52 Year</option>
+                                                                    <option value="53">53 Year</option>
+                                                                    <option value="54">54 Year</option>
+                                                                    <option value="55">55 Year</option>
+                                                                    <option value="56">56 Year</option>
+                                                                    <option value="57">57 Year</option>
+                                                                    <option value="58">58 Year</option>
+                                                                    <option value="59">59 Year</option>
+                                                                    <option value="60">60 Year</option>
+                                                                    <option value="61">61 Year</option>
+                                                                    <option value="62">62 Year</option>
+                                                                    <option value="63">63 Year</option>
+                                                                    <option value="64">64 Year</option>
+                                                                    <option value="65">65 Year</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="to_age">to Age</label>
+                                                            <select id="to_age" class="form-control aiz-selectpicker" name="to_age" formControlName="to_age" required>
+                                                                <option value="">Select Age</option>    
+                                                                <option value="18">18 Year</option>
+                                                                    <option value="19">19 Year</option>
+                                                                    <option value="20">20 Year</option>
+                                                                    <option value="21">21 Year</option>
+                                                                    <option value="22">22 Year</option>
+                                                                    <option value="23">23 Year</option>
+                                                                    <option value="24">24 Year</option>
+                                                                    <option value="25">25 Year</option>
+                                                                    <option value="26">26 Year</option>
+                                                                    <option value="27">27 Year</option>
+                                                                    <option value="28">28 Year</option>
+                                                                    <option value="29">29 Year</option>
+                                                                    <option value="30">30 Year</option>
+                                                                    <option value="31">31 Year</option>
+                                                                    <option value="32">32 Year</option>
+                                                                    <option value="33">33 Year</option>
+                                                                    <option value="34">34 Year</option>
+                                                                    <option value="35">35 Year</option>
+                                                                    <option value="36">36 Year</option>
+                                                                    <option value="37">37 Year</option>
+                                                                    <option value="38">38 Year</option>
+                                                                    <option value="39">39 Year</option>
+                                                                    <option value="40">40 Year</option>
+                                                                    <option value="41">41 Year</option>
+                                                                    <option value="42">42 Year</option>
+                                                                    <option value="43">43 Year</option>
+                                                                    <option value="44">44 Year</option>
+                                                                    <option value="45">45 Year</option>
+                                                                    <option value="46">46 Year</option>
+                                                                    <option value="47">47 Year</option>
+                                                                    <option value="48">48 Year</option>
+                                                                    <option value="49">49 Year</option>
+                                                                    <option value="50">50 Year</option>
+                                                                    <option value="51">51 Year</option>
+                                                                    <option value="52">52 Year</option>
+                                                                    <option value="53">53 Year</option>
+                                                                    <option value="54">54 Year</option>
+                                                                    <option value="55">55 Year</option>
+                                                                    <option value="56">56 Year</option>
+                                                                    <option value="57">57 Year</option>
+                                                                    <option value="58">58 Year</option>
+                                                                    <option value="59">59 Year</option>
+                                                                    <option value="60">60 Year</option>
+                                                                    <option value="61">61 Year</option>
+                                                                    <option value="62">62 Year</option>
+                                                                    <option value="63">63 Year</option>
+                                                                    <option value="64">64 Year</option>
+                                                                    <option value="65">65 Year</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="from_height">Min Height</label>
+                                                            <select id="from_height" class="form-control aiz-selectpicker" name="from_height" formControlName="from_height" required>
+                                                                    <option value="">Select Height</option>
+                                                                    <option value="48">Below 4ft</option>
+                                                                    <option value="49">4ft 1in</option>
+                                                                    <option value="50">4ft 2in</option>
+                                                                    <option value="51">4ft 3in</option>
+                                                                    <option value="52">4ft 4in</option>
+                                                                    <option value="53">4ft 5in</option>
+                                                                    <option value="54">4ft 6in</option>
+                                                                    <option value="55">4ft 7in</option>
+                                                                    <option value="56">4ft 8in</option>
+                                                                    <option value="57">4ft 9in</option>
+                                                                    <option value="58">4ft 10in</option>
+                                                                    <option value="59">4ft 11in</option>
+                                                                    <option value="60">5ft</option>
+                                                                    <option value="61">5ft 1in</option>
+                                                                    <option value="62">5ft 2in</option>
+                                                                    <option value="63">5ft 3in</option>
+                                                                    <option value="64">5ft 4in</option>
+                                                                    <option value="65">5ft 5in</option>
+                                                                    <option value="66">5ft 6in</option>
+                                                                    <option value="67">5ft 7in</option>
+                                                                    <option value="68">5ft 8in</option>
+                                                                    <option value="69">5ft 9in</option>
+                                                                    <option value="70">5ft 10in</option>
+                                                                    <option value="71">5ft 11in</option>
+                                                                    <option value="72">6ft</option>
+                                                                    <option value="73">6ft 1in</option>
+                                                                    <option value="74">6ft 2in</option>
+                                                                    <option value="75">6ft 3in</option>
+                                                                    <option value="76">6ft 4in</option>
+                                                                    <option value="77">6ft 5in</option>
+                                                                    <option value="78">6ft 6in</option>
+                                                                    <option value="79">6ft 7in</option>
+                                                                    <option value="80">6ft 8in</option>
+                                                                    <option value="81">6ft 9in</option>
+                                                                    <option value="82">6ft 10in</option>
+                                                                    <option value="83">6ft 11in</option>
+                                                                    <option value="84">7ft</option>
+                                                                    <option value="85">Above 7ft</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="to_height">Max Height</label>
+                                                            <select id="to_height" class="form-control aiz-selectpicker" name="to_height" formControlName="to_height" required>
+                                                                    <option value="">Select Height</option>
+                                                                    <option value="48">Below 4ft</option>
+                                                                    <option value="49">4ft 1in</option>
+                                                                    <option value="50">4ft 2in</option>
+                                                                    <option value="51">4ft 3in</option>
+                                                                    <option value="52">4ft 4in</option>
+                                                                    <option value="53">4ft 5in</option>
+                                                                    <option value="54">4ft 6in</option>
+                                                                    <option value="55">4ft 7in</option>
+                                                                    <option value="56">4ft 8in</option>
+                                                                    <option value="57">4ft 9in</option>
+                                                                    <option value="58">4ft 10in</option>
+                                                                    <option value="59">4ft 11in</option>
+                                                                    <option value="60">5ft</option>
+                                                                    <option value="61">5ft 1in</option>
+                                                                    <option value="62">5ft 2in</option>
+                                                                    <option value="63">5ft 3in</option>
+                                                                    <option value="64">5ft 4in</option>
+                                                                    <option value="65">5ft 5in</option>
+                                                                    <option value="66">5ft 6in</option>
+                                                                    <option value="67">5ft 7in</option>
+                                                                    <option value="68">5ft 8in</option>
+                                                                    <option value="69">5ft 9in</option>
+                                                                    <option value="70">5ft 10in</option>
+                                                                    <option value="71">5ft 11in</option>
+                                                                    <option value="72">6ft</option>
+                                                                    <option value="73">6ft 1in</option>
+                                                                    <option value="74">6ft 2in</option>
+                                                                    <option value="75">6ft 3in</option>
+                                                                    <option value="76">6ft 4in</option>
+                                                                    <option value="77">6ft 5in</option>
+                                                                    <option value="78">6ft 6in</option>
+                                                                    <option value="79">6ft 7in</option>
+                                                                    <option value="80">6ft 8in</option>
+                                                                    <option value="81">6ft 9in</option>
+                                                                    <option value="82">6ft 10in</option>
+                                                                    <option value="83">6ft 11in</option>
+                                                                    <option value="84">7ft</option>
+                                                                    <option value="85">Above 7ft</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <h6 class="separator text-left mb-3 fs-12 text-uppercase text-secondary">
+                                                    <span class="bg-white pr-3">Member Type</span>
+                                                </h6> -->
+                                                <!-- <div class="aiz-radio-list">
+                                                    <label class="aiz-radio">
+                                                            <input type="radio" name="member_type" value="2"
+                                                                onchange="applyFilter()"> Premium Member
+                                                            <span class="aiz-rounded-check"></span>
+                                                        </label>
+                                                    <label class="aiz-radio">
+                                                            <input type="radio" name="member_type" value="1"
+                                                                onchange="applyFilter()"> Free member
+                                                            <span class="aiz-rounded-check"></span>
+                                                        </label>
+                                                    <label class="aiz-radio">
+                                                            <input type="radio" name="member_type" value="0" checked>
+                                                            All Member
+                                                            <span class="aiz-rounded-check"></span>
+                                                        </label>
+                                                </div> -->
+                                                <h6 class="separator text-left mb-3 fs-12 text-uppercase text-secondary">
+                                                    <span class="bg-white pr-3">Photo Setting</span>
+                                                </h6>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="photo_search" formControlName="photo_search" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      With Photo
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingOne">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                  Religion/Status
+                                                </button>
+                                                    </h2>
+                                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="looking_for">Marital Status</label>
+                                                                        <ng-select id=" looking_for" [multiple]="true" formControlName="looking_for">
+                                                                            <ng-option value="Unmarried">Unmarried</ng-option>
+                                                                            <ng-option value="Widow/Widower">Widow/Widower</ng-option>
+                                                                            <ng-option value="Divorcee">Divorcee</ng-option>
+                                                                            <ng-option value="Separated">Separated</ng-option>
+                                                                            <ng-option value="Awaiting Divorce">Awaiting Divorce</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="caste">Caste</label>
+                                                                        <ng-select id="caste" [multiple]="true" formControlName="caste">
+                                                                            <ng-option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="mothertongue">Mother Tongue</label>
+                                                                        <ng-select id=" mothertongue" [multiple]="true" formControlName="mothertongue">
+                                                                            <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                  Location
+                                                </button>
+                                                    </h2>
+                                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="country">Country</label>
+                                                                        <ng-select id="country" [multiple]="true" formControlName="country" (change)="getStatesForMultipleCountries()">
+                                                                            <ng-option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="state">State</label>
+                                                                        <ng-select id="state" [multiple]="true" formControlName="state" (change)="getCitiesForMultipleStates()">
+                                                                            <ng-option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="city">City</label>
+                                                                        <ng-select id="city" [multiple]="true" formControlName="city">
+                                                                            <ng-option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingThree">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                                  Education
+                                                </button>
+                                                    </h2>
+                                                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="education">Education</label>
+                                                                        <ng-select id="education" [multiple]="true" formControlName="education">
+                                                                            <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="occupation">Occupation</label>
+                                                                        <ng-select id="occupation" [multiple]="true" formControlName="occupation">
+                                                                            <ng-option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="employee_in">Employee In</label>
+                                                                        <ng-select id="employee_in" formControlName="employee_in" [multiple]="true">
+                                                                            <ng-option value="Private">Private</ng-option>
+                                                                            <ng-option value="Govt">Govt</ng-option>
+                                                                            <ng-option value="Central Govt">Central Govt</ng-option>
+                                                                            <ng-option value="MNC">MNC</ng-option>
+                                                                            <ng-option value="Overseas">Overseas</ng-option>
+                                                                            <ng-option value="Own Business">Own Business</ng-option>
+                                                                            <ng-option value="Others">Others</ng-option>
+                                                                            <ng-option value="Public Limited">Public Limited</ng-option>
+                                                                            <ng-option value="Semi Govt">Semi Govt</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="income">Annual Income</label>
+                                                                        <ng-select id="income" [multiple]="true" formControlName="income">
+                                                                            <ng-option value="0 - 1 Lakh">0 - 1 Lakh</ng-option>
+                                                                            <ng-option value="1 - 2 Lakhs">1 - 2 Lakhs</ng-option>
+                                                                            <ng-option value="2 - 3 Lakhs">2 - 3 Lakhs</ng-option>
+                                                                            <ng-option value="3 - 4 Lakhs">3 - 4 Lakhs</ng-option>
+                                                                            <ng-option value="4 - 5 Lakhs">4 - 5 Lakhs</ng-option>
+                                                                            <ng-option value="5 - 6 Lakhs">5 - 6 Lakhs</ng-option>
+                                                                            <ng-option value="6 - 7 Lakhs">6 - 7 Lakhs</ng-option>
+                                                                            <ng-option value="7 - 8 Lakhs">7 - 8 Lakhs</ng-option>
+                                                                            <ng-option value="8 - 9 Lakhs">8 - 9 Lakhs</ng-option>
+                                                                            <ng-option value="9 - 10 Lakhs">9 - 10 Lakhs</ng-option>
+                                                                            <ng-option value="10 - 12 Lakhs">10 - 12 Lakhs</ng-option>
+                                                                            <ng-option value="12 - 14 Lakhs">12 - 14 Lakhs</ng-option>
+                                                                            <ng-option value="14 - 16 Lakhs">14 - 16 Lakhs</ng-option>
+                                                                            <ng-option value="16 - 18 Lakhs">16 - 18 Lakhs</ng-option>
+                                                                            <ng-option value="18 - 20 Lakhs">18 - 20 Lakhs</ng-option>
+                                                                            <ng-option value="20 - 25 Lakhs">20 - 25 Lakhs</ng-option>
+                                                                            <ng-option value="25 - 30 Lakhs">25 - 30 Lakhs</ng-option>
+                                                                            <ng-option value="30 - 35 Lakhs">30 - 35 Lakhs</ng-option>
+                                                                            <ng-option value="35 - 40 Lakhs">35 - 40 Lakhs</ng-option>
+                                                                            <ng-option value="40 - 45 Lakhs">40 - 45 Lakhs</ng-option>
+                                                                            <ng-option value="45 - 50 Lakhs">45 - 50 Lakhs</ng-option>
+                                                                            <ng-option value="50 - 55 Lakhs">50 - 55 Lakhs</ng-option>
+                                                                            <ng-option value="55 - 60 Lakhs">55 - 60 Lakhs</ng-option>
+                                                                            <ng-option value="60 - 65 Lakhs">60 - 65 Lakhs</ng-option>
+                                                                            <ng-option value="65 - 70 Lakhs">65 - 70 Lakhs</ng-option>
+                                                                            <ng-option value="70 - 75 Lakhs">70 - 75 Lakhs</ng-option>
+                                                                            <ng-option value="75 - 80 Lakhs">75 - 80 Lakhs</ng-option>
+                                                                            <ng-option value="80 - 58 Lakhs">80 - 85 Lakhs</ng-option>
+                                                                            <ng-option value="85 - 90 Lakhs">85 - 90 Lakhs</ng-option>
+                                                                            <ng-option value="90 Lakhs - 1 Crore">90 Lakhs - 1 Crore</ng-option>
+                                                                            <ng-option value="1 Crore &amp; Above">1 Crore &amp; Above</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingFour">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                                  LifeStyle
+                                                </button>
+                                                    </h2>
+                                                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="diet">Eating Habits</label>
+                                                                        <ng-select id="diet" [multiple]="true" formControlName="diet">
+                                                                            <ng-option value="Occasionally Non-Veg">Occasionally Non-Veg</ng-option>
+                                                                            <ng-option value="Veg">Veg</ng-option>
+                                                                            <ng-option value="Eggetarian">Eggetarian</ng-option>
+                                                                            <ng-option value="Non-Veg">Non-Veg</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="smoking">Smoking Habits</label>
+                                                                        <ng-select id="smoking" [multiple]="true" formControlName="smoking">
+                                                                            <ng-option selected="" value="No">No</ng-option>
+                                                                            <ng-option value="Yes">Yes</ng-option>
+                                                                            <ng-option value="Occasionally">Occasionally</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="drink">Drinking Habits</label>
+                                                                        <ng-select id="drink" [multiple]="true" formControlName="drink">
+                                                                            <ng-option selected="" value="No">No</ng-option>
+                                                                            <ng-option value="Yes">Yes</ng-option>
+                                                                            <ng-option value="Occasionally">Occasionally</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingFive">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                                  Appearance
+                                                </button>
+                                                    </h2>
+                                                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="bodytype">Body Type</label>
+                                                                        <ng-select id="bodytype" [multiple]="true" formControlName="bodytype">
+                                                                            <ng-option value="Slim">Slim</ng-option>
+                                                                            <ng-option value="Average">Average</ng-option>
+                                                                            <ng-option value="Athletic">Athletic</ng-option>
+                                                                            <ng-option value="Heavy">Heavy</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group mb-3">
+                                                                        <label class="form-label" for="complexion">Skin Tone</label>
+                                                                        <ng-select id="complexion" [multiple]="true" formControlName="complexion">
+                                                                            <ng-option value="Wheatish">Wheatish</ng-option>
+                                                                            <ng-option value="Very Fair">Very Fair</ng-option>
+                                                                            <ng-option value="Fair">Fair</ng-option>
+                                                                            <ng-option value="Wheatish Brown">Wheatish Brown</ng-option>
+                                                                            <ng-option value="Dark">Dark</ng-option>
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <button type="submit" *ngIf="!isSavingDetails" class="btn btn-block btn-primary mt-4" (click)="search()">Search</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="d-flex justify-content-between">
+                                    <h1 class="h4 fw-600 mb-3 text-body">{{matchCount}} Matches</h1>
+                                    <div class="form-group mb-3">
+                                        <select id="search_order" class="form-control aiz-selectpicker" (change)="search()" name="search_order" [formControl]="search_order" required>
+                                            <option value="latest_first">Latest First</option>
+                                            <option value="latest_last">Oldest First</option>                                
+                                            <option value="last_login_first">Latest Login First</option>                                
+                                            <option value="last_login_last">Last Login First</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-xl-none ml-auto mb-1 ml-xl-3 mr-0 align-self-end">
+                                        <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".aiz-filter-sidebar">
+                                            <i class="la la-list la-2x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                <img *ngIf="isNoResults" class="d-block m-auto w-50" src="assets/public/assets/img/no_results_found.webp">
+                                <div class="mb-5" *ngIf="!isSavingDetails">
+                                    <div *ngFor="let result of results | paginate:config" class="row no-gutters border border-gray-300 rounded hov-shadow-md mb-4 has-transition position-relative">
+                                        <div class="col-md-auto">
+                                            <div class="text-center text-md-left pt-3 pt-md-0">
+                                                <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" class="img-fit mw-100 size-150px size-md-250px rounded-circle md-rounded-0">
+                                            </div>
+                                        </div>
+                                        <div class="col-md position-static d-flex align-items-center">
+                                            <span class="absolute-top-right px-4 py-3">
+                                                <span *ngIf="result.plan_name=='Free'" class="badge badge-inline badge-info">Free</span>
+                                            <span *ngIf="result.plan_name!='Free'" class="badge badge-inline badge-success">{{result.plan_name}}</span>
+                                            </span>
+                                            <div class="px-md-4 p-3 flex-grow-1">
+
+                                                <h2 class="h6 fw-600 fs-18 text-truncate mb-1">{{result.matri_id}}</h2>
+                                                <div class="mb-2 fs-12">
+                                                    <span class="opacity-60">Profile Created By: </span>
+                                                    <span class="ml-2 text-primary">{{result.profileby}}</span>
+                                                </div>
+                                                <table class="w-100 opacity-70 mb-2 fs-12">
+                                                    <tr>
+                                                        <td class="py-1 w-25">
+                                                            <span>age</span>
+                                                        </td>
+                                                        <td class="py-1 w-25 fw-400 text-cutter">{{result.age}}</td>
+                                                        <td class="py-1 w-25"><span>Height</span></td>
+                                                        <td class="py-1 w-25 fw-400 text-cutter">{{result.height}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-1"><span>Caste</span></td>
+                                                        <td class="py-1 fw-400 text-cutter">{{result.caste_name}}
+                                                        </td>
+                                                        <td class="py-1"><span>Mother Tongue</span></td>
+                                                        <td class="py-1 fw-400 text-cutter">{{result.mtongue_name}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-1"><span>Education</span></td>
+                                                        <td class="py-1 fw-400 text-cutter">{{result.education_name | characterLimiter:20}}
+                                                        </td>
+                                                        <td class="py-1"><span>Location</span></td>
+                                                        <td class="py-1 fw-400 text-cutter">{{result.city_name}}, {{result.country_name}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="py-1"><span>Occupation</span></td>
+                                                        <td class="py-1 fw-400 text-cutter">
+                                                            {{result.occupation_name}}
+                                                        </td>
+                                                        <td class="py-1"><span>Annual Income</span></td>
+                                                        <td class="py-1 fw-400 text-cutter">
+                                                            {{result.income}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div class="row gutters-5 text-center">
+                                                    <div class="col">
+                                                        <a href="javascript:void(0)" routerLink="/full-profile/{{result.id | base64Encode}}" class="text-reset c-pointer">
+                                                            <i class="las la-user fs-20 text-primary"></i>
+                                                            <span class="d-block fs-10 opacity-60">Full Profile</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a *ngIf="!result.action[0].is_interest" class="text-reset c-pointer" (click)="expressInterest(result.matri_id,result.action[0].is_block)">
+                                                            <i class="lar la-star fs-20 text-primary"></i>
+                                                            <span class="d-block fs-10 opacity-60 text-dark">
+                                                                Express Interest
+                                                            </span>
+                                                        </a>
+                                                        <a *ngIf="result.action[0].is_interest" class="text-reset c-pointer" (click)="showSnackbar('Oops! Already interest sent',true,'okay')">
+                                                            <i class="las la-star fs-20 text-primary"></i>
+                                                            <span class="d-block fs-10 opacity-60 text-dark">
+                                                               {{result.action[0].is_interest}} Interest
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a *ngIf="result.action[0].is_like=='Yes'" class="text-reset c-pointer" (click)="toggleLike('No',result.matri_id)">
+                                                            <span class="text-dark">
+                                                                <i class="la la-heart fs-20 text-primary"></i>
+                                                                <span class="d-block fs-10 opacity-60">Unlike</span>
+                                                            </span>
+                                                        </a>
+                                                        <a *ngIf="result.action[0].is_like!='Yes'" class="text-reset c-pointer" (click)="toggleLike('Yes',result.matri_id)">
+                                                            <span class="text-dark">
+                                                                <i class="la la-heart-o fs-20 text-primary"></i>
+                                                                <span class="d-block fs-10 opacity-60">Like</span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a *ngIf="!result.action[0].is_shortlist" class="text-reset c-pointer" (click)="toggleShortlist('add',result.matri_id)">
+                                                            <i class="las la-list fs-20 text-primary"></i>
+                                                            <span class="d-block fs-10 opacity-60 text-primary">
+                                                                Shortlist
+                                                            </span>
+                                                        </a>
+                                                        <a *ngIf="result.action[0].is_shortlist" class="text-reset c-pointer" (click)="toggleShortlist('remove',result.matri_id)">
+                                                            <i class="las la-list fs-20 text-primary"></i>
+                                                            <span class="d-block fs-10 opacity-60 text-primary">
+                                                                Unshortlist
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a *ngIf="!result.action[0].is_block" class="text-reset c-pointer" (click)="toggleBlock('add',result.matri_id)">
+                                                            <span class="text-dark">
+                                                                <i class="las la-ban fs-20 text-primary"></i>
+                                                                <span class="d-block fs-10 opacity-60">Block</span>
+                                                            </span>
+                                                        </a>
+                                                        <a *ngIf="result.action[0].is_block" class="text-reset c-pointer" (click)="toggleBlock('remove',result.matri_id)">
+                                                            <span class="text-dark">
+                                                                <i class="las la-ban fs-20 text-primary"></i>
+                                                                <span class="d-block fs-10 opacity-60">Unblock</span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="aiz-pagination">
+                                    <pagination-controls (pageChange)="pageChange($event)" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel=""></pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- <div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
+            <div class="row align-items-center gutters-5 text-center">
+                <div class="col">
+                    <a href="https://demo.activeitzone.com/matrimonial" class="text-reset d-block flex-grow-1 text-center py-2">
+                        <i class="las la-home fs-18 opacity-60 "></i>
+                        <span class="d-block fs-10 opacity-60 ">Home</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="https://demo.activeitzone.com/matrimonial/member/notifications" class="text-reset d-block flex-grow-1 text-center py-2">
+                        <span class="d-inline-block position-relative px-2">
+                    <i class="las la-bell fs-18 opacity-60 "></i>
+                                                                                                        </span>
+                        <span class="d-block fs-10 opacity-60 ">Notifications</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="https://demo.activeitzone.com/matrimonial/chat" class="text-reset d-block flex-grow-1 text-center py-2 ">
+                        <span class="d-inline-block position-relative px-2">
+                  <i class="las la-comment-dots fs-18 opacity-60 "></i>
+                                                                                                      </span>
+                        <span class="d-block fs-10 opacity-60 ">Messages</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="javascript:void(0)" class="text-reset d-block flex-grow-1 text-center py-2 mobile-side-nav-thumb" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav">
+                        <span class="d-block mx-auto mb-1 opacity-60">
+                            <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/xEuQaBqs6VFAmcaCa6bii6SQHwpGaE0QZLlF8Pln.jpg" class="rounded-circle size-20px" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';">
+                        </span>
+                        <span class="d-block fs-10 opacity-60">Account</span>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div class="aiz-mobile-side-nav collapse-sidebar-wrap sidebar-xl d-xl-none z-1035">
+            <div class="overlay dark c-pointer overlay-fixed" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb"></div>
+            <div class="collapse-sidebar bg-white">
+                <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                    <div class="absolute-top-left d-xl-none">
+                        <button class="btn btn-sm p-2" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb">
+            <i class="las la-times la-2x"></i>
+        </button>
+                    </div>
+                    <div class="aiz-user-sidenav rounded overflow-hidden">
+                        <div class="px-4 text-center mb-4">
+                            <span class="avatar avatar-md mb-3">
+                                <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/xEuQaBqs6VFAmcaCa6bii6SQHwpGaE0QZLlF8Pln.jpg">
+                            </span>
+                            <h4 class="h5 fw-600">08692855786 Ryan</h4>
+                            <div class="text-center  mb-2">
+
+                            </div>
+                            <div>
+                                <span class="rating rating-sm">
+
+                </span>
+                            </div>
+                            <div class="mb-1">
+
+                                <span class="fw-600">
+
+                </span>
+                                <span>
+
+                </span>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3 px-3">
+                            <a href="https://demo.activeitzone.com/matrimonial/member-profile/27" class="btn btn-block btn-soft-primary">Public Profile</a>
+                        </div>
+
+                        <div class="sidemnenu mb-3">
+                            <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
+
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/dashboard" class="aiz-side-nav-link ">
+                                        <i class="las la-home aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/gallery-image" class="aiz-side-nav-link">
+                                        <i class="las la-image aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Gallery</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/happy-story/create" class="aiz-side-nav-link">
+                                        <i class="las la-handshake aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Happy Story</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="javascript:void(0);" class="aiz-side-nav-link">
+                                        <i class="las la-shopping-basket aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Packages</span>
+                                        <span class="aiz-side-nav-arrow"></span>
+                                    </a>
+                                    <ul class="aiz-side-nav-list level-2">
+                                        <li class="aiz-side-nav-item">
+                                            <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
+                                                <span class="aiz-side-nav-text">Packages</span>
+                                            </a>
+                                        </li>
+                                        <li class="aiz-side-nav-item">
+                                            <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
+                                                <span class="aiz-side-nav-text">Package Purchase History</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/chat" class="aiz-side-nav-link">
+                                        <i class="las la-envelope aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Message</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/support-ticket/history" class="aiz-side-nav-link ">
+                                        <i class="las la-life-ring aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Support Ticket</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/my-interests" class="aiz-side-nav-link">
+                                        <i class="la la-heart-o aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">My Interest</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/my-shortlists" class="aiz-side-nav-link">
+                                        <i class="las la-list aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Shortlist</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/ignored-list" class="aiz-side-nav-link">
+                                        <i class="las la-ban aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Ignored User List</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/members/picture-privacy" class="aiz-side-nav-link">
+                                        <i class="las la-user-lock aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Picture Privacy</span>
+                                    </a>
+                                </li>
+
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/members/change-password" class="aiz-side-nav-link">
+                                        <i class="las la-key aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Change Password</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="https://demo.activeitzone.com/matrimonial/profile-settings" class="aiz-side-nav-link">
+                                        <i class="las la-user aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Manage Profile</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="javascript:void(0);" class="aiz-side-nav-link" onclick="account_deactivation()">
+                                        <i class="las la-lock aiz-side-nav-icon"></i>
+                                        <span class="aiz-side-nav-text">Deactive Account</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" class="btn btn-block btn-primary" href="https://demo.activeitzone.com/matrimonial/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="las la-sign-out-alt"></i>
+                                <span>Logout</span>
+
+                                <form id="logout-form" action="https://demo.activeitzone.com/matrimonial/logout" method="POST" style="display: none;">
+                                    <input type="hidden" name="_token" value="ZNAM2Gvx1KYq80DOY6wtQI7JWRTMZSrqDzBXfl1A"> </form>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
+
+
+    <!-- <div class="aiz-cookie-alert shadow-xl">
+        <div class="p-3 bg-dark rounded">
+            <div class="text-white mb-3">
+                <p><span style="color: rgb(27, 27, 40);">We use cookie for better user experence.</span><br></p>
+            </div>
+            <button class="btn btn-primary aiz-cookie-accepet">
+                    Ok. I Understood
+                </button>
+        </div>
+    </div> -->
+
+    <!-- <div class="modal fade package_update_alert_modal" id="modal-zoom">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
+            <div class="modal-content package_update_alert_modal_content">
+                <div class="modal-body text-center">
+                    <h4 class="modal-title h6 mb-3">Please Update Your Package.</h4>
+                    <hr>
+                    <a href="https://demo.activeitzone.com/matrimonial/packages" class="btn btn-primary mt-2">Package Purchase</a>
+                    <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="modal fade confirm_modal" id="modal-basic">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h6" id="confirm_modal_title"></h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center" id="confirm_modal_content">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="confirm_button">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Ignore Modal -->
+    <!-- <div class="modal fade ignore_member_modal" id="modal-zoom">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h6">Ignore Member!</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure that you want to ignore this member?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="ignore_button">Ignore</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Report Profile -->
+    <!-- <div class="modal fade report_modal" id="modal-zoom">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h6">Report Member!</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://demo.activeitzone.com/matrimonial/reportusers" id="report-modal-form" method="POST">
+                        <input type="hidden" name="_token" value="ZNAM2Gvx1KYq80DOY6wtQI7JWRTMZSrqDzBXfl1A"> <input type="hidden" name="member_id" id="member_id" value="">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">Report Reason<span class="text-danger">*</span></label>
+                            <div class="col-md-9">
+                                <textarea name="reason" rows="4" class="form-control" placeholder="Report Reason" required></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReport()">Report</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- <div class="modal fade account_status_change_modal" id="modal-zoom">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <form class="form-horizontal member-block" action="https://demo.activeitzone.com/matrimonial/member/account-activation" method="POST">
+                        <input type="hidden" name="_token" value="ZNAM2Gvx1KYq80DOY6wtQI7JWRTMZSrqDzBXfl1A"> <input type="hidden" name="deacticvation_status" id="deacticvation_status" value="">
+                        <h4 class="modal-title h6 mb-3" id="confirmation_note" value=""></h4>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mt-2">Yes</button>
+                        <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">No</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,27 @@
+<div class="text-left">
+
+    <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 bg-white" [class.pt-lg-8]="profileStatus!='Subscribed'" [class.pt-lg-10]="profileStatus=='Subscribed'">
+
+        <section class="home2-sucess-stories-section">
+            <div class="top-content">
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                <div class="container" *ngIf="!isSavingDetails&&result">
+                    <div class="d-flex justify-content-center">
+                        <div class="section-header white-color">
+                            <h6 class="sub-title wow fadeInUp">
+                                {{result.bridename}} & {{result.groomname}}
+                            </h6>
+                            <p class="date text-white">
+                                {{result.marriagedate | dateBeautifier}}
+                            </p>
+                        </div>
+                    </div>
+                    <img class="success-full-img w-100 mb-2" src="https://demoweblinks.in/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                    <h4 class="title text-white text-justify mt-5">
+                        {{result.successmessage}}
+                    </h4>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

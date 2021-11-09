@@ -31,13 +31,11 @@
 
                 <!-- search  -->
 
-                <div class="p-4 bg-white rounded mb-n3" style="box-shadow: 0 -25px 50px -12px rgb(0 0 0 / 25%);">
+                <div class="p-4 bg-white rounded mb-n5" style="box-shadow: 0 -25px 50px -12px rgb(0 0 0 / 25%);">
                     <div class="row">
                         <div class="col-xl-10 mx-auto">
                             <form action="javascript:void(0)" method="POST">
                                 <div class="row gutters-5">
-
-
                                     <div class="col-lg">
                                         <div class="form-group mb-3">
                                             <label class="form-label" for="name">Matrimony Profile for</label>
@@ -171,7 +169,7 @@
 
         <!-- ==========Member-slider-Section========== -->
 
-        <section class="latest-registered-section">
+        <section *ngIf="!isNoResultsFeatured" class="latest-registered-section">
             <img class="shape" src="assets/public/assets/img/shape.png" alt="">
             <div class="container-fluid">
                 <div class="row">
@@ -192,110 +190,26 @@
                         </div>
                     </div>
                     <div class="col-xl-6 align-self-center">
-                        <div class="registered-slider ">
+                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingFeatured"></mat-spinner>
+                        <div class="registered-slider" *ngIf="!isGettingFeatured">
 
                             <swiper [slidesPerView]="4" [loop]="true" [autoplay]="{
                                 delay: 2500,
                                 disableOnInteraction: false 
                             }">
 
-                                <ng-template swiperSlide>
-                                    <div class="single-slider">
+                                <ng-template *ngFor="let result of featuredMembers" swiperSlide>
+                                    <div class="single-slider cursor-pointer" routerLink="/full-profile/{{result.id | base64Encode}}">
                                         <div class="img">
-                                            <img src="assets/public/assets/img/p1.png" alt="">
+                                            <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
                                         </div>
                                         <div class="inner-content">
                                             <h4 class="name">
-                                                Dana Miles
+                                                {{result.matri_id}}
                                             </h4>
-                                            <p>
-                                                25 Years Old
-                                            </p>
                                         </div>
                                     </div>
                                 </ng-template>
-                                <ng-template swiperSlide>
-                                    <div class="single-slider">
-                                        <div class="img">
-                                            <img src="assets/public/assets/img/p2.png" alt="">
-                                        </div>
-                                        <div class="inner-content">
-                                            <h4 class="name">
-                                                Dana Miles
-                                            </h4>
-                                            <p>
-                                                25 Years Old
-                                            </p>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template swiperSlide>
-                                    <div class="single-slider">
-                                        <div class="img">
-                                            <img src="assets/public/assets/img/p3.png" alt="">
-                                        </div>
-                                        <div class="inner-content">
-                                            <h4 class="name">
-                                                Dana Miles
-                                            </h4>
-                                            <p>
-                                                25 Years Old
-                                            </p>
-                                        </div>
-                                    </div>
-                                </ng-template>
-
-
-                                <ng-template swiperSlide>
-                                    <div class="single-slider">
-                                        <div class="img">
-                                            <img src="assets/public/assets/img/p4.png" alt="">
-                                        </div>
-                                        <div class="inner-content">
-                                            <h4 class="name">
-                                                Dana Miles
-                                            </h4>
-                                            <p>
-                                                25 Years Old
-                                            </p>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template swiperSlide>
-                                    <div class="single-slider">
-                                        <div class="img">
-                                            <img src="assets/public/assets/img/p5.png" alt="">
-                                        </div>
-                                        <div class="inner-content">
-                                            <h4 class="name">
-                                                Dana Miles
-                                            </h4>
-                                            <p>
-                                                25 Years Old
-                                            </p>
-                                        </div>
-                                    </div>
-                                </ng-template>
-
-
-                                <ng-template swiperSlide>
-                                    <div class="single-slider">
-                                        <div class="img">
-                                            <img src="assets/public/assets/img/p1.png" alt="">
-                                        </div>
-                                        <div class="inner-content">
-                                            <h4 class="name">
-                                                Dana Miles
-                                            </h4>
-                                            <p>
-                                                25 Years Old
-                                            </p>
-                                        </div>
-                                    </div>
-                                </ng-template>
-
-
-
                             </swiper>
 
 
@@ -616,8 +530,8 @@
         </section>
         <!-- ==========Features-Section========== -->
 
-        <!-- ==========home-2-Success-Stories-Section========== -->
-        <section class="home2-sucess-stories-section" id="successstory">
+        <!-- ==========Success-Stories-Section========== -->
+        <section class="home2-sucess-stories-section" *ngIf="!isNoResultsStory">
             <div class="top-content">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -638,26 +552,31 @@
                 </div>
             </div>
             <div class="container bottom-content mb-5">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-story-box wow fadeInUp">
-                            <div class="img">
-                                <img src="assets/public/assets/img/sucess/img1.jpg" class="w-100" alt="">
-                            </div>
-                            <div class="content">
-                                <!-- <div class="author">
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingStory"></mat-spinner>
+                <div *ngIf="!isGettingStory">
+                    <swiper [slidesPerView]="3" [loop]="true" [autoplay]="{
+                        delay: 2500,
+                        disableOnInteraction: false 
+                    }">
+                        <ng-template *ngFor="let result of stories" swiperSlide>
+                            <div class="single-story-box wow fadeInUp">
+                                <div class="img">
+                                    <img class="success-cover-img w-100" src="https://demoweblinks.in/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                                </div>
+                                <div class="content">
+                                    <!-- <div class="author">
                                     <img src="assets/public/assets/img/sucess/p1.png" alt="">
                                     <span></span>
                                 </div> -->
-                                <h4 class="title">
-                                    Love horoscope for Cancer There will be surprises...
-                                </h4>
-                                <p class="date">
-                                    December 10, 2021
-                                </p>
-                            </div>
-                            <div class="box-footer">
-                                <!-- <div class="left">
+                                    <h4 class="title">
+                                        {{result.successmessage | characterLimiter : 40}}
+                                    </h4>
+                                    <p class="date">
+                                        {{result.marriagedate | dateBeautifier}}
+                                    </p>
+                                </div>
+                                <div class="box-footer" fxLayout="row">
+                                    <!-- <div class="left">
                                     <ul class="box-social-links">
                                         <li>
                                             <a href="#">
@@ -676,119 +595,22 @@
                                         </li>
                                     </ul>
                                 </div> -->
-                                <div class="left">
-                                    <h3>Andrea & Joji</h3>
-                                </div>
-                                <div class="right">
-                                    <a href="#">
+                                    <div class="left" fxFlex="70">
+                                        <h4 class="text-truncate-fade text-truncate position-relative" style="max-width: 97%;">{{result.bridename}} & {{result.groomname}}</h4>
+                                    </div>
+                                    <div class="right" fxFlex="30" fxLayout="row" fxLayoutAlign="center center">
+                                        <a href="javascript:void(0)" routerLink="/success-story/{{result.id}}">
                                         Read More<i class="fas fa-arrow-right"></i>
                                     </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-story-box wow fadeInUp">
-                            <div class="img">
-                                <img src="assets/public/assets/img/sucess/img2.png" class="w-100" alt="">
-                            </div>
-                            <div class="content">
-                                <!-- <div class="author">
-                                    <img src="assets/public/assets/img/sucess/p2.png" alt="">
-                                    <span></span>
-                                </div> -->
-                                <h4 class="title">
-                                    ‘love at first sight’ is all about initial attraction...
-                                </h4>
-                                <p class="date">
-                                    December 11, 2021
-                                </p>
-                            </div>
-                            <div class="box-footer">
-                                <!-- <div class="left">
-                                    <ul class="box-social-links">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> -->
-                                <div class="left">
-                                    <h3>Seetha & Ram</h3>
-                                </div>
-                                <div class="right">
-                                    <a href="#">
-                                        Read More<i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-story-box wow fadeInUp">
-                            <div class="img">
-                                <img src="assets/public/assets/img/sucess/img3.png" class="w-100" alt="">
-                            </div>
-                            <div class="content">
-                                <!-- <div class="author">
-                                    <img src="assets/public/assets/img/sucess/p3.png" alt="">
-                                    <span></span>
-                                </div> -->
-                                <h4 class="title">
-                                    What women actually want to feel on their...
-                                </h4>
-                                <p class="date">
-                                    December 14, 2021
-                                </p>
-                            </div>
-                            <div class="box-footer">
-                                <!-- <div class="left">
-                                    <ul class="box-social-links">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> -->
-                                <div class="left">
-                                    <h3>Sana & Nazim</h3>
-                                </div>
-                                <div class="right">
-                                    <a href="#">
-                                        Read More<i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </ng-template>
+                    </swiper>
                 </div>
             </div>
         </section>
-        <!-- ==========home-2-Success-Stories-Section========== -->
-
-
+        <!-- ==========Success-Stories-Section========== -->
 
     </div>
 

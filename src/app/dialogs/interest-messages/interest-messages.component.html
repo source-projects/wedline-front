@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Express Interest</h1>
+<mat-dialog-content>
+    <div class="aiz-radio-list">
+        <label class="aiz-radio">
+            <input name="exp_interest" [formControl]="messageControl" class="radio-inline" type="radio" value="I am interested in your profile. Please Accept if you are interested."> I am interested in your profile. Please Accept if you are interested.
+                <span class="aiz-rounded-check"></span>
+            </label>
+        <label class="aiz-radio">
+            <input name="exp_interest" [formControl]="messageControl" class="radio-inline" type="radio" value="You are the kind of person we have been looking for. Please respond to proceed further."> You are the kind of person we have been looking for. Please respond to proceed further.
+                <span class="aiz-rounded-check"></span>
+        </label>
+        <label class="aiz-radio">
+            <input name="exp_interest" [formControl]="messageControl" class="radio-inline" type="radio" value=" We liked your profile and interested to take it forward. Please reply at the earliest."> We liked your profile and interested to take it forward. Please reply at the earliest.
+                <span class="aiz-rounded-check"></span>
+        </label>
+        <label class="aiz-radio">
+            <input name="exp_interest" [formControl]="messageControl" class="radio-inline" type="radio" value="You seem to be the kind of person who suits our family. We would like to contact your parents to proceed further."> You seem to be the kind of person who suits our family. We would like to contact your parents to proceed further.
+                <span class="aiz-rounded-check"></span>
+        </label>
+        <label class="aiz-radio">
+            <input name="exp_interest" [formControl]="messageControl" class="radio-inline" type="radio" value="Our children's profile seems to match. Please reply to proceed further."> Our children's profile seems to match. Please reply to proceed further.
+                <span class="aiz-rounded-check"></span>
+        </label>
+        <label class="aiz-radio">
+            <input name="exp_interest" [formControl]="messageControl" class="radio-inline" type="radio" value="We find a good life partner in you for our friend. Please reply to proceed further."> We find a good life partner in you for our friend. Please reply to proceed further.
+                <span class="aiz-rounded-check"></span>
+        </label>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+        <button type="button" class="btn btn-primary" (click)="send()">Send</button>
+    </div>
+    <div>
+        <button class="btn btn-outline-primary" (click)="dismiss()">Cancel</button>
+    </div>
+</mat-dialog-actions>

@@ -1,0 +1,69 @@
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="d-flex align-items-start">
+                <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                    <app-aside></app-aside>
+                </div>
+                <div class="aiz-user-panel overflow-hidden">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Photo Privacy</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST">
+                                <div class="form-group row">
+                                    <label class="col-md-6 col-form-label">Limit your visibility to others by selecting from three options below.You can protect your photos so that only those to whom you accepted requests can view them.</label>
+                                    <div class="aiz-radio-list col-md-6">
+                                        <label class="aiz-radio">
+                                            <input name="photoControl" [formControl]="photoControl" (change)="changePrivacy('photo_view_status')" class="radio-inline" type="radio" value="1"> Visible To All
+                                                <span class="aiz-rounded-check"></span>
+                                        </label>
+                                        <label class="aiz-radio">
+                                            <input name="photoControl" [formControl]="photoControl" (change)="changePrivacy('photo_view_status')" class="radio-inline" type="radio" value="0"> Hide For All
+                                                <span class="aiz-rounded-check"></span>
+                                            </label>
+                                        <label class="aiz-radio">
+                                            <input name="photoControl" [formControl]="photoControl" (change)="changePrivacy('photo_view_status')" class="radio-inline" type="radio" value="2"> Visible Only To Paid Members
+                                                <span class="aiz-rounded-check"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Contact Privacy</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST">
+                                <div class="form-group row">
+                                    <label class="col-md-6 col-form-label">Your opted settings for receiving alerts through emails are mentioned here. You may choose to edit the existing settings.</label>
+                                    <div class="aiz-radio-list col-md-6">
+                                        <label class="aiz-radio">
+                                            <input name="contactControl" [formControl]="contactControl" (change)="changePrivacy('contact_privacy_setting')" class="radio-inline" type="radio" value="1"> Show to all paid members
+                                                <span class="aiz-rounded-check"></span>
+                                            </label>
+                                        <label class="aiz-radio">
+                                            <input name="contactControl" [formControl]="contactControl" (change)="changePrivacy('contact_privacy_setting')" class="radio-inline" type="radio" value="0"> Show to express interest accepted & paid members.
+                                                <span class="aiz-rounded-check"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

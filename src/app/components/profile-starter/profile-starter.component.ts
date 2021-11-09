@@ -1,8 +1,9 @@
 import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ImageCropperComponent } from 'src/app/dialogs/image-cropper/image-cropper.component';
@@ -14,11 +15,17 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./profile-starter.component.css']
 })
 export class ProfileStarterComponent implements OnInit {
-
+ @ViewChild("stepper") stepper:MatStepper;
  basicInfoForm: FormGroup;
  educationQualificationForm: FormGroup;
  foodLifeForm: FormGroup;
  aboutMeForm: FormGroup;
+
+ isCompletedBasic:boolean = false;
+ isCompletedEducation:boolean = false;
+ isCompletedLife:boolean = false;
+ isCompletedAbout:boolean = false;
+ isCompletedProfile:boolean = false;
 
  isSavingDetails:boolean = false;
  isUploading:boolean = false;
@@ -43,6 +50,7 @@ export class ProfileStarterComponent implements OnInit {
    private snackBar:MatSnackBar,
    private fb:FormBuilder,
    public dialog: MatDialog,
+   private cdr:ChangeDetectorRef,
    private router:Router
  ) {  
    this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
@@ -105,7 +113,7 @@ export class ProfileStarterComponent implements OnInit {
  }
  
 getCountries(){
-  this.loginService.getDropdownList("country_list","").subscribe((res:any)=>{
+  this.loginService.getDropdownList("country_list","",false).subscribe((res:any)=>{
     if(res["status"]=="success"){
       this.countries = res["data"];
       this.countries[0].id = "";
@@ -117,7 +125,7 @@ getCountries(){
 }
 getStates(){
   if(this.basicInfoForm.get("country_id")?.valid){
-    this.loginService.getDropdownList("state_list",this.basicInfoForm.get("country_id")?.value).subscribe((res:any)=>{
+    this.loginService.getDropdownList("state_list",this.basicInfoForm.get("country_id")?.value,false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.states = res["data"];
         this.states[0].id = "";
@@ -130,7 +138,7 @@ getStates(){
 }
   getCities(){
     if(this.basicInfoForm.get("state_id")?.valid){
-      this.loginService.getDropdownList("city_list",this.basicInfoForm.get("state_id")?.value).subscribe((res:any)=>{
+      this.loginService.getDropdownList("city_list",this.basicInfoForm.get("state_id")?.value,false).subscribe((res:any)=>{
         if(res["status"]=="success"){
           this.cities = res["data"];
           this.cities[0].id = "";
@@ -142,7 +150,7 @@ getStates(){
     }
   }
   getLanguages(){
-    this.loginService.getDropdownList("mothertongue_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("mothertongue_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.languages = res["data"];
         this.languages[0].id = "";
@@ -153,7 +161,7 @@ getStates(){
     });
   }
   getStreams(){
-    this.loginService.getDropdownList("education_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("education_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.streams = res["data"];
         this.streams[0].id = "";
@@ -164,7 +172,7 @@ getStates(){
     });
   }
   getOccupations(){
-    this.loginService.getDropdownList("occupation_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("occupation_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.occupations = res["data"];
         this.occupations[0].id = "";
@@ -175,7 +183,7 @@ getStates(){
     });
   }
   getDesignations(){
-    this.loginService.getDropdownList("designation_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("designation_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.designations = res["data"];
         this.designations[0].id = "";
@@ -186,7 +194,7 @@ getStates(){
     });
   }
   toggleChidrenInputs(){
-    if(this.basicInfoForm.get("marital_status")?.value!="Unmarried"){
+    if(this.basicInfoForm.get("marital_status")?.value!="Unmarried"&&this.basicInfoForm.get("marital_status")?.value!=""){
       this.basicInfoForm.get("total_children")?.setValidators([Validators.required]);
       this.basicInfoForm.get("status_children")?.setValidators([Validators.required]);  
     } else {
@@ -353,12 +361,35 @@ aboutMeFormSubmit(){
 }
 saveStatusAndRedirect(){
   localStorage.setItem("profileStatus","Started");
+  this.loginService.profileStatus.next("Started");
+  this.isCompletedProfile = true;
+  this.cdr.detectChanges();
   this.router.navigateByUrl("/plans");
 }
   registerSteps(formData:FormData,steps:string){
         this.loginService.registerSteps(formData,steps).subscribe((res:any)=>{
         this.isSavingDetails = false;
         this.showSnackbar(res["errmessage"],true,"close");
+        switch(steps){
+          case "step1":{
+            this.isCompletedBasic = true;
+            break;
+          }
+          case "step2":{
+            this.isCompletedEducation = true;
+            break;
+          }
+          case "step3":{
+            this.isCompletedLife = true;
+            break;
+          }
+          case "step4":{
+            this.isCompletedAbout = true;
+            break;
+          }
+        }
+        this.cdr.detectChanges();
+        this.stepper.next();
       },error=>{
         this.isSavingDetails = false;
         this.showSnackbar("Connection error!",true,"close");

@@ -1,11 +1,11 @@
-<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-8  bg-white">
 
 
 
-    <div class="py-4 py-lg-5">
+    <div class="py-4 py-lg-5 px-5 container">
 
-        <mat-horizontal-stepper labelPosition="bottom" #stepper>
-            <mat-step label="Basic Information">
+        <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+            <mat-step label="Basic Information" [editable]="false" [completed]="isCompletedBasic">
                 <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="basicInfoForm">
                     <div class="row mt-3">
                         <div class="col-lg-6">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3" *ngIf="basicInfoForm.controls.marital_status.value!='Unmarried'">
+                    <div class="row mt-3" *ngIf="basicInfoForm.controls.marital_status.value!='Unmarried'&&basicInfoForm.controls.marital_status.value!=''">
                         <div class="col-lg-6">
                             <div class="form-group mb-3">
                                 <label class="form-label" for="total_children">Total Children</label>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
 
-
+                    <h4 class="mt-4 mb-4">Tell us something about your partner expectations!</h4>
                     <!--Partner preference-->
 
                     <label class="form-label" for="looking_for[]">Looking For</label>
@@ -316,15 +316,14 @@
                     </div>
 
                     <div class="mb-5">
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="basicInfoFormSubmit()">Save</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="basicInfoFormSubmit()">Save And Continue</button>
                     </div>
                 </form>
                 <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
             </mat-step>
 
 
-            <mat-step label="Education Qaulification">
+            <mat-step label="Education Qaulification" [editable]="false" [completed]="isCompletedEducation">
                 <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="educationQualificationForm">
 
                     <label class="form-label" for="education_detail[]">Education</label>
@@ -412,15 +411,13 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Back</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="educationQualificationFormSubmit()">Save</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="educationQualificationFormSubmit()">Save And Continue</button>
                     </div>
                 </form>
                 <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
             </mat-step>
 
-            <mat-step label="Food/Lifestyle">
+            <mat-step label="Food/Lifestyle" [editable]="false" [completed]="isCompletedLife">
                 <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="foodLifeForm">
 
                     <div class="row mt-3">
@@ -655,16 +652,14 @@
                     </div>
 
                     <div class="mb-5">
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Back</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="foodLifeFormSubmit()">Save</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="foodLifeFormSubmit()">Save And Continue</button>
                     </div>
                 </form>
                 <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
             </mat-step>
 
 
-            <mat-step label="About Me">
+            <mat-step label="About Me" [editable]="false" [completed]="isCompletedAbout">
                 <form class="form-default container" role="form" action="javascript:void(0)" [formGroup]="aboutMeForm">
 
                     <label class="form-label" for="aboutemedemo">Write Something About Yourself</label>
@@ -679,29 +674,26 @@
 
 
                     <div class="mb-5">
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperPrevious>Go Back</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Save</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperNext>Go Ahead</button>
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Save And Continue</button>
                     </div>
                 </form>
                 <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
             </mat-step>
 
-            <mat-step label="Profile Photo">
+            <mat-step label="Profile Photo" [editable]="false" [completed]="isCompletedProfile">
                 <form class="form-default container" role="form" action="javascript:void(0)">
 
                     <label class="form-label" for="profilePic">Upload Profile Pic</label>
                     <div class="form-group mb-1">
                         <!-- <mat-hint>max 800 kb, preffered dimension 255 x 180 in pixels</mat-hint> -->
                         <input id="profilePic" (change)="onProfileSelect($event)" type="file" hidden #profileFileInput accept="image/*" class="form-control aiz-selectpicker" name="profilePic" required>
-                        <button type="button" class="btn btn-block btn-primary" (click)="profileFileInput.click()">Choose profile&nbsp;{{profileProgress==0?'':profileProgress+'%'}}</button>
-                        <img *ngFor='let url of profilePreview' [src]="url" height="120" width="200px" style="object-fit:cover;margin: 3px;border-radius: 4px;"> <br *ngIf="profilePreview.length" />
+                        <button type="button" class="btn btn-outline-primary mb-1" (click)="profileFileInput.click()">Choose Photo&nbsp;{{profileProgress==0?'':profileProgress+'%'}}</button>
                         <mat-progress-bar mode="determinate" *ngIf="profileProgress!=0" [value]="profileProgress"></mat-progress-bar>
                     </div>
+                    <img *ngFor='let url of profilePreview' [src]="url" height="200" width="150px" style="object-fit:cover;margin: 3px;border-radius: 4px;"> <br *ngIf="profilePreview.length" />
 
-                    <div class="mb-5">
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" matStepperPrevious>Go Back</button>
-                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="saveStatusAndRedirect()">Continue</button>
+                    <div class="mb-5 mt-3">
+                        <button type="button" class="btn btn-block btn-primary" *ngIf="!isSavingDetails" (click)="saveStatusAndRedirect()">Continue To Dashboard</button>
                     </div>
                 </form>
                 <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>

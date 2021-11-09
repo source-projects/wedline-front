@@ -6,6 +6,10 @@ import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import * as _moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { ImageCropperComponent } from 'src/app/dialogs/image-cropper/image-cropper.component';
+import { MatDialog } from '@angular/material/dialog';
+import { HttpEventType } from '@angular/common/http';
+import { Image, LibConfig, ModalGalleryConfig, ModalGalleryRef, ModalGalleryService, Size } from '@ks89/angular-modal-gallery';
 const moment = _moment;
 @Component({
   selector: 'app-profile-setting',
@@ -21,6 +25,13 @@ export class ProfileSettingComponent implements OnInit {
   educationForm:FormGroup;
   familyForm:FormGroup;
 
+  isUploading:boolean = false;
+
+  photoProgress:number = 0; 
+  photoFile:File; 
+  photoNumber:number = 1
+  idFile:File; 
+  idProgress:number = 0; 
 
   basicPartnerForm: FormGroup;
   lifeStylePartnerForm: FormGroup;
@@ -29,9 +40,12 @@ export class ProfileSettingComponent implements OnInit {
   educationPartnerForm:FormGroup;
 
   isSavingDetails:boolean = false;
+  album:any[] = [];
   countries:any[] = [];
   states:any[] = [];
   cities:any[] = [];
+  partStates:any[] = [];
+  partCities:any[] = [];
   languages:any[] = [];
   streams:any[] = [];
   castes:any[] = [];
@@ -39,6 +53,9 @@ export class ProfileSettingComponent implements OnInit {
   designations:any[] = [];
   countryCodes:any[] = [];
   generatedTokenStatusSubscription:Subscription;
+  reloadMemberDataStatusSubscription:Subscription;
+  memberDetails:any = "";
+
   date = moment();
 
   selDate: string;
@@ -49,21 +66,12 @@ export class ProfileSettingComponent implements OnInit {
   minDate = new Date(1956, 0, 1);
   maxDate = new Date(2003, 11, 31);
   constructor(
-    private loginService:LoginService,
+   private loginService:LoginService,
    private snackBar:MatSnackBar,
    private fb:FormBuilder,
-   private router:Router
+   public dialog: MatDialog,
+   private modalGalleryService: ModalGalleryService
   ) {
-    this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
-      if(res){
-        this.getCountries();
-        this.getLanguages();
-        this.getStreams();
-        this.getOccupations();
-        this.getDesignations();
-        this.getCasteList();
-      }
-    });  
   this.basicInfoForm = this.fb.group({
     firstname: ['', Validators.required],
     lastname:['',Validators.required],
@@ -97,7 +105,7 @@ export class ProfileSettingComponent implements OnInit {
 
   this.religionForm = this.fb.group({
     caste: ['', Validators.required],
-    subcaste:['',Validators.required]
+    subcaste:['']
   }); 
   this.locationForm = this.fb.group({
     country_id: ['', Validators.required],
@@ -166,12 +174,31 @@ export class ProfileSettingComponent implements OnInit {
     part_designation:[''],
     part_income:['']
   }); 
+  this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
+    if(res){
+      this.getCountries();
+      this.getLanguages();
+      this.getStreams();
+      this.getOccupations();
+      this.getDesignations();
+      this.getCasteList();
+      this.getMobileCountryCode();
+    }
+  }); 
+  this.reloadMemberDataStatusSubscription = this.loginService.getreloadMemberDataStatus().subscribe(res=>{
+    if(res){
+      this.memberDetails = Object.assign({},this.loginService.memberDetails);
+      this.setAlbum();
+      this.setExistingFormValues();
+    }
+  });  
  }
  
  ngOnInit(): void {
 }
  ngOnDestroy():void{
   this.generatedTokenStatusSubscription.unsubscribe();
+  this.reloadMemberDataStatusSubscription.unsubscribe();
  }
  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
   this.date = moment(event.value);
@@ -200,7 +227,7 @@ export class ProfileSettingComponent implements OnInit {
 }
 
 getCountries(){
-  this.loginService.getDropdownList("country_list","").subscribe((res:any)=>{
+  this.loginService.getDropdownList("country_list","",false).subscribe((res:any)=>{
     if(res["status"]=="success"){
       this.countries = res["data"];
       this.countries[0].id = "";
@@ -211,8 +238,8 @@ getCountries(){
   });
 }
 getStates(){
-  if(this.basicInfoForm.get("country_id")?.valid){
-    this.loginService.getDropdownList("state_list",this.basicInfoForm.get("country_id")?.value).subscribe((res:any)=>{
+  if(this.locationForm.get("country_id")?.valid){
+    this.loginService.getDropdownList("state_list",this.locationForm.get("country_id")?.value,false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.states = res["data"];
         this.states[0].id = "";
@@ -223,8 +250,25 @@ getStates(){
     });
   }  
 }
+getStatesForMultipleCountries(isIntializing:Boolean){
+  if(this.locationPartnerForm.get("part_country_living")?.value){
+    this.loginService.getDropdownList("state_list",this.locationPartnerForm.get("part_country_living")?.value.join(","),true).subscribe((res:any)=>{
+      if(res["status"]=="success"){
+        this.partStates = res["data"];
+        this.partStates.shift();
+        if(!isIntializing){
+          this.locationPartnerForm.get("part_state")?.setValue([]);
+          this.locationPartnerForm.get("part_city")?.setValue([]);
+          this.getCitiesForMultipleStates(false);
+        }
+      }
+    },error=>{
+      alert(error["message"]);
+    });
+  }  
+}
 getCasteList(){
-  this.loginService.getDropdownList("caste_list","30").subscribe((res:any)=>{
+  this.loginService.getDropdownList("caste_list","30",false).subscribe((res:any)=>{
     if(res["status"]=="success"){
       this.castes = res["data"];
       this.castes.shift();
@@ -233,9 +277,10 @@ getCasteList(){
     alert(error["message"]);
   });
 }
+
   getCities(){
-    if(this.basicInfoForm.get("state_id")?.valid){
-      this.loginService.getDropdownList("city_list",this.basicInfoForm.get("state_id")?.value).subscribe((res:any)=>{
+    if(this.locationForm.get("state_id")?.valid){
+      this.loginService.getDropdownList("city_list",this.locationForm.get("state_id")?.value,false).subscribe((res:any)=>{
         if(res["status"]=="success"){
           this.cities = res["data"];
           this.cities[0].id = "";
@@ -246,19 +291,33 @@ getCasteList(){
       });
     }
   }
+  getCitiesForMultipleStates(isIntializing:boolean){
+    if(this.locationPartnerForm.get("part_state")?.value){
+      this.loginService.getDropdownList("city_list",this.locationPartnerForm.get("part_state")?.value.join(","),true).subscribe((res:any)=>{
+        if(res["status"]=="success"){
+          this.partCities = res["data"];
+          this.partCities.shift();
+          if(!isIntializing){
+            this.locationPartnerForm.get("part_city")?.setValue("");
+          }
+        }
+      },error=>{
+        alert(error["message"]);
+      });
+    }  
+  }
   getLanguages(){
-    this.loginService.getDropdownList("mothertongue_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("mothertongue_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.languages = res["data"];
-        this.languages[0].id = "";
-        this.languages[0].val = "Select Language";
+        this.languages.shift();
       }
     },error=>{
       alert(error["message"]);
     });
   }
   getStreams(){
-    this.loginService.getDropdownList("education_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("education_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.streams = res["data"];
         this.streams[0].id = "";
@@ -269,7 +328,7 @@ getCasteList(){
     });
   }
   getOccupations(){
-    this.loginService.getDropdownList("occupation_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("occupation_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.occupations = res["data"];
         this.occupations[0].id = "";
@@ -280,7 +339,7 @@ getCasteList(){
     });
   }
   getDesignations(){
-    this.loginService.getDropdownList("designation_list","").subscribe((res:any)=>{
+    this.loginService.getDropdownList("designation_list","",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.designations = res["data"];
         this.designations[0].id = "";
@@ -290,8 +349,99 @@ getCasteList(){
       alert(error["message"]);
     });
   }
+  setExistingFormValues(){
+    delete this.memberDetails["fileds"];
+
+    //basic form
+    this.basicInfoForm.get("dateOfBirth")?.setValue(this.memberDetails.birthdate);
+    this.basicInfoForm.get("languages_known")?.setValue(this.memberDetails.languages_known?this.memberDetails.languages_known.split(','):"");
+    delete this.memberDetails["languages_known"];
+    delete this.memberDetails["birthdate"];
+    this.basicInfoForm.patchValue(this.memberDetails);
+    this.toggleChidrenInputs();
+
+    //lifestyle form
+    this.lifeStyleForm.patchValue(this.memberDetails);
+
+    //aboutMeForm
+    this.aboutMeForm.patchValue(this.memberDetails);
+
+    //religion form
+    this.religionForm.patchValue(this.memberDetails);
+
+    //location form
+    this.locationForm.patchValue(this.memberDetails);
+    this.getStates();
+    this.getCities();
+    this.locationForm.get("country_code")?.setValue(this.memberDetails.mobile.split("-")[0]);
+    this.locationForm.get("mobile_num")?.setValue(this.memberDetails.mobile.split("-")[1]);
+
+    //eduction form
+    this.educationForm.get("education_detail")?.setValue(this.memberDetails.education_detail?this.memberDetails.education_detail.split(','):"");
+    delete this.memberDetails["education_detail"];
+    this.educationForm.patchValue(this.memberDetails);  
+    
+    //family form
+    this.familyForm.patchValue(this.memberDetails);
+    setTimeout(()=>{
+      this.familyForm.get("no_of_married_sister")?.setValue(this.memberDetails.no_of_married_sister);
+      this.familyForm.get("no_of_married_brother")?.setValue(this.memberDetails.no_of_married_brother);
+    },500);
+
+    
+    //partner basic info form
+    this.basicPartnerForm.get("looking_for")?.setValue(this.memberDetails.looking_for?this.memberDetails.looking_for.split(','):"");
+    delete this.memberDetails["looking_for"];
+    this.basicPartnerForm.get("part_complexion")?.setValue(this.memberDetails.part_complexion?this.memberDetails.part_complexion.split(','):"");
+    delete this.memberDetails["part_complexion"];
+    this.basicPartnerForm.get("part_mother_tongue")?.setValue(this.memberDetails.part_mother_tongue?this.memberDetails.part_mother_tongue.split(','):"");
+    delete this.memberDetails["part_mother_tongue"];
+    this.basicPartnerForm.patchValue(this.memberDetails);
+
+
+    //partner lifestyle form
+    this.lifeStylePartnerForm.get("part_bodytype")?.setValue(this.memberDetails.part_bodytype?this.memberDetails.part_bodytype.split(','):"");
+    delete this.memberDetails["part_bodytype"];
+    this.lifeStylePartnerForm.get("part_diet")?.setValue(this.memberDetails.part_diet?this.memberDetails.part_diet.split(','):"");
+    delete this.memberDetails["part_diet"];
+    this.lifeStylePartnerForm.get("part_smoke")?.setValue(this.memberDetails.part_smoke?this.memberDetails.part_smoke.split(','):"");
+    delete this.memberDetails["part_smoke"];
+    this.lifeStylePartnerForm.get("part_drink")?.setValue(this.memberDetails.part_drink?this.memberDetails.part_drink.split(','):"");
+    delete this.memberDetails["part_drink"];
+    // this.lifeStyleForm.patchValue(this.memberDetails);//if needed
+
+    //Religion partner preference
+    this.religionPartnerForm.get("part_caste")?.setValue(this.memberDetails.part_caste?this.memberDetails.part_caste.split(','):"");
+    delete this.memberDetails["part_caste"];
+    // this.religionPartnerForm.patchValue(this.memberDetails);//if needed
+
+    //Location Partner Preference
+    this.locationPartnerForm.get("part_country_living")?.setValue(this.memberDetails.part_country_living?this.memberDetails.part_country_living.split(','):"");
+    delete this.memberDetails["part_country_living"];
+    this.locationPartnerForm.get("part_state")?.setValue(this.memberDetails.part_state?this.memberDetails.part_state.split(','):"");
+    delete this.memberDetails["part_state"];
+    this.getStatesForMultipleCountries(true);
+    this.locationPartnerForm.get("part_city")?.setValue(this.memberDetails.part_city?this.memberDetails.part_city.split(','):"");
+    delete this.memberDetails["part_city"];
+    this.getCitiesForMultipleStates(true);
+    this.locationPartnerForm.get("part_resi_status")?.setValue(this.memberDetails.part_resi_status?this.memberDetails.part_resi_status.split(','):"");
+    delete this.memberDetails["part_resi_status"];
+    // this.locationPartnerForm.patchValue(this.memberDetails);//if needed
+
+    //education partner preference
+    this.educationPartnerForm.get("part_education")?.setValue(this.memberDetails.part_education?this.memberDetails.part_education.split(','):"");
+    delete this.memberDetails["part_education"];
+    this.educationPartnerForm.get("part_occupation")?.setValue(this.memberDetails.part_occupation?this.memberDetails.part_occupation.split(','):"");
+    delete this.memberDetails["part_occupation"];
+    this.educationPartnerForm.get("part_employee_in")?.setValue(this.memberDetails.part_employee_in?this.memberDetails.part_employee_in.split(','):"");
+    delete this.memberDetails["part_employee_in"];
+    this.educationPartnerForm.get("part_designation")?.setValue(this.memberDetails.part_designation?this.memberDetails.part_designation.split(','):"");
+    delete this.memberDetails["part_designation"];
+    this.educationPartnerForm.patchValue(this.memberDetails);
+
+  }
   toggleChidrenInputs(){
-    if(this.basicInfoForm.get("marital_status")?.value!="Unmarried"){
+    if(this.basicInfoForm.get("marital_status")?.value!="Unmarried"&&this.basicInfoForm.get("marital_status")?.value!=""){
       this.basicInfoForm.get("total_children")?.setValidators([Validators.required]);
       this.basicInfoForm.get("status_children")?.setValidators([Validators.required]);  
     } else {
@@ -302,7 +452,6 @@ getCasteList(){
     this.basicInfoForm.get("status_children")?.updateValueAndValidity();
   }
  basicInfoFormSubmit(){
-   console.log(this.basicInfoForm.value);
    if(this.basicInfoForm.valid){
        this.showSnackbar("Saving details...",false,"");
        this.isSavingDetails = true;
@@ -311,7 +460,7 @@ getCasteList(){
        requestData.append("lastname",this.basicInfoForm.get("lastname")?.value);
        requestData.append("marital_status",this.basicInfoForm.get("marital_status")?.value);
        requestData.append("mother_tongue",this.basicInfoForm.get("mother_tongue")?.value);
-       requestData.append("languages_known[]",this.basicInfoForm.get("languages_known")?.value.join(','));
+       requestData.append("languages_known[]",this.basicInfoForm.get("languages_known")?.value?this.basicInfoForm.get("languages_known")?.value.join(','):"");
        requestData.append("height",this.basicInfoForm.get("height")?.value);
        requestData.append("weight",this.basicInfoForm.get("weight")?.value);
        if(this.basicInfoForm.get("marital_status")?.value!="Unmarried"){
@@ -339,7 +488,8 @@ getCasteList(){
     requestData.append("diet",this.lifeStyleForm.get("diet")?.value);
     requestData.append("smoke",this.lifeStyleForm.get("smoke")?.value);
     requestData.append("drink",this.lifeStyleForm.get("drink")?.value);
-    requestData.append("complexion",this.lifeStyleForm.get("complexion")?.value);    
+    requestData.append("complexion",this.lifeStyleForm.get("complexion")?.value);   
+    requestData.append("blood_group",this.lifeStyleForm.get("blood_group")?.value); 
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
 
@@ -414,7 +564,7 @@ educationFormSubmit(){
     this.showSnackbar("Saving details...",false,"");
     this.isSavingDetails = true;
     let requestData = new FormData();
-    requestData.append("education_detail[]",this.educationForm.get("education_detail")?.value.join(','));
+    requestData.append("education_detail[]",this.educationForm.get("education_detail")?.value?this.educationForm.get("education_detail")?.value.join(','):"");
     requestData.append("employee_in",this.educationForm.get("employee_in")?.value);
     requestData.append("income",this.educationForm.get("income")?.value);
     requestData.append("occupation",this.educationForm.get("occupation")?.value);
@@ -459,9 +609,9 @@ basicPartnerFormSubmit(){
     this.showSnackbar("Saving details...",false,"");
     this.isSavingDetails = true;
     let requestData = new FormData();
-    requestData.append("part_mother_tongue[]",this.basicPartnerForm.get("part_mother_tongue")?.value.join(','));
-    requestData.append("part_complexion[]",this.basicPartnerForm.get("part_complexion")?.value.join(','));
-    requestData.append("looking_for[]",this.basicPartnerForm.get("looking_for")?.value.join(','));
+    requestData.append("part_mother_tongue[]",this.basicPartnerForm.get("part_mother_tongue")?.value?this.basicPartnerForm.get("part_mother_tongue")?.value.join(','):"");
+    requestData.append("part_complexion[]",this.basicPartnerForm.get("part_complexion")?.value?this.basicPartnerForm.get("part_complexion")?.value.join(','):"");
+    requestData.append("looking_for[]",this.basicPartnerForm.get("looking_for")?.value?this.basicPartnerForm.get("looking_for")?.value.join(','):"");
     requestData.append("part_frm_age",this.basicPartnerForm.get("part_frm_age")?.value);
     requestData.append("part_to_age",this.basicPartnerForm.get("part_to_age")?.value);
     requestData.append("part_height",this.basicPartnerForm.get("part_height")?.value);
@@ -481,10 +631,10 @@ lifeStylePartnerFormSubmit(){
     this.showSnackbar("Saving details...",false,"");
     this.isSavingDetails = true;
     let requestData = new FormData();
-    requestData.append("part_bodytype[]",this.lifeStylePartnerForm.get("part_bodytype")?.value.join(','));
-    requestData.append("part_diet[]",this.lifeStylePartnerForm.get("part_diet")?.value.join(','));
-    requestData.append("part_smoke[]",this.lifeStylePartnerForm.get("part_smoke")?.value.join(','));
-    requestData.append("part_drink[]",this.lifeStylePartnerForm.get("part_drink")?.value.join(','));
+    requestData.append("part_bodytype[]",this.lifeStylePartnerForm.get("part_bodytype")?.value?this.lifeStylePartnerForm.get("part_bodytype")?.value.join(','):"");
+    requestData.append("part_diet[]",this.lifeStylePartnerForm.get("part_diet")?.value?this.lifeStylePartnerForm.get("part_diet")?.value.join(','):"");
+    requestData.append("part_smoke[]",this.lifeStylePartnerForm.get("part_smoke")?.value?this.lifeStylePartnerForm.get("part_smoke")?.value.join(','):"");
+    requestData.append("part_drink[]",this.lifeStylePartnerForm.get("part_drink")?.value?this.lifeStylePartnerForm.get("part_drink")?.value.join(','):"");
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
     this.registerSteps(requestData,"part-basic-detail"); 
@@ -498,7 +648,7 @@ religionPartnerFormSubmit(){
     this.isSavingDetails = true;
     let requestData = new FormData();
     requestData.append("part_religion[]","30");
-    requestData.append("part_caste[]",this.religionPartnerForm.get("part_caste")?.value.join(','));
+    requestData.append("part_caste[]",this.religionPartnerForm.get("part_caste")?.value?this.religionPartnerForm.get("part_caste")?.value.join(','):"");
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
     this.registerSteps(requestData,"part-religious-detail"); 
@@ -511,10 +661,10 @@ locationPartnerFormSubmit(){
     this.showSnackbar("Saving details...",false,"");
     this.isSavingDetails = true;
     let requestData = new FormData();
-    requestData.append("part_country_living[]",this.locationPartnerForm.get("part_country_living")?.value.join(','));
-    requestData.append("part_state[]",this.locationPartnerForm.get("part_state")?.value.join(','));
-    requestData.append("part_city[]",this.locationPartnerForm.get("part_city")?.value.join(','));
-    requestData.append("part_resi_status[]",this.locationPartnerForm.get("part_resi_status")?.value.join(','));
+    requestData.append("part_country_living[]",this.locationPartnerForm.get("part_country_living")?.value?this.locationPartnerForm.get("part_country_living")?.value.join(','):"");
+    requestData.append("part_state[]",this.locationPartnerForm.get("part_state")?.value?this.locationPartnerForm.get("part_state")?.value.join(','):"");
+    requestData.append("part_city[]",this.locationPartnerForm.get("part_city")?.value?this.locationPartnerForm.get("part_city")?.value.join(','):"");
+    requestData.append("part_resi_status[]",this.locationPartnerForm.get("part_resi_status")?.value?this.locationPartnerForm.get("part_resi_status")?.value.join(','):"");
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
     this.registerSteps(requestData,"part-location-detail"); 
@@ -527,10 +677,10 @@ educationPartnerFormSubmit(){
     this.showSnackbar("Saving details...",false,"");
     this.isSavingDetails = true;
     let requestData = new FormData();
-    requestData.append("part_education[]",this.educationPartnerForm.get("part_education")?.value.join(','));
-    requestData.append("part_employee_in[]",this.educationPartnerForm.get("part_employee_in")?.value.join(','));
-    requestData.append("part_occupation[]",this.educationPartnerForm.get("part_occupation")?.value.join(','));
-    requestData.append("part_designation[]",this.educationPartnerForm.get("part_designation")?.value.join(','));
+    requestData.append("part_education[]",this.educationPartnerForm.get("part_education")?.value?this.educationPartnerForm.get("part_education")?.value.join(','):"");
+    requestData.append("part_employee_in[]",this.educationPartnerForm.get("part_employee_in")?.value?this.educationPartnerForm.get("part_employee_in")?.value.join(','):"");
+    requestData.append("part_occupation[]",this.educationPartnerForm.get("part_occupation")?.value?this.educationPartnerForm.get("part_occupation")?.value.join(','):"");
+    requestData.append("part_designation[]",this.educationPartnerForm.get("part_designation")?.value?this.educationPartnerForm.get("part_designation")?.value.join(','):"");
     requestData.append("part_income",this.educationPartnerForm.get("part_income")?.value);
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
@@ -541,13 +691,215 @@ educationPartnerFormSubmit(){
 }
 registerSteps(formData:FormData,steps:string){
   this.loginService.saveProfile(formData,steps).subscribe((res:any)=>{
-    console.log(res);
   this.isSavingDetails = false;
   this.showSnackbar(res["errmessage"],true,"close");
+  this.loginService.hasLoggedIn.next(true);
 },error=>{
   this.isSavingDetails = false;
   this.showSnackbar("Connection error!",true,"close");
 });     
+}
+onIdSelect(event:any){
+  this.idFile = event.target.files[0];
+  if(this.idFile){  
+    this.uploadIdPic(event)
+  }
+}
+onPhotoSelect(event:any){
+  this.photoFile = event.target.files[0];
+  if(this.photoFile){  
+    this.openImageCropper(event);
+  }
+}
+deleteIdProof(){
+  this.isSavingDetails = true;
+  const uploadData = new FormData();
+  uploadData.append('delete_id_proof_photo', "delete");
+  this.loginService.deleteIdProof(uploadData).subscribe((res:any)=>{
+  this.isSavingDetails = false;
+  this.loginService.hasLoggedIn.next(true);
+  this.showSnackbar(res["errmessage"],true,"close");
+},error=>{
+  this.isSavingDetails = false;
+  this.showSnackbar("Connection error!",true,"close");
+}); 
+}
+uploadIdPic(fileEvent:any){
+  this.isUploading =true;
+  this.showSnackbar("Please be patient! uploading id proof...",true,"okay");
+  const uploadData = new FormData();
+  uploadData.append('is_post', "1");
+  uploadData.append('id_proof', this.idFile);
+
+  this.loginService.uploadIdProof(uploadData).subscribe((event:any) => {
+    switch (event.type) {
+      case HttpEventType.Sent:
+        this.idProgress = 1;
+        break;
+      case HttpEventType.ResponseHeader:
+        break;
+      case HttpEventType.UploadProgress:
+        this.idProgress = Math.round(event.loaded / event.total * 100);
+        break;
+      case HttpEventType.Response:
+        this.isUploading = false;
+        if(event.body["status"]=="success"){
+          this.showSnackbar(event.body["errmessage"],true,"close");            
+          this.idFile = null as any;
+          var reader = new FileReader();   
+          reader.onload = (event:any) => {
+          } 
+          reader.readAsDataURL(fileEvent.target.files[0]);        
+          this.loginService.hasLoggedIn.next(true);
+        }else{
+          this.showSnackbar(event.body["errmessage"],true,"close");
+        }
+        setTimeout(() => {
+          this.idProgress = 0;
+        }, 1500);
+        break;
+      default:
+        this.idProgress = 0;
+        return `Unhandled event: ${event.type}`;
+    }
+  },error=>{
+      this.idProgress = 0;
+      this.isUploading = false;
+      this.showSnackbar("Connection Error!",true,"close");
+  }); 
+  }
+openImageCropper(event:any){
+  const dialogRef = this.dialog.open(ImageCropperComponent,{
+    data:{
+      event:event
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if(result){     
+      this.uploadPhotoPic(result.event,result.cropImage);   
+    }
+  });
+}
+
+uploadPhotoPic(fileEvent:any,cropImage:any){
+this.isUploading =true;
+this.showSnackbar("Please be patient! uploading pic...",true,"okay");
+const uploadData = new FormData();
+uploadData.append('photo_number', this.photoNumber.toString());
+uploadData.append('is_ajax', "1");
+uploadData.append('profile_photo'+this.photoNumber+'_crop', new File([cropImage], "crop-image.png",{type:"mime", lastModified:new Date().getTime()}));
+uploadData.append('profile_photo'+this.photoNumber+'_org', this.photoFile);
+
+this.loginService.uploadGalleryPhoto(uploadData).subscribe((event:any) => {
+  switch (event.type) {
+    case HttpEventType.Sent:
+      this.photoProgress = 1;
+      break;
+    case HttpEventType.ResponseHeader:
+      break;
+    case HttpEventType.UploadProgress:
+      this.photoProgress = Math.round(event.loaded / event.total * 100);
+      break;
+    case HttpEventType.Response:
+      this.isUploading = false;
+      if(event.body["status"]=="success"){
+        this.showSnackbar(event.body["errmessage"],true,"close");            
+        this.photoFile = null as any;
+        var reader = new FileReader();   
+        reader.onload = (event:any) => {
+        } 
+        reader.readAsDataURL(fileEvent.target.files[0]);        
+        this.loginService.hasLoggedIn.next(true);
+      }else{
+        this.showSnackbar(event.body["errmessage"],true,"close");
+      }
+      setTimeout(() => {
+        this.photoProgress = 0;
+      }, 1500);
+      break;
+    default:
+      this.photoProgress = 0;
+      return `Unhandled event: ${event.type}`;
+  }
+},error=>{
+    this.photoProgress = 0;
+    this.isUploading = false;
+    this.showSnackbar("Connection Error!",true,"close");
+}); 
+}
+
+setPhotoNumber(photoNumber:number){
+  this.photoNumber = photoNumber;
+}
+setAsProfilePic(photoNumber:number){
+  this.isSavingDetails = true;
+  const uploadData = new FormData();
+  uploadData.append('photo_number',photoNumber.toString());
+  uploadData.append('is_ajax', "1");
+  uploadData.append('set_profile', "set_profile");
+  this.loginService.setAsProfilePic(uploadData).subscribe((res:any)=>{
+  this.isSavingDetails = false;
+  this.loginService.hasLoggedIn.next(true);
+  this.showSnackbar(res["errmessage"],true,"close");
+},error=>{
+  this.isSavingDetails = false;
+  this.showSnackbar("Connection error!",true,"close");
+}); 
+}
+deletePhoto(photoNumber:number){
+  this.isSavingDetails = true;
+  const uploadData = new FormData();
+  uploadData.append('photo_number',photoNumber.toString());
+  uploadData.append('is_ajax', "1");
+  uploadData.append('delete_photo', "delete");
+  this.loginService.deletePhoto(uploadData).subscribe((res:any)=>{
+  this.isSavingDetails = false;
+  this.loginService.hasLoggedIn.next(true);
+  this.showSnackbar(res["errmessage"],true,"close");
+},error=>{
+  this.isSavingDetails = false;
+  this.showSnackbar("Connection error!",true,"close");
+}); 
+}
+
+setAlbum(){
+  let count = 0;
+  this.album = [];
+  for (let i = 2; i <= 5; i++) {
+    if(this.memberDetails["photo"+i]){      
+      this.album.push(new Image(count++, {
+        img:this.memberDetails['photo' + i]
+      }));
+    }    
+  }  
+}
+open(imageIndex: number) { 
+  const DEFAULT_SIZE_PREVIEWS: Size = {
+    width: '100px',
+    height: 'auto'
+  };
+  const libConfig: LibConfig = {
+    slideConfig: {
+      infinite: true,
+      sidePreviews: {
+        show: false,
+        size: DEFAULT_SIZE_PREVIEWS
+      }
+    }
+  };
+    
+    let id = imageIndex;
+    const imageToShow: Image = this.album.find((obj:Image)=>{
+      return obj.modal.img == this.memberDetails["photo"+imageIndex];
+    })
+    let dialogRef = this.modalGalleryService.open({
+      id,
+      images: this.album,
+      currentImage: imageToShow,
+      libConfig
+    } as ModalGalleryConfig);
+  
 }
 
 }

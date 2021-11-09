@@ -13,93 +13,56 @@
                             <h5 class="mb-0 h6">My Shortlists</h5>
                         </div>
                         <div class="card-body">
-                            <table class="table aiz-table mb-0">
+                            <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            <table class="table aiz-table mb-0" *ngIf="!isSavingDetails">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
-                                        <th>Name</th>
-                                        <th>age</th>
-                                        <th>Religion</th>
-                                        <th>location</th>
-                                        <th>Mother Tongue</th>
+                                        <!-- <th>Name</th> -->
+                                        <th>Age</th>
+                                        <th>Caste</th>
+                                        <th>Location</th>
+                                        <th>Sent On</th>
                                         <th class="text-right">Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr id="shortlisted_member_41">
-                                        <td>1</td>
+                                    <tr *ngFor="let result of results | paginate:config">
+                                        <td>{{result.matri_id}}</td>
                                         <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/fb6a0r1ea9xT1CsDBotRTd6DqvAWS3dODkGr1cUN.png" height="45px" alt="Photo">
+                                            <span class="avatar avatar-sm mr-3 flex-shrink-0">
+                                                <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='assets/public/assets/img/admin-head.jpg';" alt="Photo">
+                                            </span>
                                         </td>
-                                        <td>Sylvia J. Love</td>
-                                        <td>17</td>
+                                        <!-- <td>{{result.firstname}} {{result.lastname}}</td> -->
+                                        <td>{{result.age}}</td>
                                         <td>
+                                            {{result.caste_name}}
                                         </td>
                                         <td>
+                                            {{result.city_name}}{{result.state_name?', '+result.state_name:''}}
                                         </td>
                                         <td>
+                                            {{result.created_on | dateBeautifier}}
                                         </td>
                                         <td class="text-right">
-                                            <a href="avascript:void(0);" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Interest Expressed">
+                                            <!-- <a href="avascript:void(0);" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Interest Expressed">
                                                 <i class="las la-heart"></i>
-                                            </a>
-                                            <a onclick="remove_shortlist(41)" class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Remove">
-                                                <i class="las la-trash-alt"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr id="shortlisted_member_31">
-                                        <td>2</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/UZR9qdCaIqm7RLwZOsQo8YPd2PUBlt3aWKH9pU08.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Tate Kennedy</td>
-                                        <td>30</td>
-                                        <td>
-                                            Islam
-                                        </td>
-                                        <td>
-                                            Korea North
-                                        </td>
-                                        <td>
-                                            English
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="avascript:void(0);" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Interest Expressed">
-                                                <i class="las la-heart"></i>
-                                            </a>
-                                            <a onclick="remove_shortlist(31)" class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Remove">
-                                                <i class="las la-trash-alt"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr id="shortlisted_member_40">
-                                        <td>3</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/4KfjU2TSW4HAkmtZN9OGGjfCjAIjoMjn5PB0s6bU.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Nicole Hruby</td>
-                                        <td>17</td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="avascript:void(0);" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Interest Expressed">
-                                                <i class="las la-heart"></i>
-                                            </a>
-                                            <a onclick="remove_shortlist(40)" class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Remove">
+                                            </a> -->
+                                            <!-- <a onclick="remove_from_ignored_list(30)" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Remove From Ignore List">
+                                                <i class="las la-check"></i>
+                                            </a> -->
+                                            <a class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Unshortlist" (click)="removeShortlist(result.matri_id)">
                                                 <i class="las la-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <img *ngIf="isNoResults" class="d-block m-auto w-50" src="assets/public/assets/img/no_results_found.webp">
                             <div class="aiz-pagination">
-
+                                <pagination-controls (pageChange)="pageChange($event)" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel=""></pagination-controls>
                             </div>
                         </div>
                     </div>

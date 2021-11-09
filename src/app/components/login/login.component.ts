@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
           this.isProccessing = false;
           if(res["status"]=="success"){
            localStorage.setItem("matri","1234");
+           localStorage.setItem("profileStatus","Subscribed");
            this.loginService.hasLoggedIn.next(true);
            this.router.navigateByUrl("/dashboard");
           }else{

@@ -1,0 +1,59 @@
+<div class="text-left">
+
+    <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 bg-white" [class.pt-lg-8]="profileStatus!='Subscribed'" [class.pt-lg-10]="profileStatus=='Subscribed'">
+
+        <section class="home2-sucess-stories-section">
+            <div class="top-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="section-header white-color">
+                                <h6 class="sub-title wow fadeInUp">
+                                    Love in faith
+                                </h6>
+                                <h2 class="title wow fadeInUp">
+                                    Success Stories
+                                </h2>
+                                <p class="text wow fadeInUp">
+                                    Aliquam a neque tortor. Donec iaculis auctor turpis. Eporttitor mattis ullamcorper urna. Cras quis elementum
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container bottom-content mb-5">
+                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                <img *ngIf="isNoResults" class="d-block m-auto w-25" src="assets/public/assets/img/no_results_found.webp">
+                <div *ngIf="!isSavingDetails" fxLayout="row wrap" fxLayoutAlign="center center">
+                    <div class="single-story-box wow fadeInUp" *ngFor="let result of results | paginate:config" fxFlex="28">
+                        <div class="img">
+                            <img class="success-cover-img w-100" src="https://demoweblinks.in/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="title">
+                                {{result.successmessage | characterLimiter : 40}}
+                            </h4>
+                            <p class="date">
+                                {{result.marriagedate | dateBeautifier}}
+                            </p>
+                        </div>
+                        <div class="box-footer" fxLayout="row">
+                            <div class="left" fxFlex="70">
+                                <h4 class="text-truncate-fade text-truncate position-relative" style="max-width: 97%;">{{result.bridename}} & {{result.groomname}}</h4>
+                            </div>
+                            <div class="right" fxFlex="30" fxLayout="row" fxLayoutAlign="center center">
+                                <a href="javascript:void(0)" routerLink="/success-story/{{result.id}}">
+                                    Read More<i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aiz-pagination">
+                    <pagination-controls (pageChange)="pageChange($event)" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel=""></pagination-controls>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

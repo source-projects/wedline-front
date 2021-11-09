@@ -1,17 +1,15 @@
 <h1 mat-dialog-title>Image Editor</h1>
 <mat-dialog-content class="mat-typography">
-    <button (click)="rotateLeft()">Rotate left</button>
-    <button (click)="rotateRight()">Rotate right</button>
-    <button (click)="flipHorizontal()">Flip horizontal</button>
-    <button (click)="flipVertical()">Flip vertical</button>
+    <button (click)="rotateLeft()" class="btn btn-primary mr-2">Rotate left</button>
+    <button (click)="rotateRight()" class="btn btn-primary mr-2">Rotate right</button>
+    <button (click)="flipHorizontal()" class="btn btn-primary mr-2">Flip horizontal</button>
+    <button (click)="flipVertical()" class="btn btn-primary mr-2">Flip vertical</button>
+    <button (click)="resetImage()" class="btn btn-primary mr-2">Reset image</button>
     <br />
     <br />
-    <button (click)="resetImage()">Reset image</button>
-    <br />
-    <br />
-    <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" />
-    <button (click)="zoomOut()">Zoom -</button>
-    <button (click)="zoomIn()">Zoom +</button>
+    <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" class="d-inline-block form-control w-25 mr-2" />
+    <button (click)="zoomOut()" class="btn btn-primary mr-2">Zoom -</button>
+    <button (click)="zoomIn()" class="btn btn-primary mr-2">Zoom +</button>
     <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="3 / 4" [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform"
         [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()"></image-cropper>
 

@@ -9,158 +9,74 @@
                 <div class="aiz-user-panel overflow-hidden">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0 h6">My Interests</h5>
-                            <a href="javascript:void(0)" class="mb-0 h6 btn btn-primary">Interest Requests</a>
+                            <div class="form-group mb-0">
+                                <label class="form-label" for="filter-action">Filter By</label>
+                                <select id="filter-action" [formControl]="filterControl" class="form-control aiz-selectpicker" name="part_height" (change)="filterChanged()">
+                                    <option value="all_">All</option>
+                                    <option value="pending_">Pending</option>
+                                    <option value="accept_">Accepted</option>
+                                    <option value="reject_">Rejected</option>
+                                </select>
+                            </div>
+                            <h5 class="mb-0 h6">My {{action.includes('sent')?'Sent':'Recieved'}} Interests</h5>
+                            <a href="javascript:void(0)" class="mb-0 h6 btn btn-primary" (click)="toggleSentRecieveListing()">View {{action.includes('sent')?'Recieved':'Sent'}} Requests</a>
                         </div>
                         <div class="card-body">
-                            <table class="table aiz-table mb-0">
+                            <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            <table class="table aiz-table mb-0" *ngIf="!isSavingDetails">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
-                                        <th>Name</th>
-                                        <th>age</th>
-                                        <th class="text-center">Status</th>
+                                        <th>Age</th>
+                                        <th>Caste</th>
+                                        <th>Location</th>
+                                        <th>Sent On</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr id="interested_member_43">
-                                        <td>1</td>
+                                    <tr *ngFor="let result of results | paginate:config">
+                                        <td>{{result.matri_id}}</td>
                                         <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/kimX2PnqPaTQt1YJWqudR6ipTmWfhxMrfCb4uTf0.png" height="45px" alt="Photo">
+                                            <span class="avatar avatar-sm mr-3 flex-shrink-0">
+                                                <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='assets/public/assets/img/admin-head.jpg';" alt="Photo">
+                                            </span>
                                         </td>
-                                        <td>Derrick L. Lavender</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_42">
-                                        <td>2</td>
+                                        <td>{{result.age}}</td>
                                         <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/eD401Dp8V7uKYR9qKVZPZIZ4tk99P1n4yYJP7Hwt.jpg" height="45px" alt="Photo">
+                                            {{result.caste_name}}
                                         </td>
-                                        <td>Donna J. Perryman</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-success">Approved</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_44">
-                                        <td>3</td>
                                         <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/ftplN2fgKnlYgX6qMTj8bYldFN50VZd1wDsuoW4I.png" height="45px" alt="Photo">
+                                            {{result.city_name}}, {{result.state_name}}
                                         </td>
-                                        <td>Alex Reynolds</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_44">
-                                        <td>4</td>
                                         <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/ftplN2fgKnlYgX6qMTj8bYldFN50VZd1wDsuoW4I.png" height="45px" alt="Photo">
+                                            {{result.sent_date | dateBeautifier}}
                                         </td>
-                                        <td>Alex Reynolds</td>
-                                        <td>28</td>
                                         <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
+                                            <span class="badge badge-inline" [ngClass]="{'badge-info': result.receiver_response == 'Pending','badge-success': result.receiver_response == 'Accepted','badge-danger': result.receiver_response == 'Rejected' }">{{result.receiver_response}}</span>
                                         </td>
-                                    </tr>
-                                    <tr id="interested_member_44">
-                                        <td>5</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/ftplN2fgKnlYgX6qMTj8bYldFN50VZd1wDsuoW4I.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Alex Reynolds</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_30">
-                                        <td>6</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zo8WHvxlUyiPrxwnrc6ztQE5u8MnJo2ej2UUl1JU.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Idona Mccoy</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_30">
-                                        <td>7</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zo8WHvxlUyiPrxwnrc6ztQE5u8MnJo2ej2UUl1JU.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Idona Mccoy</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_30">
-                                        <td>8</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zo8WHvxlUyiPrxwnrc6ztQE5u8MnJo2ej2UUl1JU.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Idona Mccoy</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_30">
-                                        <td>9</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zo8WHvxlUyiPrxwnrc6ztQE5u8MnJo2ej2UUl1JU.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Idona Mccoy</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr id="interested_member_30">
-                                        <td>10</td>
-                                        <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zo8WHvxlUyiPrxwnrc6ztQE5u8MnJo2ej2UUl1JU.png" height="45px" alt="Photo">
-                                        </td>
-                                        <td>Idona Mccoy</td>
-                                        <td>28</td>
-                                        <td class="text-center">
-                                            <span class="badge badge-inline badge-info">Pending</span>
+                                        <td class="text-right">
+                                            <a *ngIf="action.includes('sent')&&result.reminder_status=='No'" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="Send Remainder" (click)="sendRemainder(result.id)">
+                                                <i class="las la-bell"></i>
+                                            </a>
+                                            <a *ngIf="action.includes('receive')&&result.receiver_response=='Pending'" class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Reject Request" (click)="responseInterestAction(result.id,'reject')">
+                                                <i class="las la-times"></i>
+                                            </a>
+                                            <a *ngIf="action.includes('receive')&&result.receiver_response=='Pending'" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Accept Request" (click)="responseInterestAction(result.id,'accept')">
+                                                <i class="las la-check"></i>
+                                            </a>
+                                            <a *ngIf="action.includes('sent')" class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Delete Request" (click)="deleteInterest(result.id)">
+                                                <i class="las la-trash-alt"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <img *ngIf="isNoResults" class="d-block m-auto w-50" src="assets/public/assets/img/no_results_found.webp">
                             <div class="aiz-pagination">
-                                <nav>
-                                    <ul class="pagination">
-
-                                        <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
-                                            <span class="page-link" aria-hidden="true">&lsaquo;</span>
-                                        </li>
-
-
-
-
-
-                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">5</a></li>
-
-
-                                        <li class="page-item">
-                                            <a class="page-link" href="javascript:void(0)" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
+                                <pagination-controls (pageChange)="pageChange($event)" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel=""></pagination-controls>
                             </div>
                         </div>
                     </div>
@@ -357,63 +273,3 @@
     </div> -->
 
 </div>
-
-
-<!-- <div class="aiz-cookie-alert shadow-xl">
-    <div class="p-3 bg-dark rounded">
-        <div class="text-white mb-3">
-            <p><span style="color: rgb(27, 27, 40);">We use cookie for better user experence.</span><br></p>
-        </div>
-        <button class="btn btn-primary aiz-cookie-accepet">
-                Ok. I Understood
-            </button>
-    </div>
-</div> -->
-
-
-<!-- <div class="modal fade account_status_change_modal" id="modal-zoom">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <form class="form-horizontal member-block" action="https://demo.activeitzone.com/matrimonial/member/account-activation" method="POST">
-                    <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo"> <input type="hidden" name="deacticvation_status" id="deacticvation_status" value="">
-                    <h4 class="modal-title h6 mb-3" id="confirmation_note" value=""></h4>
-                    <hr>
-                    <button type="submit" class="btn btn-primary mt-2">Yes</button>
-                    <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">No</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-<script type="text/javascript">
-    function account_deactivation() {
-        // var status = 0
-        // $('.account_status_change_modal').modal('show');
-        // if (status == 0) {
-        //     $('#deacticvation_status').val(1);
-        //     $('#confirmation_note').html('Do You Realy Want To Deactive Your Account');
-        // } else {
-        //     $('#deacticvation_status').val(0);
-        //     $('#confirmation_note').html('Are You Sure To Reactive Your Account');
-        // }
-    }
-</script>
-
-
-<script type="text/javascript">
-    // Login credentials autoFill for demo
-    function autoFill1() {
-        // $('#email').val('user2@example.com');
-        // $('#password').val('12345678');
-    }
-
-    function autoFill2() {
-        // $('#email').val('user17@example.com');
-        // $('#password').val('12345678');
-    }
-</script>
-
-<body>

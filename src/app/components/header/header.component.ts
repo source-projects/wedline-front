@@ -12,9 +12,21 @@ import { LoginService } from 'src/app/services/login.service';
 export class HeaderComponent implements OnInit {
 
  loginStatusSubscription:Subscription;
+ profileStatusSubscription:Subscription;
  hasLoggedIn:boolean = false;
+ profileStatus:string = "Subscribed";
  reloadMemberDataStatusSubscription:Subscription;
+ messageReceptionStatusSubscription:Subscription;
+ notificationReceptionStatusSubscription:Subscription;
  memberDetails:any = "";
+ messages:any[] = [];
+ notifications:any[] = [];
+ isNoMessages:boolean = false;
+ isGettingMessages:boolean = true;
+ isNoNotifications:boolean = false;
+ isGettingNotifications:boolean = true;
+ unreadMessageCount:number = 0;
+ unreadNotificationCount:number = 0;
   constructor(
     private loginService:LoginService,
     private router:Router,
@@ -24,12 +36,28 @@ export class HeaderComponent implements OnInit {
       this.hasLoggedIn = res;
       this.getCsrfToken();
     }); 
+    this.profileStatusSubscription = this.loginService.getProfileStatus().subscribe(res=>{
+      this.profileStatus = res;
+    });
+    this.messageReceptionStatusSubscription = this.loginService.getMessageReceptionStatus().subscribe(res=>{
+      if(this.hasLoggedIn&&res){
+        this.getMessages();
+      }
+    }); 
+    this.notificationReceptionStatusSubscription = this.loginService.getNotificationReceptionStatus().subscribe(res=>{
+      if(this.hasLoggedIn&&res){
+        this.getNotifications();
+      }
+    }); 
   }
 
   ngOnInit(): void {   
   }
   ngOnDestroy():void{
     this.loginStatusSubscription.unsubscribe();
+    this.messageReceptionStatusSubscription.unsubscribe();
+    this.notificationReceptionStatusSubscription.unsubscribe();
+    this.profileStatusSubscription.unsubscribe();
   }
   getCsrfToken(){
     this.loginService.getCsrfToken().subscribe((res:any)=>{
@@ -42,6 +70,8 @@ export class HeaderComponent implements OnInit {
         }else{
           this.getMyProfileDetails();
         }
+        this.getMessages();
+        this.getNotifications();
       }
     },error=>{
       alert(error["message"]);
@@ -50,6 +80,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.loginService.logout().subscribe((res:any)=>{
         localStorage.setItem("matri","");
+        localStorage.setItem("profileStatus","");
         this.loginService.hasLoggedIn.next(false);
         this.loginService.memberDetails = "";
         this.loginService.reloadMemberData.next(false);
@@ -79,5 +110,58 @@ export class HeaderComponent implements OnInit {
     }
     config.panelClass = ['snackbar-styler'];
     return this.snackBar.open(content, action, config);
+  }
+  getMessages(){
+    this.isNoMessages = false;
+    this.isGettingMessages = true;
+    let requestData = new FormData();
+    requestData.append("mode","inbox");
+    requestData.append("nav","Yes");
+    this.loginService.getMessages(requestData,1,10).subscribe((res:any)=>{
+      this.messages = [];
+      this.isGettingMessages = false;
+      if(res["status"]=="success"){
+        this.unreadMessageCount = res["total_count"];        
+        this.messages = res["data"];
+      }else{
+        this.unreadMessageCount = 0;
+        this.isNoMessages = true;
+      }
+    },error=>{
+      this.isNoMessages = false;
+      this.showSnackbar("Connection error!",true,"close");    
+    }); 
+  }
+  getNotifications(){
+    this.isNoNotifications = false;
+    this.isGettingNotifications = true;
+    let requestData = new FormData();
+    requestData.append("nav","Yes");
+    this.loginService.getNotifications(requestData,1,10).subscribe((res:any)=>{
+      this.notifications = [];
+      this.isGettingNotifications = false;
+      if(res["status"]=="success"){
+        this.unreadNotificationCount = res["total_count"];        
+        this.notifications = res["data"];
+      }else{
+        this.unreadNotificationCount = 0;
+        this.isNoNotifications = true;
+      }
+    },error=>{
+      this.isNoNotifications = false;
+      this.showSnackbar("Connection error!",true,"close");    
+    }); 
+  }
+  continueRegisterProcess(){
+    switch(this.profileStatus){
+      case "Started":{
+        this.router.navigateByUrl("/plans");
+        break;
+      }
+      case "Registered":{
+        this.router.navigateByUrl("/profile-starter");
+        break;
+      }
+    }
   }
 }

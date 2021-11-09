@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
     private loginService:LoginService,
     private router:Router,
     private fb:FormBuilder,
-    private snackBar:MatSnackBar,
+    private snackBar:MatSnackBar
   ) {
     this.signupForm = this.fb.group({
       gender:['Male',Validators.required],
@@ -83,9 +83,7 @@ export class RegisterComponent implements OnInit {
               requestData.append("lastname",this.signupForm.get("lastname")?.value);
               requestData.append("caste",this.signupForm.get("caste")?.value);
               requestData.append("terms",termsStatus?"Yes":"No");
-              requestData.append("birth_year",this.selYear);
-              requestData.append("birth_month",this.selMonth);
-              requestData.append("birth_day",this.selDate);
+              requestData.append("birthdate",this.selYear+"-"+this.selMonth+"-"+this.selDate);
               this.register(requestData);
           }else{
             this.showSnackbar("Please agree to terms and conditions",true,"okay");
@@ -110,7 +108,7 @@ export class RegisterComponent implements OnInit {
  }
  
  getCasteList(){
-    this.loginService.getDropdownList("caste_list","30").subscribe((res:any)=>{
+    this.loginService.getDropdownList("caste_list","30",false).subscribe((res:any)=>{
       if(res["status"]=="success"){
         this.castes = res["data"];
         this.castes.shift();
@@ -127,12 +125,13 @@ export class RegisterComponent implements OnInit {
       localStorage.setItem("matri","1234");
       localStorage.setItem("profileStatus","Registered");
       this.loginService.hasLoggedIn.next(true);
+      this.loginService.profileStatus.next("Registered");
       this.router.navigateByUrl("/profile-starter");
      }else{
        this.showSnackbar(res["errmessage"],true,"close");
      }
   },error=>{
-    this.showSnackbar("Internal Server error",true,"close");
+    this.showSnackbar("Connection error",true,"close");
   });
 }
 

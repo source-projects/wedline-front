@@ -1,5 +1,17 @@
 @import '~swiper/swiper-bundle';
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@angular/cdk/overlay-prebuilt.css";
+.ks-modal-gallery-backdrop {
+    background: #000 !important;
+    ;
+    opacity: 0.85 !important;
+    ;
+}
+
+.ks-modal-gallery-panel {
+    z-index: 90000 !important;
+}
+
 
 /*mat styles start*/
 
@@ -26,7 +38,7 @@
 .mat-h1,
 .mat-headline,
 .mat-typography h1 {
-    font: 400 24px/32px Roboto;
+    font: 400 24px/32px Poppins;
     letter-spacing: 0em;
     margin: 0 0 16px;
 }
@@ -34,7 +46,7 @@
 .mat-h2,
 .mat-title,
 .mat-typography h2 {
-    font: 500 20px/32px Roboto;
+    font: 500 20px/32px Poppins;
     letter-spacing: 0.0075em;
     margin: 0 0 16px;
 }
@@ -42,7 +54,7 @@
 .mat-h3,
 .mat-subheading-2,
 .mat-typography h3 {
-    font: 400 16px/28px Roboto;
+    font: 400 16px/28px Poppins;
     letter-spacing: 0.0094em;
     margin: 0 0 16px;
 }
@@ -50,33 +62,33 @@
 .mat-h4,
 .mat-subheading-1,
 .mat-typography h4 {
-    font: 500 15px/24px Roboto;
+    font: 500 15px/24px Poppins;
     letter-spacing: 0.0067em;
     margin: 0 0 16px;
 }
 
 .mat-h5,
 .mat-typography h5 {
-    font: 400 calc(14px * 0.83)/20px Roboto;
+    font: 400 calc(14px * 0.83)/20px Poppins;
     margin: 0 0 12px;
 }
 
 .mat-h6,
 .mat-typography h6 {
-    font: 400 calc(14px * 0.67)/20px Roboto;
+    font: 400 calc(14px * 0.67)/20px Poppins;
     margin: 0 0 12px;
 }
 
 .mat-body-strong,
 .mat-body-2 {
-    font: 500 14px/24px Roboto;
+    font: 500 14px/24px Poppins;
     letter-spacing: 0.0179em;
 }
 
 .mat-body,
 .mat-body-1,
 .mat-typography {
-    font: 400 14px/20px Roboto;
+    font: 400 14px/20px Poppins;
     letter-spacing: 0.0179em;
 }
 
@@ -88,40 +100,40 @@
 
 .mat-small,
 .mat-caption {
-    font: 400 12px/20px Roboto;
+    font: 400 12px/20px Poppins;
     letter-spacing: 0.0333em;
 }
 
 .mat-display-4,
 .mat-typography .mat-display-4 {
-    font: 300 112px/112px Roboto;
+    font: 300 112px/112px Poppins;
     letter-spacing: -0.0134em;
     margin: 0 0 56px;
 }
 
 .mat-display-3,
 .mat-typography .mat-display-3 {
-    font: 400 56px/56px Roboto;
+    font: 400 56px/56px Poppins;
     letter-spacing: -0.0089em;
     margin: 0 0 64px;
 }
 
 .mat-display-2,
 .mat-typography .mat-display-2 {
-    font: 400 45px/48px Roboto;
+    font: 400 45px/48px Poppins;
     letter-spacing: 0em;
     margin: 0 0 64px;
 }
 
 .mat-display-1,
 .mat-typography .mat-display-1 {
-    font: 400 34px/40px Roboto;
+    font: 400 34px/40px Poppins;
     letter-spacing: 0.0074em;
     margin: 0 0 64px;
 }
 
 .mat-bottom-sheet-container {
-    font: 400 14px/20px Roboto;
+    font: 400 14px/20px Poppins;
     letter-spacing: 0.0179em;
 }
 
@@ -132,7 +144,7 @@
 .mat-flat-button,
 .mat-fab,
 .mat-mini-fab {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 14px;
     font-weight: 500;
 }
@@ -191,18 +203,18 @@
 }
 
 .mat-dialog-title {
-    font: 500 20px/32px Roboto;
+    font: 500 20px/32px Poppins;
     letter-spacing: 0.0075em;
 }
 
 .mat-expansion-panel-header {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 15px;
     font-weight: 500;
 }
 
 .mat-expansion-panel-content {
-    font: 400 14px/20px Roboto;
+    font: 400 14px/20px Poppins;
     letter-spacing: 0.0179em;
 }
 
@@ -210,7 +222,7 @@
     font-size: inherit;
     font-weight: 400;
     line-height: 1.125;
-    font-family: Roboto;
+    font-family: Poppins;
     letter-spacing: 1.5px;
 }
 
@@ -388,14 +400,14 @@ input.mat-input-element {
 }
 
 .mat-menu-item {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 14px;
     font-weight: 400;
 }
 
 .mat-paginator,
 .mat-paginator-page-size .mat-select-trigger {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 12px;
 }
 
@@ -406,6 +418,11 @@ input.mat-input-element {
 .mat-slider-thumb-label-text {
     font-size: 12px;
     font-weight: 500;
+}
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal {
+    font-family: Poppins;
 }
 
 .mat-step-label {
@@ -428,7 +445,7 @@ input.mat-input-element {
 
 .mat-tab-label,
 .mat-tab-link {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 14px;
     font-weight: 500;
 }
@@ -440,7 +457,7 @@ input.mat-input-element {
 .mat-toolbar h4,
 .mat-toolbar h5,
 .mat-toolbar h6 {
-    font: 500 20px/32px Roboto;
+    font: 500 20px/32px Poppins;
     letter-spacing: 0.0075em;
     margin: 0;
 }
@@ -490,7 +507,7 @@ input.mat-input-element {
 }
 
 .mat-list-base .mat-subheader {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 14px;
     font-weight: 500;
 }
@@ -537,12 +554,12 @@ input.mat-input-element {
 }
 
 .mat-optgroup-label {
-    font: 500 14px/24px Roboto;
+    font: 500 14px/24px Poppins;
     letter-spacing: 0.0179em;
 }
 
 .mat-simple-snackbar {
-    font-family: Roboto;
+    font-family: Poppins;
     font-size: 14px;
 }
 
@@ -3041,7 +3058,7 @@ td.mat-footer-cell {
 }
 
 .material-icons .mat-badge-content {
-    font-family: 'Roboto';
+    font-family: 'Poppins';
 }
 
 
@@ -3096,6 +3113,16 @@ body {
 .full-header {
     top: 0px;
     transition: all 0.5s ease-in-out;
+}
+
+.negative-margin-setter {
+    margin-top: -72px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.negative-margin-setter img {
+    height: 125px!important;
 }
 
 
@@ -3158,7 +3185,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Poppins, "Helvetica Neue", sans-serif;
 } */
 
 
@@ -3169,4 +3196,161 @@ app-plans .carousel-box {
     box-shadow: 0px 5px 10px rgb(0 0 0 / 20%);
     width: 24%;
     margin-top: 20px;
+}
+
+
+/*profile setting*/
+
+app-profile-setting .aiz-nav-tabs.active-white a.active,
+app-chat .aiz-nav-tabs.active-white a.active {
+    color: #e00090!important;
+    border-color: #e00090!important;
+}
+
+.cursor-pointer {
+    cursor: pointer!important;
+}
+
+
+/*pagination*/
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    margin-left: 0px!important;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+    margin-right: 0px!important;
+}
+
+.ngx-pagination li {
+    margin-right: 0.5rem!important;
+    min-width: 44px!important;
+    height: 44px!important;
+    padding: 0!important;
+    border: 1px solid #ddd!important;
+    border-radius: 4px!important;
+}
+
+.ngx-pagination li:hover {
+    background-color: #e6e6e6;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+    width: 100%!important;
+    height: 100%!important;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+
+.ngx-pagination .current {
+    display: inline-flex!important;
+    justify-content: center!important;
+    background-color: var(--primary)!important;
+}
+
+.ngx-pagination .current>span:last-child {
+    align-self: center!important;
+}
+
+.ngx-pagination .disabled {
+    display: inline-flex!important;
+    justify-content: center!important;
+}
+
+.ngx-pagination .pagination-previous.disabled::before,
+.ngx-pagination .pagination-next.disabled::after {
+    align-self: center!important;
+}
+
+.ngx-pagination a:focus,
+.ngx-pagination button:focus {
+    outline: none!important;
+}
+
+.ngx-pagination a:hover,
+.ngx-pagination button:hover {
+    background-color: transparent!important;
+}
+
+.ngx-pagination {
+    display: flex!important;
+    justify-content: center!important;
+    margin-top: 3rem!important;
+}
+
+.ngx-pagination.responsive .small-screen {
+    border: none!important;
+}
+
+
+/*watsapp fab*/
+
+.fab {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 20%);
+    z-index: 100;
+}
+
+.wedline-fab::before {
+    top: 15px;
+    position: absolute;
+    left: 17px;
+}
+
+
+/*success stories*/
+
+img.success-cover-img {
+    height: 280px;
+    object-fit: cover;
+}
+
+.text-truncate-fade:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(to right, transparent 80px, white);
+}
+
+.text-truncate-fade {
+    text-overflow: clip!important;
+}
+
+.plane-background {
+    background: url("assets/public/assets/img/contact-plane.png");
+    background-repeat: no-repeat;
+    background-size: 55%;
+}
+
+.plane-text {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.cursor-default {
+    cursor: default!important;
+}
+
+.cursor-pointer {
+    cursor: pointer!important;
 }

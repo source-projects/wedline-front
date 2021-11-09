@@ -24,8 +24,8 @@ export class AsideComponent implements OnInit {
     this.progressOptions.radius = 50;
     this.progressOptions.outerStrokeGradient = true;
     this.progressOptions.outerStrokeWidth = 10;
-    this.progressOptions.outerStrokeColor = "#4882c2";
-    this.progressOptions.outerStrokeGradientStopColor = "#53a9ff";
+    this.progressOptions.outerStrokeColor = "#e00090";
+    this.progressOptions.outerStrokeGradientStopColor = "#ee615b";
     this.progressOptions.innerStrokeColor = "#e7e8ea";
     this.progressOptions.innerStrokeWidth = 10;
     this.progressOptions.animationDuration = 800;

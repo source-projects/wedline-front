@@ -12,7 +12,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FullProfileComponent } from './components/full-profile/full-profile.component';
-import { ProfileComponent } from './components/profile/profile.component';
 
 
 import { SwiperModule } from 'swiper/angular';
@@ -29,6 +28,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import 'hammerjs';
+import 'mousetrap';
+import {GalleryModule} from '@ks89/angular-modal-gallery';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 //Mat Imports
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -47,6 +51,23 @@ import { ProfileStarterComponent } from './components/profile-starter/profile-st
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ImageCropperComponent } from './dialogs/image-cropper/image-cropper.component';
 import { PlansComponent } from './components/plans/plans.component';
+import { PublicViewComponent } from './components/public-view/public-view.component';
+import { SearchComponent } from './components/search/search.component';
+import { MyLikesComponent } from './components/my-likes/my-likes.component';
+import { InterestMessagesComponent } from './dialogs/interest-messages/interest-messages.component';
+import { PrivacySettingsComponent } from './components/privacy-settings/privacy-settings.component';
+import { SuccessStoriesComponent } from './components/success-stories/success-stories.component';
+import { CharacterLimiterPipe } from './pipes/character-limiter.pipe';
+import { SuccessStoryComponent } from './components/success-story/success-story.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { PostSuccessStoryComponent } from './components/post-success-story/post-success-story.component';
+import { ReferenceOrBackupNotForProductionComponent } from './components/reference-or-backup-not-for-production/reference-or-backup-not-for-production.component';
+import { ReadMessageComponent } from './dialogs/read-message/read-message.component';
+import { ComposeMessageComponent } from './dialogs/compose-message/compose-message.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { DateBeautifierPipe } from './pipes/date-beautifier.pipe';
+import { Base64EncodePipe } from './pipes/base64-encode.pipe';
+import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +77,6 @@ import { PlansComponent } from './components/plans/plans.component';
     HeaderComponent,
     RegisterComponent,
     FullProfileComponent,
-    ProfileComponent,
     DashboardComponent,
     ProfileSettingComponent,
     MyInterestComponent,
@@ -68,7 +88,24 @@ import { PlansComponent } from './components/plans/plans.component';
     AsideComponent,
     ProfileStarterComponent,
     ImageCropperComponent,
-    PlansComponent
+    PlansComponent,
+    PublicViewComponent,
+    SearchComponent,
+    MyLikesComponent,
+    InterestMessagesComponent,
+    PrivacySettingsComponent,
+    SuccessStoriesComponent,
+    CharacterLimiterPipe,
+    SuccessStoryComponent,
+    ContactComponent,
+    PostSuccessStoryComponent,
+    ReferenceOrBackupNotForProductionComponent,
+    ReadMessageComponent,
+    ComposeMessageComponent,
+    NotificationsComponent,
+    DateBeautifierPipe,
+    Base64EncodePipe,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +129,9 @@ import { PlansComponent } from './components/plans/plans.component';
     MatDialogModule,
     NgSelectModule,
     ImageCropperModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    GalleryModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }

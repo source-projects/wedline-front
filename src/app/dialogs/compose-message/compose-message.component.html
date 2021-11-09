@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Compose Message</h1>
+<mat-dialog-content>
+    <form action="javascript:void(0)" method="POST" [formGroup]="messageForm">
+        <div class="form-group">
+            <label class="form-label">To
+                        <span class="text-danger">*</span>
+                    </label>
+            <input (change)="checkMemberId()" type="text" class="form-control" placeholder="Matrimony ID" formControlName="toId">
+            <h5 class="mt-2 mb-0" *ngIf="messageForm.controls.toName?.valid">{{messageForm.controls.toName?.value}}</h5>
+            <small class="text-danger" *ngIf="!isMemberIdValid">Please provide a valid ID</small>
+        </div>
+        <div [hidden]="true">
+            <input type="text" formControlName="toName" class="form-control" placeholder="Member Name">
+        </div>
+        <label class="form-label">Message<span class="text-danger">*</span></label>
+        <div>
+            <textarea type="text" class="form-control" rows="4" placeholder="Message" formControlName="message"></textarea>
+        </div>
+    </form>
+    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isProcessing"></mat-spinner>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+        <button class="btn btn-primary" (click)="composeMessage()" *ngIf="!isProcessing">Send</button>
+    </div>
+    <div>
+        <button class="btn btn-outline-primary" (click)="dismiss(false)" *ngIf="!isProcessing">Close</button>
+    </div>
+</mat-dialog-actions>

@@ -6,6 +6,7 @@
                     <app-aside></app-aside>
                 </div>
                 <div class="aiz-user-panel overflow-hidden">
+
                     <!-- <div class="card">
                         <div class="card-header">
                             <h5 class="mb-0 h6">Introduction</h5>
@@ -15,7 +16,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Introduction</label>
                                     <div class="col-md-10">
-                                        <textarea type="text" name="introduction" class="form-control" rows="4" placeholder="Introduction" required>1234</textarea>
+                                        <textarea type="text" name="introduction" class="form-control" rows="4" placeholder="Introduction">1234</textarea>
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -25,14 +26,54 @@
                         </div>
                     </div> -->
 
-                    <!-- Email Change -->
-                    <div class="card">
+                    <div>
+                        <div class="nav nav-tabs aiz-nav-tabs bottom-bordered active-white border-0">
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2 active" data-toggle="tab" href="#profile">Detailed Profile</a>
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#preference">Partner Preference</a>
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#gallery">Photo Gallery</a>
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#id-proof">ID Proof</a>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active mt-3" id="profile">
+                            <!-- Email Change -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Verify your email</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="javascript:void(0)" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <label>Your Email</label>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="input-group mb-3">
+                                                    <input type="email" class="form-control" placeholder="Your Email" name="email" [value]="memberDetails.email!=undefined?memberDetails.email:''" readonly/>
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-outline-secondary new-email-verification">
+                             <span class="d-none loading">
+                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                 Sending Email...
+                             </span>
+                             <span class="default">Verify</span>
+                         </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!-- Mobile Verification -->
+                            <!-- <div class="card">
                         <div class="card-header">
                             <h5 class="mb-0 h6">Change your email</h5>
                         </div>
                         <div class="card-body">
                             <form action="javascript:void(0)" method="POST">
-                                <input type="hidden" name="_token" value="pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <label>Your Email</label>
@@ -54,35 +95,35 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <!-- Basic Information -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Basic Information</h5>
-                        </div>
-                        <div class="card-body">
-
-
-                            <form action="javascript:void(0)" method="POST" [formGroup]="basicInfoForm">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="first_name">First Name
-                    <span class="text-danger">*</span>
-                </label>
-                                        <input type="text" name="first_name" formControlName="firstname" value="" class="form-control" placeholder="First Name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="first_name">Last Name
-                    <span class="text-danger">*</span>
-                </label>
-                                        <input type="text" name="last_name" formControlName="lastname" value="" class="form-control" placeholder="Last Name" required>
-                                    </div>
+                            <!-- Basic Information -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Basic Information</h5>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="marital_status">Matrital Status</label>
-                                        <select id="marital_status" (change)="toggleChidrenInputs()" formControlName="marital_status" class="form-control aiz-selectpicker" name="marital_status" required>
+                                <div class="card-body">
+
+
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="basicInfoForm">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="first_name">First Name
+                    <span class="text-danger">*</span>
+                </label>
+                                                <input type="text" name="first_name" formControlName="firstname" class="form-control" placeholder="First Name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="first_name">Last Name
+                    <span class="text-danger">*</span>
+                </label>
+                                                <input type="text" name="last_name" formControlName="lastname" class="form-control" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="marital_status">Matrital Status</label>
+                                                <select id="marital_status" (change)="toggleChidrenInputs()" formControlName="marital_status" class="form-control aiz-selectpicker" name="marital_status">
                                         <option selected="" value="">Select Marital Status</option>
                                         <option value="Unmarried">Unmarried</option>
                                         <option value="Widow/Widower">Widow/Widower</option>
@@ -90,22 +131,22 @@
                                         <option value="Separated">Separated</option>
                                         <option value="Awaiting Divorce">Awaiting Divorce</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="email">Date of birth </label>
-                                        <div fxLayout="row">
-                                            <input (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" matInput [matDatepicker]="picker" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate" readonly type="text" class="form-control" value="" placeholder="Date Of Birth"
-                                                name="dob" autocomplete="off">
-                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="email">Date of birth </label>
+                                                <div fxLayout="row">
+                                                    <input (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" matInput [matDatepicker]="picker" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate" readonly type="text" class="form-control" placeholder="Date Of Birth"
+                                                        name="dob" autocomplete="off">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="form-group row" *ngIf="basicInfoForm.controls.marital_status.value!='Unmarried'">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="total_children">Total Children</label>
-                                        <select id="total_children" formControlName="total_children" class="form-control aiz-selectpicker" name="total_children" required>
+                                        <div class="form-group row" *ngIf="basicInfoForm.controls.marital_status.value!='Unmarried'&&basicInfoForm.controls.marital_status.value!=''">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="total_children">Total Children</label>
+                                                <select id="total_children" formControlName="total_children" class="form-control aiz-selectpicker" name="total_children">
                                             <option selected="" value="">Select Total Children</option>
                                             <option value="0">None</option>
                                             <option value="One">One</option>
@@ -113,33 +154,33 @@
                                             <option value="Three">Three</option>
                                             <option value="Four and above">Four and above</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="status_children">Status Of Children</label>
-                                        <select id="status_children" formControlName="status_children" class="form-control aiz-selectpicker" name="status_children" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="status_children">Status Of Children</label>
+                                                <select id="status_children" formControlName="status_children" class="form-control aiz-selectpicker" name="status_children">
                                         <option selected="" value="">Select Status Children</option>
                                         <option value="Living with me">Living with me</option>
                                         <option value="Not living with me">Not living with me</option>
                                     </select>
-                                    </div>
-                                </div>
-                                <label class="form-label" for="languages_known[]">Languages Known</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id=" languages_known[]" [multiple]="true" formControlName="languages_known">
-                                        <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="mother_tongue">Mother Tongue</label>
-                                <div class="form-group mb-1">
-                                    <select id=" mother_tongue" class="form-control aiz-selectpicker" formControlName="mother_tongue">
+                                            </div>
+                                        </div>
+                                        <label class="form-label" for="languages_known[]">Languages Known</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id=" languages_known[]" [multiple]="true" formControlName="languages_known">
+                                                <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="mother_tongue">Mother Tongue</label>
+                                        <div class="form-group mb-1">
+                                            <select id=" mother_tongue" class="form-control aiz-selectpicker" formControlName="mother_tongue">
                                         <option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</option>
                                     </select>
-                                </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="height">Height</label>
-                                        <select id="height" formControlName="height" class="form-control aiz-selectpicker" name="height" required>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="height">Height</label>
+                                                <select id="height" formControlName="height" class="form-control aiz-selectpicker" name="height">
                             <option selected="" value="">Select Height</option>
                                <option value="48">Below 4ft</option>
                                <option value="49">4ft 1in</option>
@@ -180,10 +221,10 @@
                                <option value="84">7ft</option>
                                <option value="85">Above 7ft</option>
                                          </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="weight">Weight</label>
-                                        <select id="weight" formControlName="weight" class="form-control aiz-selectpicker" name="weight" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="weight">Weight</label>
+                                                <select id="weight" formControlName="weight" class="form-control aiz-selectpicker" name="weight">
                                     <option selected="" value="">Select Weight</option>
                                     <option value="40">40 Kg</option>
                                     <option value="41">41 Kg</option>
@@ -287,10 +328,10 @@
                                     <option value="139">139 Kg</option>                            
                                     <option value="140">140 Kg</option>
                                 </select>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                                <!-- <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                     <div class="col-md-12">
                                         <label for="photo">Photo <small>(800x800)</small></label>
                                         <div class="input-group" data-toggle="aizuploader" data-type="image">
@@ -304,69 +345,69 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" (click)="basicInfoFormSubmit()" *ngIf="!isSavingDetails">Update</button>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" (click)="basicInfoFormSubmit()" *ngIf="!isSavingDetails">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
 
 
-                    <!-- LifeStyle -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Life Style Details</h5>
-                        </div>
-                        <div class="card-body">
-                            <form action="javascript:void(0)" method="POST" [formGroup]="lifeStyleForm">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="bodytype">Body Type</label>
-                                        <select id="bodytype" formControlName="bodytype" class="form-control aiz-selectpicker" name="bodytype" required>
+                            <!-- LifeStyle -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Life Style Details</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="lifeStyleForm">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="bodytype">Body Type</label>
+                                                <select id="bodytype" formControlName="bodytype" class="form-control aiz-selectpicker" name="bodytype">
                             <option selected="" value="">Select Body Type</option>
                             <option value="Slim">Slim</option>
                             <option value="Average">Average</option>
                             <option value="Athletic">Athletic</option>
                             <option value="Heavy">Heavy</option>
                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="diet">Eating Habit</label>
-                                        <select id="diet" formControlName="diet" class="form-control aiz-selectpicker" name="diet" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="diet">Eating Habit</label>
+                                                <select id="diet" formControlName="diet" class="form-control aiz-selectpicker" name="diet">
                             <option selected="" value="">Select Eating Habit</option>
                             <option value="Occasionally Non-Veg">Occasionally Non-Veg</option>
                             <option value="Veg">Veg</option>
                             <option value="Eggetarian">Eggetarian</option>
                             <option value="Non-Veg">Non-Veg</option>
                             </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="smoke">Smoking Habit</label>
-                                        <select id="smoke" formControlName="smoke" class="form-control aiz-selectpicker" name="smoke" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="smoke">Smoking Habit</label>
+                                                <select id="smoke" formControlName="smoke" class="form-control aiz-selectpicker" name="smoke">
                 <option selected="" value="">Select Smoking Habit</option>
                 <option selected="" value="No">No</option>
                 <option value="Yes">Yes</option>
                 <option value="Occasionally">Occasionally</option>
             </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="drink">Drinking Habit</label>
-                                        <select id="drink" formControlName="drink" class="form-control aiz-selectpicker" name="drink" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="drink">Drinking Habit</label>
+                                                <select id="drink" formControlName="drink" class="form-control aiz-selectpicker" name="drink">
                             <option selected="" value="">Select Drinking Habit</option>
                             <option selected="" value="No">No</option>
                             <option value="Yes">Yes</option>
                             <option value="Occasionally">Occasionally</option>
                     </select>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="complexion">Skin Tone</label>
-                                        <select id="complexion" formControlName="complexion" class="form-control aiz-selectpicker" name="complexion" required>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="complexion">Skin Tone</label>
+                                                <select id="complexion" formControlName="complexion" class="form-control aiz-selectpicker" name="complexion">
                             <option selected="" value="">Select Skin Tone</option>
                             <option value="Wheatish">Wheatish</option>
                             <option value="Very Fair">Very Fair</option>
@@ -374,81 +415,81 @@
                             <option value="Wheatish Brown">Wheatish Brown</option>
                             <option value="Dark">Dark</option>
                     </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="blood_group">Blood Group</label>
-                                        <select id="blood_group" formControlName="blood_group" class="form-control aiz-selectpicker" name="blood_group" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="blood_group">Blood Group</label>
+                                                <select id="blood_group" formControlName="blood_group" class="form-control aiz-selectpicker" name="blood_group">
                         <option selected="" value="">Select Blood Group</option>
                         <option value="A+">A+</option><option value="A-">A-</option>
                         <option value="AB+">AB+</option><option value="AB-">AB-</option>
                         <option value="B+">B+</option><option value="B-">B-</option>
                         <option value="O+">O+</option><option value="O-">O-</option>
                     </select>
-                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStyleFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStyleFormSubmit()">Update</button>
+                            </div>
+
+
+
+                            <!-- About me -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">About Me</h5>
                                 </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
+                                <div class="card-body">
 
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="aboutMeForm">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="aboutemedemo">Something About Yourself</label>
+                                                <div class="form-group mb-1">
+                                                    <textarea id="aboutemedemo" formControlName="profile_text" rows="5" class="form-control aiz-selectpicker" name="aboutemedemo"></textarea>
+                                                </div>
 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="hobby">Hobbies</label>
+                                                <div class="form-group mb-1">
+                                                    <textarea id="hobby" formControlName="hobby" rows="5" class="form-control aiz-selectpicker" name="hobby"></textarea>
+                                                </div>
 
-                    <!-- About me -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">About Me</h5>
-                        </div>
-                        <div class="card-body">
-
-                            <form action="javascript:void(0)" method="POST" [formGroup]="aboutMeForm">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="aboutemedemo">Something About Yourself</label>
-                                        <div class="form-group mb-1">
-                                            <textarea id="aboutemedemo" formControlName="profile_text" rows="5" class="form-control aiz-selectpicker" name="aboutemedemo" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="birthplace">Birth Place</label>
+                                                <div class="form-group mb-1">
+                                                    <input id="birthplace" formControlName="birthplace" rows="5" class="form-control" name="birthplace">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="birthtime">Birth Time </label>
+                                                <div fxLayout="row">
+                                                    <input placeholder="24hr format" aria-label="24hr format" class="form-control" formControlName="birthtime" [ngxTimepicker]="fullTime" [format]="24" readonly>
+                                                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="hobby">Hobbies</label>
-                                        <div class="form-group mb-1">
-                                            <textarea id="hobby" formControlName="hobby" rows="5" class="form-control aiz-selectpicker" name="hobby" required></textarea>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="birthplace">Birth Place</label>
-                                        <div class="form-group mb-1">
-                                            <input id="birthplace" formControlName="birthplace" rows="5" class="form-control" name="birthplace" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="birthtime">Birth Time </label>
-                                        <div fxLayout="row">
-                                            <input placeholder="24hr format" aria-label="24hr format" class="form-control" formControlName="birthtime" [ngxTimepicker]="fullTime" [format]="24" readonly>
-                                            <ngx-material-timepicker #fullTime></ngx-material-timepicker>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="profileby">Created By</label>
-                                        <select id="profileby" formControlName="profileby" class="form-control aiz-selectpicker" name="profileby" required>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="profileby">Created By</label>
+                                                <select id="profileby" formControlName="profileby" class="form-control aiz-selectpicker" name="profileby">
                                             <option selected="" value="">Select Created By</option><option selected="" value="Self">Self</option>
                                             <option value="Parents">Parents</option><option value="Guardian">Guardian</option>
                                             <option value="Friends">Friends</option><option value="Sibling">Sibling</option>
                                             <option value="Relatives">Relatives</option><option value="Admin">Admin</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="reference">Reference</label>
-                                        <select id="reference" formControlName="reference" class="form-control aiz-selectpicker" name="reference" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="reference">Reference</label>
+                                                <select id="reference" formControlName="reference" class="form-control aiz-selectpicker" name="reference">
                                             <option selected="" value="">Select Reference</option>
                                             <option selected="" value="Tele-in">Tele-in</option>
                                             <option value="Telemarketing">Telemarketing</option>
@@ -466,105 +507,105 @@
                                             <option value="Branding">Branding</option>
                                             <option value="Others">Others</option>
                                     </select>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Update</button>
-                                </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Religion  -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Religious Information</h5>
-                        </div>
-                        <div class="card-body">
-                            <form action="javascript:void(0)" method="POST" [formGroup]="religionForm">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="caste">Caste </label>
-                                        <select class="form-control aiz-selectpicker " formControlName="caste" id="caste" name="caste" required>
-                                        <option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</option>
-                                    </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="subcaste">Sub Caste</label>
-                                        <input type="text" name="subcaste" formcontrolName="subcaste" value="" class="form-control" placeholder="Sub Caste" required>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="religionFormSubmit()">Update</button>
-                                </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Location  -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Location/Address</h5>
-                        </div>
-                        <div class="card-body">
-
-
-                            <form action="javascript:void(0)" method="POST" [formGroup]="locationForm">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="country_id">Country</label>
-                                        <select id="country_id" formControlName="country_id" class="form-control aiz-selectpicker" (change)="getStates()" name="country_id" required>
-                            <option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</option>
-                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="state_id">State</label>
-                                        <select id="state_id" formControlName="state_id" class="form-control aiz-selectpicker" (change)="getCities()" name="state_id" required>
-                        <option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</option>
-                    </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="city">City</label>
-                                        <select id="city" formControlName="city" class="form-control aiz-selectpicker" name="city" required>
-                                            <option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row mt-3">
-                                            <div class="col-lg-3">
-                                                <div class="form-group mb-3">
-                                                    <label class="form-label" for="code">Code</label>
-                                                    <select id="code" formControlName="country_code" class="form-control aiz-selectpicker " name="code" required>
-                                                <option *ngFor="let code of countryCodes" value="{{code.id}}">{{code.val}}</option>
-                                            </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <div class="form-group mb-3">
-                                                    <label class="form-label" for="phone-code">Phone</label>
-                                                    <div class="form-group phone-form-group mb-1">
-                                                        <input type="number" formControlName="mobile_num" id="phone-code" class="form-control" value="" placeholder="" name="phone" autocomplete="off">
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
-
-                                    </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <label class="form-label" for="address">Address</label>
-                                <textarea id="address" formControlName="address" rows="5" class="form-control aiz-selectpicker" name="address" required></textarea>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="time_to_call">Time To Call</label>
-                                        <input id="time_to_call" type="text" formControlName="time_to_call" class="form-control" name="time_to_call" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="residence">Residence</label>
-                                        <select id="residence" formControlName="residence" class="form-control aiz-selectpicker" name="residence" required>
+                            </div>
+
+                            <!-- Religion  -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Religious Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="religionForm">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="caste">Caste </label>
+                                                <select class="form-control aiz-selectpicker " formControlName="caste" id="caste" name="caste">
+                                        <option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</option>
+                                    </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="subcaste">Sub Caste</label>
+                                                <input type="text" name="subcaste" formcontrolName="subcaste" class="form-control" placeholder="Sub Caste">
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="religionFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Location  -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Location/Address</h5>
+                                </div>
+                                <div class="card-body">
+
+
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="locationForm">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="country_id">Country</label>
+                                                <select id="country_id" formControlName="country_id" class="form-control aiz-selectpicker" (change)="getStates()" name="country_id">
+                                            <option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</option>
+                                        </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="state_id">State</label>
+                                                <select id="state_id" formControlName="state_id" class="form-control aiz-selectpicker" (change)="getCities()" name="state_id">
+                                            <option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</option>
+                                        </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="city">City</label>
+                                                <select id="city" formControlName="city" class="form-control aiz-selectpicker" name="city">
+                                            <option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</option>
+                                        </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row mt-3">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="code">Code</label>
+                                                            <select id="code" formControlName="country_code" class="form-control aiz-selectpicker " name="code">
+                                                <option *ngFor="let code of countryCodes" value="{{code.id}}">{{code.val}}</option>
+                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="phone-code">Phone</label>
+                                                            <div class="form-group phone-form-group mb-1">
+                                                                <input type="number" formControlName="mobile_num" id="phone-code" class="form-control" placeholder="" name="phone" autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <label class="form-label" for="address">Address</label>
+                                        <textarea id="address" formControlName="address" rows="5" class="form-control aiz-selectpicker" name="address"></textarea>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="time_to_call">Time To Call</label>
+                                                <input id="time_to_call" type="text" formControlName="time_to_call" class="form-control" name="time_to_call">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="residence">Residence</label>
+                                                <select id="residence" formControlName="residence" class="form-control aiz-selectpicker" name="residence">
                                             <option selected="" value="">Select Residence</option>
                                             <option value="Citizen">Citizen</option>
                                             <option value="Permanent Resident">Permanent Resident</option>
@@ -573,33 +614,33 @@
                                             <option value="Work permit">Work permit</option>
                                             <option value="Family Visa">Family Visa</option>
                                     </select>
-                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="locationFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="locationFormSubmit()">Update</button>
-                                </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
 
-                    <!-- Education -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Education</h5>
-                        </div>
-                        <div class="card-body">
-                            <form action="javascript:void(0)" method="POST" [formGroup]="educationForm">
-                                <label class="form-label" for="education_detail[]">Education</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="education_detail[]" formControlName="education_detail" [multiple]="true">
-                                        <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
-                                    </ng-select>
+                            <!-- Education -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Education</h5>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="employee_in">Employee In</label>
-                                        <select id="employee_in" formControlName="employee_in" class="form-control aiz-selectpicker" name="employee_in" required>
+                                <div class="card-body">
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="educationForm">
+                                        <label class="form-label" for="education_detail[]">Education</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="education_detail[]" formControlName="education_detail" [multiple]="true">
+                                                <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="employee_in">Employee In</label>
+                                                <select id="employee_in" formControlName="employee_in" class="form-control aiz-selectpicker" name="employee_in">
                                     <option selected="" value="">Select Employee In</option>
                                     <option value="Private">Private</option>
                                     <option value="Govt">Govt</option>
@@ -611,10 +652,10 @@
                                     <option value="Public Limited">Public Limited</option>
                                     <option value="Semi Govt">Semi Govt</option>
                             </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="income">Income</label>
-                                        <select id="income" formControlName="income" class="form-control aiz-selectpicker" name="income" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="income">Income</label>
+                                                <select id="income" formControlName="income" class="form-control aiz-selectpicker" name="income">
                                <option selected="" value="">Select Annual Income</option>
                                <option value="0 - 1 Lakh">0 - 1 Lakh</option>
                                <option value="1 - 2 Lakhs">1 - 2 Lakhs</option>
@@ -648,74 +689,74 @@
                                <option value="90 Lakhs - 1 Crore">90 Lakhs - 1 Crore</option>
                                <option value="1 Crore &amp; Above">1 Crore &amp; Above</option>
                             </select>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="occupation">Occupation</label>
-                                        <select id="occupation" formControlName="occupation" class="form-control aiz-selectpicker" name="occupation" required>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="occupation">Occupation</label>
+                                                <select id="occupation" formControlName="occupation" class="form-control aiz-selectpicker" name="occupation">
                         <option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</option>
                     </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="designation">Designation</label>
-                                        <select id="designation" formControlName="designation" class="form-control aiz-selectpicker" name="designation" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="designation">Designation</label>
+                                                <select id="designation" formControlName="designation" class="form-control aiz-selectpicker" name="designation">
                                     <option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.val}}</option>
                                 </select>
-                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="educationFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="educationFormSubmit()">Update</button>
+                            </div>
+
+                            <!-- Family -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Family Details</h5>
                                 </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Family -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Family Details</h5>
-                        </div>
-                        <div class="card-body">
+                                <div class="card-body">
 
 
-                            <form action="javascript:void(0)" method="POST" [formGroup]="familyForm">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="family_type">Family Type</label>
-                                        <select id="family_type" formControlName="family_type" class="form-control aiz-selectpicker" name="family_type" required>
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="familyForm">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="family_type">Family Type</label>
+                                                <select id="family_type" formControlName="family_type" class="form-control aiz-selectpicker" name="family_type">
                                             <option selected="" value="">Select Family Type</option>
                                             <option value="Separate Family">Separate Family</option>
                                             <option selected="" value="Joint Family">Joint Family</option>
                                             <option value="Nuclear Family">Nuclear Family</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="father_name">Father Name</label>
-                                        <input type="text" name="father_name" formcontrolName="father_name" value="" class="form-control" placeholder="Father Name" required>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="father_occupation">Father Occupation</label>
-                                        <input type="text" name="father_occupation" formcontrolName="father_occupation" value="" class="form-control" placeholder="Father Occupation" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="mother_name">Mother Name</label>
-                                        <input type="text" name="mother_name" formcontrolName="mother_name" value="" class="form-control" placeholder="Mother Name" required>
-                                    </div>
-                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="father_name">Father Name</label>
+                                                <input type="text" name="father_name" formControlName="father_name" class="form-control" placeholder="Father Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="father_occupation">Father Occupation</label>
+                                                <input type="text" name="father_occupation" formControlName="father_occupation" class="form-control" placeholder="Father Occupation">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="mother_name">Mother Name</label>
+                                                <input type="text" name="mother_name" formControlName="mother_name" class="form-control" placeholder="Mother Name">
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="mother_occupation">Mother Occupation</label>
-                                        <input type="text" name="mother_occupation" formcontrolName="mother_occupation" value="" class="form-control" placeholder="Mother Occupation" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="family_status">Family Status</label>
-                                        <select id="family_status" formControlName="family_status" class="form-control aiz-selectpicker" name="family_status" required>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="mother_occupation">Mother Occupation</label>
+                                                <input type="text" name="mother_occupation" formControlName="mother_occupation" class="form-control" placeholder="Mother Occupation">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="family_status">Family Status</label>
+                                                <select id="family_status" formControlName="family_status" class="form-control aiz-selectpicker" name="family_status">
                                             <option selected="" value="">Select Family Status</option>
                                             <option value="Rich">Rich</option>
                                             <option value="Upper Middle Class">Upper Middle Class</option>
@@ -723,12 +764,12 @@
                                             <option value="Lower Middle Class">Lower Middle Class</option>
                                             <option value="Poor Family">Poor Family</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="no_of_brothers">No of Brothers</label>
-                                        <select id="no_of_brothers" formControlName="no_of_brothers" class="form-control aiz-selectpicker" name="no_of_brothers" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="no_of_brothers">No of Brothers</label>
+                                                <select id="no_of_brothers" formControlName="no_of_brothers" class="form-control aiz-selectpicker" name="no_of_brothers">
                                     <option selected="" value="">Select No Of Brothers</option>
                                     <option selected="" value="0">0</option>
                                     <option value="1">1</option>
@@ -737,10 +778,10 @@
                                     <option value="4">4</option>
                                     <option value="4 +">4 +</option>
                                 </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="no_of_sisters">No of Sisters</label>
-                                        <select id="no_of_sisters" formControlName="no_of_sisters" class="form-control aiz-selectpicker" name="no_of_sisters" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="no_of_sisters">No of Sisters</label>
+                                                <select id="no_of_sisters" formControlName="no_of_sisters" class="form-control aiz-selectpicker" name="no_of_sisters">
                                             <option selected="" value="">Select No Of Sisters</option>
                                             <option selected="" value="0">0</option>
                                             <option value="1">1</option>
@@ -749,86 +790,85 @@
                                             <option value="4">4</option>
                                             <option value="4 +">4 +</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
 
-                                    <div class="col-md-6" *ngIf="familyForm.controls.no_of_brothers.value !== ''">
-                                        <label class="form-label" for="no_of_married_brother">No of Married Brothers</label>
-                                        <select id="no_of_married_brother" formControlName="no_of_married_brother" class="form-control aiz-selectpicker" name="no_of_married_brother" required>
-                                        <option value="No married brother" selected="">No married brother</option>        
+                                            <div class="col-md-6" *ngIf="familyForm.controls.no_of_brothers.value !== ''">
+                                                <label class="form-label" for="no_of_married_brother">No of Married Brothers</label>
+                                                <select id="no_of_married_brother" formControlName="no_of_married_brother" class="form-control aiz-selectpicker" name="no_of_married_brother">
+                                        <option value="No married brother">No married brother</option>        
                                         <option value="One married brother" *ngIf="familyForm.controls.no_of_brothers.value == 1">One married brother</option>
                                         <option value="Two married brothers" *ngIf="familyForm.controls.no_of_brothers.value > 1">Two married brothers</option>
                                         <option value="Three married brothers" *ngIf="familyForm.controls.no_of_brothers.value > 2">Three married brothers</option>
                                         <option value="Four married brothers" *ngIf="familyForm.controls.no_of_brothers.value > 3">Four married brothers</option>
                                     </select>
-                                    </div>
-                                    <div class="col-md-6" *ngIf="familyForm.controls.no_of_sisters.value != ''">
-                                        <label class="form-label" for="no_of_married_sister">No of Married Sisters</label>
-                                        <select id="no_of_married_sister" formControlName="no_of_married_sister" class="form-control aiz-selectpicker" name="no_of_married_sister" required>
-                                        <option value="No married sister" selected="">No married brother</option>        
+                                            </div>
+                                            <div class="col-md-6" *ngIf="familyForm.controls.no_of_sisters.value != ''">
+                                                <label class="form-label" for="no_of_married_sister">No of Married Sisters</label>
+                                                <select id="no_of_married_sister" formControlName="no_of_married_sister" class="form-control aiz-selectpicker" name="no_of_married_sister">
+                                        <option value="No married sister">No married sister</option>        
                                         <option value="One married sister" *ngIf="familyForm.controls.no_of_sisters.value == 1">One married sister</option>
                                         <option value="Two married sisters" *ngIf="familyForm.controls.no_of_sisters.value > 1">Two married sisters</option>
                                         <option value="Three married sisters" *ngIf="familyForm.controls.no_of_sisters.value > 2">Three married sisters</option>
                                         <option value="Four married sisters" *ngIf="familyForm.controls.no_of_sisters.value > 3">Four married sisters</option>
                                     </select>
-                                    </div>
+                                            </div>
+                                        </div>
+                                        <label class="form-label" for="family_details">Write Something About Your Family</label>
+                                        <div class="form-group mb-1">
+                                            <textarea id="family_details" formControlName="family_details" rows="5" class="form-control" name="family_details"></textarea>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="familyFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <label class="form-label" for="family_details">Write Something About Your Family</label>
-                                <div class="form-group mb-1">
-                                    <textarea id="family_details" formControlName="family_details" rows="5" class="form-control" name="family_details" required></textarea>
-                                </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="familyFormSubmit()">Update</button>
-                                </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <div class="tab-pane fade mt-3" id="preference">
 
-
-                    <!--Partner Preference-->
-
-                    <!-- basic  -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Basic Partner Preferences</h5>
-                        </div>
-                        <div class="card-body">
-
-
-                            <form action="javascript:void(0)" method="POST" [formGroup]="basicPartnerForm">
-                                <label class="form-label" for="looking_for[]">Looking For</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id=" looking_for[]" [multiple]="true" formControlName="looking_for">
-                                        <ng-option value="Unmarried">Unmarried</ng-option>
-                                        <ng-option value="Widow/Widower">Widow/Widower</ng-option>
-                                        <ng-option value="Divorcee">Divorcee</ng-option>
-                                        <ng-option value="Separated">Separated</ng-option>
-                                        <ng-option value="Awaiting Divorce">Awaiting Divorce</ng-option>
-                                    </ng-select>
+                            <!-- basic  -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Basic Partner Preferences</h5>
                                 </div>
-                                <label class="form-label" for="part_complexion">Skin Tone</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_complexion" [multiple]="true" formControlName="part_complexion">
-                                        <ng-option value="Wheatish">Wheatish</ng-option>
-                                        <ng-option value="Very Fair">Very Fair</ng-option>
-                                        <ng-option value="Fair">Fair</ng-option>
-                                        <ng-option value="Wheatish Brown">Wheatish Brown</ng-option>
-                                        <ng-option value="Dark">Dark</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_mother_tongue">Mother Tongue</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_mother_tongue" [multiple]="true" formControlName="part_mother_tongue">
-                                        <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
-                                    </ng-select>
-                                </div>
+                                <div class="card-body">
 
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="part_frm_age">From Age</label>
-                                        <select id="part_frm_age" formControlName="part_frm_age" class="form-control aiz-selectpicker" name="part_frm_age" required>
+
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="basicPartnerForm">
+                                        <label class="form-label" for="looking_for[]">Looking For</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id=" looking_for[]" [multiple]="true" formControlName="looking_for">
+                                                <ng-option value="Unmarried">Unmarried</ng-option>
+                                                <ng-option value="Widow/Widower">Widow/Widower</ng-option>
+                                                <ng-option value="Divorcee">Divorcee</ng-option>
+                                                <ng-option value="Separated">Separated</ng-option>
+                                                <ng-option value="Awaiting Divorce">Awaiting Divorce</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_complexion">Skin Tone</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_complexion" [multiple]="true" formControlName="part_complexion">
+                                                <ng-option value="Wheatish">Wheatish</ng-option>
+                                                <ng-option value="Very Fair">Very Fair</ng-option>
+                                                <ng-option value="Fair">Fair</ng-option>
+                                                <ng-option value="Wheatish Brown">Wheatish Brown</ng-option>
+                                                <ng-option value="Dark">Dark</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_mother_tongue">Mother Tongue</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_mother_tongue" [multiple]="true" formControlName="part_mother_tongue">
+                                                <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="part_frm_age">From Age</label>
+                                                <select id="part_frm_age" formControlName="part_frm_age" class="form-control aiz-selectpicker" name="part_frm_age">
                                         <option selected="" value="">Select Partner From Age</option>
                                         <option selected="" value="18">18 Year</option>
                                         <option value="19">19 Year</option>
@@ -879,10 +919,10 @@
                                         <option value="64">64 Year</option>
                                         <option value="65">65 Year</option>
                                      </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="part_to_age">To Age</label>
-                                        <select id="part_to_age" formControlName="part_to_age" class="form-control aiz-selectpicker" name="part_to_age" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="part_to_age">To Age</label>
+                                                <select id="part_to_age" formControlName="part_to_age" class="form-control aiz-selectpicker" name="part_to_age">
                                     <option selected="" value="">Select Partner To Age</option>
                                     <option selected="" value="18">18 Year</option>
                                     <option value="19">19 Year</option>
@@ -933,12 +973,12 @@
                                     <option value="64">64 Year</option>
                                     <option value="65">65 Year</option>
                                      </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="part_height">From Height</label>
-                                        <select id="part_height" formControlName="part_height" class="form-control aiz-selectpicker" name="part_height" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="part_height">From Height</label>
+                                                <select id="part_height" formControlName="part_height" class="form-control aiz-selectpicker" name="part_height">
                                <option selected="" value="">Select Partner From Height</option>
                                <option value="48">Below 4ft</option>
                                <option value="49">4ft 1in</option>
@@ -979,10 +1019,10 @@
                                <option value="84">7ft</option>
                                <option value="85">Above 7ft</option>
                              </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="part_height_to">To Height</label>
-                                        <select id="part_height_to" formControlName="part_height_to" class="form-control aiz-selectpicker" name="part_height_to" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="part_height_to">To Height</label>
+                                                <select id="part_height_to" formControlName="part_height_to" class="form-control aiz-selectpicker" name="part_height_to">
                             <option selected="" value="">Select Partner To Height</option>
                             <option value="48">Below 4ft</option>
                             <option value="49">4ft 1in</option>
@@ -1023,185 +1063,185 @@
                             <option value="84">7ft</option>
                             <option value="85">Above 7ft</option>
                              </select>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                                <label class="form-label" for="part_expect">Your Expectations</label>
-                                <div class="form-group mb-1">
-                                    <textarea id="part_expect" formControlName="part_expect" rows="5" class="form-control aiz-selectpicker" name="part_expect" required></textarea>
-                                </div>
+                                        <label class="form-label" for="part_expect">Your Expectations</label>
+                                        <div class="form-group mb-1">
+                                            <textarea id="part_expect" formControlName="part_expect" rows="5" class="form-control aiz-selectpicker" name="part_expect"></textarea>
+                                        </div>
 
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="basicPartnerFormSubmit()">Update</button>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="basicPartnerFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
 
-                    <!-- Lifestyle -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">LifeStyle Partner Preferences</h5>
-                        </div>
-                        <div class="card-body">
-
-
-                            <form action="javascript:void(0)" method="POST" [formGroup]="lifeStylePartnerForm">
-                                <label class="form-label" for="part_bodytype">Body Type</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id=" part_bodytype" [multiple]="true" formControlName="part_bodytype">
-                                        <ng-option value="Slim">Slim</ng-option>
-                                        <ng-option value="Average">Average</ng-option>
-                                        <ng-option value="Athletic">Athletic</ng-option>
-                                        <ng-option value="Heavy">Heavy</ng-option>
-                                    </ng-select>
+                            <!-- Lifestyle -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">LifeStyle Partner Preferences</h5>
                                 </div>
-                                <label class="form-label" for="part_diet">Eating Habits</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_diet" [multiple]="true" formControlName="part_diet">
-                                        <ng-option value="Occasionally Non-Veg">Occasionally Non-Veg</ng-option>
-                                        <ng-option value="Veg">Veg</ng-option>
-                                        <ng-option value="Eggetarian">Eggetarian</ng-option>
-                                        <ng-option value="Non-Veg">Non-Veg</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_smoke">Smoking Habits</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_smoke" [multiple]="true" formControlName="part_smoke">
-                                        <ng-option selected="" value="No">No</ng-option>
-                                        <ng-option value="Yes">Yes</ng-option>
-                                        <ng-option value="Occasionally">Occasionally</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_drink">Drinking Habits</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_drink" [multiple]="true" formControlName="part_drink">
-                                        <ng-option selected="" value="No">No</ng-option>
-                                        <ng-option value="Yes">Yes</ng-option>
-                                        <ng-option value="Occasionally">Occasionally</ng-option>
-                                    </ng-select>
-                                </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStylePartnerFormSubmit()">Update</button>
-                                </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Residency Information -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Religion Partner Preferences</h5>
-                        </div>
-                        <div class="card-body">
+                                <div class="card-body">
 
 
-                            <form action="javascript:void(0)" method="POST" [formGroup]="religionPartnerForm">
-                                <label class="form-label" for="part_caste">Caste</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_caste" [multiple]="true" formControlName="part_caste">
-                                        <ng-option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</ng-option>
-                                    </ng-select>
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="lifeStylePartnerForm">
+                                        <label class="form-label" for="part_bodytype">Body Type</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id=" part_bodytype" [multiple]="true" formControlName="part_bodytype">
+                                                <ng-option value="Slim">Slim</ng-option>
+                                                <ng-option value="Average">Average</ng-option>
+                                                <ng-option value="Athletic">Athletic</ng-option>
+                                                <ng-option value="Heavy">Heavy</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_diet">Eating Habits</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_diet" [multiple]="true" formControlName="part_diet">
+                                                <ng-option value="Occasionally Non-Veg">Occasionally Non-Veg</ng-option>
+                                                <ng-option value="Veg">Veg</ng-option>
+                                                <ng-option value="Eggetarian">Eggetarian</ng-option>
+                                                <ng-option value="Non-Veg">Non-Veg</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_smoke">Smoking Habits</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_smoke" [multiple]="true" formControlName="part_smoke">
+                                                <ng-option selected="" value="No">No</ng-option>
+                                                <ng-option value="Yes">Yes</ng-option>
+                                                <ng-option value="Occasionally">Occasionally</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_drink">Drinking Habits</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_drink" [multiple]="true" formControlName="part_drink">
+                                                <ng-option selected="" value="No">No</ng-option>
+                                                <ng-option value="Yes">Yes</ng-option>
+                                                <ng-option value="Occasionally">Occasionally</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStylePartnerFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="religionPartnerFormSubmit()">Update</button>
-                                </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
 
-                    <!-- Location Preferences -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Location Partner Preferences</h5>
-                        </div>
-                        <div class="card-body">
+                            <!-- Residency Information -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Religion Partner Preferences</h5>
+                                </div>
+                                <div class="card-body">
 
 
-                            <form action="javascript:void(0)" method="POST" [formGroup]="locationPartnerForm">
-                                <label class="form-label" for="part_country_living">Country</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_country_living" [multiple]="true" formControlName="part_country_living">
-                                        <ng-option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</ng-option>
-                                    </ng-select>
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="religionPartnerForm">
+                                        <label class="form-label" for="part_caste">Caste</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_caste" [multiple]="true" formControlName="part_caste">
+                                                <ng-option *ngFor="let caste of castes" value="{{caste.id}}">{{caste.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="religionPartnerFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <label class="form-label" for="part_state">State</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_state" [multiple]="true" formControlName="part_state">
-                                        <option *ngFor="let state of states" value="{{state.id}}">{{state.val}}</option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_city">City</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_city" [multiple]="true" formControlName="part_city">
-                                        <ng-option *ngFor="let city of cities" value="{{city.id}}">{{city.val}}</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_resi_status">Residence</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_resi_status" [multiple]="true" formControlName="part_resi_status">
-                                        <ng-option value="Citizen">Citizen</ng-option>
-                                        <ng-option value="Permanent Resident">Permanent Resident</ng-option>
-                                        <ng-option value="Student Visa">Student Visa</ng-option>
-                                        <ng-option value="Temporary Visa">Temporary Visa</ng-option>
-                                        <ng-option value="Work permit">Work permit</ng-option>
-                                        <ng-option value="Family Visa">Family Visa</ng-option>
-                                    </ng-select>
-                                </div>
+                            </div>
 
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="locationPartnerFormSubmit()">Update</button>
+                            <!-- Location Preferences -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Location Partner Preferences</h5>
                                 </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                <div class="card-body">
 
-                            </form>
-                        </div>
-                    </div>
 
-                    <!-- Education Information  -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0 h6">Education Partner Preferences</h5>
-                        </div>
-                        <div class="card-body">
-                            <form action="javascript:void(0)" method="POST" [formGroup]="educationPartnerForm">
-                                <label class="form-label" for="part_education">Education</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_education" [multiple]="true" formControlName="part_education">
-                                        <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
-                                    </ng-select>
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="locationPartnerForm">
+                                        <label class="form-label" for="part_country_living">Country</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_country_living" [multiple]="true" formControlName="part_country_living" (change)="getStatesForMultipleCountries(false)">
+                                                <ng-option *ngFor="let country of countries" value="{{country.id}}">{{country.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_state">State</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_state" [multiple]="true" formControlName="part_state" (change)="getCitiesForMultipleStates(false)">
+                                                <ng-option *ngFor="let state of partStates" value="{{state.id}}">{{state.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_city">City</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_city" [multiple]="true" formControlName="part_city">
+                                                <ng-option *ngFor="let city of partCities" value="{{city.id}}">{{city.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_resi_status">Residence</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_resi_status" [multiple]="true" formControlName="part_resi_status">
+                                                <ng-option value="Citizen">Citizen</ng-option>
+                                                <ng-option value="Permanent Resident">Permanent Resident</ng-option>
+                                                <ng-option value="Student Visa">Student Visa</ng-option>
+                                                <ng-option value="Temporary Visa">Temporary Visa</ng-option>
+                                                <ng-option value="Work permit">Work permit</ng-option>
+                                                <ng-option value="Family Visa">Family Visa</ng-option>
+                                            </ng-select>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="locationPartnerFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+
+                                    </form>
                                 </div>
-                                <label class="form-label" for="part_employee_in">Employed In</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_employee_in" [multiple]="true" formControlName="part_employee_in">
-                                        <ng-option value="Private">Private</ng-option>
-                                        <ng-option value="Govt">Govt</ng-option>
-                                        <ng-option value="Central Govt">Central Govt</ng-option>
-                                        <ng-option value="MNC">MNC</ng-option>
-                                        <ng-option value="Overseas">Overseas</ng-option>
-                                        <ng-option value="Own Business">Own Business</ng-option>
-                                        <ng-option value="Others">Others</ng-option>
-                                        <ng-option value="Public Limited">Public Limited</ng-option>
-                                        <ng-option value="Semi Govt">Semi Govt</ng-option>
-                                    </ng-select>
+                            </div>
+
+                            <!-- Education Information  -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 h6">Education Partner Preferences</h5>
                                 </div>
-                                <label class="form-label" for="part_occupation">Occupation</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_occupation" [multiple]="true" formControlName="part_occupation">
-                                        <ng-option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_designation">Designation</label>
-                                <div class="form-group mb-1">
-                                    <ng-select id="part_designation" [multiple]="true" formControlName="part_designation">
-                                        <ng-option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.val}}</ng-option>
-                                    </ng-select>
-                                </div>
-                                <label class="form-label" for="part_income">Income</label>
-                                <select id="part_income" formControlName="part_income" class="form-control aiz-selectpicker" name="part_income" required>
+                                <div class="card-body">
+                                    <form action="javascript:void(0)" method="POST" [formGroup]="educationPartnerForm">
+                                        <label class="form-label" for="part_education">Education</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_education" [multiple]="true" formControlName="part_education">
+                                                <ng-option *ngFor="let education of streams" value="{{education.id}}">{{education.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_employee_in">Employed In</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_employee_in" [multiple]="true" formControlName="part_employee_in">
+                                                <ng-option value="Private">Private</ng-option>
+                                                <ng-option value="Govt">Govt</ng-option>
+                                                <ng-option value="Central Govt">Central Govt</ng-option>
+                                                <ng-option value="MNC">MNC</ng-option>
+                                                <ng-option value="Overseas">Overseas</ng-option>
+                                                <ng-option value="Own Business">Own Business</ng-option>
+                                                <ng-option value="Others">Others</ng-option>
+                                                <ng-option value="Public Limited">Public Limited</ng-option>
+                                                <ng-option value="Semi Govt">Semi Govt</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_occupation">Occupation</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_occupation" [multiple]="true" formControlName="part_occupation">
+                                                <ng-option *ngFor="let occupation of occupations" value="{{occupation.id}}">{{occupation.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_designation">Designation</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id="part_designation" [multiple]="true" formControlName="part_designation">
+                                                <ng-option *ngFor="let designation of designations" value="{{designation.id}}">{{designation.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label class="form-label" for="part_income">Income</label>
+                                        <select id="part_income" formControlName="part_income" class="form-control aiz-selectpicker" name="part_income">
                        <option selected="" value="">Select Annual Income</option>
                        <option value="0 - 1 Lakh">0 - 1 Lakh</option>
                        <option value="1 - 2 Lakhs">1 - 2 Lakhs</option>
@@ -1235,11 +1275,82 @@
                        <option value="90 Lakhs - 1 Crore">90 Lakhs - 1 Crore</option>
                        <option value="1 Crore &amp; Above">1 Crore &amp; Above</option>
                                  </select>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="educationPartnerFormSubmit()">Update</button>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="educationPartnerFormSubmit()">Update</button>
+                                        </div>
+                                        <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                                    </form>
                                 </div>
-                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade mt-3" id="gallery">
+                            <div class="card-columns">
+                                <div class="card hov-overlay">
+                                    <img [src]="memberDetails.photo2?memberDetails.photo2:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
+                                    <div class="overlay">
+                                        <div class="text-white absolute-full d-flex justify-content-center align-items-center">
+                                            <i *ngIf="memberDetails.photo2" class="las la-search-plus cursor-pointer la-2x mx-1" (click)="open(2)" title="View"></i>
+                                            <i class="las la-pen la-2x cursor-pointer mx-1" title="Change" (click)="photoFileInput.click();setPhotoNumber(2)"></i>
+                                            <input id="photoPic" (change)="onPhotoSelect($event)" type="file" hidden #photoFileInput accept="image/*" class="form-control aiz-selectpicker" name="photoPic">
+                                            <!-- <mat-progress-bar mode="determinate" *ngIf="photoProgress!=0" [value]="photoProgress"></mat-progress-bar> -->
+
+                                            <i *ngIf="memberDetails.photo2" class="las la-trash la-2x cursor-pointer mx-1" (click)="deletePhoto(2)" title="Delete"></i>
+                                            <i *ngIf="memberDetails.photo2" class="las la-user-plus la-2x cursor-pointer mx-1" title="Set as Profile pic" (click)="setAsProfilePic(2)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card hov-overlay">
+                                    <img [src]="memberDetails.photo3?memberDetails.photo3:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
+                                    <div class="overlay">
+                                        <div class="text-white absolute-full d-flex justify-content-center align-items-center">
+                                            <i *ngIf="memberDetails.photo3" class="las la-search-plus cursor-pointer la-2x mx-1" (click)="open(3)" title="View"></i>
+                                            <i class="las la-pen la-2x cursor-pointer mx-1" title="Change" (click)="photoFileInput.click();setPhotoNumber(3)"></i>
+                                            <i *ngIf="memberDetails.photo3" class="las la-trash la-2x cursor-pointer mx-1" (click)="deletePhoto(3)" title="Delete"></i>
+                                            <i *ngIf="memberDetails.photo3" class="las la-user-plus la-2x cursor-pointer mx-1" title="Set as Profile pic" (click)="setAsProfilePic(3)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card hov-overlay">
+                                    <img [src]="memberDetails.photo4?memberDetails.photo4:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
+                                    <div class="overlay">
+                                        <div class="text-white absolute-full d-flex justify-content-center align-items-center">
+                                            <i *ngIf="memberDetails.photo4" class="las la-search-plus cursor-pointer la-2x mx-1" (click)="open(4)" title="View"></i>
+                                            <i class="las la-pen la-2x cursor-pointer mx-1" title="Change" (click)="photoFileInput.click();setPhotoNumber(4)"></i>
+                                            <i *ngIf="memberDetails.photo4" class="las la-trash la-2x cursor-pointer mx-1" (click)="deletePhoto(4)" title="Delete"></i>
+                                            <i *ngIf="memberDetails.photo4" class="las la-user-plus la-2x cursor-pointer mx-1" title="Set as Profile pic" (click)="setAsProfilePic(4)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card hov-overlay">
+                                    <img [src]="memberDetails.photo5?memberDetails.photo5:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
+                                    <div class="overlay">
+                                        <div class="text-white absolute-full d-flex justify-content-center align-items-center">
+                                            <i *ngIf="memberDetails.photo5" class="las la-search-plus cursor-pointer la-2x mx-1" (click)="open(5)" title="View"></i>
+                                            <i class="las la-pen la-2x cursor-pointer mx-1" title="Change" (click)="photoFileInput.click();setPhotoNumber(5)"></i>
+                                            <i *ngIf="memberDetails.photo5" class="las la-trash la-2x cursor-pointer mx-1" (click)="deletePhoto(5)" title="Delete"></i>
+                                            <i *ngIf="memberDetails.photo5" class="las la-user-plus la-2x cursor-pointer mx-1" title="Set as Profile pic" (click)="setAsProfilePic(5)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade mt-3" id="id-proof">
+                            <div class="card-columns">
+                                <div class="card hov-overlay">
+                                    <img [src]="memberDetails.id_proof?memberDetails.id_proof:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
+                                    <div class="overlay">
+                                        <div class="text-white absolute-full d-flex justify-content-center align-items-center">
+                                            <i class="las la-pen la-2x cursor-pointer mx-1" title="Change" (click)="idFileInput.click()"></i>
+                                            <input id="idPic" (change)="onIdSelect($event)" type="file" hidden #idFileInput accept="image/*" class="form-control aiz-selectpicker" name="idPic">
+                                            <!-- <mat-progress-bar mode="determinate" *ngIf="idProgress!=0" [value]="idProgress"></mat-progress-bar> -->
+
+                                            <i *ngIf="memberDetails.id_proof" class="las la-trash la-2x cursor-pointer mx-1" (click)="deleteIdProof()" title="Delete"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -1498,402 +1609,3 @@
         </div>
     </div>
 </div> -->
-
-
-<!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        get_states_by_country_for_present_address();
-        get_cities_by_state_for_present_address();
-        get_states_by_country_for_permanent_address();
-        get_cities_by_state_for_permanent_address();
-        get_castes_by_religion_for_member();
-        get_sub_castes_by_caste_for_member();
-        get_castes_by_religion_for_partner();
-        get_sub_castes_by_caste_for_partner();
-        get_states_by_country_for_partner();
-    });
-
-    // For Present address
-    function get_states_by_country_for_present_address() {
-        // var present_country_id = $('#present_country_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/states/get_state_by_country', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     country_id: present_country_id
-        // }, function(data) {
-        //     $('#present_state_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#present_state_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#present_state_id > option").each(function() {
-        //         if (this.value == '2728') {
-        //             $("#present_state_id").val(this.value).change();
-        //         }
-        //     });
-
-        //     AIZ.plugins.bootstrapSelect('refresh');
-
-        //     get_cities_by_state_for_present_address();
-        // });
-    }
-
-    function get_cities_by_state_for_present_address() {
-        // var present_state_id = $('#present_state_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/cities/get_cities_by_state', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     state_id: present_state_id
-        // }, function(data) {
-        //     $('#present_city_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#present_city_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#present_city_id > option").each(function() {
-        //         if (this.value == '5742') {
-        //             $("#present_city_id").val(this.value).change();
-        //         }
-        //     });
-
-        //     AIZ.plugins.bootstrapSelect('refresh');
-        // });
-    }
-
-    $('#present_country_id').on('change', function() {
-        // get_states_by_country_for_present_address();
-    });
-
-    $('#present_state_id').on('change', function() {
-        // get_cities_by_state_for_present_address();
-    });
-
-    // For permanent address
-    function get_states_by_country_for_permanent_address() {
-        // var permanent_country_id = $('#permanent_country_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/states/get_state_by_country', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     country_id: permanent_country_id
-        // }, function(data) {
-        //     $('#permanent_state_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#permanent_state_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#permanent_state_id > option").each(function() {
-        //         if (this.value == '164') {
-        //             $("#permanent_state_id").val(this.value).change();
-        //         }
-        //     });
-
-        //     AIZ.plugins.bootstrapSelect('refresh');
-
-        //     get_cities_by_state_for_permanent_address();
-        // });
-    }
-
-    function get_cities_by_state_for_permanent_address() {
-        // var permanent_state_id = $('#permanent_state_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/cities/get_cities_by_state', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     state_id: permanent_state_id
-        // }, function(data) {
-        //     $('#permanent_city_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#permanent_city_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#permanent_city_id > option").each(function() {
-        //         if (this.value == '6414') {
-        //             $("#permanent_city_id").val(this.value).change();
-        //         }
-        //     });
-
-        //     AIZ.plugins.bootstrapSelect('refresh');
-        // });
-    }
-
-    $('#permanent_country_id').on('change', function() {
-        // get_states_by_country_for_permanent_address();
-    });
-
-    $('#permanent_state_id').on('change', function() {
-        // get_cities_by_state_for_permanent_address();
-    });
-
-    // get castes and subcastes For member
-    function get_castes_by_religion_for_member() {
-        // var member_religion_id = $('#member_religion_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/castes/get_caste_by_religion', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     religion_id: member_religion_id
-        // }, function(data) {
-        //     $('#member_caste_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#member_caste_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#member_caste_id > option").each(function() {
-        //         if (this.value == '2') {
-        //             $("#member_caste_id").val(this.value).change();
-        //         }
-        //     });
-        //     AIZ.plugins.bootstrapSelect('refresh');
-
-        //     get_sub_castes_by_caste_for_member();
-        // });
-    }
-
-    function get_sub_castes_by_caste_for_member() {
-        // var member_caste_id = $('#member_caste_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/sub-castes/get_sub_castes_by_religion', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     caste_id: member_caste_id
-        // }, function(data) {
-        //     $('#member_sub_caste_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#member_sub_caste_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#member_sub_caste_id > option").each(function() {
-        //         if (this.value == '') {
-        //             $("#member_sub_caste_id").val(this.value).change();
-        //         }
-        //     });
-        //     AIZ.plugins.bootstrapSelect('refresh');
-        // });
-    }
-
-    $('#member_religion_id').on('change', function() {
-        // get_castes_by_religion_for_member();
-    });
-
-    $('#member_caste_id').on('change', function() {
-        // get_sub_castes_by_caste_for_member();
-    });
-
-    // get castes and subcastes For partner
-    function get_castes_by_religion_for_partner() {
-        // var partner_religion_id = $('#partner_religion_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/castes/get_caste_by_religion', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     religion_id: partner_religion_id
-        // }, function(data) {
-        //     $('#partner_caste_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#partner_caste_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#partner_caste_id > option").each(function() {
-        //         if (this.value == '5') {
-        //             $("#partner_caste_id").val(this.value).change();
-        //         }
-        //     });
-        //     AIZ.plugins.bootstrapSelect('refresh');
-
-        //     get_sub_castes_by_caste_for_partner();
-        // });
-    }
-
-    function get_sub_castes_by_caste_for_partner() {
-        // var partner_caste_id = $('#partner_caste_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/sub-castes/get_sub_castes_by_religion', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     caste_id: partner_caste_id
-        // }, function(data) {
-        //     $('#partner_sub_caste_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#partner_sub_caste_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#partner_sub_caste_id > option").each(function() {
-        //         if (this.value == '') {
-        //             $("#partner_sub_caste_id").val(this.value).change();
-        //         }
-        //     });
-        //     AIZ.plugins.bootstrapSelect('refresh');
-        // });
-    }
-
-    $('#partner_religion_id').on('change', function() {
-        // get_castes_by_religion_for_partner();
-    });
-
-    $('#partner_caste_id').on('change', function() {
-        // get_sub_castes_by_caste_for_partner();
-    });
-
-    // For partner address
-    function get_states_by_country_for_partner() {
-        // var partner_country_id = $('#partner_country_id').val();
-        // $.post('https://demo.activeitzone.com/matrimonial/states/get_state_by_country', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     country_id: partner_country_id
-        // }, function(data) {
-        //     $('#partner_state_id').html(null);
-        //     for (var i = 0; i < data.length; i++) {
-        //         $('#partner_state_id').append($('<option>', {
-        //             value: data[i].id,
-        //             text: data[i].name
-        //         }));
-        //     }
-        //     $("#partner_state_id > option").each(function() {
-        //         if (this.value == '164') {
-        //             $("#partner_state_id").val(this.value).change();
-        //         }
-        //     });
-
-        //     AIZ.plugins.bootstrapSelect('refresh');
-        // });
-    }
-
-    $('#partner_country_id').on('change', function() {
-        // get_states_by_country_for_partner();
-    });
-
-    //  education Add edit , status change
-    function education_add_modal(id) {
-        // $.post('https://demo.activeitzone.com/matrimonial/education/create', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     id: id
-        // }, function(data) {
-        //     $('.create_edit_modal_content').html(data);
-        //     $('.create_edit_modal').modal('show');
-        // });
-    }
-
-    function education_edit_modal(id) {
-        // $.post('https://demo.activeitzone.com/matrimonial/education/edit', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     id: id
-        // }, function(data) {
-        //     $('.create_edit_modal_content').html(data);
-        //     $('.create_edit_modal').modal('show');
-        // });
-    }
-
-    function update_education_present_status(el) {
-        // if (el.checked) {
-        //     var status = 1;
-        // } else {
-        //     var status = 0;
-        // }
-        // $.post('https://demo.activeitzone.com/matrimonial/education/update_education_present_status', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     id: el.value,
-        //     status: status
-        // }, function(data) {
-        //     if (data == 1) {
-        //         location.reload();
-        //     } else {
-        //         AIZ.plugins.notify('danger', 'Something went wrong');
-        //     }
-        // });
-    }
-
-
-    //  Career Add edit , status change
-    function career_add_modal(id) {
-        // $.post('https://demo.activeitzone.com/matrimonial/career/create', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     id: id
-        // }, function(data) {
-        //     $('.create_edit_modal_content').html(data);
-        //     $('.create_edit_modal').modal('show');
-        // });
-    }
-
-    function career_edit_modal(id) {
-        // $.post('https://demo.activeitzone.com/matrimonial/career/edit', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     id: id
-        // }, function(data) {
-        //     $('.create_edit_modal_content').html(data);
-        //     $('.create_edit_modal').modal('show');
-        // });
-    }
-
-    function update_career_present_status(el) {
-        // if (el.checked) {
-        //     var status = 1;
-        // } else {
-        //     var status = 0;
-        // }
-        // $.post('https://demo.activeitzone.com/matrimonial/career/update_career_present_status', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     id: el.value,
-        //     status: status
-        // }, function(data) {
-        //     if (data == 1) {
-        //         location.reload();
-        //     } else {
-        //         AIZ.plugins.notify('danger', 'Something went wrong');
-        //     }
-        // });
-    }
-
-    $('.new-email-verification').on('click', function() {
-        // $(this).find('.loading').removeClass('d-none');
-        // $(this).find('.default').addClass('d-none');
-        // var email = $("input[name=email]").val();
-
-        // $.post('https://demo.activeitzone.com/matrimonial/new-user-verification', {
-        //     _token: 'pjiufb6rZD8fR3uPBaJGEeT8Q0iTnNucpUSZaBVo',
-        //     email: email
-        // }, function(data) {
-        //     data = JSON.parse(data);
-        //     $('.default').removeClass('d-none');
-        //     $('.loading').addClass('d-none');
-        //     if (data.status == 2)
-        //         AIZ.plugins.notify('warning', data.message);
-        //     else if (data.status == 1)
-        //         AIZ.plugins.notify('success', data.message);
-        //     else
-        //         AIZ.plugins.notify('danger', data.message);
-        // });
-    });
-</script>
-
-<script type="text/javascript">
-    function account_deactivation() {
-        // var status = 0
-        // $('.account_status_change_modal').modal('show');
-        // if (status == 0) {
-        //     $('#deacticvation_status').val(1);
-        //     $('#confirmation_note').html('Do You Realy Want To Deactive Your Account');
-        // } else {
-        //     $('#deacticvation_status').val(0);
-        //     $('#confirmation_note').html('Are You Sure To Reactive Your Account');
-        // }
-    }
-</script>
-
-
-<script type="text/javascript">
-    // Login credentials autoFill for demo
-    function autoFill1() {
-        // $('#email').val('user2@example.com');
-        // $('#password').val('12345678');
-    }
-
-    function autoFill2() {
-        // $('#email').val('user17@example.com');
-        // $('#password').val('12345678');
-    }
-</script>

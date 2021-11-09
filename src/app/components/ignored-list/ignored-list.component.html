@@ -10,48 +10,59 @@
                 <div class="aiz-user-panel overflow-hidden">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0 h6">Ignored Members</h5>
+                            <h5 class="mb-0 h6">Blocked Members</h5>
                         </div>
                         <div class="card-body">
-                            <table class="table aiz-table mb-0">
+                            <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            <table class="table aiz-table mb-0" *ngIf="!isSavingDetails">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
-                                        <th>Name</th>
-                                        <th>age</th>
-                                        <th>Religion</th>
-                                        <th>location</th>
-                                        <th>Mother Tongue</th>
+                                        <!-- <th>Name</th> -->
+                                        <th>Age</th>
+                                        <th>Caste</th>
+                                        <th>Location</th>
+                                        <th>Blocked On</th>
                                         <th class="text-right">Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr id="ignored_member_30">
-                                        <td>1</td>
+                                    <tr *ngFor="let result of results | paginate:config">
+                                        <td>{{result.matri_id}}</td>
                                         <td>
-                                            <img class="img-md" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zo8WHvxlUyiPrxwnrc6ztQE5u8MnJo2ej2UUl1JU.png" height="45px" alt="Photo">
+                                            <span class="avatar avatar-sm mr-3 flex-shrink-0">
+                                                <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='assets/public/assets/img/admin-head.jpg';" alt="Photo">
+                                            </span>
                                         </td>
-                                        <td>Idona Mccoy</td>
-                                        <td>28</td>
+                                        <!-- <td>{{result.firstname}} {{result.lastname}}</td> -->
+                                        <td>{{result.age}}</td>
                                         <td>
-                                            Hinduism
+                                            {{result.caste_name}}
                                         </td>
                                         <td>
-                                            China
+                                            {{result.city_name}}{{result.state_name?', '+result.state_name:''}}
                                         </td>
                                         <td>
+                                            {{result.created_on | dateBeautifier}}
                                         </td>
                                         <td class="text-right">
-                                            <a onclick="remove_from_ignored_list(30)" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Remove From Ignore List">
+                                            <!-- <a href="avascript:void(0);" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Interest Expressed">
+                                                <i class="las la-heart"></i>
+                                            </a> -->
+                                            <!-- <a onclick="remove_from_ignored_list(30)" class="btn btn-soft-success btn-icon btn-circle btn-sm" title="Remove From Ignore List">
                                                 <i class="las la-check"></i>
+                                            </a> -->
+                                            <a class="btn btn-soft-danger btn-icon btn-circle btn-sm" title="Unblock" (click)="unblock(result.matri_id)">
+                                                <i class="las la-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <img *ngIf="isNoResults" class="d-block m-auto w-50" src="assets/public/assets/img/no_results_found.webp">
                             <div class="aiz-pagination">
-
+                                <pagination-controls (pageChange)="pageChange($event)" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel=""></pagination-controls>
                             </div>
                         </div>
                     </div>
@@ -277,50 +288,3 @@
         </div>
     </div>
 </div> -->
-
-
-<script type="text/javascript">
-    function remove_from_ignored_list(id) {
-        // $.post('https://demo.activeitzone.com/matrimonial/member/remove-from-ignored-list', {
-        //         _token: 'GS20jWF9BSVxNRzk4uvnlBKdT3L9pDghuAwt92UC',
-        //         id: id
-        //     },
-        //     function(data) {
-        //         if (data == 1) {
-        //             $("#ignored_member_" + id).hide();
-        //             AIZ.plugins.notify('success', 'You Have Removed This Member From Your Ignored list');
-        //         } else {
-        //             AIZ.plugins.notify('danger', 'Something went wrong');
-        //         }
-        //     }
-        // );
-    }
-</script>
-
-<script type="text/javascript">
-    function account_deactivation() {
-        // var status = 0
-        // $('.account_status_change_modal').modal('show');
-        // if (status == 0) {
-        //     $('#deacticvation_status').val(1);
-        //     $('#confirmation_note').html('Do You Realy Want To Deactive Your Account');
-        // } else {
-        //     $('#deacticvation_status').val(0);
-        //     $('#confirmation_note').html('Are You Sure To Reactive Your Account');
-        // }
-    }
-</script>
-
-
-<script type="text/javascript">
-    // Login credentials autoFill for demo
-    function autoFill1() {
-        // $('#email').val('user2@example.com');
-        // $('#password').val('12345678');
-    }
-
-    function autoFill2() {
-        // $('#email').val('user17@example.com');
-        // $('#password').val('12345678');
-    }
-</script>

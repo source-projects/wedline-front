@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/services/login.service';
 import SwiperCore, { Autoplay,Pagination} from 'swiper';
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Pagination]);
@@ -9,19 +12,46 @@ declare var $:any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+    featuredMembers:any[] = [];
+    stories:any[] = [];
+    generatedTokenStatusSubscription:Subscription;
+    isGettingFeatured:boolean = false;
+    isNoResultsFeatured:boolean = false;
+    isGettingStory:boolean = false;
+    isNoResultsStory:boolean = false;
     pagination = {
         clickable: true,
         renderBullet: function (index:any, className:any) {
             return '<span class="' + className + '">' + (index + 1) + "</span>";
         },
     };
-  constructor() { }
+  constructor(
+      private loginService:LoginService,
+      private snackBar:MatSnackBar
+  ) {
+    this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
+        if(res){
+          this.getFeaturedMembers();
+          this.getSuccessStories();
+        }
+      }); 
+   }
 
   ngOnInit(): void {
    this.initalizeSlider();
   }
+  ngOnDestroy():void{
+    this.generatedTokenStatusSubscription.unsubscribe();
+  }  
   
+  showSnackbar(content:string,hasDuration:boolean,action:string){
+    const config = new MatSnackBarConfig();
+    if(hasDuration){
+      config.duration = 3000;
+    }
+    config.panelClass = ['snackbar-styler'];
+    return this.snackBar.open(content, action, config);
+  }
   initalizeSlider() { 
   
       
@@ -149,6 +179,43 @@ export class HomeComponent implements OnInit {
       });
     
   }
-
+  getFeaturedMembers(){
+    this.isNoResultsFeatured = false;
+    this.isGettingFeatured = true;
+    let requestData = new FormData();
+    requestData.append("featured","featured");
+    requestData.append("religion","30");
+    requestData.append("user_agent","NI-AAPP");
+    requestData.append("search_order","latest_first");
+    this.loginService.search(requestData,1).subscribe((res:any)=>{
+      this.featuredMembers = [];
+      this.isGettingFeatured = false;
+      if((res["status"]=="success")&&(res["total_count"]>0)){        
+        this.featuredMembers = res["data"];
+      }else{
+        this.isNoResultsFeatured = true;
+      }
+    },error=>{
+      this.isGettingFeatured = false;
+    }); 
+  }
+  getSuccessStories(){
+    this.isNoResultsStory = false;
+    this.isGettingStory = true;
+    let requestData = new FormData();
+    // requestData.append("religion","30");
+    this.loginService.getSuccessStories(requestData,1,10).subscribe((res:any)=>{
+      this.stories = [];
+      this.isGettingStory = false;
+      if((res["status"]=="success")&&(res["total_count"]>0)){        
+        this.stories = res["data"];
+        this.stories.map(result=>result.id = btoa(result.id));
+      }else{
+        this.isNoResultsStory = true;
+      }
+    },error=>{
+      this.isGettingStory = false;
+    }); 
+  }
 
 }

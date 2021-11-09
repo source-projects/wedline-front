@@ -1,0 +1,90 @@
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="d-flex align-items-start">
+                <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                    <app-aside></app-aside>
+                </div>
+                <div class="aiz-user-panel overflow-hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Tell Your Success Story</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:void(0)" method="POST" [formGroup]="successStoryForm">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="brideid">Bride ID
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input (change)="checkMemberId('Female')" type="text" name="brideid" formControlName="brideid" value="" class="form-control" placeholder="Bride ID">
+                                        <h5 class="mt-2 mb-0" *ngIf="successStoryForm.controls.bridename?.valid">{{successStoryForm.controls.bridename?.value}}</h5>
+                                        <small class="text-danger" *ngIf="!isBrideIdValid">Please provide a valid bride ID</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="groomid">Groom ID 
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input (change)="checkMemberId('Male')" type="text" name="groomid" formControlName="groomid" value="" class="form-control" placeholder="Groom ID">
+                                        <h5 class="mt-2 mb-0" *ngIf="successStoryForm.controls.groomname?.valid">{{successStoryForm.controls.groomname?.value}}</h5>
+                                        <small class="text-danger" *ngIf="!isGroomIdValid">Please provide a valid groom ID</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row" [hidden]="true">
+                                    <div class="col-md-6">
+                                        <label for="bridename">Bride Name
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" name="bridename" formControlName="bridename" value="" class="form-control" placeholder="Bride Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="groomname">Groom Name
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                        <input type="text" name="groomname" formControlName="groomname" value="" class="form-control" placeholder="Groom Name">
+                                    </div>
+                                </div>
+                                <label class="form-label">Message</label>
+                                <div>
+                                    <textarea type="text" name="successmessage" class="form-control" rows="4" placeholder="Message" formControlName="successmessage"></textarea>
+                                </div>
+                                <label class="form-label mt-3" for="marriagedate">Date of Marriage </label>
+                                <div fxLayout="row">
+                                    <input formControlName="marriagedate" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" matInput [matDatepicker]="picker" type="text" class="form-control" value="" placeholder="Date Of Marriage" name="dob" autocomplete="off"
+                                        readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="photo">Wedding Photo <small>(800x800)</small></label>
+                                    <div class="input-group" (click)="imageFileInput.click()">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-soft-secondary font-weight-medium">Browse</div>
+                                        </div>
+                                        <div class="form-control file-amount">{{imageFile?imageFile.name:"Choose File"}}</div>
+                                        <input (change)="onImageSelect($event,imageFileInput)" type="file" hidden name="weddingphoto" class="selected-files" #imageFileInput accept="image/*">
+                                    </div>
+                                    <img *ngFor='let url of imagePreview' [src]="url" height="150" width="200px" style="object-fit:cover;margin: 3px;">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="aiz-checkbox">
+                                        <input type="checkbox" name="checkbox_example_1" #terms>
+                                        <span class=opacity-60>By signing up you agree to our
+                                            <a href="javascript:void(0)" target="_blank">terms and conditions.</a>
+                                        </span>
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-sm" (click)="postSuccessStory()" *ngIf="!isSavingDetails">Update {{photoProgress?photoProgress+"%":""}}</button>
+                                </div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title><small>From</small> {{messageObject.sender}}</h1>
+<mat-dialog-content>
+    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isProcessing"></mat-spinner>
+    <div *ngIf="!isProcessing">
+        {{messageObject.content}}
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+        <button class="btn btn-outline-primary" (click)="dismiss()">Close</button>
+    </div>
+</mat-dialog-actions>

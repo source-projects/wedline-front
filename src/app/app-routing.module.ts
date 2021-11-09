@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { FullProfileComponent } from './components/full-profile/full-profile.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileSettingComponent } from './components/profile-setting/profile-setting.component';
@@ -17,6 +16,15 @@ import { LoginGuard } from './guards/login.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfileStarterComponent } from './components/profile-starter/profile-starter.component';
 import { PlansComponent } from './components/plans/plans.component';
+import { PublicViewComponent } from './components/public-view/public-view.component';
+import { SearchComponent } from './components/search/search.component';
+import { MyLikesComponent } from './components/my-likes/my-likes.component';
+import { PrivacySettingsComponent } from './components/privacy-settings/privacy-settings.component';
+import { SuccessStoriesComponent } from './components/success-stories/success-stories.component';
+import { SuccessStoryComponent } from './components/success-story/success-story.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { PostSuccessStoryComponent } from './components/post-success-story/post-success-story.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const routes: Routes = [
   {path:"home",component: HomeComponent},
@@ -24,17 +32,25 @@ const routes: Routes = [
   {path:"about",component: AboutComponent},
   {path:"register",component: RegisterComponent,canActivate:[LoginGuard]},
   {path:"login",component: LoginComponent,canActivate:[LoginGuard]},
-  {path:"full-profile",component: FullProfileComponent,canActivate:[AuthGuard]},
-  {path:"profile",component: ProfileComponent,canActivate:[AuthGuard]},
+  {path:"full-profile/:memberId",component: FullProfileComponent,canActivate:[AuthGuard]},
+  {path:"public-view",component: PublicViewComponent,canActivate:[AuthGuard]},
+  {path:"search",component: SearchComponent},
+  {path:"success-stories",component: SuccessStoriesComponent},
+  {path:"success-story/:id",component: SuccessStoryComponent},
+  {path:"post-success-story",component: PostSuccessStoryComponent,canActivate:[AuthGuard]},
+  {path:"contact",component: ContactComponent},
   {path:"dashboard",component: DashboardComponent,canActivate:[AuthGuard]},
   {path:"profile-setting",component: ProfileSettingComponent,canActivate:[AuthGuard]},
   {path:"my-interest",component: MyInterestComponent,canActivate:[AuthGuard]},
   {path:"profile-starter",component: ProfileStarterComponent,canActivate:[AuthGuard]},
   {path:"plans",component: PlansComponent,canActivate:[AuthGuard]},
   {path:"my-shortlist",component: MyShortlistComponent,canActivate:[AuthGuard]},
+  {path:"my-likes",component: MyLikesComponent,canActivate:[AuthGuard]},
   {path:"chat",component: ChatComponent,canActivate:[AuthGuard]},
+  {path:"notifications",component: NotificationsComponent,canActivate:[AuthGuard]},
   {path:"ignored-list",component: IgnoredListComponent,canActivate:[AuthGuard]},
-  {path:"filter",component: FilterComponent,canActivate:[AuthGuard]}  
+  {path:"privacy-settings",component: PrivacySettingsComponent,canActivate:[AuthGuard]},
+  {path:"filter",component: FilterComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -1,0 +1,41 @@
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 pt-lg-10  bg-white">
+
+
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="d-flex align-items-start">
+                <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
+                    <app-aside></app-aside>
+                </div>
+                <div class="aiz-user-panel overflow-hidden">
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                        <h3 class="mb-0">Notifications</h3>
+                        <i class="las la-sync mr-4 cursor-pointer" style="font-size: 23px;color:grey" (click)="getNotifications()" title="Refresh"></i>
+                    </div>
+                    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+                    <img *ngIf="isNoResults" class="d-block m-auto w-50" src="assets/public/assets/img/no_results_found.webp">
+                    <div class="list-group mt-4" *ngIf="!isSavingDetails">
+                        <button *ngFor="let result of results | paginate:config" type="button" class="list-group-item list-group-item-action" aria-current="true">
+                          <div class="row align-items-center">
+                              <div class="col-1">
+                                <span class="avatar avatar-sm mr-3 flex-shrink-0">
+                                    <img src="{{result.member_photo[0]?result.member_photo[0].photo1:'assets/public/assets/img/admin-head.jpg'}}">
+                                </span>
+                              </div>
+                              <div class="col-1" [class.text-bold]="result.read_status=='No'">{{result.sender}}</div>
+                              <div class="col-7" [class.text-bold]="result.read_status=='No'">{{result.content}}</div>
+                              <div class="col-2"><small><i class="las la-clock"></i>{{result.sent_on | dateBeautifier}}</small></div>
+                              <div class="col-1">
+                                <i class="las la-trash" style="font-size: 20px;color:red" (click)="deleteMessage(result.id,$event)"></i>
+                              </div>
+                          </div>
+                        </button>
+                    </div>
+                    <div class="aiz-pagination">
+                        <pagination-controls (pageChange)="pageChange($event)" [autoHide]="true" [responsive]="true" previousLabel="" nextLabel=""></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

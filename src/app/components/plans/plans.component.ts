@@ -29,9 +29,9 @@ export class PlansComponent implements OnInit {
       "key": "rzp_test_AH9Z2L7Vuospz9",
       "amount": "50000",
       "currency": "INR",
-      "name": "MyNest",
+      "name": "Wedline Matrimony",
       "description": "Purchase your membership",
-      "image": "https://demoweblinks.in/matrimony/assets/public/assets/img/beforeweddinglogo.png",
+      "image": "assets/public/assets/img/beforeweddinglogo.png",
       "handler": function (response:any){
           that.zone.run(()=>that.saveMembership(response));
       },
@@ -137,6 +137,7 @@ export class PlansComponent implements OnInit {
           this.showSnackbar("Subscribed successfully!",true,"close");
           localStorage.setItem("profileStatus","Subscribed");
           this.loginService.hasLoggedIn.next(true);
+          this.loginService.profileStatus.next("Subscribed");
           this.router.navigate(["/dashboard"]);
         }else{
           this.showSnackbar(res["error_message"],true,"close");
@@ -159,15 +160,15 @@ export class PlansComponent implements OnInit {
     // params["paymentId"] = response.razorpay_payment_id;
     // params["orderId"] = this.orderId;
     // params["signature"] = response.razorpay_signature;
-    this.showSnackbar("Please wait...",false,"");
     let requestData = new FormData();
     requestData.append("payment_method","RazorPay");
     requestData.append("plan_id",this.planChoosed.id);
     this.loginService.verifyPaymentStatus(requestData).subscribe((res:any)=>{
-        console.log(res);
         if(res["status"]=="success"){
           this.showSnackbar("Subscribed successfully!",true,"close");
           localStorage.setItem("profileStatus","Subscribed");
+          this.loginService.hasLoggedIn.next(true);
+          this.loginService.profileStatus.next("Subscribed");
           this.router.navigate(["/dashboard"]);
         }else{
           this.showSnackbar(res["error_message"],true,"close");
