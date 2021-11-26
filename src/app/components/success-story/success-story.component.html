@@ -1,27 +1,35 @@
-<div class="text-left">
-
-    <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 bg-white" [class.pt-lg-8]="profileStatus!='Subscribed'" [class.pt-lg-10]="profileStatus=='Subscribed'">
-
-        <section class="home2-sucess-stories-section">
-            <div class="top-content">
-                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
-                <div class="container" *ngIf="!isSavingDetails&&result">
-                    <div class="d-flex justify-content-center">
-                        <div class="section-header white-color">
-                            <h6 class="sub-title wow fadeInUp">
-                                {{result.bridename}} & {{result.groomname}}
-                            </h6>
-                            <p class="date text-white">
-                                {{result.marriagedate | dateBeautifier}}
-                            </p>
-                        </div>
+<div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 bg-white" [class.pt-lg-8]="profileStatus!='Subscribed'" [class.pt-lg-10]="profileStatus=='Subscribed'">
+    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isSavingDetails"></mat-spinner>
+    <section class="py-3 text-center bg-white" *ngIf="!isSavingDetails&&result">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+                    <h1 class="fw-600 h2 lh-1-5 text-dark">Life has become more beautiful from the day you enter in my life.</h1>
+                    <div>
+                        <a href="javascript:void(0)" class="c-pointer text-primary">
+                            {{result.bridename}} & {{result.groomname}}
+                        </a>
+                        <span class="opacity-40">On&nbsp;</span>
+                        <span class="opacity-70">{{result.marriagedate | dateBeautifier}}</span>
                     </div>
-                    <img class="success-full-img w-100 mb-2" src="https://demoweblinks.in/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
-                    <h4 class="title text-white text-justify mt-5">
-                        {{result.successmessage}}
-                    </h4>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+    <section class="py-4 bg-white">
+        <div class="container">
+            <img class="success-full-img d-block mb-2 ml-auto mr-auto" src="http://localhost/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';"
+                alt="">
+            <div class="row">
+                <div class="col-xl-8 mx-auto">
+                    <div class="py-4">
+                        <div class="overflow-hidden mb-4 lh-1-8">
+                            <p><span style="font-size: 14px; text-align: justify;">{{result.successmessage}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>

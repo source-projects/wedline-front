@@ -47,7 +47,10 @@ export class RegisterComponent implements OnInit {
       lastname:['',Validators.required],
       dateOfBirth:['',Validators.required],
       caste:['',Validators.required]
-    });   
+    }); 
+    if(this.loginService.homeRegisterData){
+      this.signupForm.patchValue(this.loginService.homeRegisterData);
+    }  
     this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
       if(res){
         this.getMobileCountryCode();

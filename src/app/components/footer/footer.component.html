@@ -1,14 +1,14 @@
-<footer class="aiz-footer fs-13 mt-auto text-white fw-400 pt-2">
+<footer class="aiz-footer fs-13 mt-auto text-white fw-400 pt-2 bg-offwhite">
     <div class="container">
 
         <div class="row mb-4">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10 text-center mx-auto">
                 <div class="logo mb-1">
-                    <a href="#" class="d-inline-block">
+                    <a href="javascript:void(0)" class="d-inline-block" routerLink="/home">
                         <img src="assets/public/assets/img/beforeweddinglogo.png" alt="wedline Matrimony" class="mw-100" height="115">
                     </a>
                 </div>
-                <div class="opacity-60">
+                <div class="text-dark">
                     But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human
                     happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.
                 </div>
@@ -16,79 +16,76 @@
         </div>
 
         <div class="mb-4">
-            <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">Contacts</h4>
-            <div class="row opacity-60 no-gutters">
-                <div class="col-xl col-md-6 mb-4">
-                    <div class="mb-3 opacity-60">
+            <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">CONTACT US</h4>
+            <div class="row no-gutters">
+                <div class="col-xl col-md-6 mb-4 text-dark">
+                    <div class="mb-3 fw-600">
                         <i class="las la-home mr-2"></i>
                         <span>Address</span>
                     </div>
-                    <div>Kochi</div>
+                    <div>Thattaparambil Shopping Complex Mele Bazar,<br> near South Indian Bank, Cherupuzha, <br>Kerala 670511</div>
                 </div>
-                <div class="col-xl col-md-6 mb-4">
-                    <div class="mb-3 opacity-60">
+                <div class="col-xl col-md-6 mb-4 text-dark">
+                    <div class="mb-3 fw-600">
                         <i class="las la-globe mr-2"></i>
                         <span>Website</span>
                     </div>
-                    <div>www.wedline.com</div>
+                    <div>www.wedlinematrimony.com</div>
                 </div>
-                <div class="col-xl col-md-6 mb-4">
-                    <div class="mb-3 opacity-60">
+                <div class="col-xl col-md-6 mb-4 text-dark">
+                    <div class="mb-3 fw-600">
                         <i class="las la-envelope mr-2"></i>
                         <span>Email</span>
                     </div>
-                    <div><a href="#" class="__cf_email__" data-cfemail="2f5c5a5f5f405d5b6f4a41594e5b40014c4042">sample@gmail.com</a></div>
+                    <div><a href="javascript:void(0)" class="__cf_email__">info@wedlinematrimony.com</a></div>
                 </div>
-                <div class="col-xl col-md-6 mb-4">
-                    <div class="mb-3 opacity-60">
+                <div class="col-xl col-md-6 mb-4 text-dark">
+                    <div class="mb-3 fw-600">
                         <i class="las la-phone mr-2"></i>
                         <span>Phone</span>
                     </div>
-                    <div>+91-321-200-6932</div>
-                    <div>+91-321-200-6933</div>
+                    <div>+91-9695778448</div>
+                    <div>+91-49 852 42133</div>
                 </div>
             </div>
         </div>
 
-        <div class="row no-gutters">
+        <div class="row no-gutters text-dark">
             <div class="col-xl col-md-6 mb-4">
-                <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">Main Menu</h4>
+                <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">MAIN MENU</h4>
                 <div>
                     <ul class="list-unstyled">
                         <li class="my-3">
-                            <a href="javascript:void(0)" routerLink="/home" class="text-reset opacity-60">Home</a>
+                            <a href="javascript:void(0)" routerLink="/home" class="text-reset">Home</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">How It Works</a>
+                            <a href="javascript:void(0)" class="text-reset" [routerLink]="['/home']" fragment="how-it-works">How It Works</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">Premium Members</a>
+                            <a href="javascript:void(0)" class="text-reset" [routerLink]="['/home']" fragment="featured-members">Featured Members</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" [routerLink]="['/home']" fragment="packages" class="text-reset opacity-60">Packages</a>
-                        </li>
-                        <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">Real Reviews</a>
+                            <a href="javascript:void(0)" [routerLink]="['/plans']" class="text-reset">Packages</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-xl col-md-6 mb-4">
-                <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">Quick Search</h4>
+                <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">QUICK LINKS</h4>
                 <div>
                     <ul class="list-unstyled">
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">All Members</a>
+                            <a href="javascript:void(0)" class="text-reset" routerLink="/search">Search</a>
                         </li>
                         <li class="my-3">
-                            <a href="javscript:void(0)" class="text-reset opacity-60">Premium Members</a>
+                            <a href="javscript:void(0)" class="text-reset" routerLink="/success-stories">Success Stories</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">Free Members</a>
+                            <a href="javascript:void(0)" class="text-reset" routerLink="/about">About Us</a>
                         </li>
-                        <li class="my-3" *ngIf="hasLoggedIn">
-                            <a href="javscript:void(0)" routerLink="/filter" class="text-reset opacity-60">Search</a>
+                        <li class="my-3">
+                            <a href="javascript:void(0)" class="text-reset" routerLink="/contact">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -99,16 +96,16 @@
                 <div>
                     <ul class="list-unstyled">
                         <li class="my-3">
-                            <a href="javscript:void(0)" class="text-reset opacity-60">FAQ</a>
+                            <a href="javscript:void(0)" class="text-reset">FAQ</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">Terms &amp; Conditions</a>
+                            <a href="javascript:void(0)" class="text-reset">Terms &amp; Conditions</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset opacity-60">Privacy Policy</a>
+                            <a href="javascript:void(0)" class="text-reset">Privacy Policy</a>
                         </li>
                         <!-- <li class="my-3">
-                            <a href="https://demo.activeitzone.com/matrimonial/" class="text-reset opacity-60">Request a Refund</a>
+                            <a href="https://demo.activeitzone.com/matrimonial/" class="text-reset">Request a Refund</a>
                         </li> -->
                     </ul>
                 </div>
@@ -117,12 +114,12 @@
             <div class="col-xl col-md-6 mb-4">
                 <h4 class="text-uppercase text-primary fs-14 border-bottom border-primary pb-4 mb-4">Mobile</h4>
                 <div class="mb-3">
-                    <a href="#">
+                    <a href="javascript:void(0)">
                         <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/vr2RFTrdbxEawbPyG8suCNyMVEvr05lGIQ6MX1Nz.png" height="50">
                     </a>
                 </div>
                 <div class="mb-3">
-                    <a href="#">
+                    <a href="javascript:void(0)">
                         <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/a1RdLfMfXtNqskauoZwEC94F8xAmbH16mhaGVHWh.png" height="50">
                     </a>
                 </div>
@@ -133,27 +130,27 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="lh-1">
-                        <p>©2021 wedline.com&nbsp; |&nbsp; &nbsp;made with <i class="las la-heart mr-2"></i> <a href="#">Amaeka Technologies </a><br><br></p>
+                        <p class="text-dark">©2021 wedline.com&nbsp; |&nbsp; &nbsp;made with <i class="las la-heart mr-2 text-danger"></i> <a href="#">Amaeka Technologies </a><br><br></p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="text-left text-lg-right">
+                    <div class="text-left text-lg-right pr-5">
                         <ul class="list-inline social colored mb-0">
                             <li class="list-inline-item">
-                                <a href="#" target="_blank" class="facebook"><i class="lab la-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/Wedlinematrimony1" target="_blank" class="facebook"><i class="lab la-facebook-f"></i></a>
                             </li>
-                            <li class="list-inline-item">
+                            <!-- <li class="list-inline-item">
                                 <a href="#" target="_blank" class="twitter"><i class="lab la-twitter"></i></a>
+                            </li> -->
+                            <li class="list-inline-item">
+                                <a href="https://www.instagram.com/wedline_matrimony" target="_blank" class="instagram"><i class="lab la-instagram"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#" target="_blank" class="instagram"><i class="lab la-instagram"></i></a>
+                                <a href="https://www.youtube.com/channel/UCZosXhTiRnaLzfQoEmLmnkw" target="_blank" class="youtube"><i class="lab la-youtube"></i></a>
                             </li>
-                            <li class="list-inline-item">
-                                <a href="#" target="_blank" class="youtube"><i class="lab la-youtube"></i></a>
-                            </li>
-                            <li class="list-inline-item">
+                            <!-- <li class="list-inline-item">
                                 <a href="#" target="_blank" class="linkedin"><i class="lab la-linkedin-in"></i></a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -167,32 +164,32 @@
     <div class="row align-items-center gutters-5 text-center">
         <div class="col">
             <a href="javascript:void(0)" routerLink="/home" class="text-reset d-block flex-grow-1 text-center py-2">
-                <i class="las la-home fs-18 opacity-60 opacity-100"></i>
-                <span class="d-block fs-10 opacity-60 opacity-100 fw-600">Home</span>
+                <i class="las la-home fs-18 opacity-100"></i>
+                <span class="d-block fs-10 opacity-100 fw-600">Home</span>
             </a>
         </div>
         <div class="col" *ngIf="hasLoggedIn">
             <a href="javascript:void(0)" class="text-reset d-block flex-grow-1 text-center py-2">
                 <span class="d-inline-block position-relative px-2">
-                    <i class="las la-bell fs-18 opacity-60 "></i>
+                    <i class="las la-bell fs-18 "></i>
                                     </span>
-                <span class="d-block fs-10 opacity-60 ">Notifications</span>
+                <span class="d-block fs-10 ">Notifications</span>
             </a>
         </div>
         <div class="col" *ngIf="hasLoggedIn">
             <a href="javscript:void(0)" routerLink="chat" class="text-reset d-block flex-grow-1 text-center py-2 ">
                 <span class="d-inline-block position-relative px-2">
-                  <i class="las la-comment-dots fs-18 opacity-60 "></i>
+                  <i class="las la-comment-dots fs-18 "></i>
                                   </span>
-                <span class="d-block fs-10 opacity-60 ">Messages</span>
+                <span class="d-block fs-10 ">Messages</span>
             </a>
         </div>
         <div class="col" *ngIf="hasLoggedIn">
             <a href="javscript:void(0)" routerLink="/dashboard" class="text-reset d-block flex-grow-1 text-center py-2">
-                <span class="d-block mx-auto mb-1 opacity-60 ">
+                <span class="d-block mx-auto mb-1 ">
                         <img src="assets/public/assets/img/avatar-place.png" class="rounded-circle size-20px">
                     </span>
-                <span class="d-block fs-10 opacity-60 ">Account</span>
+                <span class="d-block fs-10 ">Account</span>
             </a>
         </div>
     </div>
@@ -261,7 +258,7 @@
 
 
                     <div class="separator mb-3 mt-4">
-                        <span class="bg-white px-3 opacity-60">Or Login With</span>
+                        <span class="bg-white px-3">Or Login With</span>
                     </div>
                     <ul class="list-inline social colored text-center mb-3">
                         <li class="list-inline-item">

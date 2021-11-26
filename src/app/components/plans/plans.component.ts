@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 declare var Razorpay: any;
 
@@ -16,12 +17,18 @@ export class PlansComponent implements OnInit {
   options:any = {};
   planChoosed:any;
   orderId:string = "";
+  loginStatusSubscription:Subscription;
+  hasLoggedIn:boolean = false;
   constructor(
     private loginService:LoginService,
     private snackBar:MatSnackBar,
     private router:Router,
     private zone:NgZone
-  ) { }
+  ) { 
+    this.loginStatusSubscription = this.loginService.getLoginSetStatus().subscribe(res=>{
+      this.hasLoggedIn = res;
+    }); 
+  }
 
   ngOnInit(): void {    
     let that = this;
@@ -47,6 +54,9 @@ export class PlansComponent implements OnInit {
     };
     this.getPlans();
   }
+  ngOnDestroy():void{
+    this.loginStatusSubscription.unsubscribe();
+  }
   showSnackbar(content:string,hasDuration:boolean,action:string){
     const config = new MatSnackBarConfig();
     if(hasDuration){
@@ -71,6 +81,10 @@ export class PlansComponent implements OnInit {
   }
   
   choosePackage(plan:any){
+    if(!this.hasLoggedIn){
+      this.router.navigateByUrl("/register");
+      return;
+    }
     this.planChoosed = plan;
     if(plan.plan_type.toUpperCase()!="FREE"){
         this.createOrderAndAcceptPayment();        

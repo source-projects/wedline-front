@@ -22,7 +22,7 @@
                                 <font color="#fd2c79"><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Make Yours&nbsp;</b></font>
                             </h3>
                             <h4>
-                                <font color="#fd2c79" style=""><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <font color="#fd2c79"><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                         &nbsp; &nbsp; Special</b></font>
                             </h4>
                         </div>
@@ -31,17 +31,17 @@
 
                 <!-- search  -->
 
-                <div class="p-4 bg-white rounded mb-n5" style="box-shadow: 0 -25px 50px -12px rgb(0 0 0 / 25%);">
+                <div class="p-4 bg-white rounded mb-n5" style="box-shadow: 0 6px 25px rgb(0 0 0 / 20%)">
                     <div class="row">
                         <div class="col-xl-10 mx-auto">
-                            <form action="javascript:void(0)" method="POST">
+                            <form action="javascript:void(0)" method="POST" [formGroup]="signupForm">
                                 <div class="row gutters-5">
                                     <div class="col-lg">
                                         <div class="form-group mb-3">
                                             <label class="form-label" for="name">Matrimony Profile for</label>
-                                            <select name="religion_id" id="religion_id" class="form-control aiz-selectpicker" title="gender">
-                                                <option value="1"> Male </option>
-                                                <option value="2"> Female </option>
+                                            <select name="religion_id" id="religion_id" class="form-control aiz-selectpicker" title="gender" formControlName="gender">
+                                                <option value="Male"> Male </option>
+                                                <option value="Female"> Female </option>
                                             </select>
                                         </div>
                                     </div>
@@ -49,21 +49,27 @@
                                     <div class="col-lg">
                                         <div class="form-group mb-3">
                                             <label class="form-label" for="name">Email</label>
-                                            <input type="email" name="name" class="form-control">
+                                            <input type="email" name="name" class="form-control" placeholder="Email" formControlName="email">
                                         </div>
                                     </div>
-
+                                    <div class="col-lg">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="code">Code</label>
+                                            <select id="code" class="form-control aiz-selectpicker " name="code" required formControlName="country_code">
+                                                <option *ngFor="let code of countryCodes" value="{{code.id}}">{{code.val}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-lg">
                                         <div class="form-group mb-3">
                                             <label class="form-label" for="name">Mobile Number</label>
-                                            <input type="number" id="phone-code" class="form-control" value="" placeholder="" name="phone" autocomplete="off">
-
+                                            <input type="number" id="phone-code" class="form-control" value="" placeholder="Phone" name="phone" autocomplete="off" formControlName="mobile_number">
                                         </div>
                                     </div>
 
                                     <div class="col-lg">
-                                        <button type="button" routerLink="/register" class="btn btn-block btn-primary mt-4">Register
-                                            Free</button>
+                                        <button type="button" (click)="saveRegisterAndRedirect()" class="btn btn-block btn-primary mt-4">Register
+                                            Now</button>
                                     </div>
                                 </div>
                             </form>
@@ -85,21 +91,21 @@
                                 through superior technology, in-depth research, valuable matrimonial content & services, and above all the highest quality of customer service delivered with a sense of warmth, understanding, respect, and company spirit.</p>
                         </div>
 
-                        <h5 class="fw-600 mb-3 text-dark tleft">Why Choose Wedline Matrimony</h5>
-                        <ul class="list-group list-group-raw fs-15 mb-5 roundtick bg-offwhite">
-                            <li class="list-group-item py-2 bg-offwhite">
+                        <h5 class="fw-600 mb-3 text-dark tleft" id="how-it-works">Why Choose Wedline Matrimony</h5>
+                        <ul class="list-group list-group-raw fs-15 mb-5 roundtick bg-transparent">
+                            <li class="list-group-item py-2 bg-transparent">
                                 <i class="las la la-check-circle text-success mr-2"></i> No.1 & most trusted matrimony service
                             </li>
-                            <li class="list-group-item py-2 bg-offwhite">
+                            <li class="list-group-item py-2 bg-transparent">
                                 <i class="las la la-check-circle text-success mr-2"></i> 100% verified mobile numbers
                             </li>
-                            <li class="list-group-item py-2 bg-offwhite">
+                            <li class="list-group-item py-2 bg-transparent">
                                 <i class="las la la-check-circle text-success mr-2"></i> Our largest number of profiles increases your chances of meeting the right person
                             </li>
-                            <li class="list-group-item py-2 text-line-through bg-offwhite">
+                            <li class="list-group-item py-2 text-line-through bg-transparent">
                                 <i class="las la la-check-circle text-success mr-2"></i> Millions have found their life partner here
                             </li>
-                            <li class="list-group-item py-2 text-line-through bg-offwhite">
+                            <li class="list-group-item py-2 text-line-through bg-transparent">
                                 <i class="las la la-check-circle text-success mr-2"></i> Trusted service for more than 21 years
                             </li>
                         </ul>
@@ -123,7 +129,7 @@
                     <div class="col-lg">
                         <div class="border p-3 mb-3 mt-3 box">
                             <div class=" row align-items-center">
-                                <div class="col-7">
+                                <div class="col-7" id="featured-members">
                                     <div class="text-primary fw-600 h1">1</div>
                                     <div class="text-secondary fs-20 mb-2 fw-600">Premium Service</div>
                                     <div class="fs-15 opacity-60">Register for free &amp; put up your Profile</div>
@@ -163,6 +169,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg">
+                        <div class="border p-3 mb-3 mt-3 box">
+                            <div class=" row align-items-center">
+                                <div class="col-7">
+                                    <div class="text-primary fw-600 h1">4</div>
+                                    <div class="text-secondary fs-20 mb-2 fw-600">Personalised Service</div>
+                                    <div class="fs-15 opacity-60">Register for free &amp; put up your Profile</div>
+                                </div>
+                                <div class="mt-3 col-5 text-right">
+                                    <img src="assets/public/uploads/all/D8IvIuVZ1XgBEbW8WNygx6JM0G6AVPKohVaHyj7X.png" class="img-fluid h-80px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -173,7 +193,7 @@
             <img class="shape" src="assets/public/assets/img/shape.png" alt="">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-5">
                         <div class="content">
                             <div class="section-header">
                                 <h6 class="sub-title extra-padding wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
@@ -189,11 +209,11 @@
                             <a href="javascript:void(0)" routerLink="/register" class="custom-button">Join Now !</a>
                         </div>
                     </div>
-                    <div class="col-xl-6 align-self-center">
+                    <div class="col-xl-7 align-self-center">
                         <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingFeatured"></mat-spinner>
                         <div class="registered-slider" *ngIf="!isGettingFeatured">
 
-                            <swiper [slidesPerView]="4" [loop]="true" [autoplay]="{
+                            <swiper [slidesPerView]="4" [autoplay]="{
                                 delay: 2500,
                                 disableOnInteraction: false 
                             }">
@@ -227,7 +247,7 @@
         <!-- ==========Member-slider-Section========== -->
 
 
-        <section class="py-5 bg-white plan" id="packages">
+        <!-- <section class="py-5 bg-white plan" id="packages">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8 col-xxl-6 mx-auto">
@@ -449,7 +469,7 @@
                     </ng-template>
                 </swiper>
             </div>
-        </section>
+        </section> -->
 
         <!-- ==========Features-Section========== -->
         <section class="feature-section bg-offwhite pt-6 pb-6">
@@ -458,11 +478,11 @@
                 <div class="left-image">
                     <div class="offer">
                         <div class="offer-inner-content">
-                            <span class="fs">START NOW FOR</span>
+                            <span class="fs">START FOR</span>
                             <h2>
                                 FREE
                             </h2>
-                            <span class="ss">7 DAY TRIAL</span>
+                            <span class="ss">NOW</span>
                         </div>
                     </div>
                 </div>
@@ -554,14 +574,14 @@
             <div class="container bottom-content mb-5">
                 <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingStory"></mat-spinner>
                 <div *ngIf="!isGettingStory">
-                    <swiper [slidesPerView]="3" [loop]="true" [autoplay]="{
+                    <swiper [slidesPerView]="3" [autoplay]="{
                         delay: 2500,
                         disableOnInteraction: false 
                     }">
                         <ng-template *ngFor="let result of stories" swiperSlide>
                             <div class="single-story-box wow fadeInUp">
                                 <div class="img">
-                                    <img class="success-cover-img w-100" src="https://demoweblinks.in/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                                    <img class="success-cover-img w-100" src="http://localhost/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
                                 </div>
                                 <div class="content">
                                     <!-- <div class="author">

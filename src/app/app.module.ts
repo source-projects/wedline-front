@@ -21,7 +21,6 @@ import { MyInterestComponent } from './components/my-interest/my-interest.compon
 import { MyShortlistComponent } from './components/my-shortlist/my-shortlist.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { IgnoredListComponent } from './components/ignored-list/ignored-list.component';
-import { FilterComponent } from './components/filter/filter.component';
 import { LoginComponent } from './components/login/login.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -68,6 +67,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { DateBeautifierPipe } from './pipes/date-beautifier.pipe';
 import { Base64EncodePipe } from './pipes/base64-encode.pipe';
 import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
+import { ServicesComponent } from './components/services/services.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +83,6 @@ import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.compon
     MyShortlistComponent,
     ChatComponent,
     IgnoredListComponent,
-    FilterComponent,
     LoginComponent,
     AsideComponent,
     ProfileStarterComponent,
@@ -105,7 +104,8 @@ import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.compon
     NotificationsComponent,
     DateBeautifierPipe,
     Base64EncodePipe,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,

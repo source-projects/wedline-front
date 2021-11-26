@@ -2,13 +2,13 @@
 
     <div class="aiz-main-wrapper d-flex flex-column position-relative  pt-8 bg-white" [class.pt-lg-8]="profileStatus!='Subscribed'" [class.pt-lg-10]="profileStatus=='Subscribed'">
 
-        <section class="home2-sucess-stories-section">
+        <section>
             <div class="top-content">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
-                            <div class="section-header white-color">
-                                <h6 class="sub-title wow fadeInUp">
+                            <div class="section-header">
+                                <h6 class="sub-title wow fadeInUp text-primary">
                                     Love in faith
                                 </h6>
                                 <h2 class="title wow fadeInUp">
@@ -28,7 +28,7 @@
                 <div *ngIf="!isSavingDetails" fxLayout="row wrap" fxLayoutAlign="center center">
                     <div class="single-story-box wow fadeInUp" *ngFor="let result of results | paginate:config" fxFlex="28">
                         <div class="img">
-                            <img class="success-cover-img w-100" src="https://demoweblinks.in/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                            <img class="success-cover-img w-100" src="https://localhost/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
                         </div>
                         <div class="content">
                             <h4 class="title">

@@ -8,7 +8,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class LoginService {
   memberDetails:any = "";
   token:string = "";
-  baseUrl:string = "https://demoweblinks.in/matrimony-demo/";
+  homeRegisterData:any = "";
+  baseUrl:string = "http://localhost/matrimony-demo/";
   public hasLoggedIn = new BehaviorSubject<boolean>(false);
   public generatedToken = new BehaviorSubject<boolean>(false);
   public reloadMemberData = new BehaviorSubject<boolean>(false);

@@ -9,7 +9,7 @@
     position: absolute;
     content: "";
     background: #e1e6ff;
-    width: 50%;
+    width: 44%;
     height: 100%;
     top: 0px;
     left: -100px;
@@ -28,7 +28,7 @@
 }
 
 .latest-registered-section .content {
-    padding-left: 40%;
+    padding-left: 25%;
     padding-right: 200px;
     position: relative;
     z-index: 3;
@@ -92,11 +92,12 @@
 }
 
 .latest-registered-section .registered-slider .single-slider .img img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 5px solid #fff;
+    width: 180px;
+    height: 230px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 13px rgb(0 0 0 / 20%);
     display: inline-block;
+    object-fit: cover;
 }
 
 .latest-registered-section .registered-slider .single-slider .inner-content .name {

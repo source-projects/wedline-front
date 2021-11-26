@@ -14,16 +14,22 @@
                 <div class="col-lg-7 col">
                     <ul class="list-inline mb-0 d-flex align-items-center justify-content-end ">
                         <li class="list-inline-item mr-3 pr-3 border-right">
-                            <a href="tel:+01 112 352 566" class="text-reset opacity-60">
-                                <span> Help Line : </span>
-                                <span>1234567890</span>
+                            <a href="javascript:void(0)" class="text-reset opacity-60">
+                                <span><i class="fas fa-certificate"></i></span>
+                                <span>&nbsp;ISO 9001:2015 Certified</span>
                             </a>
                         </li>
-                        <li *ngIf="!hasLoggedIn" class="list-inline-item ml-4">
+                        <li class="list-inline-item mr-3 pr-3 border-right">
+                            <a href="tel:+91 9495778448" class="text-reset opacity-60">
+                                <span><i class="fas fa-phone-alt"></i></span>
+                                <span>+91 9495778448</span>
+                            </a>
+                        </li>
+                        <li *ngIf="!hasLoggedIn" class="list-inline-item ml-1">
                             <a class="text-reset opacity-60" href="javascript:void(0)" routerLink="/login">Log In</a>
                         </li>
                         <li *ngIf="!hasLoggedIn" class="list-inline-item ml-3">
-                            <a class="btn btn-sm bg-primary-grad text-white fw-600 py-1 border" routerLink="/register">Registration</a>
+                            <a class="btn btn-sm bg-primary-grad text-white fw-600 py-1 border" routerLink="/register">Register Now</a>
                         </li>
                         <li *ngIf="hasLoggedIn&&profileStatus!='Subscribed'" class="list-inline-item ml-3">
                             <a class="btn btn-sm bg-primary-grad text-white fw-600 py-1 border" (click)="continueRegisterProcess()">Continue Registration</a>
@@ -108,11 +114,11 @@
                         </li>
                         <li *ngIf="hasLoggedIn&&profileStatus=='Subscribed'" class="list-inline-item mx-4">
                             <a href="javascript:void(0)" routerLink="/dashboard" class="d-flex align-items-center text-reset">
-                                <img [src]="memberDetails.photo1" class="size-30px rounded-circle img-fit mr-2" onerror="this.onerror=null;this.src='https://demoweblinks.in/matrimony-demo/assets/no_image.jpg';">
+                                <img [src]="memberDetails.photo1" class="size-30px rounded-circle img-fit mr-2" onerror="this.onerror=null;this.src='http://localhost/matrimony-demo/assets/no_image.jpg';">
                                 <span class="opacity-60 mr-1">
                             Hi,
                         </span>
-                                <span class="text-primary-grad fw-700">
+                                <span class="text-primary-grad fw-700 text-capitalize">
                                     {{memberDetails.firstname}}
                         </span>
                             </a>
@@ -141,9 +147,9 @@
                                 <span class="text-primary-grad mb-n1">Home</span>
                             </a>
                         </li>
-                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1" *ngIf="hasLoggedIn&&profileStatus=='Subscribed'">
-                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/search">
-                                <span class="text-primary-grad mb-n1">Search</span>
+                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1 ">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/about">
+                                <span class="text-primary-grad mb-n1">About</span>
                             </a>
                         </li>
                         <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1 ">
@@ -151,14 +157,25 @@
                                 <span class="text-primary-grad mb-n1">Success Stories</span>
                             </a>
                         </li>
+                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1 dropdown cursor-pointer" id="serviceDropdown">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2 dropdown-toggle" href="javascript:void(0)" id="serviceDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="text-primary-grad mb-n1">Services</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="serviceDropdown">
+                                <li><a class="dropdown-item" href="javascript:void(0)">Free Membership</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Paid Membership</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Personalized Membership</a></li>
+                            </ul>
+                        </li>
                         <li class="d-inline-block d-lg-flex pb-1 ">
-                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" [routerLink]="['/home']" fragment="packages">
+                            <!-- <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" [routerLink]="['/home']" fragment="packages"> -->
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/plans">
                                 <span class="text-primary-grad mb-n1">Packages</span>
                             </a>
                         </li>
-                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1 ">
-                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/about">
-                                <span class="text-primary-grad mb-n1">About us</span>
+                        <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1" *ngIf="hasLoggedIn&&profileStatus=='Subscribed'">
+                            <a class="nav-link text-uppercase fw-700 fs-15 d-flex align-items-center bg-white py-2" routerLink="/search">
+                                <span class="text-primary-grad mb-n1">Search</span>
                             </a>
                         </li>
                         <li routerLinkActive="bg-primary-grad" class="d-inline-block d-lg-flex pb-1 ">

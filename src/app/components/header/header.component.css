@@ -1,0 +1,11 @@
+#serviceDropdownButton {
+    pointer-events: none;
+}
+
+#serviceDropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+#serviceDropdown:hover {
+    background: linear-gradient(225deg, rgba(224, 0, 144, 1) 0%, rgba(238, 97, 91, 1) 100%);
+}

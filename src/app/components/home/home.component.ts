@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import SwiperCore, { Autoplay,Pagination} from 'swiper';
@@ -14,6 +16,8 @@ declare var $:any;
 export class HomeComponent implements OnInit {
     featuredMembers:any[] = [];
     stories:any[] = [];
+    countryCodes:any[] = [];
+    signupForm:FormGroup;
     generatedTokenStatusSubscription:Subscription;
     isGettingFeatured:boolean = false;
     isNoResultsFeatured:boolean = false;
@@ -27,10 +31,19 @@ export class HomeComponent implements OnInit {
     };
   constructor(
       private loginService:LoginService,
-      private snackBar:MatSnackBar
+      private snackBar:MatSnackBar,
+      private fb:FormBuilder,
+      private router:Router
   ) {
+    this.signupForm = this.fb.group({
+      gender:['Male',Validators.required],
+      email:['',[Validators.required,Validators.email]],
+      country_code:['',Validators.required],
+      mobile_number:['',[Validators.required,Validators.pattern("^[0-9]{10}$")]]
+    });  
     this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
         if(res){
+          this.getMobileCountryCode();
           this.getFeaturedMembers();
           this.getSuccessStories();
         }
@@ -52,8 +65,7 @@ export class HomeComponent implements OnInit {
     config.panelClass = ['snackbar-styler'];
     return this.snackBar.open(content, action, config);
   }
-  initalizeSlider() { 
-  
+  initalizeSlider() {   
       
       $(".aiz-carousel").not(".slick-initialized").each(function(index:any,event:any) {
          
@@ -199,6 +211,15 @@ export class HomeComponent implements OnInit {
       this.isGettingFeatured = false;
     }); 
   }
+  getMobileCountryCode(){
+    this.loginService.getMobileCountryCode().subscribe((res:any)=>{
+      if(res["status"]=="success"){
+        this.countryCodes = res["data"];
+      }
+    },error=>{
+      alert(error["message"]);
+    })
+ }
   getSuccessStories(){
     this.isNoResultsStory = false;
     this.isGettingStory = true;
@@ -217,5 +238,12 @@ export class HomeComponent implements OnInit {
       this.isGettingStory = false;
     }); 
   }
-
+  saveRegisterAndRedirect(){
+    if(this.signupForm.valid){
+      this.loginService.homeRegisterData = this.signupForm.value;
+      this.router.navigateByUrl("register");
+    }else{
+      this.showSnackbar("Please check all required fields",true,"okay");
+    }
+  }
 }

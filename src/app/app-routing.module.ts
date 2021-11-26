@@ -10,7 +10,6 @@ import { MyInterestComponent } from './components/my-interest/my-interest.compon
 import { MyShortlistComponent } from './components/my-shortlist/my-shortlist.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { IgnoredListComponent } from './components/ignored-list/ignored-list.component';
-import { FilterComponent } from './components/filter/filter.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginGuard } from './guards/login.guard';
 import { AuthGuard } from './guards/auth.guard';
@@ -25,6 +24,7 @@ import { SuccessStoryComponent } from './components/success-story/success-story.
 import { ContactComponent } from './components/contact/contact.component';
 import { PostSuccessStoryComponent } from './components/post-success-story/post-success-story.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ServicesComponent } from './components/services/services.component';
 
 const routes: Routes = [
   {path:"home",component: HomeComponent},
@@ -37,20 +37,20 @@ const routes: Routes = [
   {path:"search",component: SearchComponent},
   {path:"success-stories",component: SuccessStoriesComponent},
   {path:"success-story/:id",component: SuccessStoryComponent},
+  {path:"services",component: ServicesComponent},
   {path:"post-success-story",component: PostSuccessStoryComponent,canActivate:[AuthGuard]},
   {path:"contact",component: ContactComponent},
   {path:"dashboard",component: DashboardComponent,canActivate:[AuthGuard]},
   {path:"profile-setting",component: ProfileSettingComponent,canActivate:[AuthGuard]},
   {path:"my-interest",component: MyInterestComponent,canActivate:[AuthGuard]},
   {path:"profile-starter",component: ProfileStarterComponent,canActivate:[AuthGuard]},
-  {path:"plans",component: PlansComponent,canActivate:[AuthGuard]},
+  {path:"plans",component: PlansComponent},
   {path:"my-shortlist",component: MyShortlistComponent,canActivate:[AuthGuard]},
   {path:"my-likes",component: MyLikesComponent,canActivate:[AuthGuard]},
   {path:"chat",component: ChatComponent,canActivate:[AuthGuard]},
   {path:"notifications",component: NotificationsComponent,canActivate:[AuthGuard]},
   {path:"ignored-list",component: IgnoredListComponent,canActivate:[AuthGuard]},
   {path:"privacy-settings",component: PrivacySettingsComponent,canActivate:[AuthGuard]},
-  {path:"filter",component: FilterComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
