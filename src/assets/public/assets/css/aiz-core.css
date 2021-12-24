@@ -4130,12 +4130,12 @@ hr {
         margin-bottom: 10px;
     }
     .home2-sucess-stories-section .top-content {
-        background: url(../img/sucess/subg.jpg);
+        background: url(../img/sucess/subg.png);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        padding-top: 120px;
-        padding-bottom: 250px;
+        padding-top: 90px;
+        padding-bottom: 80px;
     }
     .home2-sucess-stories-section .section-header {
         margin-bottom: 26px;
@@ -7441,11 +7441,15 @@ input[type="number"] {
 .dropdown-menu.dropdown-menu-md {
     width: 260px;
     min-width: 260px;
+    border: none;
+    overflow: hidden;
 }
 
 .dropdown-menu.dropdown-menu-lg {
     width: 320px;
     min-width: 320px;
+    border: none;
+    overflow: hidden;
 }
 
 .dropdown-menu.dropdown-menu-xl {
@@ -7470,7 +7474,7 @@ input[type="number"] {
 .dropdown-item:hover,
 .dropdown-item:active {
     color: #fff !important;
-    background-color: var(--primary);
+    background: linear-gradient(225deg, rgba(224, 0, 144, 1) 0%, rgba(238, 97, 91, 1) 100%);
 }
 
 
@@ -9040,6 +9044,7 @@ input[type="number"] {
     padding: 0.416rem;
     width: calc(2.02rem + 2px);
     height: calc(2.02rem + 2px);
+    margin-left: 2px;
 }
 
 .btn-lg {
@@ -10084,8 +10089,8 @@ div.footable-loader>span.fooicon:after {
 }
 
 .avatar-md {
-    width: 64px;
-    height: 64px;
+    width: 100px;
+    height: 100px;
     font-size: 1.4em;
 }
 

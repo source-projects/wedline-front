@@ -29,8 +29,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let result of results | paginate:config">
-                                        <td>{{result.matri_id}}</td>
-                                        <td>
+                                        <td class="cursor-pointer" routerLink="/full-profile/{{result.user_id | base64Encode}}">{{result.matri_id}}</td>
+                                        <td class="cursor-pointer" routerLink="/full-profile/{{result.user_id | base64Encode}}">
                                             <span class="avatar avatar-sm mr-3 flex-shrink-0">
                                                 <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='assets/public/assets/img/admin-head.jpg';" alt="Photo">
                                             </span>
@@ -169,18 +169,18 @@
                             <li class="aiz-side-nav-item">
                                 <a href="javascript:void(0);" class="aiz-side-nav-link">
                                     <i class="las la-shopping-basket aiz-side-nav-icon"></i>
-                                    <span class="aiz-side-nav-text">Packages</span>
+                                    <span class="aiz-side-nav-text">Plans</span>
                                     <span class="aiz-side-nav-arrow"></span>
                                 </a>
                                 <ul class="aiz-side-nav-list level-2">
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Packages</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plans" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plans</span>
                                         </a>
                                     </li>
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Package Purchase History</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plan-purchase-history" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plan Purchase History</span>
                                         </a>
                                     </li>
                                 </ul>

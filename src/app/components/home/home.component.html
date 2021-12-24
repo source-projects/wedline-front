@@ -3,11 +3,20 @@
     <div class="aiz-main-wrapper d-flex flex-column position-relative  bg-white">
         <!-- Homepage Slider Section -->
         <section class="position-relative min-vh-100 d-flex home-slider-area">
-            <div class="absolute-full">
-                <div class="aiz-carousel aiz-carousel-full h-100" data-fade='true' data-infinite='true' data-autoplay='true'>
-                    <img class="img-fit home-banner-img" src="assets/public/uploads/all/n6x1YZiGHc5AvVBB45JNnIAbXkQTqLf16bHMtwzu.png">
+            <div class="absolute-full h-100">
+                <div class="aiz-carousel aiz-carousel-full h-100">
+                    <swiper [slidesPerView]="1" [autoplay]="{
+                        delay: 6000,
+                        disableOnInteraction: false 
+                    }" [effect]="'fade'">
+                        <ng-template *ngFor="let slide of banners" swiperSlide>
+                            <img class="img-fit home-banner-img" [src]="slide.banner">
+                        </ng-template>
+                    </swiper>
+
+                    <!-- <img class="img-fit home-banner-img" src="assets/public/uploads/all/n6x1YZiGHc5AvVBB45JNnIAbXkQTqLf16bHMtwzu.png">
                     <img class="img-fit home-banner-img" src="assets/public/uploads/all/OkwfK3lo8BgrCkMuOA4NGeORw7g9ldcOp6ykrIeU.jpg">
-                    <img class="img-fit home-banner-img" src="assets/public/uploads/all/cEOhVAwkzGE51HebB3Ky9CwQU3vLyKnW4DRMQ1mt.jpg">
+                    <img class="img-fit home-banner-img" src="assets/public/uploads/all/cEOhVAwkzGE51HebB3Ky9CwQU3vLyKnW4DRMQ1mt.jpg"> -->
                 </div>
                 <div class="absolute-full bg-white opacity-70 d-md-none"></div>
             </div>
@@ -123,8 +132,16 @@
 
 
         <!-- How It Works Section -->
-        <section class="py-3 bg-white home-boxes">
+        <section class="py-7 bg-white home-boxes">
             <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-xl-8 col-xxl-6 mx-auto">
+                        <div class="text-center section-title mb-5">
+                            <h2 class="fw-600 mb-3">How It Works</h2>
+                            <p class="fw-400 fs-16 opacity-60">When you realize you want to spend the rest of your life with somebody, you want the rest of your life to start as soon as possible.</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="row gutters-10">
                     <div class="col-lg">
                         <div class="border p-3 mb-3 mt-3 box">
@@ -197,7 +214,7 @@
                         <div class="content">
                             <div class="section-header">
                                 <h6 class="sub-title extra-padding wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                                    Latest Registered
+                                    Featured
                                 </h6>
                                 <h2 class="title wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                                     Members
@@ -206,7 +223,8 @@
                                     if you have been looking for the someone special of your life for long, then your search ends here
                                 </p>
                             </div>
-                            <a href="javascript:void(0)" routerLink="/register" class="custom-button">Join Now !</a>
+                            <a href="javascript:void(0)" *ngIf="!hasLoggedIn" routerLink="/register" class="custom-button">Join Now !</a>
+                            <a href="javascript:void(0)" *ngIf="hasLoggedIn" routerLink="/search" class="custom-button">Search Now !</a>
                         </div>
                     </div>
                     <div class="col-xl-7 align-self-center">
@@ -242,234 +260,6 @@
             </div>
         </section>
 
-
-
-        <!-- ==========Member-slider-Section========== -->
-
-
-        <!-- <section class="py-5 bg-white plan" id="packages">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-8 col-xxl-6 mx-auto">
-                        <div class="text-center pb-6">
-                            <h2 class="fw-600 text-dark">Packages</h2>
-                            <div class="fs-16 fw-400">Choose any of our packages as per your need. You&#039;ll get your money back anytime if we&#039;re unable to satisfy your need.</div>
-                        </div>
-                    </div>
-                </div>
-                <swiper [pagination]="pagination" [slidesPerView]="3" [slidesPerGroup]="3" [loop]="true" [loopFillGroupWithBlank]="true" [autoplay]="{
-                    delay: 2500,
-                    disableOnInteraction: false
-                  }" class="myPackageSwiper">
-                    <ng-template swiperSlide>
-                        <div class="carousel-box">
-                            <div class="overflow-hidden shadow-none mb-3 border-right">
-                                <div class="card-body">
-                                    <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/zzOHNo1lfGayWCnT9xK1xHB8VjkAzOSnb14ibeup.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Bronze Package</h5>
-                                    </div>
-                                    <ul class="list-group list-group-raw fs-15 mb-5">
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 10 Express Interests
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 10 Galley Photo Upload
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 5 Contact Info view
-                                        </li>
-                                        <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la la-check-circle text-success mr-2"></i> Show Auto Profile Match
-                                        </li>
-                                    </ul>
-                                    <div class="mb-5 text-dark text-center">
-                                        <span class="display-4 fw-600 lh-1 mb-0">10,00INR</span>
-                                        <span class="text-secondary d-block">5 Days</span>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <button type="submit" onclick="loginModal()" class="btn btn-primary">Purchase This
-                                            Package</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-
-                        <div class="carousel-box">
-                            <div class="overflow-hidden shadow-none mb-3 border-right">
-                                <div class="card-body">
-                                    <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/UIOcsIe8TMVx6Rp7Wbx9ig5kw6X2g2rSxKUNsPNQ.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Silver Package</h5>
-                                    </div>
-                                    <ul class="list-group list-group-raw fs-15 mb-5">
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 20 Express Interests
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 15 Galley Photo Upload
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 10 Contact Info view
-                                        </li>
-                                        <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la la-check-circle text-success mr-2"></i> Show Auto Profile Match
-                                        </li>
-                                    </ul>
-                                    <div class="mb-5 text-dark text-center">
-                                        <span class="display-4 fw-600 lh-1 mb-0">25,00INR</span>
-                                        <span class="text-secondary d-block">60 Days</span>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <button type="submit" onclick="loginModal()" class="btn btn-primary">Purchase This
-                                            Package</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-                        <div class="carousel-box">
-                            <div class="overflow-hidden shadow-none mb-3 border-right">
-                                <div class="card-body">
-                                    <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/RMTKXAZIB1cN2RA8GLgbhs8DmGl0qj01ACRlEFCG.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Gold Package</h5>
-                                    </div>
-                                    <ul class="list-group list-group-raw fs-15 mb-5">
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 25 Express Interests
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 20 Galley Photo Upload
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 15 Contact Info view
-                                        </li>
-                                        <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la la-check-circle text-success mr-2"></i> Show Auto Profile Match
-                                        </li>
-                                    </ul>
-                                    <div class="mb-5 text-dark text-center">
-                                        <span class="display-4 fw-600 lh-1 mb-0">35,00INR</span>
-                                        <span class="text-secondary d-block">75 Days</span>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <button type="submit" onclick="loginModal()" class="btn btn-primary">Purchase This
-                                            Package</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-
-                        <div class="carousel-box">
-                            <div class="overflow-hidden shadow-none mb-3 border-right">
-                                <div class="card-body">
-                                    <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/zzOHNo1lfGayWCnT9xK1xHB8VjkAzOSnb14ibeup.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Bronze Package</h5>
-                                    </div>
-                                    <ul class="list-group list-group-raw fs-15 mb-5">
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 10 Express Interests
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 10 Galley Photo Upload
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 5 Contact Info view
-                                        </li>
-                                        <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la la-check-circle text-success mr-2"></i> Show Auto Profile Match
-                                        </li>
-                                    </ul>
-                                    <div class="mb-5 text-dark text-center">
-                                        <span class="display-4 fw-600 lh-1 mb-0">10,00INR</span>
-                                        <span class="text-secondary d-block">5 Days</span>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <button type="submit" onclick="loginModal()" class="btn btn-primary">Purchase This
-                                            Package</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-                        <div class="carousel-box">
-                            <div class="overflow-hidden shadow-none mb-3 border-right">
-                                <div class="card-body">
-                                    <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/UIOcsIe8TMVx6Rp7Wbx9ig5kw6X2g2rSxKUNsPNQ.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Silver Package</h5>
-                                    </div>
-                                    <ul class="list-group list-group-raw fs-15 mb-5">
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 20 Express Interests
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 15 Galley Photo Upload
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 10 Contact Info view
-                                        </li>
-                                        <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la la-check-circle text-success mr-2"></i> Show Auto Profile Match
-                                        </li>
-                                    </ul>
-                                    <div class="mb-5 text-dark text-center">
-                                        <span class="display-4 fw-600 lh-1 mb-0">25,00INR</span>
-                                        <span class="text-secondary d-block">60 Days</span>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <button type="submit" onclick="loginModal()" class="btn btn-primary">Purchase This
-                                            Package</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-                        <div class="carousel-box">
-                            <div class="overflow-hidden shadow-none mb-3 border-right">
-                                <div class="card-body">
-                                    <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/RMTKXAZIB1cN2RA8GLgbhs8DmGl0qj01ACRlEFCG.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Gold Package</h5>
-                                    </div>
-                                    <ul class="list-group list-group-raw fs-15 mb-5">
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 25 Express Interests
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 20 Galley Photo Upload
-                                        </li>
-                                        <li class="list-group-item py-2">
-                                            <i class="las la la-check-circle text-success mr-2"></i> 15 Contact Info view
-                                        </li>
-                                        <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la la-check-circle text-success mr-2"></i> Show Auto Profile Match
-                                        </li>
-                                    </ul>
-                                    <div class="mb-5 text-dark text-center">
-                                        <span class="display-4 fw-600 lh-1 mb-0">35,00INR</span>
-                                        <span class="text-secondary d-block">75 Days</span>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <button type="submit" onclick="loginModal()" class="btn btn-primary">Purchase This
-                                            Package</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                </swiper>
-            </div>
-        </section> -->
 
         <!-- ==========Features-Section========== -->
         <section class="feature-section bg-offwhite pt-6 pb-6">
@@ -569,64 +359,62 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="container bottom-content mb-5">
-                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingStory"></mat-spinner>
-                <div *ngIf="!isGettingStory">
-                    <swiper [slidesPerView]="3" [autoplay]="{
-                        delay: 2500,
-                        disableOnInteraction: false 
-                    }">
-                        <ng-template *ngFor="let result of stories" swiperSlide>
-                            <div class="single-story-box wow fadeInUp">
-                                <div class="img">
-                                    <img class="success-cover-img w-100" src="http://localhost/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
-                                </div>
-                                <div class="content">
-                                    <!-- <div class="author">
-                                    <img src="assets/public/assets/img/sucess/p1.png" alt="">
-                                    <span></span>
-                                </div> -->
-                                    <h4 class="title">
-                                        {{result.successmessage | characterLimiter : 40}}
-                                    </h4>
-                                    <p class="date">
-                                        {{result.marriagedate | dateBeautifier}}
-                                    </p>
-                                </div>
-                                <div class="box-footer" fxLayout="row">
-                                    <!-- <div class="left">
-                                    <ul class="box-social-links">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> -->
-                                    <div class="left" fxFlex="70">
-                                        <h4 class="text-truncate-fade text-truncate position-relative" style="max-width: 97%;">{{result.bridename}} & {{result.groomname}}</h4>
+                    <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingStory"></mat-spinner>
+                    <div *ngIf="!isGettingStory">
+                        <swiper [slidesPerView]="3" [autoplay]="{
+                            delay: 2500,
+                            disableOnInteraction: false 
+                        }">
+                            <ng-template *ngFor="let result of stories" swiperSlide>
+                                <div class="single-story-box wow fadeInUp">
+                                    <div class="img">
+                                        <img class="success-cover-img w-100" src="http://localhost/matrimony-demo/assets/success-story/{{result.weddingphoto}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
                                     </div>
-                                    <div class="right" fxFlex="30" fxLayout="row" fxLayoutAlign="center center">
-                                        <a href="javascript:void(0)" routerLink="/success-story/{{result.id}}">
-                                        Read More<i class="fas fa-arrow-right"></i>
-                                    </a>
+                                    <div class="content">
+                                        <!-- <div class="author">
+                                        <img src="assets/public/assets/img/sucess/p1.png" alt="">
+                                        <span></span>
+                                    </div> -->
+                                        <h4 class="title">
+                                            {{result.successmessage | characterLimiter : 40}}
+                                        </h4>
+                                        <p class="date">
+                                            {{result.marriagedate | dateBeautifier}}
+                                        </p>
+                                    </div>
+                                    <div class="box-footer" fxLayout="row">
+                                        <!-- <div class="left">
+                                        <ul class="box-social-links">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                        <div class="left" fxFlex="70">
+                                            <h4 class="text-truncate-fade text-truncate position-relative" style="max-width: 97%;">{{result.bridename}} & {{result.groomname}}</h4>
+                                        </div>
+                                        <div class="right" fxFlex="30" fxLayout="row" fxLayoutAlign="center center">
+                                            <a href="javascript:void(0)" routerLink="/success-story/{{result.id}}">
+                                            Read More<i class="fas fa-arrow-right"></i>
+                                        </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </ng-template>
-                    </swiper>
+                            </ng-template>
+                        </swiper>
+                    </div>
                 </div>
             </div>
         </section>

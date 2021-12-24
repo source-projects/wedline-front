@@ -68,6 +68,11 @@ import { DateBeautifierPipe } from './pipes/date-beautifier.pipe';
 import { Base64EncodePipe } from './pipes/base64-encode.pipe';
 import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
 import { ServicesComponent } from './components/services/services.component';
+import { FreeMembershipComponent } from './components/free-membership/free-membership.component';
+import { PaidPlanComponent } from './components/paid-plan/paid-plan.component';
+import { PersonalizedPlanComponent } from './components/personalized-plan/personalized-plan.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { PlanUpgradeComponent } from './dialogs/plan-upgrade/plan-upgrade.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,7 +110,12 @@ import { ServicesComponent } from './components/services/services.component';
     DateBeautifierPipe,
     Base64EncodePipe,
     ErrorDialogComponent,
-    ServicesComponent
+    ServicesComponent,
+    FreeMembershipComponent,
+    PaidPlanComponent,
+    PersonalizedPlanComponent,
+    ChangePasswordComponent,
+    PlanUpgradeComponent
   ],
   imports: [
     BrowserModule,

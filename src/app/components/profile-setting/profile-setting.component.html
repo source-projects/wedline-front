@@ -30,6 +30,7 @@
                         <div class="nav nav-tabs aiz-nav-tabs bottom-bordered active-white border-0">
                             <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2 active" data-toggle="tab" href="#profile">Detailed Profile</a>
                             <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#preference">Partner Preference</a>
+                            <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#profile-pic">Profile Pic</a>
                             <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#gallery">Photo Gallery</a>
                             <a class="text-black-50 d-inline-block fw-600 fs-15 px-3 py-2" data-toggle="tab" href="#id-proof">ID Proof</a>
                         </div>
@@ -427,6 +428,19 @@
                     </select>
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="physical_status">Are you differently abled?</label>
+                                                <select id="physical_status" class="form-control aiz-selectpicker" formControlName="physical_status" name="physical_status" required>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6" *ngIf="lifeStyleForm.controls.physical_status.value !== 'No'">
+                                                <label class="form-label" for="disabled_discription">Description</label>
+                                                <input id="disabled_discription" formControlName="disabled_discription" class="form-control aiz-selectpicker" name="disabled_discription">
+                                            </div>
+                                        </div>
                                         <div class="text-right">
                                             <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="lifeStyleFormSubmit()">Update</button>
                                         </div>
@@ -488,7 +502,7 @@
                                         </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label" for="reference">Reference</label>
+                                                <label class="form-label" for="reference">How did you reach here?</label>
                                                 <select id="reference" formControlName="reference" class="form-control aiz-selectpicker" name="reference">
                                             <option selected="" value="">Select Reference</option>
                                             <option selected="" value="Tele-in">Tele-in</option>
@@ -533,7 +547,17 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="subcaste">Sub Caste</label>
-                                                <input type="text" name="subcaste" formcontrolName="subcaste" class="form-control" placeholder="Sub Caste">
+                                                <input type="text" name="subcaste" formControlName="subcaste" class="form-control" placeholder="Sub Caste">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="parish">Parish</label>
+                                                <input type="text" name="parish" formControlName="parish" class="form-control" placeholder="Parish">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="diocese">Diocese</label>
+                                                <input type="text" name="diocese" formControlName="diocese" class="form-control" placeholder="Diocese">
                                             </div>
                                         </div>
                                         <div class="text-right">
@@ -575,7 +599,7 @@
                                         </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="row mt-3">
+                                                <div class="row">
                                                     <div class="col-lg-3">
                                                         <div class="form-group mb-3">
                                                             <label class="form-label" for="code">Code</label>
@@ -596,9 +620,15 @@
 
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="pincode">Pincode</label>
+                                                <input id="pincode" type="text" formControlName="pincode" class="form-control" name="pincode">
+                                            </div>
+                                        </div>
                                         <label class="form-label" for="address">Address</label>
                                         <textarea id="address" formControlName="address" rows="5" class="form-control aiz-selectpicker" name="address"></textarea>
-                                        <div class="form-group row">
+                                        <div class="form-group row mt-3">
                                             <div class="col-md-6">
                                                 <label class="form-label" for="time_to_call">Time To Call</label>
                                                 <input id="time_to_call" type="text" formControlName="time_to_call" class="form-control" name="time_to_call">
@@ -614,6 +644,16 @@
                                             <option value="Work permit">Work permit</option>
                                             <option value="Family Visa">Family Visa</option>
                                     </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="phone">Residence/Landline Number</label>
+                                                <input id="phone" type="text" formControlName="phone" class="form-control" name="phone">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="whatsapp_number">Whatsapp Number</label>
+                                                <input id="whatsapp_number" type="text" formControlName="whatsapp_number" class="form-control" name="whatsapp_number">
                                             </div>
                                         </div>
                                         <div class="text-right">
@@ -766,30 +806,83 @@
                                         </select>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="father_house_name">Father House Name</label>
+                                                <input type="text" name="father_house_name" formControlName="father_house_name" class="form-control" placeholder="Father House Name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="father_native_place">Father Native Place</label>
+                                                <input type="text" name="father_native_place" formControlName="father_native_place" class="form-control" placeholder="Father Native Place">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="mother_house_name">Mother House Name</label>
+                                                <input type="text" name="mother_house_name" formControlName="mother_house_name" class="form-control" placeholder="Mother House Name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="mother_native_place">Mother Native Place</label>
+                                                <input type="text" name="mother_native_place" formControlName="mother_native_place" class="form-control" placeholder="Mother Native Place">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="father_status">Father Status</label>
+                                                <select id="father_status" formControlName="father_status" class="form-control aiz-selectpicker" name="father_status">
+                                                    <option value="">Select Father Status</option>
+                                                    <option value="Employed">Employed</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Professional">Professional</option>
+                                                    <option value="Agriculture/Farming">Agriculture/Farming</option>
+                                                    <option value="Retired">Retired</option>
+                                                    <option value="Not Employed">Not Employed</option>
+                                                    <option value="Passed Away">Passed Away</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="mother_status">Mother Status</label>
+                                                <select id="mother_status" formControlName="mother_status" class="form-control aiz-selectpicker" name="mother_status">
+                                                    <option value="">Select Mother Status</option>
+                                                    <option value="House Wife">House Wife</option>
+                                                    <option value="Employed">Employed</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Professional">Professional</option>
+                                                    <option value="Agriculture/Farming">Agriculture/Farming</option>
+                                                    <option value="Retired">Retired</option>
+                                                    <option value="Not Employed">Not Employed</option>
+                                                    <option value="Passed Away">Passed Away</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <div class="col-md-6">
                                                 <label class="form-label" for="no_of_brothers">No of Brothers</label>
                                                 <select id="no_of_brothers" formControlName="no_of_brothers" class="form-control aiz-selectpicker" name="no_of_brothers">
-                                    <option selected="" value="">Select No Of Brothers</option>
-                                    <option selected="" value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="4 +">4 +</option>
-                                </select>
+                                                    <option selected="" value="">Select No Of Brothers</option>
+                                                    <option selected="" value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="4 +">4 +</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label" for="no_of_sisters">No of Sisters</label>
                                                 <select id="no_of_sisters" formControlName="no_of_sisters" class="form-control aiz-selectpicker" name="no_of_sisters">
-                                            <option selected="" value="">Select No Of Sisters</option>
-                                            <option selected="" value="0">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="4 +">4 +</option>
-                                        </select>
+                                                    <option selected="" value="">Select No Of Sisters</option>
+                                                    <option selected="" value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="4 +">4 +</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -1283,8 +1376,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade mt-3" id="profile-pic">
+                            <div class="card-columns d-flex">
+                                <div class="card hov-overlay">
+                                    <img [src]="memberDetails.photo1?memberDetails.photo1:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
+                                    <div class="overlay">
+                                        <div class="text-white absolute-full d-flex justify-content-center align-items-center">
+                                            <i *ngIf="memberDetails.photo1" class="las la-search-plus cursor-pointer la-2x mx-1" (click)="open(1)" title="View"></i>
+                                            <i class="las la-pen la-2x cursor-pointer mx-1" title="Change" (click)="photoFileInput.click();setPhotoNumber(1)"></i>
+                                            <input id="photoPic" (change)="onPhotoSelect($event)" type="file" hidden #photoFileInput accept="image/*" class="form-control aiz-selectpicker" name="photoPic">
+                                            <i *ngIf="memberDetails.photo1" class="las la-trash la-2x cursor-pointer mx-1" (click)="deletePhoto(1)" title="Delete"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="tab-pane fade mt-3" id="gallery">
-                            <div class="card-columns">
+                            <div class="card-columns d-flex">
                                 <div class="card hov-overlay">
                                     <img [src]="memberDetails.photo2?memberDetails.photo2:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
                                     <div class="overlay">
@@ -1458,18 +1567,18 @@
                             <li class="aiz-side-nav-item">
                                 <a href="javascript:void(0);" class="aiz-side-nav-link">
                                     <i class="las la-shopping-basket aiz-side-nav-icon"></i>
-                                    <span class="aiz-side-nav-text">Packages</span>
+                                    <span class="aiz-side-nav-text">Plans</span>
                                     <span class="aiz-side-nav-arrow"></span>
                                 </a>
                                 <ul class="aiz-side-nav-list level-2">
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Packages</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plans" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plans</span>
                                         </a>
                                     </li>
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Package Purchase History</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plan-purchase-history" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plan Purchase History</span>
                                         </a>
                                     </li>
                                 </ul>

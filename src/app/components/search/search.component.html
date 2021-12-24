@@ -557,11 +557,17 @@
                                 <div class="mb-5" *ngIf="!isSavingDetails">
                                     <div *ngFor="let result of results | paginate:config" class="row no-gutters border border-gray-300 rounded hov-shadow-md mb-4 has-transition position-relative">
                                         <div class="col-md-auto">
-                                            <div class="text-center text-md-left pt-3 pt-md-0">
-                                                <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" class="img-fit mw-100 size-150px size-md-250px rounded-circle md-rounded-0">
+                                            <div class="text-center text-md-left pt-3 pt-md-0 d-flex justify-content-center align-items-center h-100 search-image-container">
+                                                <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" class="img-fit rounded">
                                             </div>
                                         </div>
-                                        <div class="col-md position-static d-flex align-items-center">
+                                        <div class="col-md position-relative d-flex align-items-center">
+                                            <div class="fs-12 position-absolute last-login">
+                                                <span>
+                                                    <span class="opacity-60">Last Login: </span>
+                                                <span class="ml-2 text-primary">{{result.last_login | dateBeautifier}}</span>
+                                                </span>
+                                            </div>
                                             <span class="absolute-top-right px-4 py-3">
                                                 <span *ngIf="result.plan_name=='Free'" class="badge badge-inline badge-info">Free</span>
                                             <span *ngIf="result.plan_name!='Free'" class="badge badge-inline badge-success">{{result.plan_name}}</span>
@@ -786,18 +792,18 @@
                                 <li class="aiz-side-nav-item">
                                     <a href="javascript:void(0);" class="aiz-side-nav-link">
                                         <i class="las la-shopping-basket aiz-side-nav-icon"></i>
-                                        <span class="aiz-side-nav-text">Packages</span>
+                                        <span class="aiz-side-nav-text">Plans</span>
                                         <span class="aiz-side-nav-arrow"></span>
                                     </a>
                                     <ul class="aiz-side-nav-list level-2">
                                         <li class="aiz-side-nav-item">
-                                            <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
-                                                <span class="aiz-side-nav-text">Packages</span>
+                                            <a href="https://demo.activeitzone.com/matrimonial/plans" class="aiz-side-nav-link">
+                                                <span class="aiz-side-nav-text">Plans</span>
                                             </a>
                                         </li>
                                         <li class="aiz-side-nav-item">
-                                            <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
-                                                <span class="aiz-side-nav-text">Package Purchase History</span>
+                                            <a href="https://demo.activeitzone.com/matrimonial/plan-purchase-history" class="aiz-side-nav-link">
+                                                <span class="aiz-side-nav-text">Plan Purchase History</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -888,13 +894,13 @@
         </div>
     </div> -->
 
-    <!-- <div class="modal fade package_update_alert_modal" id="modal-zoom">
+    <!-- <div class="modal fade plan_update_alert_modal" id="modal-zoom">
         <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
-            <div class="modal-content package_update_alert_modal_content">
+            <div class="modal-content plan_update_alert_modal_content">
                 <div class="modal-body text-center">
-                    <h4 class="modal-title h6 mb-3">Please Update Your Package.</h4>
+                    <h4 class="modal-title h6 mb-3">Please Update Your Plan.</h4>
                     <hr>
-                    <a href="https://demo.activeitzone.com/matrimonial/packages" class="btn btn-primary mt-2">Package Purchase</a>
+                    <a href="https://demo.activeitzone.com/matrimonial/plans" class="btn btn-primary mt-2">Plan Purchase</a>
                     <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">Close</button>
                 </div>
             </div>

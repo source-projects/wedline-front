@@ -1,6 +1,6 @@
 .latest-registered-section {
     padding: 118px 0px 120px;
-    background: #5736cb;
+    background: linear-gradient(225deg, rgba(224, 0, 144, 1) 0%, rgba(238, 97, 91, 1) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -67,8 +67,7 @@
 }
 
 .custom-button {
-    background-image: -o-linear-gradient(284deg, #f22876 0%, #942dd9 100%);
-    background-image: linear-gradient(166deg, #f22876 0%, #942dd9 100%);
+    background-image: linear-gradient(225deg, rgba(224, 0, 144, 1) 0%, rgba(238, 97, 91, 1) 100%);
     -webkit-box-shadow: 0.872px 9.962px 20px 0px rgba(12, 78, 165, 0.3);
     box-shadow: 0.872px 9.962px 20px 0px rgba(12, 78, 165, 0.3);
     padding: 11px 35px;
@@ -92,8 +91,7 @@
 }
 
 .latest-registered-section .registered-slider .single-slider .img img {
-    width: 180px;
-    height: 230px;
+    height: 185px;
     border-radius: 10px;
     box-shadow: 0px 8px 13px rgb(0 0 0 / 20%);
     display: inline-block;

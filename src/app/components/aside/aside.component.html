@@ -11,7 +11,7 @@
             </span>
             <circle-progress [options]="progressOptions" [percent]="memberDetails.percentage" [renderOnClick]="false"></circle-progress>
         </div>
-        <h3 class="text-dark">{{memberDetails.matri_id}}</h3>
+        <h4 class="text-dark mt-1">{{memberDetails.matri_id}}</h4>
         <h4 class="h5 fw-600 text-capitalize">{{memberDetails.firstname}} {{memberDetails.lastname}}</h4>
         <div class="text-center  mb-2">
 
@@ -44,16 +44,22 @@
                     <span class="aiz-side-nav-text">Dashboard</span>
                 </a>
             </li>
-            <!-- <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" class="aiz-side-nav-link">
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" [routerLink]="['/profile-setting']" [queryParams]="{show:'profile-pic'}" routerLinkActive="active" class="aiz-side-nav-link">
+                    <i class=" aiz-side-nav-icon"></i>
+                    <span class="aiz-side-nav-text">Profile Picture</span>
+                </a>
+            </li>
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" [routerLink]="['/profile-setting']" [queryParams]="{show:'gallery'}" routerLinkActive="active" class="aiz-side-nav-link">
                     <i class=" aiz-side-nav-icon"></i>
                     <span class="aiz-side-nav-text">Gallery</span>
                 </a>
-            </li> -->
+            </li>
             <li class="aiz-side-nav-item">
-                <a href="javascript:void(0);" class="aiz-side-nav-link">
+                <a href="javascript:void(0);" class="aiz-side-nav-link" routerLink="/plans" routerLinkActive="active">
                     <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">View Packages</span>
+                    <span class="aiz-side-nav-text">View Plans</span>
                     <!-- <span class="aiz-side-nav-arrow"></span> -->
                 </a>
 
@@ -101,15 +107,14 @@
                     <span class="aiz-side-nav-text">Privacy Settings</span>
                 </a>
             </li>
-
-            <!-- <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" class="aiz-side-nav-link">
+            <li class="aiz-side-nav-item">
+                <a href="javascript:void(0)" class="aiz-side-nav-link" routerLinkActive="active" routerLink="/change-password">
                     <i class=" aiz-side-nav-icon"></i>
                     <span class="aiz-side-nav-text">Change Password</span>
                 </a>
-            </li> -->
+            </li>
             <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/profile-setting" routerLinkActive="active" class="aiz-side-nav-link">
+                <a href="javascript:void(0)" routerLink="/profile-setting" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="aiz-side-nav-link">
                     <i class=" aiz-side-nav-icon"></i>
                     <span class="aiz-side-nav-text">Manage Profile</span>
                 </a>

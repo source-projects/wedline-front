@@ -134,7 +134,7 @@ export class LoginService {
       withCredentials:true
     });
   }  
-  getAllPackages(){
+  getAllPlans(){
     return this.http.get(this.baseUrl+"api/get_plan_data",{withCredentials:true});
   }
   getMyProfile(){
@@ -163,6 +163,13 @@ export class LoginService {
     formData.append("csrf_new_matrimonial",this.token);   
     formData.append("user_agent","NI-AAPP"); 
     return this.http.post(this.baseUrl+"api/refine_search/"+page,formData,{
+      withCredentials:true
+    });
+  }
+  getHomeBanners(formData:FormData){    
+    formData.append("csrf_new_matrimonial",this.token);   
+    formData.append("user_agent","NI-AAPP"); 
+    return this.http.post(this.baseUrl+"api/get_homepage_banner",formData,{
       withCredentials:true
     });
   }
@@ -249,6 +256,13 @@ export class LoginService {
       withCredentials:true
     });
   }
+  viewContactDetails(formData:FormData){    
+    formData.append("csrf_new_matrimonial",this.token);   
+    formData.append("user_agent","NI-AAPP"); 
+    return this.http.post(this.baseUrl+"search/view_contact_details",formData,{
+      withCredentials:true
+    });
+  }
   toggleLike(formData:FormData){    
     formData.append("csrf_new_matrimonial",this.token);   
     formData.append("user_agent","NI-AAPP"); 
@@ -290,11 +304,34 @@ export class LoginService {
       withCredentials:true
     });
   }
+  changePassword(formData:FormData){    
+    formData.append("csrf_new_matrimonial",this.token);   
+    formData.append("user_agent","NI-AAPP"); 
+    return this.http.post(this.baseUrl+"privacy-setting/change-password",formData,{
+      withCredentials:true
+    });
+  }
   getJoinedMembers(){   
     let formData = new FormData(); 
     formData.append("csrf_new_matrimonial",this.token);   
     formData.append("user_agent","NI-AAPP");
     return this.http.post(this.baseUrl+"my_dashboard/recent_profile",formData,{
+      withCredentials:true
+    });
+  }
+  getDashboardCount(){   
+    let formData = new FormData(); 
+    formData.append("csrf_new_matrimonial",this.token);   
+    formData.append("user_agent","NI-AAPP");
+    return this.http.post(this.baseUrl+"api/get_dashboard_count",formData,{
+      withCredentials:true
+    });
+  }
+  getCurrentPlan(){   
+    let formData = new FormData(); 
+    formData.append("csrf_new_matrimonial",this.token);   
+    formData.append("user_agent","NI-AAPP");
+    return this.http.post(this.baseUrl+"premium_member/current_plan",formData,{
       withCredentials:true
     });
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import * as _moment from 'moment';
@@ -70,7 +70,8 @@ export class ProfileSettingComponent implements OnInit {
    private snackBar:MatSnackBar,
    private fb:FormBuilder,
    public dialog: MatDialog,
-   private modalGalleryService: ModalGalleryService
+   private modalGalleryService: ModalGalleryService,
+   private route: ActivatedRoute
   ) {
   this.basicInfoForm = this.fb.group({
     firstname: ['', Validators.required],
@@ -91,7 +92,9 @@ export class ProfileSettingComponent implements OnInit {
     smoke:['',Validators.required],
     drink:['',Validators.required],
     complexion:['',Validators.required],
-    blood_group:['']
+    blood_group:[''],
+    physical_status:['No'],
+    disabled_discription:['']
    });
 
    this.aboutMeForm = this.fb.group({
@@ -105,7 +108,9 @@ export class ProfileSettingComponent implements OnInit {
 
   this.religionForm = this.fb.group({
     caste: ['', Validators.required],
-    subcaste:['']
+    subcaste:[''],
+    parish:[''],
+    diocese:['']
   }); 
   this.locationForm = this.fb.group({
     country_id: ['', Validators.required],
@@ -115,7 +120,10 @@ export class ProfileSettingComponent implements OnInit {
     country_code:['',Validators.required],
     mobile_num:['',Validators.required],
     time_to_call:[''],
-    residence:['']
+    residence:[''],
+    pincode:[''],
+    phone:[''],
+    whatsapp_number:['']
   }); 
 
   this.educationForm = this.fb.group({
@@ -137,7 +145,13 @@ export class ProfileSettingComponent implements OnInit {
     no_of_married_brother:[''],
     no_of_sisters:[''],
     no_of_married_sister:[''],
-    family_details:['']
+    family_details:[''],
+    father_house_name:[''],
+    father_native_place:[''],
+    mother_house_name:[''],
+    mother_native_place:[''],
+    father_status:[''],
+    mother_status:['']
   }); 
 
   this.basicPartnerForm = this.fb.group({
@@ -195,10 +209,40 @@ export class ProfileSettingComponent implements OnInit {
  }
  
  ngOnInit(): void {
+   this.route.queryParams.subscribe(params => {
+      if(params.show == "gallery"){
+        this.toggleTabActiveClasses("gallery"); 
+        if(document.querySelector("[href='#profile-pic']")?.classList.contains("active")){
+          this.toggleTabActiveClasses("profile-pic"); 
+          return;
+        }
+        this.toggleTabActiveClasses("profile"); 
+      }else if(params.show=="profile-pic"){
+        this.toggleTabActiveClasses("profile-pic");
+        if(document.querySelector("[href='#gallery']")?.classList.contains("active")){
+          this.toggleTabActiveClasses("gallery");
+          return;
+        }
+        this.toggleTabActiveClasses("profile");
+      }else if(document.querySelector("[href='#gallery']")?.classList.contains("active")){
+        this.toggleTabActiveClasses("gallery");
+        this.toggleTabActiveClasses("profile");
+      }else if(document.querySelector("[href='#profile-pic']")?.classList.contains("active")){
+        this.toggleTabActiveClasses("profile-pic");
+        this.toggleTabActiveClasses("profile");
+      }  
+    }
+  ); 
+ 
 }
  ngOnDestroy():void{
   this.generatedTokenStatusSubscription.unsubscribe();
   this.reloadMemberDataStatusSubscription.unsubscribe();
+ }
+ toggleTabActiveClasses(tabId:string){
+    document.querySelector("[href='#"+tabId+"']")?.classList.toggle("active");
+    document.querySelector("#"+tabId)?.classList.toggle("active");
+    document.querySelector("#"+tabId)?.classList.toggle("show");
  }
  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
   this.date = moment(event.value);
@@ -490,6 +534,8 @@ getCasteList(){
     requestData.append("drink",this.lifeStyleForm.get("drink")?.value);
     requestData.append("complexion",this.lifeStyleForm.get("complexion")?.value);   
     requestData.append("blood_group",this.lifeStyleForm.get("blood_group")?.value); 
+    requestData.append("physical_status",this.lifeStyleForm.get("physical_status")?.value); 
+    requestData.append("disabled_discription",this.lifeStyleForm.get("physical_status")?.value == "No"?"":this.lifeStyleForm.get("disabled_discription")?.value); 
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
 
@@ -527,10 +573,11 @@ getCasteList(){
     let requestData = new FormData();
     requestData.append("subcaste",this.religionForm.get("subcaste")?.value);
     requestData.append("caste",this.religionForm.get("caste")?.value);
+    requestData.append("diocese",this.religionForm.get("diocese")?.value);
+    requestData.append("parish",this.religionForm.get("parish")?.value);
     requestData.append("religion","30");    
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
-
 
     this.registerSteps(requestData,"religious-detail"); 
   }else{
@@ -550,6 +597,10 @@ locationFormSubmit(){
     requestData.append("mobile_num",this.locationForm.get("mobile_num")?.value);
     requestData.append("time_to_call",this.locationForm.get("time_to_call")?.value);
     requestData.append("residence",this.locationForm.get("residence")?.value);
+    requestData.append("phone",this.locationForm.get("phone")?.value);
+    requestData.append("pincode",this.locationForm.get("pincode")?.value);
+    requestData.append("whatsapp_number",this.locationForm.get("whatsapp_number")?.value);
+
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
 
@@ -594,6 +645,12 @@ familyFormSubmit(){
     requestData.append("no_of_sisters",this.familyForm.get("no_of_sisters")?.value);
     requestData.append("no_of_married_sister",this.familyForm.get("no_of_married_sister")?.value);
     requestData.append("family_details",this.familyForm.get("family_details")?.value);
+    requestData.append("father_house_name",this.familyForm.get("father_house_name")?.value);
+    requestData.append("father_native_place",this.familyForm.get("father_native_place")?.value);
+    requestData.append("mother_house_name",this.familyForm.get("mother_house_name")?.value);
+    requestData.append("mother_native_place",this.familyForm.get("mother_native_place")?.value);
+    requestData.append("father_status",this.familyForm.get("father_status")?.value);
+    requestData.append("mother_status",this.familyForm.get("mother_status")?.value);
     requestData.append("user_agent","NI-AAPP");
     requestData.append("is_post","0");
 
@@ -864,19 +921,21 @@ deletePhoto(photoNumber:number){
 }
 
 setAlbum(){
+  let regx = /photos/gi;
   let count = 0;
   this.album = [];
-  for (let i = 2; i <= 5; i++) {
-    if(this.memberDetails["photo"+i]){      
+  for (let i = 1; i <= 5; i++) {
+    if(this.memberDetails["photo"+i]){   
       this.album.push(new Image(count++, {
-        img:this.memberDetails['photo' + i]
+        img:this.memberDetails['photo' + i].replace(regx, "photos_big")
       }));
     }    
   }  
 }
 open(imageIndex: number) { 
+  let regx = /photos/gi;
   const DEFAULT_SIZE_PREVIEWS: Size = {
-    width: '100px',
+    width: 'auto',
     height: 'auto'
   };
   const libConfig: LibConfig = {
@@ -888,10 +947,9 @@ open(imageIndex: number) {
       }
     }
   };
-    
     let id = imageIndex;
     const imageToShow: Image = this.album.find((obj:Image)=>{
-      return obj.modal.img == this.memberDetails["photo"+imageIndex];
+      return obj.modal.img == this.memberDetails["photo"+imageIndex].replace(regx, "photos_big");
     })
     let dialogRef = this.modalGalleryService.open({
       id,

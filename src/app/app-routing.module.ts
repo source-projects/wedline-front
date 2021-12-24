@@ -25,8 +25,14 @@ import { ContactComponent } from './components/contact/contact.component';
 import { PostSuccessStoryComponent } from './components/post-success-story/post-success-story.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ServicesComponent } from './components/services/services.component';
+import { FreeMembershipComponent } from './components/free-membership/free-membership.component';
+import { ReferenceOrBackupNotForProductionComponent } from './components/reference-or-backup-not-for-production/reference-or-backup-not-for-production.component';
+import { PaidPlanComponent } from './components/paid-plan/paid-plan.component';
+import { PersonalizedPlanComponent } from './components/personalized-plan/personalized-plan.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
+  {path:"ref",component: ReferenceOrBackupNotForProductionComponent}, //not needed remove this routing
   {path:"home",component: HomeComponent},
   {path:"",redirectTo: "home", pathMatch:"full"},
   {path:"about",component: AboutComponent},
@@ -34,17 +40,21 @@ const routes: Routes = [
   {path:"login",component: LoginComponent,canActivate:[LoginGuard]},
   {path:"full-profile/:memberId",component: FullProfileComponent,canActivate:[AuthGuard]},
   {path:"public-view",component: PublicViewComponent,canActivate:[AuthGuard]},
-  {path:"search",component: SearchComponent},
+  {path:"search",component: SearchComponent,canActivate:[AuthGuard]},
   {path:"success-stories",component: SuccessStoriesComponent},
   {path:"success-story/:id",component: SuccessStoryComponent},
   {path:"services",component: ServicesComponent},
   {path:"post-success-story",component: PostSuccessStoryComponent,canActivate:[AuthGuard]},
+  {path:"change-password",component: ChangePasswordComponent,canActivate:[AuthGuard]},
   {path:"contact",component: ContactComponent},
   {path:"dashboard",component: DashboardComponent,canActivate:[AuthGuard]},
   {path:"profile-setting",component: ProfileSettingComponent,canActivate:[AuthGuard]},
   {path:"my-interest",component: MyInterestComponent,canActivate:[AuthGuard]},
   {path:"profile-starter",component: ProfileStarterComponent,canActivate:[AuthGuard]},
   {path:"plans",component: PlansComponent},
+  {path:"free-plan",component: FreeMembershipComponent},
+  {path:"paid-plan",component: PaidPlanComponent},
+  {path:"personalized-plan",component: PersonalizedPlanComponent},
   {path:"my-shortlist",component: MyShortlistComponent,canActivate:[AuthGuard]},
   {path:"my-likes",component: MyLikesComponent,canActivate:[AuthGuard]},
   {path:"chat",component: ChatComponent,canActivate:[AuthGuard]},

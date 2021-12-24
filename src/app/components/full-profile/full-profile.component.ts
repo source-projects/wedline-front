@@ -20,7 +20,12 @@ export class FullProfileComponent implements OnInit {
   album:any[] = [];
   memberId:any = null;
   isGettingProfile:boolean = true;
+  isGettingContact:boolean = false;
+  isViewedContact:boolean = false;
   generatedTokenStatusSubscription:Subscription;
+  email:string = "";
+  mobileNumber:string = "";
+  whatsappNumber:string = "";
   constructor(
     private route:ActivatedRoute,
     private loginService:LoginService,
@@ -45,20 +50,22 @@ export class FullProfileComponent implements OnInit {
     this.generatedTokenStatusSubscription.unsubscribe();
   }
   setAlbum(){
+    let regx = /photos/gi;
     let count = 0;
     this.album = [];
     for (let i = 2; i <= 5; i++) {
-      if(this.memberDetails["photo"+i]){      
+      if(this.memberDetails["photo"+i]){ 
         this.album.push(new Image(count++, {
-          img: this.memberDetails['photo' + i]
+          img: this.memberDetails['photo' + i].replace(regx, "photos_big")
         }));
       }    
     }  
   }
-  open(imageIndex: number) { 
+  open(imageIndex: number) {
+    let regx = /photos/gi; 
     const DEFAULT_SIZE_PREVIEWS: Size = {
       width: 'auto',
-      height: '50vh'
+      height: 'auto'
     };
     const libConfig: LibConfig = {
       slideConfig: {
@@ -72,7 +79,7 @@ export class FullProfileComponent implements OnInit {
       
       let id = imageIndex;
       const imageToShow: Image = this.album.find((obj:Image)=>{
-        return obj.modal.img == this.memberDetails["photo"+imageIndex];
+        return obj.modal.img == this.memberDetails["photo"+imageIndex].replace(regx, "photos_big");
       })
       let dialogRef = this.modalGalleryService.open({
         id,
@@ -98,6 +105,7 @@ export class FullProfileComponent implements OnInit {
       if((res["status"]=="success")){  
         this.isGettingProfile = false;
         this.memberDetails = res.data;
+        console.log(this.memberDetails);
         this.setAlbum();
       }else{
         this.showErrorDialog(res["errmessage"]);
@@ -206,5 +214,24 @@ export class FullProfileComponent implements OnInit {
         console.log("sent successfully");
       }
     });
+  }
+  viewContact(memberId:any){
+    this.isGettingContact = true;
+    this.isViewedContact = false;
+    let requestData = new FormData();
+    requestData.append("receiver_matri_id",memberId);
+    this.loginService.viewContactDetails(requestData).subscribe((res:any)=>{
+      this.isGettingContact = false;
+      if(res["success"]=="success"){  
+        this.email = res["contact_details"]["email"];
+        this.mobileNumber = res["contact_details"]["mobile"];
+        this.whatsappNumber = res["contact_details"]["whatsapp_number"]?res["contact_details"]["whatsapp_number"]:"-";
+        this.isViewedContact = true;
+      }
+      this.showSnackbar(res["errmessage"],true,"close");
+  },error=>{
+    this.isGettingContact = false;
+    this.showSnackbar("Connection error!",true,"close");    
+  });   
   }
 }

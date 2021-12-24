@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -16,11 +15,18 @@ export class DashboardComponent implements OnInit {
   joinedMembers:any[] = [];
   loggedMembers:any[] = [];
   matchs:any[] = [];
+  currentPlan:any = {};
+  blockCount:number = 0;
+  likedCount:number = 0;
+  shortlistedCount:number = 0;
+  interestCount:number = 0;
 
   generatedTokenStatusSubscription:Subscription;
+  isGettingCount:boolean = false;
   isGettingJoined:boolean = false;
   isGettingLogged:boolean = false;
   isGettingMatchs:boolean = false;
+  isGettingPlan:boolean = false;
   isNoResultsJoined:boolean = false;
   isNoResultsLogged:boolean = false;
   isNoResultsMatchs:boolean = false;
@@ -31,8 +37,10 @@ export class DashboardComponent implements OnInit {
   ) {
     this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
       if(res){
+        this.getDashboardCount();
         this.getJoinedMembers();
         this.getLoggedMembers();
+        this.getCurrentPlan();
       }
     }); 
     this.reloadMemberStatusSubscription = this.loginService.getreloadMemberDataStatus().subscribe(res=>{
@@ -57,6 +65,36 @@ export class DashboardComponent implements OnInit {
     }
     config.panelClass = ['snackbar-styler'];
     return this.snackBar.open(content, action, config);
+  }
+  getCurrentPlan(){
+    this.isGettingPlan = true;
+    this.currentPlan = {};
+    this.loginService.getCurrentPlan().subscribe((res:any)=>{
+      this.isGettingPlan = false;
+      if((res["status"]=="success")){ 
+        this.currentPlan = res["data"];
+      }else{
+        console.log(res["errmessage"]);
+      }
+    },error=>{
+      this.isGettingPlan = false;
+    }); 
+  }
+  getDashboardCount(){
+    this.isGettingCount = true;
+    this.loginService.getDashboardCount().subscribe((res:any)=>{
+      this.isGettingCount = false;
+      if((res["status"]=="success")){ 
+        this.blockCount = res["block_count"];
+        this.likedCount = res["like_count"];
+        this.shortlistedCount = res["shortlist_count"];
+        this.interestCount = res["interest_count"];
+      }else{
+        console.log(res["errmessage"]);
+      }
+    },error=>{
+      this.isGettingCount = false;
+    }); 
   }
   getJoinedMembers(){
     this.isNoResultsJoined = false;

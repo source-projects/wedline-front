@@ -4,7 +4,7 @@
     <section class="pt-6 bg-primary-grad text-white">
         <div class="container">
             <div class="row">
-                <div class="col-xl-8 offset-xl-4">
+                <div class="col-xl-9 offset-xl-3">
                     <div class="px-3 row align-items-center">
                         <div class="col-md-8 col-xxl-9">
                             <h1 class="fs-24 fw-600 text-capitalize">
@@ -66,8 +66,8 @@
             <div class="row">
                 <div class="col-xl-4 col-xxl-3 order-1 order-xl-0">
                     <div class="aiz-profile-sidebar">
-                        <div class="overflow-hidden rounded shadow-lg mb-4 bg-white d-none d-xl-block">
-                            <img [src]="memberDetails.photo1?memberDetails.photo1:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="img-fluid w-100">
+                        <div class="mb-4 d-none d-xl-block">
+                            <img [src]="memberDetails.photo1?memberDetails.photo1:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="img-fluid w-100 overflow-hidden rounded shadow-lg">
                         </div>
 
                         <div class="mb-4 p-4 border rounded border-gray-200 d-none d-xl-block">
@@ -210,7 +210,7 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-xl-8 offset-xxl-1">
+                <div class="col-xl-8">
                     <div class="overflow-hidden rounded shadow-lg mb-4 bg-white d-xl-none">
                         <img src="https://demo.activeitzone.com/matrimonial/public/uploads/all/PHOPJbRhA2sirsP6lcQu3hgQdIQVCSzSIH03p83i.png" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" class="img-fluid w-100">
                     </div>
@@ -251,6 +251,8 @@
                                         <span>Member ID:  {{memberDetails.matri_id}}</span>
                                             <span class="mx-2">|</span>
                                             <span>On Behalf: {{memberDetails.profileby}}</span>
+                                            <span class="mx-2">|</span>
+                                            <span>Last Login: {{memberDetails.last_login | dateBeautifier}}</span>
                                             </span>
                                         </div>
                                     </div>
@@ -290,7 +292,52 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <!-- Contact Details -->
+                                <div class="pb-4 accordion-item">
+                                    <div class="accordion-head c-pointer d-flex align-items-center mb-4" data-toggle="collapse" data-target="#contact-details">
+                                        <span class="size-50px border rounded-circle d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.988" height="19.927" viewBox="0 0 19.988 19.927" class="fill-primary-grad">
+                    <g transform="translate(-1080 -807.536)">
+                        <path d="M19.41,13a3.147,3.147,0,0,1-.67-.12,9.86,9.86,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.46a13.17,13.17,0,0,1-2.67-2,13.17,13.17,0,0,1-2-2.67l.46-.21a2,2,0,0,0,1-2.48,10.47,10.47,0,0,1-.39-1.32c-.05-.22-.09-.45-.12-.67a3,3,0,0,0-3-2.49H5a2.99,2.99,0,0,0-2.97,3.4A19.008,19.008,0,0,0,18.44,21.92a2.56,2.56,0,0,0,.39,0,2.993,2.993,0,0,0,3-3v-3A3,3,0,0,0,19.41,13Zm.49,6a1.005,1.005,0,0,1-1.15.99,17.16,17.16,0,0,1-9.87-4.84A17.16,17.16,0,0,1,4,5.25,1.005,1.005,0,0,1,5,4.1H8a1,1,0,0,1,1,.78,3.935,3.935,0,0,0,.15.82,11,11,0,0,0,.46,1.54l-1.4.66a1.042,1.042,0,0,0-.52,1.32,14.49,14.49,0,0,0,7,7,1.042,1.042,0,0,0,1.32-.52l.63-1.4a12.41,12.41,0,0,0,1.58.46c.26.06.54.11.81.15a1,1,0,0,1,.78,1ZM14,2h-.7a1,1,0,1,0,.17,2H14a6,6,0,0,1,6,6v.53a1,1,0,0,0,.91,1.08h.08a1,1,0,0,0,1-.91V10A8,8,0,0,0,14,2Zm2,8a1,1,0,0,0,2,0,4,4,0,0,0-4-4,1,1,0,0,0,0,2A2,2,0,0,1,16,10Z" transform="translate(1077.998 805.536)" class="fill-dark"></path>
+                        <path d="M19.41,13a3.147,3.147,0,0,1-.67-.12,9.86,9.86,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.46a13.17,13.17,0,0,1-2.67-2,13.17,13.17,0,0,1-2-2.67l.46-.21a2,2,0,0,0,1-2.48,10.47,10.47,0,0,1-.39-1.32c-.05-.22-.09-.45-.12-.67a3,3,0,0,0-3-2.49H5a2.99,2.99,0,0,0-2.97,3.4A19.008,19.008,0,0,0,18.44,21.92a2.56,2.56,0,0,0,.39,0,2.993,2.993,0,0,0,3-3v-3A3,3,0,0,0,19.41,13Zm.49,6a1.005,1.005,0,0,1-1.15.99,17.16,17.16,0,0,1-9.87-4.84A17.16,17.16,0,0,1,4,5.25,1.005,1.005,0,0,1,5,4.1H8a1,1,0,0,1,1,.78,3.935,3.935,0,0,0,.15.82,11,11,0,0,0,.46,1.54l-1.4.66a1.042,1.042,0,0,0-.52,1.32,14.49,14.49,0,0,0,7,7,1.042,1.042,0,0,0,1.32-.52l.63-1.4a12.41,12.41,0,0,0,1.58.46c.26.06.54.11.81.15a1,1,0,0,1,.78,1Z" transform="translate(1077.998 805.536)" fill="url(#primary-gradient)"></path>
+                    </g>
+                </svg>
+            </span>
+                                        <div class="ml-4">
+                                            <span class="fs-18 fw-600 d-block">Contact Details</span>
+                                        </div>
+                                    </div>
+                                    <div id="contact-details" class="collapse accordion-body ml-5 pl-25px" data-parent="#profile-accordion">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="border p-3">
+                                                    <div class="d-flex mb-3">
+                                                        <i class="las la-phone text-primary la-2x mr-3"></i>
+                                                        <div>
+                                                            <div class="fs-15 fw-600 mb-1">Contact Number
+                                                            </div>
+                                                            <div class="fw-400">{{memberDetails.mobile}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex mb-3">
+                                                        <i class="las la-envelope text-primary la-2x mr-3"></i>
+                                                        <div>
+                                                            <div class="fs-15 fw-600 mb-1">Email ID</div>
+                                                            <div class="fw-400">{{memberDetails.email}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex mb-3">
+                                                        <i class="lab la-whatsapp text-primary la-2x mr-3"></i>
+                                                        <div>
+                                                            <div class="fs-15 fw-600 mb-1">Whatsapp Number</div>
+                                                            <div class="fw-400">{{memberDetails.whatsapp_number}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- basic information -->
                                 <div class="pb-4 accordion-item">
                                     <div class="accordion-head c-pointer d-flex align-items-center mb-4" data-toggle="collapse" data-target="#basic-info">
@@ -414,6 +461,14 @@
                                                                 <th class="py-1">Sub Caste</th>
                                                                 <td class="py-1">{{memberDetails.subcaste?memberDetails.subcaste:"-"}}</td>
                                                             </tr>
+                                                            <tr>
+                                                                <th class="py-1">Parish</th>
+                                                                <td class="py-1">{{memberDetails.parish?memberDetails.parish:"-"}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="py-1">Diocese</th>
+                                                                <td class="py-1">{{memberDetails.diocese?memberDetails.diocese:"-"}}</td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -516,6 +571,10 @@
                                                                 <th class="py-1">Drink</th>
                                                                 <td class="py-1">{{memberDetails.drink}}</td>
                                                             </tr>
+                                                            <tr>
+                                                                <th class="py-1">Physical Status</th>
+                                                                <td class="py-1">{{memberDetails.physical_status=="Yes"?memberDetails.disabled_discription:"Not Differently Abled"}}</td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -541,49 +600,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <!-- Contact Details -->
-                                <!-- <div class="pb-4 accordion-item">
-                                    <div class="accordion-head c-pointer d-flex align-items-center mb-4" data-toggle="collapse" data-target="#contact-details">
-                                        <span class="size-50px border rounded-circle d-flex align-items-center justify-content-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.988" height="19.927" viewBox="0 0 19.988 19.927" class="fill-primary-grad">
-                                        <g transform="translate(-1080 -807.536)">
-                                            <path d="M19.41,13a3.147,3.147,0,0,1-.67-.12,9.86,9.86,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.46a13.17,13.17,0,0,1-2.67-2,13.17,13.17,0,0,1-2-2.67l.46-.21a2,2,0,0,0,1-2.48,10.47,10.47,0,0,1-.39-1.32c-.05-.22-.09-.45-.12-.67a3,3,0,0,0-3-2.49H5a2.99,2.99,0,0,0-2.97,3.4A19.008,19.008,0,0,0,18.44,21.92a2.56,2.56,0,0,0,.39,0,2.993,2.993,0,0,0,3-3v-3A3,3,0,0,0,19.41,13Zm.49,6a1.005,1.005,0,0,1-1.15.99,17.16,17.16,0,0,1-9.87-4.84A17.16,17.16,0,0,1,4,5.25,1.005,1.005,0,0,1,5,4.1H8a1,1,0,0,1,1,.78,3.935,3.935,0,0,0,.15.82,11,11,0,0,0,.46,1.54l-1.4.66a1.042,1.042,0,0,0-.52,1.32,14.49,14.49,0,0,0,7,7,1.042,1.042,0,0,0,1.32-.52l.63-1.4a12.41,12.41,0,0,0,1.58.46c.26.06.54.11.81.15a1,1,0,0,1,.78,1ZM14,2h-.7a1,1,0,1,0,.17,2H14a6,6,0,0,1,6,6v.53a1,1,0,0,0,.91,1.08h.08a1,1,0,0,0,1-.91V10A8,8,0,0,0,14,2Zm2,8a1,1,0,0,0,2,0,4,4,0,0,0-4-4,1,1,0,0,0,0,2A2,2,0,0,1,16,10Z" transform="translate(1077.998 805.536)" class="fill-dark"></path>
-                                            <path d="M19.41,13a3.147,3.147,0,0,1-.67-.12,9.86,9.86,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.46a13.17,13.17,0,0,1-2.67-2,13.17,13.17,0,0,1-2-2.67l.46-.21a2,2,0,0,0,1-2.48,10.47,10.47,0,0,1-.39-1.32c-.05-.22-.09-.45-.12-.67a3,3,0,0,0-3-2.49H5a2.99,2.99,0,0,0-2.97,3.4A19.008,19.008,0,0,0,18.44,21.92a2.56,2.56,0,0,0,.39,0,2.993,2.993,0,0,0,3-3v-3A3,3,0,0,0,19.41,13Zm.49,6a1.005,1.005,0,0,1-1.15.99,17.16,17.16,0,0,1-9.87-4.84A17.16,17.16,0,0,1,4,5.25,1.005,1.005,0,0,1,5,4.1H8a1,1,0,0,1,1,.78,3.935,3.935,0,0,0,.15.82,11,11,0,0,0,.46,1.54l-1.4.66a1.042,1.042,0,0,0-.52,1.32,14.49,14.49,0,0,0,7,7,1.042,1.042,0,0,0,1.32-.52l.63-1.4a12.41,12.41,0,0,0,1.58.46c.26.06.54.11.81.15a1,1,0,0,1,.78,1Z" transform="translate(1077.998 805.536)" fill="url(#primary-gradient)"></path>
-                                        </g>
-                                    </svg>
-                                </span>
-                                        <div class="ml-4">
-                                            <span class="fs-18 fw-600 d-block">Contact Details</span>
-                                        </div>
-                                    </div>
-                                    <div id="contact-details" class="collapse accordion-body ml-5 pl-25px" data-parent="#profile-accordion">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="border p-3">
-                                                    <div class="d-flex mb-3">
-                                                        <i class="las la-phone text-primary la-2x mr-3"></i>
-                                                        <div>
-                                                            <div class="fs-15 fw-600 mb-1">Contact Number
-                                                            </div>
-                                                            <div class="fw-400">209-406-1441</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        <i class="las la-envelope text-primary la-2x mr-3"></i>
-                                                        <div>
-                                                            <div class="fs-15 fw-600 mb-1">Email ID</div>
-                                                            <div class="fw-400">user8@example.com</div>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
 
 
                                 <!-- Hobbies & Interest  -->
@@ -653,12 +669,36 @@
                                                                 <th class="py-1">Mother's Occupation</th>
                                                                 <td class="py-1">{{memberDetails.mother_occupation}}</td>
                                                             </tr>
+                                                            <tr>
+                                                                <th class="py-1">Father Native Place</th>
+                                                                <td class="py-1">{{memberDetails.father_native_place}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="py-1">Mother Native Place</th>
+                                                                <td class="py-1">{{memberDetails.mother_native_place}}</td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="col-sm-6 border-left ">
                                                     <table class="w-100 ml-4">
                                                         <tbody>
+                                                            <tr>
+                                                                <th class="py-1">Father House Name</th>
+                                                                <td class="py-1">{{memberDetails.father_house_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="py-1">Mother House Name</th>
+                                                                <td class="py-1">{{memberDetails.mother_house_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="py-1">Father Status</th>
+                                                                <td class="py-1">{{memberDetails.father_status}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="py-1">Mother Status</th>
+                                                                <td class="py-1">{{memberDetails.mother_status}}</td>
+                                                            </tr>
                                                             <tr>
                                                                 <th class="py-1">No of Brother</th>
                                                                 <td class="py-1">{{memberDetails.no_of_brothers}}</td>
@@ -742,7 +782,7 @@
                             <h2 class="text-primary fs-24 mb-5 pb-4">Gallery</h2>
 
 
-                            <div class="card-columns">
+                            <div class="card-columns d-flex">
                                 <div class="card hov-overlay">
                                     <img [src]="memberDetails.photo2?memberDetails.photo2:'https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png'" class="card-img" alt="Photo">
                                     <div class="overlay">
@@ -881,18 +921,18 @@
                             <li class="aiz-side-nav-item">
                                 <a href="javascript:void(0);" class="aiz-side-nav-link">
                                     <i class="las la-shopping-basket aiz-side-nav-icon"></i>
-                                    <span class="aiz-side-nav-text">Packages</span>
+                                    <span class="aiz-side-nav-text">Plans</span>
                                     <span class="aiz-side-nav-arrow"></span>
                                 </a>
                                 <ul class="aiz-side-nav-list level-2 mm-collapse">
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Packages</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plans" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plans</span>
                                         </a>
                                     </li>
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Package Purchase History</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plan-purchase-history" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plan Purchase History</span>
                                         </a>
                                     </li>
                                 </ul>

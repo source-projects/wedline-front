@@ -38,20 +38,22 @@ export class PublicViewComponent implements OnInit {
     // this.generatedTokenStatusSubscription.unsubscribe();
   }
   setAlbum(){
+    let regx = /photos/gi;
     let count = 0;
     this.album = [];
     for (let i = 2; i <= 5; i++) {
       if(this.memberDetails["photo"+i]){      
         this.album.push(new Image(count++, {
-          img: this.memberDetails['photo' + i]
+          img: this.memberDetails['photo' + i].replace(regx, "photos_big")
         }));
       }    
     }  
   }
   open(imageIndex: number) { 
+    let regx = /photos/gi;
     const DEFAULT_SIZE_PREVIEWS: Size = {
       width: 'auto',
-      height: '50vh'
+      height: 'auto'
     };
     const libConfig: LibConfig = {
       slideConfig: {
@@ -65,7 +67,7 @@ export class PublicViewComponent implements OnInit {
       
       let id = imageIndex;
       const imageToShow: Image = this.album.find((obj:Image)=>{
-        return obj.modal.img == this.memberDetails["photo"+imageIndex];
+        return obj.modal.img == this.memberDetails["photo"+imageIndex].replace(regx, "photos_big");
       })
       let dialogRef = this.modalGalleryService.open({
         id,

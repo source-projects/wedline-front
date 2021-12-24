@@ -21,7 +21,7 @@ export class AsideComponent implements OnInit {
     private snackBar:MatSnackBar
   ) {
     // this.progressOptions.percent = 0;
-    this.progressOptions.radius = 50;
+    this.progressOptions.radius = 65;
     this.progressOptions.outerStrokeGradient = true;
     this.progressOptions.outerStrokeWidth = 10;
     this.progressOptions.outerStrokeColor = "#e00090";

@@ -13,7 +13,7 @@ declare var Razorpay: any;
 export class PlansComponent implements OnInit {
   showSpinner:boolean = false;
   isProccessing:boolean = false;
-  packages:any = [];
+  plans:any = [];
   options:any = {};
   planChoosed:any;
   orderId:string = "";
@@ -67,10 +67,10 @@ export class PlansComponent implements OnInit {
   }
 
   getPlans(){
-    this.loginService.getAllPackages().subscribe((res:any)=>{
+    this.loginService.getAllPlans().subscribe((res:any)=>{
        this.showSpinner =true;
        if(res["status"]=="success"){
-          this.packages = res["plan_data"];
+          this.plans = res["plan_data"];
        }else{
          this.showSnackbar("No Plan details found!",true,"close");
        }
@@ -80,7 +80,7 @@ export class PlansComponent implements OnInit {
     });
   }
   
-  choosePackage(plan:any){
+  choosePlan(plan:any){
     if(!this.hasLoggedIn){
       this.router.navigateByUrl("/register");
       return;

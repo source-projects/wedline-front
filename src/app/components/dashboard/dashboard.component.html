@@ -10,30 +10,34 @@
                     <div class="row gutters-5">
                         <div class="col-md-3 mx-auto mb-3">
                             <div class="bg-light rounded overflow-hidden text-center p-3">
-                                <i class="la la-heart-o la-3x mb-3 text-primary-grad"></i>
-                                <div class="h4 fw-700 text-primary-grad">2392</div>
-                                <div class="opacity-50">Interested Accepted</div>
+                                <i class="la la-star-o la-3x mb-3 text-primary-grad"></i>
+                                <div class="h4 fw-700 text-primary-grad">{{interestCount}}</div>
+                                <div class="opacity-50">Interests</div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingCount"></mat-spinner>
                             </div>
                         </div>
                         <div class="col-md-3 mx-auto mb-3">
                             <div class="bg-light rounded overflow-hidden text-center p-3">
-                                <i class="las la-phone la-3x mb-3 text-primary-grad"></i>
-                                <div class="h4 fw-700 text-primary-grad">2035</div>
-                                <div class="opacity-50 ">Interested Received</div>
+                                <i class="la la-heart-o la-3x mb-3 text-primary-grad"></i>
+                                <div class="h4 fw-700 text-primary-grad">{{likedCount}}</div>
+                                <div class="opacity-50 ">Liked</div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingCount"></mat-spinner>
                             </div>
                         </div>
                         <div class="col-md-3 mx-auto mb-3">
                             <div class="bg-light rounded overflow-hidden text-center p-3">
                                 <i class="las la-user la-3x mb-3 text-primary-grad"></i>
-                                <div class="h4 fw-700 text-center text-primary-grad">2246</div>
-                                <div class="opacity-50 text-center">Viewed Profile</div>
+                                <div class="h4 fw-700 text-center text-primary-grad">{{shortlistedCount}}</div>
+                                <div class="opacity-50 text-center">Shortlisted</div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingCount"></mat-spinner>
                             </div>
                         </div>
                         <div class="col-md-3 mx-auto mb-3">
                             <div class="bg-light rounded overflow-hidden text-center p-3">
-                                <i class="las la-clock la-3x mb-3 text-primary-grad"></i>
-                                <div class="h4 fw-700 text-center text-primary-grad">2246</div>
-                                <div class="opacity-50 text-center">shortlisted</div>
+                                <i class="las la-ban la-3x mb-3 text-primary-grad"></i>
+                                <div class="h4 fw-700 text-center text-primary-grad">{{blockCount}}</div>
+                                <div class="opacity-50 text-center">Blocked</div>
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingCount"></mat-spinner>
                             </div>
                         </div>
                     </div>
@@ -56,7 +60,7 @@
                                             <ng-template *ngFor="let result of joinedMembers" swiperSlide>
                                                 <div class="single-slider cursor-pointer" routerLink="/full-profile/{{result.id | base64Encode}}">
                                                     <div class="img">
-                                                        <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                                                        <img src="{{result.photo1}}" class="rounded" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
                                                     </div>
                                                     <div class="inner-content">
                                                         <h4 class="name">
@@ -99,7 +103,7 @@
                                             <ng-template *ngFor="let result of loggedMembers" swiperSlide>
                                                 <div class="single-slider cursor-pointer" routerLink="/full-profile/{{result.id | base64Encode}}">
                                                     <div class="img">
-                                                        <img src="{{result.photo1}}" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
+                                                        <img src="{{result.photo1}}" class="rounded" onerror="this.onerror=null;this.src='https://demo.activeitzone.com/matrimonial/public/assets/img/avatar-place.png';" alt="">
                                                     </div>
                                                     <div class="inner-content">
                                                         <h4 class="name">
@@ -126,35 +130,42 @@
                         </div>
                     </div>
 
-                    <div class="row gutters-5">
+                    <div class="row gutters-5" id="current-plan">
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h2 class="fs-16 mb-0">Current package</h2>
+                                    <h2 class="fs-16 mb-0">Current Plan</h2>
                                 </div>
-                                <div class="card-body">
+                                <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingPlan"></mat-spinner>
+                                <div class="card-body" *ngIf="!isGettingPlan">
                                     <div class="text-center mb-4 mt-3">
-                                        <img class="mw-100 mx-auto mb-4" src="https://demo.activeitzone.com/matrimonial/public/uploads/all/zzOHNo1lfGayWCnT9xK1xHB8VjkAzOSnb14ibeup.png" height="130">
-                                        <h5 class="mb-3 h5 fw-600">Bronze Package</h5>
+                                        <img class="mw-100 mx-auto mb-4" src="assets/public/uploads/all/RMTKXAZIB1cN2RA8GLgbhs8DmGl0qj01ACRlEFCG.png" height="130">
+                                        <h5 class="mb-3 h5 fw-600">{{currentPlan.plan_name}}</h5>
                                     </div>
                                     <ul class="list-group list-group-raw fs-15 mb-4 pb-4 border-bottom">
                                         <li class="list-group-item py-2">
-                                            <i class="las la-check text-success mr-2"></i> 100 Express Interests
+                                            <i class="las la-check text-success mr-2"></i> Duration &#8658; {{currentPlan.plan_duration}} days
                                         </li>
                                         <li class="list-group-item py-2">
-                                            <i class="las la-check text-success mr-2"></i> 50 Galley Photo Upload
+                                            <i class="las la-check text-success mr-2"></i> Amount &#8658; {{currentPlan.plan_amount}} &#8377;
                                         </li>
                                         <li class="list-group-item py-2">
-                                            <i class="las la-check text-success mr-2"></i> 5 Contact Info view
+                                            <i class="las la-check text-success mr-2"></i> Activated On &#8658; {{currentPlan.plan_activated | dateBeautifier}}
                                         </li>
                                         <li class="list-group-item py-2 text-line-through">
-                                            <i class="las la-check text-success mr-2"></i> Show Auto Profile Match
+                                            <i class="las la-check text-success mr-2"></i> Contacts Remaining &#8658; {{currentPlan.contacts_used}} out of {{currentPlan.contacts}}
+                                        </li>
+                                        <li class="list-group-item py-2 text-line-through">
+                                            <i class="las la-check text-success mr-2"></i> Profile Remaining &#8658; {{currentPlan.profile_used}} out of {{currentPlan.profile}}
+                                        </li>
+                                        <li class="list-group-item py-2 text-line-through">
+                                            <i class="las la-check text-success mr-2"></i> Messages Remaining &#8658; {{currentPlan.message_used}} out of {{currentPlan.message}}
                                         </li>
                                     </ul>
                                     <h4 class="fs-18 mb-3">
-                                        Package expiry date: 2024-01-26
+                                        Plan expiry date: {{currentPlan.plan_expired | dateBeautifier}}
                                     </h4>
-                                    <a href="javascript:void(0)" class="btn btn-success d-inline-block">Upgrade Package</a>
+                                    <a href="javascript:void(0)" routerLink="/plans" class="btn btn-success d-inline-block">Upgrade Plan</a>
                                 </div>
                             </div>
                         </div>
@@ -307,18 +318,18 @@
                             <li class="aiz-side-nav-item">
                                 <a href="javascript:void(0);" class="aiz-side-nav-link">
                                     <i class="las la-shopping-basket aiz-side-nav-icon"></i>
-                                    <span class="aiz-side-nav-text">Packages</span>
+                                    <span class="aiz-side-nav-text">Plan</span>
                                     <span class="aiz-side-nav-arrow"></span>
                                 </a>
                                 <ul class="aiz-side-nav-list level-2">
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/packages" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Packages</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plan" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plan</span>
                                         </a>
                                     </li>
                                     <li class="aiz-side-nav-item">
-                                        <a href="https://demo.activeitzone.com/matrimonial/package-purchase-history" class="aiz-side-nav-link">
-                                            <span class="aiz-side-nav-text">Package Purchase History</span>
+                                        <a href="https://demo.activeitzone.com/matrimonial/plan-purchase-history" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Plan Purchase History</span>
                                         </a>
                                     </li>
                                 </ul>

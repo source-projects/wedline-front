@@ -1,0 +1,22 @@
+div.box {
+    margin-right: 30px;
+}
+
+.box1 {
+    background: url("../../../assets/public/assets/img/new-watermark.jpg");
+    border: 1px solid black;
+    height: 250px;
+    width: 200px;
+}
+
+.box2 {
+    height: 125px;
+    width: 100px;
+    background: crimson;
+}
+
+.box3 {
+    height: 25px;
+    width: 20px;
+    background: crimson;
+}

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { InterestMessagesComponent } from 'src/app/dialogs/interest-messages/interest-messages.component';
+import { PlanUpgradeComponent } from 'src/app/dialogs/plan-upgrade/plan-upgrade.component';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -24,6 +25,8 @@ export class SearchComponent implements OnInit {
   castes:any[] = [];
   occupations:any[] = [];
   designations:any[] = [];
+  planName:string = "FREE";
+  reloadMemberStatusSubscription:Subscription;
   generatedTokenStatusSubscription:Subscription;
   txt_id_search:FormControl;
   search_order:FormControl;
@@ -79,14 +82,25 @@ export class SearchComponent implements OnInit {
         this.getCasteList();
       }
     }); 
+    this.reloadMemberStatusSubscription = this.loginService.getreloadMemberDataStatus().subscribe(res=>{
+      if(res){
+        this.planName = this.loginService.memberDetails["plan_name"];
+      }
+    }); 
    }
 
   ngOnInit(): void {
   }
   ngOnDestroy():void{
     this.generatedTokenStatusSubscription.unsubscribe();
+    this.reloadMemberStatusSubscription.unsubscribe();
+
   }
   pageChange(newPage: number){
+    if(this.planName.toUpperCase().includes("FREE")){
+      this.openPlanUpgradePopup();
+      return;
+    }
     this.pageNumber = newPage;
     switch(this.searchMethod){
       case "NORMAL":{
@@ -103,6 +117,14 @@ export class SearchComponent implements OnInit {
       }
     }
   } 
+  openPlanUpgradePopup(){
+    const dialogRef = this.dialog.open(PlanUpgradeComponent,{
+      data:{}
+    });  
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if(result){}
+    // });
+  }
   showSnackbar(content:string,hasDuration:boolean,action:string){
     const config = new MatSnackBarConfig();
     if(hasDuration){
@@ -293,7 +315,6 @@ getCasteList(){
       if((res["status"]=="success")&&(res["total_count"]>0)){        
         this.config["totalItems"] = res["total_count"];
         this.results = res["data"];
-        console.log(this.results);
       }else{
         this.isNoResults = true;
         this.showSnackbar(res["errmessage"],true,"close");

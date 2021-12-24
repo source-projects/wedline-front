@@ -4,9 +4,8 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
-import SwiperCore, { Autoplay,Pagination} from 'swiper';
-SwiperCore.use([Autoplay]);
-SwiperCore.use([Pagination]);
+import SwiperCore, { Autoplay,Pagination,EffectFade} from 'swiper';
+SwiperCore.use([Autoplay,EffectFade,Pagination]);
 declare var $:any;
 @Component({
   selector: 'app-home',
@@ -17,8 +16,11 @@ export class HomeComponent implements OnInit {
     featuredMembers:any[] = [];
     stories:any[] = [];
     countryCodes:any[] = [];
+    banners:any[] = [];
     signupForm:FormGroup;
+    hasLoggedIn:boolean = false;
     generatedTokenStatusSubscription:Subscription;
+    loginStatusSubscription:Subscription;
     isGettingFeatured:boolean = false;
     isNoResultsFeatured:boolean = false;
     isGettingStory:boolean = false;
@@ -41,8 +43,12 @@ export class HomeComponent implements OnInit {
       country_code:['',Validators.required],
       mobile_number:['',[Validators.required,Validators.pattern("^[0-9]{10}$")]]
     });  
+    this.loginStatusSubscription = this.loginService.getLoginSetStatus().subscribe(res=>{
+      this.hasLoggedIn = res;
+    }); 
     this.generatedTokenStatusSubscription = this.loginService.getGeneratedTokenStatus().subscribe(res=>{
         if(res){
+          this.getHomepageBanner();
           this.getMobileCountryCode();
           this.getFeaturedMembers();
           this.getSuccessStories();
@@ -55,6 +61,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnDestroy():void{
     this.generatedTokenStatusSubscription.unsubscribe();
+    this.loginStatusSubscription.unsubscribe();
   }  
   
   showSnackbar(content:string,hasDuration:boolean,action:string){
@@ -190,6 +197,27 @@ export class HomeComponent implements OnInit {
           });
       });
     
+  }
+  getHomepageBanner(){
+    // this.isNoResultsFeatured = false;
+    // this.isGettingFeatured = true;
+    let requestData = new FormData();
+    requestData.append("religion","30");
+    this.loginService.getHomeBanners(requestData).subscribe((res:any)=>{
+      this.banners = [];
+      // this.isGettingFeatured = false;
+      if(res["status"]=="success"){        
+        this.banners = res["data"];
+        this.banners.map((slide)=>{
+          return slide.banner = 'http://localhost/matrimony-demo/assets/banner/'+slide.banner;
+        });
+        console.log(this.banners);
+      }else{
+        // this.isNoResultsFeatured = true;
+      }
+    },error=>{
+      // this.isGettingFeatured = false;
+    }); 
   }
   getFeaturedMembers(){
     this.isNoResultsFeatured = false;
