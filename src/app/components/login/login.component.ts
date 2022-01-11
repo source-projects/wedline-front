@@ -38,13 +38,15 @@ export class LoginComponent implements OnInit {
         requestData.append("password",this.loginForm.get("password")?.value);
 
         this.loginService.login(requestData).subscribe((res:any)=>{
-          this.isProccessing = false;
           if(res["status"]=="success"){
-           localStorage.setItem("matri","1234");
-           localStorage.setItem("profileStatus","Subscribed");
+           localStorage.setItem("wedlineMatriEmail",this.loginForm.get("email")?.value);
+           localStorage.setItem("wedlineMatriPassword",this.loginForm.get("password")?.value);
            this.loginService.hasLoggedIn.next(true);
-           this.router.navigateByUrl("/dashboard");
+           if(res["user_data"]["profile_status"]=="Subscribed"){
+             this.router.navigateByUrl("/dashboard");
+           }                
           }else{
+            this.isProccessing = false;
             this.showSnackbar(res["errmessage"],true,"close");
           }
        },error=>{

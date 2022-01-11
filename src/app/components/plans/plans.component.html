@@ -4,9 +4,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8 col-xxl-6 mx-auto">
-                        <div class="text-center pb-6">
+                        <div class="text-center pb-4">
                             <h2 class="fw-600 text-dark">Plans</h2>
                             <div class="fs-16 fw-400">Choose any of our plans as per your need. You&#039;ll get your money back anytime if we&#039;re unable to satisfy your need.</div>
+                            <button class="plan-skip-btn mt-3" (click)="skip()" *ngIf="hasLoggedIn&&profileStatus=='Started'">
+                                <svg width="180px" height="60px" viewBox="0 0 180 60">
+                                  <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                  <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                                </svg>
+                                <span>SKIP&nbsp;<i class="fas fa-forward"></i></span>
+                            </button>
                         </div>
                     </div>
                 </div>

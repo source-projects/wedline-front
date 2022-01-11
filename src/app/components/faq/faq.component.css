@@ -1,0 +1,17 @@
+.accordion .accordion-button:hover,
+.accordion .accordion-button:active,
+.accordion .accordion-button:focus,
+.accordion .accordion-button:focus-visible,
+.accordion .accordion-button:focus-within {
+    outline: none!important;
+    border: 0!important;
+    box-shadow: none!important;
+    background: transparent!important;
+    color: var(--primary)!important;
+}
+
+.accordion .accordion-button:not(.collapsed),
+.accordion .accordion-header {
+    background: transparent!important;
+    color: var(--primary)!important;
+}

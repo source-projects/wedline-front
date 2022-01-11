@@ -164,5 +164,5 @@ export class DashboardComponent implements OnInit {
     },error=>{
       this.isGettingMatchs = false;
     }); 
-  }
+  } 
 }

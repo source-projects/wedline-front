@@ -12,11 +12,11 @@
     <button (click)="zoomIn()" class="btn btn-primary mr-2">Zoom +</button>
 
 
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 5" [resizeToWidth]="200" [cropperMinWidth]="200" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform"
+    <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" [aspectRatio]="4 / 5" [resizeToWidth]="200" [cropperMinWidth]="200" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform"
             [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()"></image-cropper>
 
-        <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+        <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" class="position-sticky" [style.top]="0" />
     </div>
 
 </mat-dialog-content>

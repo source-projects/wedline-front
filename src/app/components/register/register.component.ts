@@ -121,16 +121,14 @@ export class RegisterComponent implements OnInit {
     });
  }
 
- register(data:any){
+ register(data:FormData){
   this.loginService.registerStarter(data).subscribe((res:any)=>{
-    this.isProccessing = false;
      if(res["status"]=="success"){
-      localStorage.setItem("matri","1234");
-      localStorage.setItem("profileStatus","Registered");
+      localStorage.setItem("wedlineMatriEmail",data.get("email") as string);
+      localStorage.setItem("wedlineMatriPassword",data.get("password") as string);
       this.loginService.hasLoggedIn.next(true);
-      this.loginService.profileStatus.next("Registered");
-      this.router.navigateByUrl("/profile-starter");
      }else{
+       this.isProccessing = false;
        this.showSnackbar(res["errmessage"],true,"close");
      }
   },error=>{

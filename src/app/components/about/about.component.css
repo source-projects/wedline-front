@@ -122,6 +122,7 @@
     -webkit-transition: all ease 0.3s;
     -o-transition: all ease 0.3s;
     transition: all ease 0.3s;
+    height: 260px;
 }
 
 .single-w-c-u-box .title {

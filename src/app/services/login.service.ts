@@ -17,7 +17,7 @@ export class LoginService {
   public messageReceptionStatus = new Subject<boolean>();
   public notificationReceptionStatus = new Subject<boolean>();
   constructor(private http:HttpClient) {
-    if(localStorage.getItem("matri")){
+    if(localStorage.getItem("wedlineMatriEmail")){
       this.hasLoggedIn.next(true);
     }
     if(localStorage.getItem("profileStatus")){
@@ -47,6 +47,9 @@ export class LoginService {
   }
   getCsrfToken(){
     return this.http.get(this.baseUrl+"api/get_tocken",{withCredentials:true});
+  }
+  getSession(){
+    return this.http.get(this.baseUrl+"api/get_session",{withCredentials:true});
   }
   getDropdownList(list:string,currentValue:string,isMultiple:boolean){
     let formData = new FormData();
@@ -147,6 +150,11 @@ export class LoginService {
     formData.append("csrf_new_matrimonial",this.token);
     formData.append("user_agent","NI-AAP");
     return this.http.post(this.baseUrl+"premium_member/payment_success_in_app_purchase",formData,{withCredentials:true});
+  }
+  createOrder(formData:FormData){
+    formData.append("csrf_new_matrimonial",this.token);
+    formData.append("user_agent","NI-AAP");
+    return this.http.post(this.baseUrl+"premium_member/create_order",formData,{withCredentials:true});
   }
   login(formData:FormData){
     formData.append("csrf_new_matrimonial",this.token);

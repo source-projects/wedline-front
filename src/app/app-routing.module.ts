@@ -30,9 +30,12 @@ import { ReferenceOrBackupNotForProductionComponent } from './components/referen
 import { PaidPlanComponent } from './components/paid-plan/paid-plan.component';
 import { PersonalizedPlanComponent } from './components/personalized-plan/personalized-plan.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
-  {path:"ref",component: ReferenceOrBackupNotForProductionComponent}, //not needed remove this routing
+  //{path:"ref",component: ReferenceOrBackupNotForProductionComponent}, //not needed remove this routing
   {path:"home",component: HomeComponent},
   {path:"",redirectTo: "home", pathMatch:"full"},
   {path:"about",component: AboutComponent},
@@ -54,6 +57,9 @@ const routes: Routes = [
   {path:"plans",component: PlansComponent},
   {path:"free-plan",component: FreeMembershipComponent},
   {path:"paid-plan",component: PaidPlanComponent},
+  {path:"privacy-policy",component:PrivacyPolicyComponent},
+  {path:"terms-and-conditions",component: TermsConditionsComponent},
+  {path:"faq",component: FaqComponent},
   {path:"personalized-plan",component: PersonalizedPlanComponent},
   {path:"my-shortlist",component: MyShortlistComponent,canActivate:[AuthGuard]},
   {path:"my-likes",component: MyLikesComponent,canActivate:[AuthGuard]},
@@ -61,6 +67,7 @@ const routes: Routes = [
   {path:"notifications",component: NotificationsComponent,canActivate:[AuthGuard]},
   {path:"ignored-list",component: IgnoredListComponent,canActivate:[AuthGuard]},
   {path:"privacy-settings",component: PrivacySettingsComponent,canActivate:[AuthGuard]},
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

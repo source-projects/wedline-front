@@ -1,148 +1,154 @@
-<div class="absolute-top-left d-xl-none">
-    <button class="btn btn-sm p-2" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb">
+<div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none" [class.d-block]="shouldOpenProfileSidebar">
+
+    <div class="absolute-top-left d-xl-none">
+        <button class="btn btn-sm p-2" data-toggle="class-toggle" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb" (click)="toggleProfile()">
         <i class="las la-times la-2x"></i>
     </button>
-</div>
-<div class="aiz-user-sidenav rounded overflow-hidden">
-    <div class="px-4 text-center mb-4">
-        <div class="position-relative" align="center">
-            <span class="avatar avatar-md mb-3 position-absolute progress-and-image">
+    </div>
+    <div class="aiz-user-sidenav rounded overflow-hidden">
+        <div class="px-4 text-center mb-4">
+            <div class="position-relative" align="center">
+                <span class="avatar avatar-md mb-3 position-absolute progress-and-image">
                 <img *ngIf="memberDetails" [src]="memberDetails.photo1">
             </span>
-            <circle-progress [options]="progressOptions" [percent]="memberDetails.percentage" [renderOnClick]="false"></circle-progress>
-        </div>
-        <h4 class="text-dark mt-1">{{memberDetails.matri_id}}</h4>
-        <h4 class="h5 fw-600 text-capitalize">{{memberDetails.firstname}} {{memberDetails.lastname}}</h4>
-        <div class="text-center  mb-2">
+                <circle-progress [options]="progressOptions" [percent]="memberDetails.percentage" [renderOnClick]="false"></circle-progress>
+            </div>
+            <h4 class="text-dark mt-1">{{memberDetails.matri_id}}</h4>
+            <h4 class="h5 fw-600 text-capitalize">{{memberDetails.firstname}} {{memberDetails.lastname}}</h4>
+            <div class="text-center  mb-2">
 
-        </div>
-        <div>
-            <span class="rating rating-sm">
-
-            </span>
-        </div>
-        <div class="mb-1">
-
-            <span class="fw-600">
+            </div>
+            <div>
+                <span class="rating rating-sm">
 
             </span>
-            <span>
+            </div>
+            <div class="mb-1">
+
+                <span class="fw-600">
 
             </span>
+                <span>
+
+            </span>
+            </div>
         </div>
-    </div>
-    <div class="text-center mb-3 px-3">
-        <a routerLink="/public-view" class="btn btn-block btn-soft-primary">Public View</a>
-    </div>
+        <div class="text-center mb-3 px-3">
+            <a routerLink="/public-view" class="btn btn-block btn-soft-primary">Public View</a>
+        </div>
 
-    <div class="sidemnenu mb-3">
-        <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
+        <div class="sidemnenu mb-3">
+            <ul class="aiz-side-nav-list" data-toggle="aiz-side-menu">
 
-            <li class="aiz-side-nav-item">
-                <a routerLink="/dashboard" href="javascript:void(0)" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" [routerLink]="['/profile-setting']" [queryParams]="{show:'profile-pic'}" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Profile Picture</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" [routerLink]="['/profile-setting']" [queryParams]="{show:'gallery'}" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Gallery</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0);" class="aiz-side-nav-link" routerLink="/plans" routerLinkActive="active">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">View Plans</span>
-                    <!-- <span class="aiz-side-nav-arrow"></span> -->
-                </a>
+                <li class="aiz-side-nav-item">
+                    <a routerLink="/dashboard" href="javascript:void(0)" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" [routerLink]="['/profile-setting']" [queryParams]="{show:'profile-pic'}" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Profile Picture</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" [routerLink]="['/profile-setting']" [queryParams]="{show:'gallery'}" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Gallery</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0);" class="aiz-side-nav-link" routerLink="/plans" routerLinkActive="active">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">View Plans</span>
+                        <!-- <span class="aiz-side-nav-arrow"></span> -->
+                    </a>
 
-            </li>
+                </li>
 
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/chat" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Messages</span>
-                </a>
-            </li>
-            <!-- <li class="aiz-side-nav-item">
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/chat" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Messages</span>
+                    </a>
+                </li>
+                <!-- <li class="aiz-side-nav-item">
                 <a href="javascript:void(0)" class="aiz-side-nav-link ">
                     <i class=" aiz-side-nav-icon"></i>
                     <span class="aiz-side-nav-text">Support Ticket</span>
                 </a>
             </li> -->
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/my-interest" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Interest Expressed</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/my-likes" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Likes And Dislikes</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/my-shortlist" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Shortlisted</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/ignored-list" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Blocked</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/privacy-settings" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Privacy Settings</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" class="aiz-side-nav-link" routerLinkActive="active" routerLink="/change-password">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Change Password</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/profile-setting" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Manage Profile</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/notifications" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Notifications</span>
-                </a>
-            </li>
-            <li class="aiz-side-nav-item">
-                <a href="javascript:void(0)" routerLink="/post-success-story" routerLinkActive="active" class="aiz-side-nav-link">
-                    <i class=" aiz-side-nav-icon"></i>
-                    <span class="aiz-side-nav-text">Post Success Story</span>
-                </a>
-            </li>
-            <!-- <li class="aiz-side-nav-item">
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/my-interest" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Interest Expressed</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/my-likes" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Likes And Dislikes</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/my-shortlist" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Shortlisted</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/ignored-list" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Blocked</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/privacy-settings" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Privacy Settings</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" class="aiz-side-nav-link" routerLinkActive="active" routerLink="/change-password">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Change Password</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/profile-setting" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Manage Profile</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/notifications" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Notifications</span>
+                    </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                    <a href="javascript:void(0)" routerLink="/post-success-story" routerLinkActive="active" class="aiz-side-nav-link">
+                        <i class=" aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Post Success Story</span>
+                    </a>
+                </li>
+                <!-- <li class="aiz-side-nav-item">
                 <a href="javascript:void(0);" class="aiz-side-nav-link">
                     <i class=" aiz-side-nav-icon"></i>
                     <span class="aiz-side-nav-text">Deactive Account</span>
                 </a>
             </li> -->
-        </ul>
-    </div>
-    <div>
-        <a href="javascript:void(0);" class="btn btn-block btn-primary" (click)="logout()">
-            <i class="las la-sign-out-alt"></i>
-            <span>Logout</span>
-        </a>
+            </ul>
+        </div>
+        <div>
+            <a href="javascript:void(0);" class="btn btn-block btn-primary" (click)="logout()">
+                <i class="las la-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
     </div>
 </div>
+<a href="javascript:void(0)" class="search-fab d-xl-none" (click)="toggleProfile()">
+    <i class="fas fa-user wedline-fab"></i>
+</a>

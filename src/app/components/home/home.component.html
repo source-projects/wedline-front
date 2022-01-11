@@ -2,7 +2,7 @@
 
     <div class="aiz-main-wrapper d-flex flex-column position-relative  bg-white">
         <!-- Homepage Slider Section -->
-        <section class="position-relative min-vh-100 d-flex home-slider-area">
+        <section class="position-relative wedline-banner d-flex home-slider-area">
             <div class="absolute-full h-100">
                 <div class="aiz-carousel aiz-carousel-full h-100">
                     <swiper [slidesPerView]="1" [autoplay]="{
@@ -96,7 +96,7 @@
                     <div class="col-md-8">
                         <div class="text-center section-title mb-5">
                             <h2 class="fw-600 mb-3 text-dark tleft">About Wedline Matrimony</h2>
-                            <p class="fw-400 fs-16 opacity-60 tleft">The mission of wedlinematrimony.com is to provide people with a superior matchmaking experience by expanding the opportunities available to meet potential life partners and build fulfilling relationships. We strive to do this
+                            <p class="fw-400 fs-16 opacity-80 text-dark tleft">The mission of wedlinematrimony.com is to provide people with a superior matchmaking experience by expanding the opportunities available to meet potential life partners and build fulfilling relationships. We strive to do this
                                 through superior technology, in-depth research, valuable matrimonial content & services, and above all the highest quality of customer service delivered with a sense of warmth, understanding, respect, and company spirit.</p>
                         </div>
 
@@ -112,10 +112,10 @@
                                 <i class="las la la-check-circle text-success mr-2"></i> Our largest number of profiles increases your chances of meeting the right person
                             </li>
                             <li class="list-group-item py-2 text-line-through bg-transparent">
-                                <i class="las la la-check-circle text-success mr-2"></i> Millions have found their life partner here
+                                <i class="las la la-check-circle text-success mr-2"></i> Thousands have found their life partner here
                             </li>
                             <li class="list-group-item py-2 text-line-through bg-transparent">
-                                <i class="las la la-check-circle text-success mr-2"></i> Trusted service for more than 21 years
+                                <i class="las la la-check-circle text-success mr-2"></i> Trusted service for more than 15 years
                             </li>
                         </ul>
 
@@ -231,10 +231,22 @@
                         <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingFeatured"></mat-spinner>
                         <div class="registered-slider" *ngIf="!isGettingFeatured">
 
-                            <swiper [slidesPerView]="4" [autoplay]="{
+                            <swiper [slidesPerView]="2" [autoplay]="{
                                 delay: 2500,
                                 disableOnInteraction: false 
-                            }">
+                            }" [breakpoints]="{
+                                '620': {
+                                  slidesPerView: 2
+                                },
+                                '780':{
+                                  slidesPerView: 2  
+                                },
+                                '991': {
+                                  slidesPerView: 3
+                                },
+                                '1024': {
+                                    slidesPerView: 4
+                                } }">
 
                                 <ng-template *ngFor="let result of featuredMembers" swiperSlide>
                                     <div class="single-slider cursor-pointer" routerLink="/full-profile/{{result.id | base64Encode}}">
@@ -266,9 +278,9 @@
 
             <div class="main-content-area">
                 <div class="left-image">
-                    <div class="offer">
+                    <div class="offer cursor-pointer" [routerLink]="['/register']">
                         <div class="offer-inner-content">
-                            <span class="fs">START FOR</span>
+                            <span class="fs">REGISTER FOR</span>
                             <h2>
                                 FREE
                             </h2>
@@ -361,10 +373,22 @@
                     </div>
                     <mat-spinner [diameter]="30" class="m-auto" *ngIf="isGettingStory"></mat-spinner>
                     <div *ngIf="!isGettingStory">
-                        <swiper [slidesPerView]="3" [autoplay]="{
+                        <swiper [slidesPerView]="1" [autoplay]="{
                             delay: 2500,
                             disableOnInteraction: false 
-                        }">
+                        }" [breakpoints]="{
+                            '620': {
+                              slidesPerView: 1
+                            },
+                            '780':{
+                              slidesPerView: 2  
+                            },
+                            '991': {
+                              slidesPerView: 2
+                            },
+                            '1024': {
+                                slidesPerView: 3
+                            } }">
                             <ng-template *ngFor="let result of stories" swiperSlide>
                                 <div class="single-story-box wow fadeInUp">
                                     <div class="img">

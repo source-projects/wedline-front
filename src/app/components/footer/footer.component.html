@@ -23,7 +23,7 @@
                         <i class="las la-home mr-2"></i>
                         <span>Address</span>
                     </div>
-                    <div>Thattaparambil Shopping Complex Mele Bazar,<br> near South Indian Bank, Cherupuzha, <br>Kerala 670511</div>
+                    <div>Thattaparambil Shopping Complex,<br>Mele Bazar, near South Indian Bank,<br>Cherupuzha, Kerala 670511</div>
                 </div>
                 <div class="col-xl col-md-6 mb-4 text-dark">
                     <div class="mb-3 fw-600">
@@ -97,13 +97,13 @@
                 <div>
                     <ul class="list-unstyled">
                         <li class="my-3">
-                            <a href="javscript:void(0)" class="text-reset">FAQ</a>
+                            <a href="javscript:void(0)" routerLink="/faq" class="text-reset">FAQ</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset">Terms &amp; Conditions</a>
+                            <a href="javascript:void(0)" routerLink="/terms-and-conditions" class="text-reset">Terms &amp; Conditions</a>
                         </li>
                         <li class="my-3">
-                            <a href="javascript:void(0)" class="text-reset">Privacy Policy</a>
+                            <a href="javascript:void(0)" routerLink="/privacy-policy" class="text-reset">Privacy Policy</a>
                         </li>
                         <!-- <li class="my-3">
                             <a href="https://demo.activeitzone.com/matrimonial/" class="text-reset">Request a Refund</a>
@@ -161,7 +161,7 @@
     </div>
 </footer>
 
-<div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
+<!-- <div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
     <div class="row align-items-center gutters-5 text-center">
         <div class="col">
             <a href="javascript:void(0)" routerLink="/home" class="text-reset d-block flex-grow-1 text-center py-2">
@@ -194,160 +194,9 @@
             </a>
         </div>
     </div>
-</div>
-
-<div class="aiz-cookie-alert shadow-xl">
-    <div class="p-3 bg-dark rounded">
-        <div class="text-white mb-3">
-            <p><span style="color: rgb(27, 27, 40);">We use cookie for better user experence.</span><br></p>
-        </div>
-        <button class="btn btn-primary aiz-cookie-accepet">
-            Ok. I Understood
-        </button>
-    </div>
-</div>
-
-
-<!-- <div class="modal fade" id="LoginModal">
-    <div class="modal-dialog modal-dialog-zoom">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title fw-600">Login</h6>
-                <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true"></span>
-        </button>
-            </div>
-            <div class="modal-body">
-                <div class="p-3">
-                    <form class="" method="POST" action="#">
-                        <input type="hidden" name="_token" value="9uXpK5hLpQQcbXP6nArla8Z45x4f3MQI61ThWq9T">
-                        <div class="form-group">
-                            <input type="text" class="form-control " value="" placeholder="Email Or Phone" name="email" id="email">
-                            <span class="opacity-60">Use country code before number</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="password">Password</label>
-                            <input type="password" class="form-control " name="password" id="password" placeholder="********" required>
-                        </div>
-
-                        <div class="mb-3 text-right">
-                            <a class="link-muted text-capitalize font-weight-normal" href="#">Forgot Password?</a>
-                        </div>
-
-
-                        <button type="submit" class="btn btn-block btn-primary">Login to your Account</button>
-
-                    </form>
-                    <div class="mb-4 mt-4">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td><a href="https://demo.activeitzone.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d181e081f5f2d08150c001d0108430e0200">[email&#160;protected]</a></td>
-                                    <td>12345678</td>
-                                    <td><button class="btn btn-outline-primary btn-xs" onclick="autoFill1()">Copy</button></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="https://demo.activeitzone.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4732342235767007223f262a372b226924282a">[email&#160;protected]</a></td>
-                                    <td>12345678</td>
-                                    <td><button class="btn btn-outline-primary btn-xs" onclick="autoFill2()">Copy</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-
-                    <div class="separator mb-3 mt-4">
-                        <span class="bg-white px-3">Or Login With</span>
-                    </div>
-                    <ul class="list-inline social colored text-center mb-3">
-                        <li class="list-inline-item">
-                            <a href="https://www.facebook.com/v3.3/dialog/oauth?client_id=hjh&amp;redirect_uri=https%3A%2F%2Fdemo.activeitzone.com%2Fmatrimonial%2Fsocial-login%2Ffacebook%2Fcallback&amp;scope=email&amp;response_type=code&amp;state=WiXODcnTcwyf94I0otdTn0kJCuHomwQef8gFZkja"
-                                class="facebook">
-                                <i class="lab la-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="social-login/redirect/google" class="google">
-                                <i class="lab la-google"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="social-login/redirect/twitter" class="twitter">
-                                <i class="lab la-twitter"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="text-center">
-                        <p class="text-muted mb-0">Don&#039;t have an account?</p>
-                        <a href="#">Create an account</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div> -->
 
 
-<!-- <div class="modal fade plan_update_alert_modal" id="modal-zoom">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
-        <div class="modal-content plan_update_alert_modal_content">
-            <div class="modal-body text-center">
-                <h4 class="modal-title h6 mb-3">Please Update Your Plan.</h4>
-                <hr>
-                <a href="plans.html" class="btn btn-primary mt-2">Plan Purchase</a>
-                <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="modal fade account_status_change_modal" id="modal-zoom">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <form class="form-horizontal member-block" action="https://demo.activeitzone.com/matrimonial/member/account-activation" method="POST">
-                    <input type="hidden" name="_token" value="9uXpK5hLpQQcbXP6nArla8Z45x4f3MQI61ThWq9T"> <input type="hidden" name="deacticvation_status" id="deacticvation_status" value="">
-                    <h4 class="modal-title h6 mb-3" id="confirmation_note" value=""></h4>
-                    <hr>
-                    <button type="submit" class="btn btn-primary mt-2">Yes</button>
-                    <button type="button" class="btn btn-danger mt-2" data-dismiss="modal">No</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
-<!-- <script type="text/javascript">
-    window.fbAsyncInit = function() {
-        FB.init({
-            xfbml: true,
-            version: 'v3.3'
-        });
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = '../../connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script> -->
-
-<!-- <div id="fb-root"></div> -->
-
-
-<!-- Your customer chat code -->
-<!-- <div class="fb-customerchat" attribution=setup_tool page_id="25">
-</div> -->
-
-
-
-<a href="https://api.whatsapp.com/send?phone=51955081075&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="fab" target="_blank">
+<a href="https://api.whatsapp.com/send?phone=919495778448&text=Hello" class="fab" target="_blank">
     <i class="fab fa-whatsapp wedline-fab"></i>
 </a>

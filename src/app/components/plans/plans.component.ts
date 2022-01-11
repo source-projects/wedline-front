@@ -19,6 +19,8 @@ export class PlansComponent implements OnInit {
   orderId:string = "";
   loginStatusSubscription:Subscription;
   hasLoggedIn:boolean = false;
+  profileStatusSubscription:Subscription;
+  profileStatus:string = localStorage.getItem("profileStatus") as string;
   constructor(
     private loginService:LoginService,
     private snackBar:MatSnackBar,
@@ -28,12 +30,14 @@ export class PlansComponent implements OnInit {
     this.loginStatusSubscription = this.loginService.getLoginSetStatus().subscribe(res=>{
       this.hasLoggedIn = res;
     }); 
+    this.profileStatusSubscription = this.loginService.getProfileStatus().subscribe(res=>{
+      this.profileStatus = res;
+    });
   }
-
   ngOnInit(): void {    
     let that = this;
     this.options = {
-      "key": "rzp_test_AH9Z2L7Vuospz9",
+      "key": "rzp_test_JelOhepkudmvBw",
       "amount": "50000",
       "currency": "INR",
       "name": "Wedline Matrimony",
@@ -79,7 +83,11 @@ export class PlansComponent implements OnInit {
       this.showSnackbar("Connection Error!",true,"close");
     });
   }
-  
+  skip(){
+    this.choosePlan(this.plans.find((plan:any)=>{
+      return plan.plan_type.toUpperCase()=="FREE";
+    }));
+  }
   choosePlan(plan:any){
     if(!this.hasLoggedIn){
       this.router.navigateByUrl("/register");
@@ -97,63 +105,43 @@ export class PlansComponent implements OnInit {
     this.isProccessing = true;
     this.showSnackbar("Please wait...",false,"");
     let that = this;
-    let params:any = {};
-    // params["totalPrice"] = this.planChoosed.sellingPrice;
-    // params["vendorId"] = localStorage.getItem("vid");
-    // params["orderType"] = "MEMBERSHIP";
-
-    /*To remove */
-    this.showSnackbar("Please complete payment!",true,"close");
-    //     this.orderId = res["data"]["orderId"]; 
-        this.options["amount"] = this.planChoosed.plan_amount+"00";
-        this.options["description"] = "Purchase "+this.planChoosed.plan_name+ " Membership";
-    //     this.options["order_id"] = this.orderId;
-        var rzp1 = new Razorpay(this.options);
-        rzp1.open();
-        rzp1.on('payment.failed', function (response:any){
-          that.showSnackbar(response.error.code+": "+response.error.reason+" "+response.error.description,true,"");
-          console.log(response);          
-        });
-
-    /*To remove ends */
-
-    // this.loginService.createOrder(params).subscribe(res=>{
-    //   this.isProccessing = false;
-    //   if(res["success"]){
-    //     this.showSnackbar("Please complete payment!",true,"close");
-    //     this.orderId = res["data"]["orderId"]; 
-    //     this.options["amount"] = this.planChoosed.sellingPrice+"00";
-    //     this.options["description"] = "Purchase "+this.planChoosed.membershipName+ " Membership";
-    //     this.options["order_id"] = this.orderId;
-    //     var rzp1 = new Razorpay(this.options);
-    //     rzp1.open();
-    //     rzp1.on('payment.failed', function (response:any){
-    //       that.showSnackbar(response.error.code+": "+response.error.reason+" "+response.error.description,true,"");
-    //       console.log(response);          
-    //     });
-    //   }else{
-    //     this.showSnackbar("Connection Error!",true,"close");
-    //   }
-    // },error=>{
-    //   this.showSnackbar("Connection Error!",true,"close");
-    //   this.isProccessing = false;
-    // });    
+    let requestData = new FormData;
+    requestData.append("amount",this.planChoosed.plan_amount+"00");
+    this.loginService.createOrder(requestData).subscribe((res:any)=>{
+      this.isProccessing = false;
+      if(res["status"]=="created"){
+         this.showSnackbar("Please complete payment!",true,"close");
+          this.options["amount"] = this.planChoosed.plan_amount+"00";
+          this.options["description"] = "Purchase "+this.planChoosed.plan_name+ " Membership";
+          this.options["order_id"] = res["data"];
+          this.orderId = res["data"];
+          var rzp1 = new Razorpay(this.options);
+          rzp1.open();
+          rzp1.on('payment.failed', function (response:any){
+            that.showSnackbar(response.error.code+": "+response.error.reason+" "+response.error.description,true,"");
+            console.log(response);          
+          });       
+      }else{
+        this.showSnackbar("Payment Failed!",true,"close");
+      }
+    },error=>{
+      this.showSnackbar("Connection Error!",true,"close");
+      this.isProccessing = false;
+    });    
   }
   saveMembershipForFree(){
     this.isProccessing = true;
     this.showSnackbar("Please wait...",false,"");
     let requestData = new FormData();
-    requestData.append("payment_method","RazorPay");
+    requestData.append("payment_method","NA");
     requestData.append("plan_id",this.planChoosed.id);
     this.loginService.verifyPaymentStatus(requestData).subscribe((res:any)=>{
-      this.isProccessing = false;
         if(res["status"]=="success"){
           this.showSnackbar("Subscribed successfully!",true,"close");
-          localStorage.setItem("profileStatus","Subscribed");
           this.loginService.hasLoggedIn.next(true);
-          this.loginService.profileStatus.next("Subscribed");
           this.router.navigate(["/dashboard"]);
         }else{
+          this.isProccessing = false;
           this.showSnackbar(res["error_message"],true,"close");
         }
     },error=>{
@@ -162,29 +150,22 @@ export class PlansComponent implements OnInit {
     });
   }
   saveMembership(response:any){
-    
-    // alert(response.razorpay_payment_id);
-    // alert(response.razorpay_order_id);
-    // alert(response.razorpay_signature);
     this.isProccessing = true;
     this.showSnackbar("Please wait verifying payment...",false,"");
-    // let params:any = {};
-    // params["membershipId"] = this.planChoosed.membershipId;
-    // params["vendorId"] = localStorage.getItem("vid");
-    // params["paymentId"] = response.razorpay_payment_id;
-    // params["orderId"] = this.orderId;
-    // params["signature"] = response.razorpay_signature;
     let requestData = new FormData();
+    requestData.append("razorpay_payment_id",response.razorpay_payment_id);
+    requestData.append("razorpay_signature",response.razorpay_signature);
+    requestData.append("razorpay_order_id",this.orderId);
     requestData.append("payment_method","RazorPay");
     requestData.append("plan_id",this.planChoosed.id);
+
     this.loginService.verifyPaymentStatus(requestData).subscribe((res:any)=>{
         if(res["status"]=="success"){
           this.showSnackbar("Subscribed successfully!",true,"close");
-          localStorage.setItem("profileStatus","Subscribed");
           this.loginService.hasLoggedIn.next(true);
-          this.loginService.profileStatus.next("Subscribed");
           this.router.navigate(["/dashboard"]);
         }else{
+          this.isProccessing = false;
           this.showSnackbar(res["error_message"],true,"close");
         }
     },error=>{

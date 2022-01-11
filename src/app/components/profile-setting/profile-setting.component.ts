@@ -787,7 +787,6 @@ uploadIdPic(fileEvent:any){
   const uploadData = new FormData();
   uploadData.append('is_post', "1");
   uploadData.append('id_proof', this.idFile);
-
   this.loginService.uploadIdProof(uploadData).subscribe((event:any) => {
     switch (event.type) {
       case HttpEventType.Sent:
@@ -827,6 +826,10 @@ uploadIdPic(fileEvent:any){
   }
 openImageCropper(event:any){
   const dialogRef = this.dialog.open(ImageCropperComponent,{
+    // maxWidth: '100vw',
+    // maxHeight: '100vh',
+    // height: '100%',
+    // width: '100%',
     data:{
       event:event
     }

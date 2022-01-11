@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SessionExpireDialogComponent } from 'src/app/dialogs/session-expire-dialog/session-expire-dialog.component';
 import { LoginService } from 'src/app/services/login.service';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+@ViewChild('mainNavToggler') mainNavToggler: ElementRef;
+@ViewChild('profileNavToggler') profileNavToggler: ElementRef;
+@ViewChild('mainNav') mainNav: ElementRef;
+@ViewChild('profileNav') profileNav: ElementRef;
 
  loginStatusSubscription:Subscription;
  profileStatusSubscription:Subscription;
@@ -30,8 +35,9 @@ export class HeaderComponent implements OnInit {
   constructor(
     private loginService:LoginService,
     private router:Router,
-    private snackBar:MatSnackBar
-  ) {     
+    private snackBar:MatSnackBar,
+    private dialog:MatDialog
+  ) {   
     this.loginStatusSubscription = this.loginService.getLoginSetStatus().subscribe(res=>{
       this.hasLoggedIn = res;
       this.getCsrfToken();
@@ -51,7 +57,7 @@ export class HeaderComponent implements OnInit {
     }); 
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {  
   }
   ngOnDestroy():void{
     this.loginStatusSubscription.unsubscribe();
@@ -64,14 +70,7 @@ export class HeaderComponent implements OnInit {
       this.loginService.token = res["tocken"];
       this.loginService.generatedToken.next(true);
       if(this.hasLoggedIn){
-        if(localStorage.getItem("profileStatus")){
-          if(localStorage.getItem("profileStatus")=="Subscribed")
-             this.getMyProfileDetails();
-        }else{
-          this.getMyProfileDetails();
-        }
-        this.getMessages();
-        this.getNotifications();
+         this.checkSession();
       }
     },error=>{
       alert(error["message"]);
@@ -79,7 +78,8 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     this.loginService.logout().subscribe((res:any)=>{
-        localStorage.setItem("matri","");
+        localStorage.setItem("wedlineMatriEmail","");
+        localStorage.setItem("wedlineMatriPassword","");
         localStorage.setItem("profileStatus","");
         this.loginService.hasLoggedIn.next(false);
         this.loginService.memberDetails = "";
@@ -89,9 +89,41 @@ export class HeaderComponent implements OnInit {
      this.showSnackbar("Connection error",true,"close");
    });  
   }
+  checkSession(){
+    this.loginService.getSession().subscribe((res:any)=>{
+        if(res["status"]=="error"){
+          if(localStorage.getItem("wedlineMatriEmail")&&localStorage.getItem("wedlineMatriPassword")){
+            this.openSessionExpireDialog();
+          }else{
+            this.logout();
+          }
+        }else{
+          localStorage.setItem("profileStatus",res["data"]["profile_status"]);
+          this.loginService.profileStatus.next(res["data"]["profile_status"]);
+          this.getAllDetails();
+        }
+    });
+  }
+  getAllDetails(){
+    switch(localStorage.getItem("profileStatus") as string){
+      case "Registered":{
+       this.router.navigateByUrl("/profile-starter");
+       break;
+      }
+      case "Started":{
+       this.router.navigateByUrl("/plans");
+       break;
+      }
+      default :{
+        this.getMyProfileDetails();
+      }
+    }
+    this.getMessages();
+    this.getNotifications();
+  }
+
   getMyProfileDetails(){
     this.loginService.getMyProfile().subscribe((res:any)=>{
-      console.log(res);
       if(res["status"]=="success"){
          this.memberDetails = res["data"];
          this.loginService.memberDetails = res["data"];
@@ -110,6 +142,21 @@ export class HeaderComponent implements OnInit {
     }
     config.panelClass = ['snackbar-styler'];
     return this.snackBar.open(content, action, config);
+  }
+  openSessionExpireDialog(){
+    const dialogRef = this.dialog.open(SessionExpireDialogComponent,{
+      data:{},
+      disableClose:true
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){   
+        this.loginService.generatedToken.next(true);
+        this.getAllDetails();
+      }else{
+        this.logout();
+      }
+    });
   }
   getMessages(){
     this.isNoMessages = false;
@@ -164,4 +211,30 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
+
+  closeNavbar(){
+    if(this.profileNav){
+      if(this.profileNav.nativeElement.classList.contains("show")){
+        this.profileNavToggler.nativeElement.click();
+      }
+    }    
+    if(this.mainNav.nativeElement.classList.contains("show")){
+      this.mainNavToggler.nativeElement.click();
+    }
+  }
+
+  togglerCheck(isMainNavOpen:boolean){
+    if(isMainNavOpen){
+      if(this.profileNav){
+        if(this.profileNav.nativeElement.classList.contains("show")){
+          this.profileNavToggler.nativeElement.click();
+        }
+      }     
+    }else{
+      if(this.mainNav.nativeElement.classList.contains("show")){
+        this.mainNavToggler.nativeElement.click();
+      }
+    }
+  }
+
 }

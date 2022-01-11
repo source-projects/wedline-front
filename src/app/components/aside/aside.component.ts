@@ -15,6 +15,8 @@ export class AsideComponent implements OnInit {
   progressOptions = new CircleProgressOptions();
   reloadMemberDataStatusSubscription:Subscription;
   memberDetails:any = "";
+  shouldOpenProfileSidebar:boolean = false;
+
   constructor(
     private router:Router,
     private loginService:LoginService,
@@ -48,7 +50,9 @@ export class AsideComponent implements OnInit {
   }
   logout(){
     this.loginService.logout().subscribe((res:any)=>{
-        localStorage.setItem("matri","");
+        localStorage.setItem("wedlineMatriEmail","");
+        localStorage.setItem("wedlineMatriPassword","");
+        localStorage.setItem("profileStatus","");
         this.loginService.hasLoggedIn.next(false);
         this.loginService.memberDetails = "";
         this.loginService.reloadMemberData.next(false);
@@ -66,4 +70,8 @@ showSnackbar(content:string,hasDuration:boolean,action:string){
   config.panelClass = ['snackbar-styler'];
   return this.snackBar.open(content, action, config);
 }
+toggleProfile(){
+  this.shouldOpenProfileSidebar = !this.shouldOpenProfileSidebar;
+}
+ 
 }

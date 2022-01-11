@@ -73,6 +73,10 @@ import { PaidPlanComponent } from './components/paid-plan/paid-plan.component';
 import { PersonalizedPlanComponent } from './components/personalized-plan/personalized-plan.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { PlanUpgradeComponent } from './dialogs/plan-upgrade/plan-upgrade.component';
+import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { SessionExpireDialogComponent } from './dialogs/session-expire-dialog/session-expire-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +119,11 @@ import { PlanUpgradeComponent } from './dialogs/plan-upgrade/plan-upgrade.compon
     PaidPlanComponent,
     PersonalizedPlanComponent,
     ChangePasswordComponent,
-    PlanUpgradeComponent
+    PlanUpgradeComponent,
+    TermsConditionsComponent,
+    PrivacyPolicyComponent,
+    FaqComponent,
+    SessionExpireDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -131,6 +131,11 @@
     border-left: 1px solid #dee2e6;
 }
 
+.wedline-banner {
+    margin-top: 120px;
+    min-height: calc(100vh - 120px);
+}
+
 
 /* ######################Animation####################### */
 

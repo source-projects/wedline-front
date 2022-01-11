@@ -360,8 +360,6 @@ aboutMeFormSubmit(){
    }); 
 }
 saveStatusAndRedirect(){
-  localStorage.setItem("profileStatus","Started");
-  this.loginService.profileStatus.next("Started");
   this.isCompletedProfile = true;
   this.cdr.detectChanges();
   this.router.navigateByUrl("/plans");
@@ -385,6 +383,8 @@ saveStatusAndRedirect(){
           }
           case "step4":{
             this.isCompletedAbout = true;
+            localStorage.setItem("profileStatus","Started");
+            this.loginService.profileStatus.next("Started");
             break;
           }
         }

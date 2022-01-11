@@ -151,7 +151,7 @@ export class ChatComponent implements OnInit {
   composeMessage(memberId:any){
     const dialogRef = this.dialog.open(ComposeMessageComponent,{
       data:memberId,
-      width:"40%"
+      width:"100%"
     });
   
     dialogRef.afterClosed().subscribe(result => {

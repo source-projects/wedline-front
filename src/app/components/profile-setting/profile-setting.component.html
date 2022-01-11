@@ -2,9 +2,7 @@
     <section class="py-5 bg-white">
         <div class="container">
             <div class="d-flex align-items-start">
-                <div class="aiz-user-sidenav-wrap pt-4 sticky-top c-scrollbar-light position-relative z-1 shadow-none">
-                    <app-aside></app-aside>
-                </div>
+                <app-aside></app-aside>
                 <div class="aiz-user-panel overflow-hidden">
 
                     <!-- <div class="card">
@@ -165,19 +163,18 @@
                                     </select>
                                             </div>
                                         </div>
-                                        <label class="form-label" for="languages_known[]">Languages Known</label>
-                                        <div class="form-group mb-1">
-                                            <ng-select id=" languages_known[]" [multiple]="true" formControlName="languages_known">
-                                                <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
-                                            </ng-select>
-                                        </div>
                                         <label class="form-label" for="mother_tongue">Mother Tongue</label>
                                         <div class="form-group mb-1">
                                             <select id=" mother_tongue" class="form-control aiz-selectpicker" formControlName="mother_tongue">
                                         <option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</option>
                                     </select>
                                         </div>
-
+                                        <label class="form-label" for="languages_known[]">Languages Known</label>
+                                        <div class="form-group mb-1">
+                                            <ng-select id=" languages_known[]" [multiple]="true" formControlName="languages_known">
+                                                <ng-option *ngFor="let lang of languages" value="{{lang.id}}">{{lang.val}}</ng-option>
+                                            </ng-select>
+                                        </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
                                                 <label class="form-label" for="height">Height</label>
@@ -477,28 +474,12 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label class="form-label" for="birthplace">Birth Place</label>
-                                                <div class="form-group mb-1">
-                                                    <input id="birthplace" formControlName="birthplace" rows="5" class="form-control" name="birthplace">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="birthtime">Birth Time </label>
-                                                <div fxLayout="row">
-                                                    <input placeholder="24hr format" aria-label="24hr format" class="form-control" formControlName="birthtime" [ngxTimepicker]="fullTime" [format]="24" readonly>
-                                                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-md-6">
                                                 <label class="form-label" for="profileby">Created By</label>
                                                 <select id="profileby" formControlName="profileby" class="form-control aiz-selectpicker" name="profileby">
                                             <option selected="" value="">Select Created By</option><option selected="" value="Self">Self</option>
                                             <option value="Parents">Parents</option><option value="Guardian">Guardian</option>
                                             <option value="Friends">Friends</option><option value="Sibling">Sibling</option>
-                                            <option value="Relatives">Relatives</option><option value="Admin">Admin</option>
+                                            <option value="Relatives">Relatives</option>
                                         </select>
                                             </div>
                                             <div class="col-md-6">
@@ -522,6 +503,21 @@
                                             <option value="Others">Others</option>
                                     </select>
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label class="form-label" for="birthplace">Birth Place</label>
+                                                <div class="form-group mb-1">
+                                                    <input id="birthplace" formControlName="birthplace" rows="5" class="form-control" name="birthplace">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-6">
+                                                <label class="form-label" for="birthtime">Birth Time </label>
+                                                <div fxLayout="row">
+                                                    <input placeholder="24hr format" aria-label="24hr format" class="form-control" formControlName="birthtime" [ngxTimepicker]="fullTime" [format]="24" readonly>
+                                                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                                                </div>
+                                            </div> -->
                                         </div>
                                         <div class="text-right">
                                             <button type="submit" class="btn btn-primary btn-sm" *ngIf="!isSavingDetails" (click)="aboutMeFormSubmit()">Update</button>
@@ -552,8 +548,8 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label for="parish">Parish</label>
-                                                <input type="text" name="parish" formControlName="parish" class="form-control" placeholder="Parish">
+                                                <label for="parish">Parish Name</label>
+                                                <input type="text" name="parish" formControlName="parish" class="form-control" placeholder="Parish Name">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="diocese">Diocese</label>

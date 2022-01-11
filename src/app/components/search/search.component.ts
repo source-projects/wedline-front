@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
@@ -13,6 +13,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @ViewChild("searchFilter") searchFilter:ElementRef;
   matchCount:number = 0;
   searchMethod:string="NORMAL";
   config:any = {};
@@ -262,6 +263,11 @@ getCasteList(){
     }
   }
   search(){
+    if(this.searchFilter){
+      if(this.searchFilter.nativeElement.classList.contains("active")){
+        this.searchFilter.nativeElement.classList.remove("active");
+      }
+    }
     if(this.search_order.valid){ 
       if(this.searchMethod!="NORMAL"){
         this.searchMethod = "NORMAL";
@@ -403,5 +409,10 @@ getCasteList(){
       });     
       }
     });
+  }
+  toggleFilter(){
+    if(this.searchFilter){
+      this.searchFilter.nativeElement.classList.toggle("active");
+    }
   }
 }
