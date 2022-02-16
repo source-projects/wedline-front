@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
 
         this.loginService.login(requestData).subscribe((res:any)=>{
           if(res["status"]=="success"){
-           localStorage.setItem("wedlineMatriEmail",this.loginForm.get("email")?.value);
-           localStorage.setItem("wedlineMatriPassword",this.loginForm.get("password")?.value);
+           localStorage.setItem("wedlineMatriChristianEmail",this.loginForm.get("email")?.value);
+           localStorage.setItem("wedlineMatriChristianPassword",this.loginForm.get("password")?.value);
            this.loginService.hasLoggedIn.next(true);
            if(res["user_data"]["profile_status"]=="Subscribed"){
              this.router.navigateByUrl("/dashboard");

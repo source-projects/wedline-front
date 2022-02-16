@@ -50,9 +50,9 @@ export class AsideComponent implements OnInit {
   }
   logout(){
     this.loginService.logout().subscribe((res:any)=>{
-        localStorage.setItem("wedlineMatriEmail","");
-        localStorage.setItem("wedlineMatriPassword","");
-        localStorage.setItem("profileStatus","");
+        localStorage.setItem("wedlineMatriChristianEmail","");
+        localStorage.setItem("wedlineMatriChristianPassword","");
+        localStorage.setItem("wedlineMatriChristianProfileStatus","");
         this.loginService.hasLoggedIn.next(false);
         this.loginService.memberDetails = "";
         this.loginService.reloadMemberData.next(false);

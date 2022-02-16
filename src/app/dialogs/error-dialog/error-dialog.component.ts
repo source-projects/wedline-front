@@ -16,7 +16,7 @@ export class ErrorDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  dismiss(){
-    this.dialogRef.close();
+  dismiss(shouldGoBack:boolean){
+    this.dialogRef.close(shouldGoBack);
   }
 }

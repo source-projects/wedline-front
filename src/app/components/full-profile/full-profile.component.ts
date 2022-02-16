@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Image, LibConfig, ModalGalleryConfig, ModalGalleryService, Size } from '@ks89/angular-modal-gallery';
 import { Subscription } from 'rxjs';
 import { ComposeMessageComponent } from 'src/app/dialogs/compose-message/compose-message.component';
@@ -32,7 +32,8 @@ export class FullProfileComponent implements OnInit {
     private modalGalleryService: ModalGalleryService,
     private snackBar:MatSnackBar,
     private dialog:MatDialog,
-    private location:Location
+    private location:Location,
+    private router:Router
   ) {
     this.route.paramMap.subscribe(params => {
       this.memberId = atob(String(params.get('memberId')));      
@@ -121,7 +122,14 @@ export class FullProfileComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-       this.location.back();
+      if(result){
+        let navigation:any = this.location.getState();
+        if(navigation["navigationId"]>1){
+           this.location.back();
+        }else{
+           this.router.navigateByUrl("dashboard");
+        }        
+      }
     });
   }
   expressInterest(id:string,isBlocked:number){

@@ -25,12 +25,12 @@ export class SessionExpireDialogComponent implements OnInit {
   login(){
         this.isProccessing = true;
         let requestData = new FormData();             
-        requestData.append("username",localStorage.getItem("wedlineMatriEmail") as string);
-        requestData.append("password",localStorage.getItem("wedlineMatriPassword") as string);
+        requestData.append("username",localStorage.getItem("wedlineMatriChristianEmail") as string);
+        requestData.append("password",localStorage.getItem("wedlineMatriChristianPassword") as string);
         this.loginService.login(requestData).subscribe((res:any)=>{
           this.isProccessing = false;
           if(res["status"]=="success"){
-            localStorage.setItem("profileStatus",res["user_data"]["profile_status"]);
+            localStorage.setItem("wedlineMatriChristianProfileStatus",res["user_data"]["profile_status"]);
             this.dismiss(true);
           }else{
             this.showSnackbar("Oops! something went wrong...",true,"close");

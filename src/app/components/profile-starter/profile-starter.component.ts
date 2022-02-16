@@ -1,4 +1,4 @@
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -81,6 +81,7 @@ export class ProfileStarterComponent implements OnInit {
    });  
    this.educationQualificationForm = this.fb.group({
     education_detail: ['', Validators.required],
+    education_in_detail:[''],
     employee_in:['',Validators.required],
     income:['',Validators.required],
     occupation:['',Validators.required],
@@ -240,6 +241,7 @@ getStates(){
 
       let requestData = new FormData();
       requestData.append("employee_in",this.educationQualificationForm.get("employee_in")?.value);
+      requestData.append("education_in_detail",this.educationQualificationForm.get("education_in_detail")?.value);
       requestData.append("income",this.educationQualificationForm.get("income")?.value);
       requestData.append("occupation",this.educationQualificationForm.get("occupation")?.value);
       requestData.append("designation",this.educationQualificationForm.get("designation")?.value);
@@ -383,7 +385,7 @@ saveStatusAndRedirect(){
           }
           case "step4":{
             this.isCompletedAbout = true;
-            localStorage.setItem("profileStatus","Started");
+            localStorage.setItem("wedlineMatriChristianProfileStatus","Started");
             this.loginService.profileStatus.next("Started");
             break;
           }

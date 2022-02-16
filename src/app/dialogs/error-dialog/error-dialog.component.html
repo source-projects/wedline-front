@@ -1,9 +1,13 @@
 <h1 mat-dialog-title>Oops! it seems your are restricted</h1>
 <mat-dialog-content>
     <strong>Error Message :</strong> {{message}}
+    <h6 class="text-muted mt-2">Please upgrade your plan</h6>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-        <button class="btn btn-primary" (click)="dismiss()">Go Back</button>
+        <button class="btn btn-primary" (click)="dismiss(true)">Go Back</button>
+    </div>
+    <div>
+        <button class="btn btn-primary" routerLink="/plans" (click)="dismiss(false)">Upgrade</button>
     </div>
 </mat-dialog-actions>

@@ -57,8 +57,7 @@ export class HeaderComponent implements OnInit {
     }); 
   }
 
-  ngOnInit(): void {  
-  }
+  ngOnInit(): void {}
   ngOnDestroy():void{
     this.loginStatusSubscription.unsubscribe();
     this.messageReceptionStatusSubscription.unsubscribe();
@@ -78,9 +77,9 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     this.loginService.logout().subscribe((res:any)=>{
-        localStorage.setItem("wedlineMatriEmail","");
-        localStorage.setItem("wedlineMatriPassword","");
-        localStorage.setItem("profileStatus","");
+        localStorage.setItem("wedlineMatriChristianEmail","");
+        localStorage.setItem("wedlineMatriChristianPassword","");
+        localStorage.setItem("wedlineMatriChristianProfileStatus","");
         this.loginService.hasLoggedIn.next(false);
         this.loginService.memberDetails = "";
         this.loginService.reloadMemberData.next(false);
@@ -92,20 +91,20 @@ export class HeaderComponent implements OnInit {
   checkSession(){
     this.loginService.getSession().subscribe((res:any)=>{
         if(res["status"]=="error"){
-          if(localStorage.getItem("wedlineMatriEmail")&&localStorage.getItem("wedlineMatriPassword")){
+          if(localStorage.getItem("wedlineMatriChristianEmail")&&localStorage.getItem("wedlineMatriChristianPassword")){
             this.openSessionExpireDialog();
           }else{
             this.logout();
           }
         }else{
-          localStorage.setItem("profileStatus",res["data"]["profile_status"]);
+          localStorage.setItem("wedlineMatriChristianProfileStatus",res["data"]["profile_status"]);
           this.loginService.profileStatus.next(res["data"]["profile_status"]);
           this.getAllDetails();
         }
     });
   }
   getAllDetails(){
-    switch(localStorage.getItem("profileStatus") as string){
+    switch(localStorage.getItem("wedlineMatriChristianProfileStatus") as string){
       case "Registered":{
        this.router.navigateByUrl("/profile-starter");
        break;

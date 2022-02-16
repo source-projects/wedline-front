@@ -103,7 +103,9 @@ export class ProfileSettingComponent implements OnInit {
     birthplace:[''],
     birthtime:[''],
     profileby:['',Validators.required],
-    reference:['',Validators.required]    
+    reference:['',Validators.required],
+    prfcreatorno:[''],
+    prfcreatorname:['']    
   }); 
 
   this.religionForm = this.fb.group({
@@ -128,6 +130,7 @@ export class ProfileSettingComponent implements OnInit {
 
   this.educationForm = this.fb.group({
     employee_in: [''],
+    education_in_detail:[''],
     income:[''],
     occupation:['',Validators.required],
     designation:[''],
@@ -555,7 +558,14 @@ getCasteList(){
       requestData.append("birthplace",this.aboutMeForm.get("birthplace")?.value);
       requestData.append("profileby",this.aboutMeForm.get("profileby")?.value);
       requestData.append("birthtime",this.aboutMeForm.get("birthtime")?.value);
-      requestData.append("reference",this.aboutMeForm.get("reference")?.value);    
+      requestData.append("reference",this.aboutMeForm.get("reference")?.value); 
+      if(this.aboutMeForm.get("profileby")?.value!=''&&this.aboutMeForm.get("profileby")?.value!='Self'){
+        requestData.append("prfcreatorno",this.aboutMeForm.get("prfcreatorno")?.value);
+        requestData.append("prfcreatorname",this.aboutMeForm.get("prfcreatorname")?.value);    
+      }else{
+        requestData.append("prfcreatorno","");
+        requestData.append("prfcreatorname","");   
+      }   
       requestData.append("user_agent","NI-AAPP");
       requestData.append("is_post","0");
   
@@ -616,6 +626,7 @@ educationFormSubmit(){
     this.isSavingDetails = true;
     let requestData = new FormData();
     requestData.append("education_detail[]",this.educationForm.get("education_detail")?.value?this.educationForm.get("education_detail")?.value.join(','):"");
+    requestData.append("education_in_detail",this.educationForm.get("education_in_detail")?.value);
     requestData.append("employee_in",this.educationForm.get("employee_in")?.value);
     requestData.append("income",this.educationForm.get("income")?.value);
     requestData.append("occupation",this.educationForm.get("occupation")?.value);

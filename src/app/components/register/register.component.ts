@@ -124,8 +124,8 @@ export class RegisterComponent implements OnInit {
  register(data:FormData){
   this.loginService.registerStarter(data).subscribe((res:any)=>{
      if(res["status"]=="success"){
-      localStorage.setItem("wedlineMatriEmail",data.get("email") as string);
-      localStorage.setItem("wedlineMatriPassword",data.get("password") as string);
+      localStorage.setItem("wedlineMatriChristianEmail",data.get("email") as string);
+      localStorage.setItem("wedlineMatriChristianPassword",data.get("password") as string);
       this.loginService.hasLoggedIn.next(true);
      }else{
        this.isProccessing = false;

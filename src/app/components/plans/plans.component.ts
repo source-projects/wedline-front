@@ -20,7 +20,7 @@ export class PlansComponent implements OnInit {
   loginStatusSubscription:Subscription;
   hasLoggedIn:boolean = false;
   profileStatusSubscription:Subscription;
-  profileStatus:string = localStorage.getItem("profileStatus") as string;
+  profileStatus:string = localStorage.getItem("wedlineMatriChristianProfileStatus") as string;
   constructor(
     private loginService:LoginService,
     private snackBar:MatSnackBar,

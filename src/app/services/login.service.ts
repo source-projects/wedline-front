@@ -17,11 +17,11 @@ export class LoginService {
   public messageReceptionStatus = new Subject<boolean>();
   public notificationReceptionStatus = new Subject<boolean>();
   constructor(private http:HttpClient) {
-    if(localStorage.getItem("wedlineMatriEmail")){
+    if(localStorage.getItem("wedlineMatriChristianEmail")){
       this.hasLoggedIn.next(true);
     }
-    if(localStorage.getItem("profileStatus")){
-      this.profileStatus.next(String(localStorage.getItem("profileStatus")));
+    if(localStorage.getItem("wedlineMatriChristianProfileStatus")){
+      this.profileStatus.next(String(localStorage.getItem("wedlineMatriChristianProfileStatus")));
     }
    }
   getLoginSetStatus():Observable<boolean>{
